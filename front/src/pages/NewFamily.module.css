@@ -1,0 +1,27 @@
+.NewFamily {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.area {
+    position: relative;
+    width: 360px;
+    height: 672px;
+    /* background-color: white; */
+}
+
+.btn {
+    /* background-color: aqua; */
+    position: absolute;
+    top: 77%;
+    left: 16px;
+}
+
+.empty {
+    background-color: white;
+    width: 360px;
+    height: 200px;
+    z-index: 1;
+}

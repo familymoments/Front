@@ -1,0 +1,45 @@
+.circle1 {
+    width: 550px;
+    height: 550px;
+    background-color: #EF88A166;
+    border-radius: 50%;
+    position: absolute;
+    top: 27px;
+    left: -226px;
+}
+
+.circle2 {
+    width: 550px;
+    height: 550px;
+    background-color: #D8D3EB;
+    border-radius: 50%;
+    position: absolute;
+    top: 234px;
+    left: 50px;
+}
+
+.title1 {
+    /* background-color: aqua; */
+    color: #5B6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+    position: absolute;
+    top: 80px;
+    left: 270px;
+}
+
+.title2 {
+    /* background-color: aqua; */
+    color: #5B6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+    position: absolute;
+    top: 70px;
+    left: 100px;
+}
