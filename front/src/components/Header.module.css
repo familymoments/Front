@@ -1,0 +1,17 @@
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 56px;
+    box-shadow: 0 5px 5px -5px black;
+    background-color: white;
+}
+
+.font {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    font-family: 'Roboto';
+    color: rgba(91, 99, 128, 1);
+}
