@@ -6,6 +6,12 @@
     position: absolute;
     top: 27px;
     left: -226px;
+    transition: background-color .5s;
+}
+
+.circle1:hover {
+    background-color: #EF88A1CC;
+    cursor: pointer;
 }
 
 .circle2 {
@@ -16,10 +22,15 @@
     position: absolute;
     top: 234px;
     left: 50px;
+    transition: background-color .5s;
+}
+
+.circle2:hover {
+    background-color: #A89AE0;
+    cursor: pointer;
 }
 
 .title1 {
-    /* background-color: aqua; */
     color: #5B6380;
     font-size: 36px;
     line-height: 44px;
@@ -32,7 +43,6 @@
 }
 
 .title2 {
-    /* background-color: aqua; */
     color: #5B6380;
     font-size: 36px;
     line-height: 44px;
