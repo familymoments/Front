@@ -2,10 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 360px;
+    width: 100vw;
     height: 56px;
     box-shadow: 0 5px 5px -5px black;
     background-color: white;
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 .font {
