@@ -1,3 +1,5 @@
+/**헤더 컴포넌트  props : title=""
+ */
 import classes from "./Header.module.css"
 
 const Header = props => {

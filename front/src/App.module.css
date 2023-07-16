@@ -9,3 +9,7 @@
 :root {
     --vh: 100%;
 }
+
+*{
+    font-family: 'Roboto';
+}
