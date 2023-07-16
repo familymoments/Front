@@ -1,8 +1,9 @@
 // import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
 import { useEffect } from 'react';
 import classes from "./App.module.css";
 import Landing from './pages/Landing';
+import Login from './pages/Login.jsx';
 
 
 function App() {
@@ -17,10 +18,12 @@ function App() {
         <div className={classes.App}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Landing/>} />
+                    <Route path="/" element={<Landing/>}>
+                        <Route path = "login" element={<Login/>}></Route>
+                    </Route>
                 </Routes>
             </BrowserRouter>
-
+            
             
         </div>
     );
