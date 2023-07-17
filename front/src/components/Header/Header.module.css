@@ -4,6 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 56px;
+    height: 8vh;
     box-shadow: 0 5px 5px -5px black;
     background-color: white;
 
@@ -12,10 +13,18 @@
     top: 0;
 }
 
-/* .font {
+.font {
     font-size: 16px;
     font-weight: 700;
     line-height: 19px;
     font-family: 'Roboto';
     color: rgba(91, 99, 128, 1);
-} */
+}
+
+.icon {
+    position: absolute;
+    right: 8vw;
+    width: 21.32px;
+    height: 26px;
+    cursor: pointer;
+}
