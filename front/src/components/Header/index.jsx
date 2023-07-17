@@ -1,5 +1,10 @@
-/**헤더 컴포넌트  props : title=""
- */
+/** 헤더 컴포넌트  
+ * props {
+ *  title : string
+ *  showIcon : boolean -> true시 알림버튼 보임, false시 알림버튼 숨김
+ * }
+*/
+
 import classes from "./Header.module.css"
 import { AiOutlineBell } from 'react-icons/ai';
 
