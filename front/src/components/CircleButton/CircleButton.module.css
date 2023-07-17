@@ -1,0 +1,47 @@
+.circle1 {
+    width: 550px;
+    height: 550px;
+    background-color: #EF88A166;
+    border-radius: 50%;
+    transition: background-color .5s;
+}
+
+.activeCircle1 {
+    background-color: #EF88A1CC;
+}
+
+.circle2 {
+    width: 550px;
+    height: 550px;
+    background-color: #D8D3EB;
+    border-radius: 50%;
+    transition: background-color .5s;
+}
+
+.activeCircle2 {
+    background-color: #A89AE0;
+}
+
+.title1 {
+    color: #5B6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+    position: absolute;
+    top: 11vh;
+    left: 71vw;
+}
+
+.title2 {
+    color: #5B6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+    position: absolute;
+    top: 10vh;
+    left: 30vw;
+}
