@@ -15,12 +15,14 @@ function Login(){
         </div>
     </div>
    
+        <div >
             <div>
-                <input type='text' name='input_id' placeholder='ID' />
+                <input id={Styles.id} type='text' name='input_id' placeholder='ID' />
             </div>
             <div>
-                <input type='password' name='input_pw' placeholder='Password'/>
+                <input id = {Styles.password} type='password' name='input_pw' placeholder='Password'/>
             </div>
+        </div>
             <div>
                 <Loginbutton texts = "순간을 가족에게 공유하기"></Loginbutton>
             </div>

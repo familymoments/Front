@@ -29,3 +29,12 @@
     font-weight: 400;
     line-height: 16px;
 }
+#id, #password
+{
+    width: 327px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FBEEFF;
+    backdrop-filter: blur(20px);
+}
