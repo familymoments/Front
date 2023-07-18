@@ -3,9 +3,15 @@ import Loginbutton from '../components/Loginbutton';
 import {useForm} from "react-hook-form";
 import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
 
-function Login(){
-    const {register, handleSubmit} = useForm();
-
+function Login({
+    onSubmit = async (data) => {
+        await new Promise((r) => setTimeout(r, 1000));
+        alert(JSON.stringify(data));
+      },}){
+    const {register, 
+        handleSubmit,
+        formState: { isSubmitting, isSubmitted, errors },} = useForm();
+    
     return(
     <div>
     <div className={Styles.top}>
@@ -18,21 +24,44 @@ function Login(){
         </div>
     </div>
    
-        <form onSubmit = {handleSubmit((data) => alert(JSON.stringify(data)))}>
+    <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input id={Styles.id} type= "email"  placeholder="ID" {...register("email")} />
+                <input id = "email" className={Styles.id} type= "email"  placeholder="ID"
+                aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : undefined} {...register("email", {required: "이메일은 필수 입력입니다.",
+                pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "이메일 형식에 맞지 않습니다.",
+                },})}/>
+                {errors.email && <small role="alert">{errors.email.message}</small>}
             </div>
             <div>
-                <input id = {Styles.password} type='password'  placeholder='Password' {...register("password")}/>
+                <input id ="password" className = {Styles.password} type='password'  placeholder='Password' 
+                        aria-invalid={
+                            isSubmitted ? (errors.password ? "true" : "false") : undefined
+                        }
+                {...register("password", {
+                    required: "비밀번호는 필수 입력입니다.",
+                    minLength: {
+                        value: 8,
+                        message: "8자리 이상 비밀번호를 사용하세요.",
+                }, })}
+                />
+                {errors.password && <small role="alert">{errors.password.message}</small>}
             </div>
         
             <div>
-                <Loginbutton type = "submit" texts = "순간을 가족에게 공유하기"></Loginbutton>
+                <Loginbutton type = "submit" disabled = {isSubmitting} texts = "순간을 가족에게 공유하기"></Loginbutton>
             </div>
         </form>
-            <button>아이디 찾기</button>
-            <button>비밀번호 찾기</button>
-            <button>회원가입</button>
+        <div >
+            <button className={Styles.accountbutton}>아이디 찾기</button>
+            <button className={Styles.accountbutton}>비밀번호 찾기</button>
+            <button className={Styles.accountbutton}>회원가입</button>
+        </div>
+            <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
+            <button onClick={''}>카카오 로그인</button>
+            <button onClick={''}>네이버 로그인</button>
+            <button onClick={''}>구글 로그인</button>
         
     </div>
     );
