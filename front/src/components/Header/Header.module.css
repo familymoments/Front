@@ -3,8 +3,8 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 56px;
     box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
+    height: 8vh;
     background-color: white;
 
     position: -webkit-sticky;
