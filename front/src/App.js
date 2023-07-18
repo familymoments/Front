@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import classes from "./App.module.css";
 import Landing from './pages/Landing';
+import Main from './pages/Main';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Landing/>} />
+                    <Route path="/main" element={<Main/>} />
                 </Routes>
             </BrowserRouter>
 
