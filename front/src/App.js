@@ -5,6 +5,7 @@ import classes from "./App.module.css";
 import Landing from './pages/Landing';
 import Login from './pages/Login.jsx';
 import Findid from './pages/Findid';
+import Findid2 from './pages/Findid2';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                         <Route path = "login" element={<Login/>}></Route>
                     </Route>
                     <Route path = "/findid" element = {<Findid/>}></Route>
+                    <Route path = "/findid2" element = {<Findid2/>}></Route>
                 </Routes>
             </BrowserRouter>
             
