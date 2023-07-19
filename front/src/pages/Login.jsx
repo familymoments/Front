@@ -1,4 +1,5 @@
 import Styles from './Login.module.css';
+import Findid from '../pages/Findid';
 import Loginbutton from '../components/Loginbutton';
 import {useForm} from "react-hook-form";
 import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
@@ -62,6 +63,7 @@ function Login({
             <button onClick={''}>카카오 로그인</button>
             <button onClick={''}>네이버 로그인</button>
             <button onClick={''}>구글 로그인</button>
+            
         
     </div>
     );

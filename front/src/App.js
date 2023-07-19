@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import classes from "./App.module.css";
 import Landing from './pages/Landing';
 import Login from './pages/Login.jsx';
+import Findid from './pages/Findid';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/" element={<Landing/>}>
                         <Route path = "login" element={<Login/>}></Route>
                     </Route>
+                    <Route path = "/findid" element = {<Findid/>}></Route>
                 </Routes>
             </BrowserRouter>
             
