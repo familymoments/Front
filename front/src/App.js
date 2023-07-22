@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import classes from "./App.module.css";
 import Landing from './pages/Landing';
 import NewFamily from './pages/NewFamily';
+import MyPage from './pages/MyPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<NewFamily />} />
+                    <Route path='/my' element={<MyPage />} />
 
                     {/* 페이지 생성 시 기본 값 */}
                     <Route path="/ex" element={<Landing/>} />
