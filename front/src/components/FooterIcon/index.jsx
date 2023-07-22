@@ -6,7 +6,12 @@ import { BiPhotoAlbum,BiSolidPhotoAlbum ,BiUser,BiSolidUser} from "react-icons/b
 const FooterIcon=(props)=>{
     return(
         <div className={styles.wrapper}>
-            <props.iconName className={styles.icon} onClick={() => alert("알람버튼.")}/>
+            <props.iconName className={styles.icon} onClick={
+                (e)=>{
+                    e.preventDefault();
+                    props.onClick();
+                }
+            }/>
             <div className={styles.text}>{props.iconText}</div>
         </div>
     )
