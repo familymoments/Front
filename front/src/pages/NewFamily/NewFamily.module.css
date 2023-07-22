@@ -12,26 +12,23 @@
     position: relative;
     width: 500px;
     /* 100vh - header height size => 100vh - 8vh => 92vh */
-    height: 92vh;
+    height: 1000px;
     
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     
 }
 
 .pinkCircleBtn {
-    position: relative;
-    top: 10%;
-    left: -30%;
+    position: absolute;
+    top: 10px;
+    left: -200px;
 
 }
 
 .purpleCircleBtn {
-    position: relative;
-    bottom: 10%;
-    left: 15%;
+    position: absolute;
+    bottom: 100px;
+    left: 15px;
 }
 
 .btn {

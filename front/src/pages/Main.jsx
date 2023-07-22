@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 const Main = ()=>{
-    const [page,setPage]=useState(<CreatePost/>);
+    const [page,setPage]=useState(<Home/>);
     const [mode,setmode]=useState("HOME");
     const modes=[<Home/>,<Album/>,<CreatePost/>,<Calendar/>];
 
