@@ -18,7 +18,7 @@ const Main = ()=>{
 
     return <div className={classes.wrapper}>
         <Header title="Family Moments" showIcon={true}/>
-        {page}
+        <div className={classes.tmp}>{page}</div>
         <Footer nowMode={mode} switchMode={switchMode} ></Footer>
     </div>
 }

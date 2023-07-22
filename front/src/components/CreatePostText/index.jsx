@@ -1,3 +1,5 @@
+/**게시글작성 컴포넌트입니다 */
+
 import styles from "./CreatePostText.module.css";
 import { useState } from "react";
 
