@@ -1,9 +1,18 @@
-.circle1 {
+.circle{
     width: 550px;
     height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 550px;
+}
+
+.circle1 {
+
     background-color: #EF88A166;
-    border-radius: 50%;
+
     transition: background-color .5s;
+
 }
 
 .activeCircle1 {
@@ -11,10 +20,9 @@
 }
 
 .circle2 {
-    width: 550px;
-    height: 550px;
+
     background-color: #D8D3EB;
-    border-radius: 50%;
+
     transition: background-color .5s;
 }
 
@@ -30,8 +38,6 @@
     width: 150px;
     height: 88px;
     position: absolute;
-    top: 11vh;
-    left: 71vw;
 }
 
 .title2 {
@@ -41,7 +47,4 @@
     font-family: "BM Dohyeon";
     width: 150px;
     height: 88px;
-    position: absolute;
-    top: 10vh;
-    left: 30vw;
 }
