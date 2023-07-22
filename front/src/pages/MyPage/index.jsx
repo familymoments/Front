@@ -5,7 +5,7 @@ const MyPage = () => {
     return (
         <div>
             <Header title="MyPage" showIcon={true}/>
-            <Nav />
+            {/* <Nav /> */}
         </div>
     );
 };
