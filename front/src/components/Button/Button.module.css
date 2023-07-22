@@ -5,6 +5,7 @@
     background-color: #5B6380;
     border: none;
     /* z-index: 1; */
+
 }
 
 .font {
@@ -13,5 +14,6 @@
     line-height: 21px;
     font-family: 'Roboto';
     text-align: center;
+
     color: white;
 }

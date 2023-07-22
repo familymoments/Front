@@ -5,6 +5,9 @@
     width: 100vw;
     box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
     height: 8vh;
+    min-height: 56px;
+    box-shadow: 0 5px 5px -5px black;
+
     background-color: white;
 
     position: -webkit-sticky;

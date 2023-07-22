@@ -1,4 +1,5 @@
 
+
 import classes from "./Main.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -23,6 +24,7 @@ const Main = ()=>{
         <Footer nowMode={mode} switchMode={switchMode} ></Footer>
     </div>
 }
+
 
 
 export default Main;
