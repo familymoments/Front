@@ -9,6 +9,7 @@ import Findid from './pages/Findid';
 import Findid2 from './pages/Findid2';
 import Main from './pages/Main';
 import NewFamily from './pages/NewFamily';
+import MyPage from './pages/MyPage';
 
 
 
