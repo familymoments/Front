@@ -1,0 +1,35 @@
+.NewFamily {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.area {
+    position: relative;
+    width: 100vw;
+    /* 100vh - header height size => 100vh - 8vh => 92vh */
+    height: 92vh;
+}
+
+.pinkCircleBtn {
+    position: absolute;
+    top: 6vh;
+    left: -63vw;
+}
+
+.purpleCircleBtn {
+    position: absolute;
+    top: 28vh;
+    left: 15vw;
+}
+
+.btn {
+    position: absolute;
+    top: 73vh;
+    /* hardcoding */
+    /* left: 16px; */
+    /* ( (16 / 360) * 100 )vw => 4.4vw */
+    left: 4.4vw;
+}
