@@ -22,7 +22,9 @@ const Footer =(props)=>{
             <FooterIcon iconName={AiOutlineCalendar} iconText="캘린더" onClick={()=>{
                 props.switchMode(3);
             }}></FooterIcon>
-            <FooterIcon iconName={BiUser} iconText="마이페이지"></FooterIcon> 
+            <FooterIcon iconName={BiUser} iconText="마이페이지" onClick={()=>{
+                props.switchMode(4);
+            }}></FooterIcon> 
             
 
         </div>
