@@ -3,4 +3,10 @@
     height: 100%;
 }
 
+.tmp{
+    position: relative;
+    overflow-y: scroll;
+    height: 85vh;
+}
+
 
