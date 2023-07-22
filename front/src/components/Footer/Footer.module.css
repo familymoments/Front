@@ -1,0 +1,30 @@
+.Footer{
+
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+
+    width: 100vw;
+    height:  75px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, 0.1);
+
+
+    position: absolute;
+    bottom: 0px;
+}
+
+.icon {
+    width: 2rem;
+    height: auto;
+    cursor: pointer;
+    color: rgba(191, 191, 191, 1);
+}
+
+.iconPlus{
+    width: 43.2px;
+    height: auto;
+    cursor: pointer;
+    color: rgba(91, 99, 128, 1);
+}
