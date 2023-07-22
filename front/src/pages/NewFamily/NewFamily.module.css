@@ -5,39 +5,31 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 100vw;
 }
 
 .area {
     position: relative;
-    width: 500px;
-    /* 100vh - header height size => 100vh - 8vh => 92vh */
-    height: 92vh;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+    width: 100%; /* 컨테이너의 너비를 설정 (옵션) */
+    height: 100vh; /* 컨테이너의 높이를 뷰포트 높이의 100%로 설정 (옵션) */
 }
 
 .pinkCircleBtn {
-    position: relative;
-    top: 10%;
-    left: -30%;
-
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-75%, -68%); /* 컨텐츠를 가운데로 이동 */
 }
 
 .purpleCircleBtn {
-    position: relative;
-    bottom: 10%;
-    left: 15%;
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-25%, -32%); /* 컨텐츠를 가운데로 이동 */
 }
 
 .btn {
     position: absolute;
-    top: 73vh;
-    /* hardcoding */
-    /* left: 16px; */
-    /* ( (16 / 360) * 100 )vw => 4.4vw */
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-50%, 200%); /* 컨텐츠를 가운데로 이동 */
 }
