@@ -1,6 +1,7 @@
 import Styles from './Login.module.css';
-import Findid from '../pages/Findid';
-import Loginbutton from '../components/Loginbutton';
+import Header from '../Landing';
+import Findid from '../Findid';
+import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
 import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
 
@@ -14,19 +15,21 @@ function Login({
         formState: { isSubmitting, isSubmitted, errors },} = useForm();
     
     return(
-    <div>
+    <div className={Styles.wrapper}>
+         <Header title="Family Moments" />
     <div className={Styles.top}>
         `<div className= {Styles.loginTopLogo}>
             <img src={process.env.PUBLIC_URL + '/mainLogo.png'} /> 
         </div>
         <div>
-        <h2 className = {Styles.font}>안녕하세요 :) <p>패밀리 모먼트입니다.</p>
+        <h2 className = {Styles.font}>안녕하세요 :-) <p>패밀리 모먼트입니다.</p>
         <p id = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
         </div>
     </div>
    
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className = {Styles.input} onSubmit={handleSubmit(onSubmit)}>
             <div>
+                <p/>
                 <input id = "email" className={Styles.id} type= "email"  placeholder="ID"
                 aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : undefined} {...register("email", {required: "이메일은 필수 입력입니다.",
                 pattern: {
@@ -36,6 +39,7 @@ function Login({
                 {errors.email && <small role="alert">{errors.email.message}</small>}
             </div>
             <div>
+                <label>dsdsdsdsdd </label>
                 <input id ="password" className = {Styles.password} type='password'  placeholder='Password' 
                         aria-invalid={
                             isSubmitted ? (errors.password ? "true" : "false") : undefined
@@ -51,7 +55,7 @@ function Login({
             </div>
         
             <div>
-                <Loginbutton type = "submit" disabled = {isSubmitting} texts = "순간을 가족에게 공유하기"></Loginbutton>
+                <Loginbutton type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
             </div>
         </form>
         <div >

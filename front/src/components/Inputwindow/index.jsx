@@ -1,4 +1,4 @@
-import Styles from '../components/Inputwindow.module.css';
+import Styles from './Inputwindow.module.css';
 function Inputwindow(props){
 
     return(

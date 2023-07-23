@@ -1,6 +1,6 @@
-import Styles from "../pages/Findid2.module.css"
-import Header from "../components/Header";
-import Inputwindow from "../components/Inputwindow";
+import Styles from "./Findid2.module.css"
+import Header from "../../components/Header";
+import Inputwindow from "../../components/Inputwindow";
 function Findid2(){
     return (
     <div id = {Styles.page}>

@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
-import Header from '../components/Header';
-import Loginbutton from '../components/Loginbutton';
-import Styles from '../pages/Findid.module.css'
-import Inputwindow from '../components/Inputwindow';
+import Header from '../../components/Header';
+import Loginbutton from '../../components/Loginbutton';
+import Styles from './Findid.module.css'
+import Inputwindow from '../../components/Inputwindow';
+
 function Findid(){
     return(
     <div id = {Styles.page}>
