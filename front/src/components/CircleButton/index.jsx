@@ -15,7 +15,7 @@ const CircleButton = (props) => {
 
     return (
         <div
-            className={`
+            className={`${classes.circle}
                 ${props.layout}
                 ${props.type === "pink" ? classes.circle1 : ''}
                 ${props.type === "purple" ? classes.circle2 : ''}
