@@ -3,7 +3,7 @@ import Header from '../Landing';
 import Findid from '../Findid';
 import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
-import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
+
 
 function Login({
     onSubmit = async (data) => {
@@ -39,13 +39,14 @@ function Login({
                 {errors.email && <small role="alert">{errors.email.message}</small>}
             </div>
             <div>
-                <label>dsdsdsdsdd </label>
+                
                 <input id ="password" className = {Styles.password} type='password'  placeholder='Password' 
                         aria-invalid={
                             isSubmitted ? (errors.password ? "true" : "false") : undefined
                         }
                 {...register("password", {
-                    required: "비밀번호는 필수 입력입니다.",
+                    required: 
+                    "비밀번호는 필수 입력입니다.",
                     minLength: {
                         value: 8,
                         message: "8자리 이상 비밀번호를 사용하세요.",
@@ -58,16 +59,19 @@ function Login({
                 <Loginbutton type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
             </div>
         </form>
-        <div >
+        <div className={Styles.accountbutton}>
             <button className={Styles.accountbutton}>아이디 찾기</button>
+            <p className={Styles.accountbutton}>|</p>
             <button className={Styles.accountbutton}>비밀번호 찾기</button>
+            <p className={Styles.accountbutton}>|</p>
             <button className={Styles.accountbutton}>회원가입</button>
         </div>
             <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
+            <div>
             <button onClick={''}>카카오 로그인</button>
             <button onClick={''}>네이버 로그인</button>
             <button onClick={''}>구글 로그인</button>
-            
+            </div>
         
     </div>
     );

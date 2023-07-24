@@ -1,3 +1,24 @@
+.top{
+    margin-top: 70px;
+    padding-left:5%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.deletebutton{
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    outline: none;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    border-radius: 0%;
+}
 #page{
     font-family: Roboto;
     
@@ -15,6 +36,7 @@
     line-height: 44px;
 }
 #topsmalltext{
+    margin-left: -20px;
     text-align: center;
     justify-content: center;
         width: 292px;

@@ -3,17 +3,24 @@ import Header from '../../components/Header';
 import Loginbutton from '../../components/Loginbutton';
 import Styles from './Findid.module.css'
 import Inputwindow from '../../components/Inputwindow';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 function Findid(){
     return(
     <div id = {Styles.page}>
-        <Header title = "Family Moments"/>
-        
+        <Header title = "Family Moments" showIcon={true}/>
+        <div className={Styles.top}>
         <h1 id = {Styles.toptext}>아이디 찾기</h1>
         <p id = {Styles.topsmalltext}>본인 확인을 위하여 이메일로 인증해주세요</p>
-        
         <h2 id ={Styles.bottom}>이름</h2>
-        <input placeholder='실명을 입력하세요 ex) 홍길동'></input>
+        </div>
+        <form>
+        
+        <Inputwindow placeholder='실명을 입력하세요 ex) 홍길동'></Inputwindow>
+        <button className = {Styles.deletebutton} type = "submit"><TiDeleteOutline/></button> 
+        </form>
+
+
         <h2 id ={Styles.bottom}>이메일</h2>
         <div>
         <Inputwindow placeholder = 'example@email.com'></Inputwindow>
