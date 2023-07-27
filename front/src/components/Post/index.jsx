@@ -1,30 +1,35 @@
 import styles from "./index.module.css";
+import PostUserHeader from "../PostUserHeader";
+import PostContent from "../PostContent";
 import { Pagination } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState,useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import {BiDotsHorizontalRounded} from "react-icons/bi";
-import {AiOutlineHeart,AiFillHeart} from "react-icons/ai";
 
-const Post =()=>{
+
+const  Post =(props)=>{
     const photos=[
         {src:"footer-home.png"},
         {src: "btn_select_photo.png"}];
 
+    const [heart,setHeart]=useState();
+    const [postId,setPostId]=useState(props.postId);
 
+    const pushHeart=(id)=>{
+        console.log(id+"하트누름");
+        heart ? setHeart(false):setHeart(true);
+    }
+
+    const nav=useNavigate();
 
     return (<div className={styles.wrapper}>
-        <div className={styles.postHeader}>
-            <span className={styles.userinfo}>
-                <span><img src=""/> </span>
-                <span>딸내미</span>
-            </span>
-            <span className={styles.date}>2023.05.12 (토)</span>
-        </div>
+        <PostUserHeader username="딸내미" postdate="2023.05.12 (토)"></PostUserHeader>
+        
         <div className={styles.postContent}>
             <div className={styles.postimg}>
                 <Swiper className={styles.swiper}
@@ -51,14 +56,13 @@ const Post =()=>{
                     <SwiperSlide>Slide 4</SwiperSlide> */}
                 </Swiper>
             </div>
-            <div className={styles.postText}>
-                <span>우리가족사진 삼각대로 찍기~~</span>
-                <span>
-                    <BiDotsHorizontalRounded className={styles.icon}></BiDotsHorizontalRounded>
-                    <AiOutlineHeart className={styles.icon}></AiOutlineHeart>
-                </span>
-                
-            </div>
+            <div onClick={()=>{
+                nav(`./post/${postId}`);
+            }}>
+            <PostContent postId="" postcontent="우리가족사진 삼각대로 찍기~~" postheart={heart} 
+                pushHeart={(e)=>{
+                pushHeart(postId);}} 
+            ></PostContent></div>
         </div>
     </div>)
 };

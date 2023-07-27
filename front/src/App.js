@@ -20,10 +20,8 @@ function App() {
         <div className={classes.App}>
             <BrowserRouter>
                 <Routes>
-
-
                     <Route path='/' element={<NewFamily />} />
-                    <Route path="/main" element={<Main/>} />
+                    <Route path="/main/*" element={<Main/>} />
 
                     {/* 페이지 생성 시 기본 값 */}
                     <Route path="/ex" element={<Landing/>} />
