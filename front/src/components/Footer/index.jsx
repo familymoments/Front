@@ -23,8 +23,8 @@ const Footer =(props)=>{
             <FooterIcon iconName={AiOutlineCalendar} iconText="캘린더" onClick={()=>{
                 nav('./calendar');
             }}></FooterIcon>
-            <FooterIcon iconName={BiUser} iconText="마이페이지" onClick={()=>{
-                nav('./calendar');
+            <FooterIcon iconName={BiUser} iconText="마이페이지"  onClick={()=>{
+                nav(`마이페이지 컴포넌트`);
             }}></FooterIcon> 
             
 
