@@ -4,26 +4,27 @@ import FooterIcon from "../FooterIcon";
 import { AiFillHome,AiOutlineHome ,AiOutlineCalendar,AiFillCalendar,AiFillPlusCircle} from 'react-icons/ai';
 import { BiPhotoAlbum,BiSolidPhotoAlbum ,BiUser,BiSolidUser} from "react-icons/bi";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer =(props)=>{
-
+    const nav = useNavigate();
 
     return (
         <div className={classes.Footer}>
             <FooterIcon iconName={AiOutlineHome} iconText="홈" onClick={()=>{
-                props.switchMode(0);
+                nav('./postlist');
             }}></FooterIcon>
             <FooterIcon iconName={BiPhotoAlbum} iconText="앨범" onClick={()=>{
-                props.switchMode(1);
+                nav('./album');
             }}></FooterIcon>
             <AiFillPlusCircle className={classes.iconPlus} onClick={()=>{
-                props.switchMode(2);
+                nav('./createPost');
             }}/>
             <FooterIcon iconName={AiOutlineCalendar} iconText="캘린더" onClick={()=>{
-                props.switchMode(3);
+                nav('./calendar');
             }}></FooterIcon>
-            <FooterIcon iconName={BiUser} iconText="마이페이지" onClick={()=>{
-                props.switchMode(4);
+            <FooterIcon iconName={BiUser} iconText="마이페이지"  onClick={()=>{
+                nav(`마이페이지 컴포넌트`);
             }}></FooterIcon> 
             
 
