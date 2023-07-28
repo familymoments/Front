@@ -1,16 +1,17 @@
+/**게시글 하나 컴포넌트입니다 */
 import styles from "./index.module.css";
 import PostUserHeader from "../PostUserHeader";
 import PostContent from "../PostContent";
-import { Pagination } from 'swiper/modules';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 import { useState,useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-
 
 const  Post =(props)=>{
     const photos=[
@@ -27,9 +28,9 @@ const  Post =(props)=>{
 
     const nav=useNavigate();
 
+
     return (<div className={styles.wrapper}>
-        <PostUserHeader username="딸내미" postdate="2023.05.12 (토)"></PostUserHeader>
-        
+        <PostUserHeader userImg="" username="딸내미" postdate="2023.4.10(토)"></PostUserHeader>
         <div className={styles.postContent}>
             <div className={styles.postimg}>
                 <Swiper className={styles.swiper}
@@ -56,13 +57,11 @@ const  Post =(props)=>{
                     <SwiperSlide>Slide 4</SwiperSlide> */}
                 </Swiper>
             </div>
-            <div onClick={()=>{
-                nav(`./post/${postId}`);
-            }}>
-            <PostContent postId="" postcontent="우리가족사진 삼각대로 찍기~~" postheart={heart} 
+            
+            <PostContent postId={postId} postcontent="우리가족사진 삼각대로 찍기~~" postheart={heart} 
                 pushHeart={(e)=>{
                 pushHeart(postId);}} 
-            ></PostContent></div>
+            ></PostContent>
         </div>
     </div>)
 };
