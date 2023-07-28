@@ -27,9 +27,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
 
-                    <Route path="/" element={<Landing/>}>
-                        <Route path = "login" element={<Login/>}></Route>
-                    </Route>
+                    <Route path="/" element={<Landing/>}></Route>
+                    <Route path = "/login" element={<Login/>}></Route>
                     <Route path = "/findid" element = {<Findid/>}></Route>
                     <Route path = "/findid2" element = {<Findid2/>}></Route>
   

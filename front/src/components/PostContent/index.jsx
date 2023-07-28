@@ -1,36 +1,29 @@
 import styles from "./index.module.css";
-import ClickDots from "../ClickDots";
 
-import {BiDotsHorizontalRounded} from "react-icons/bi";
-import {AiOutlineHeart,AiFillHeart} from "react-icons/ai";
 
 import {useState, useRef , useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
+import PostContentSide from "../PostContentSide";
 
 
 const PostContent=(props)=>{
 
-    const [toggle,setToggle]=useState(true);
+    const postId=props.postId;
     
+
+    const nav=useNavigate();
     
     
 
     return(
         <div className={styles.postText}>
-            <span>{props.postcontent}</span>
-            <span>
-                {/* 수정,신고,삭제 */}
-                <BiDotsHorizontalRounded className={styles.icon} onClick={
-                    (e)=>{
-                        e.preventDefault();
-                        setToggle(!toggle);
-                    }
-                }></BiDotsHorizontalRounded>
-                {toggle&&<ClickDots onClickOutside={()=>{toggle(false)}}></ClickDots>}
-                {/* 하트 */}
-                <div onClick={props.pushHeart}>{props.postheart===true ? (<AiFillHeart className={styles.iconFill} ></AiFillHeart>) : (<AiOutlineHeart className={styles.icon} ></AiOutlineHeart>)}</div>
+            <span onClick={()=>{
+                nav("/Main/postdetail");
+            }}>{props.postcontent}</span>
+            <PostContentSide postheart={props.postheart} pushHeart={props.pushHeart}>
                 
-            </span>
+            </PostContentSide>
             
         </div>
     )
