@@ -3,7 +3,7 @@ function Inputwindow(props){
 
     return(
     <div>
-        <input id = {Styles.shape} placeholder={props.placeholder}></input>
+        <input className = {Styles.shape} placeholder={props.placeholder}></input>
     </div> );
 }
 

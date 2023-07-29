@@ -4,13 +4,41 @@
 }
 #toptext{
     display: flex;
-    text-align: left;
-    justify-content: left;
+    text-align: center;
+    justify-content: center;
     color: #5B6380;
+    margin-right: 30%;
+    margin-top: 70px;
 
     font-family: Roboto;
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: 44px;
+}
+.inputbox{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.idinput{
+    
+    width: 240px;
+    height: 46px;
+    fill: rgba(251, 238, 255, 0.50);
+    stroke-width: 1px;
+    stroke: rgba(169, 169, 169, 0.50);
+    border: 1.5px solid #A9A9A9;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+.buttons{
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-flow: row wrap;
+    margin-left: 10%;
+    margin-right: 10%;
 }

@@ -11,16 +11,23 @@
 .nameform{
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+}
+.namewindow{
+    width: 305px;
 }
 .deletebutton{
     width: 28px;
     height: 28px;
     flex-shrink: 0;
     outline: none;
+    outline: none;
+  box-shadow: none;
     text-align: -webkit-center;
     text-align: -moz-center;
     border-radius: 0%;
+    border: white;
+    background-color: white;
 }
 #page{
     font-family: Roboto;
@@ -54,10 +61,10 @@
     line-height: 16px; 
 }
 #bottom{
-    padding-left:5%;
+    margin-left:-280px;
     display: flex;
-    text-align: left;
-    justify-content: left;
+    text-align: center;
+    justify-content: center;
     color: #A9A9A9;
     font-size: 18px;
     font-style: normal;
@@ -86,4 +93,22 @@
     text-align: center;
     justify-content: center;
     flex-direction: column;
+}
+.certification{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+}
+.email{
+    width: 240px;
+    height: 46px;
+    flex-shrink: 0;
+  
+    border-radius: 8px;
+    border: 1.5px solid #A9A9A9;
+   
+    stroke-width: 1.5px;
+    stroke: #A9A9A9;
+    margin-right: 10px;
 }
