@@ -10,8 +10,8 @@ const NewFamily = () => {
             <div className={classes.area}>
                 <CircleButton title="우리 가족 생성하기" type="pink" layout={classes.pinkCircleBtn} />
                 <CircleButton title="우리 가족 참여하기" type="purple" layout={classes.purpleCircleBtn} />
-                <Button btn={classes.btn} title="다음에 하기"/>
             </div>
+            <Button btn={classes.btn} title="다음에 하기"/>
         </div>
     );
 };
