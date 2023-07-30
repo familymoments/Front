@@ -1,0 +1,30 @@
+.box {
+    position: relative;
+    width: 153px;
+    height: 100px;
+    border-radius: 10%;
+}
+
+.stc {
+    position: relative;
+    left: 10.73px;
+    top: 13.75px;
+
+    font-size: 13px;
+    color: white;
+}
+
+.num {
+    position: absolute;
+    right: 13.75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 13px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}

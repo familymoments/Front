@@ -13,6 +13,14 @@ import classes from "./CircleButton.module.css";
 const CircleButton = (props) => {
     const [isActive, setActive] = useState(false);
 
+    const handleOnActive = () => {
+        setActive(true)
+    }
+
+    const handleOffActive = () => {
+        setActive(false)
+    }
+
     return (
         <div
             className={`${classes.circle}
@@ -25,8 +33,8 @@ const CircleButton = (props) => {
             onClick={() => {
                 alert("CircleButton Click");
             }}
-            onTouchStart={() => setActive(true)}
-            onTouchEnd={() => setActive(false)}
+            onTouchStart={handleOnActive}
+            onTouchEnd={handleOffActive}
         >
             <p className={`
                 ${props.type === "pink" ? classes.title1 : ''}

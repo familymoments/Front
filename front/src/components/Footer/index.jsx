@@ -24,7 +24,7 @@ const Footer =(props)=>{
                 nav('./calendar');
             }}></FooterIcon>
             <FooterIcon iconName={BiUser} iconText="마이페이지"  onClick={()=>{
-                nav(`마이페이지 컴포넌트`);
+                nav('./my');
             }}></FooterIcon> 
             
 

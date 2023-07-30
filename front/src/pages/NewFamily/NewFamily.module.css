@@ -17,19 +17,19 @@
     position: absolute;
     top: 50%; /* 상단 여백을 50%로 설정 */
     left: 50%; /* 좌측 여백을 50%로 설정 */
-    transform: translate(-75%, -68%); /* 컨텐츠를 가운데로 이동 */
+    transform: translate(-75%, -62%); /* 컨텐츠를 가운데로 이동 */
 }
 
 .purpleCircleBtn {
     position: absolute;
     top: 50%; /* 상단 여백을 50%로 설정 */
     left: 50%; /* 좌측 여백을 50%로 설정 */
-    transform: translate(-25%, -32%); /* 컨텐츠를 가운데로 이동 */
+    transform: translate(-25%, -30%); /* 컨텐츠를 가운데로 이동 */
 }
 
 .btn {
     position: absolute;
     top: 50%; /* 상단 여백을 50%로 설정 */
     left: 50%; /* 좌측 여백을 50%로 설정 */
-    transform: translate(-50%, 200%); /* 컨텐츠를 가운데로 이동 */
+    transform: translate(-50%, 300%); /* 컨텐츠를 가운데로 이동 */
 }
