@@ -45,9 +45,22 @@
     position: relative;
 }
 
-.btn{
+
+
+.imgbox{
     position: relative;
-    min-height: 59px;
+
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-
+.imgSize{
+    width: 100%;
+    right: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
