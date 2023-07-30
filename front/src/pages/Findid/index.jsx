@@ -1,15 +1,19 @@
 import CertificationButton from '../../components/CertificationButton';
-import Header from '../../components/Header';
 import Loginbutton from '../../components/Loginbutton';
 import Styles from './Findid.module.css'
 import Inputwindow from '../../components/Inputwindow';
 import { TiDeleteOutline } from 'react-icons/ti';
+import { useEffect } from 'react';
 
 
-function Findid(){
+function Findid(props){
+
+    useEffect(()=>{
+        props.changeTitle("아이디 찾기");
+    })
+
     return(
     <div id = {Styles.page}>
-        <Header title = "Family Moments" showIcon={true}/>
         <div className={Styles.top}>
         <h1 id = {Styles.toptext}>아이디 찾기</h1>
         <p id = {Styles.topsmalltext}>본인 확인을 위하여 이메일로 인증해주세요</p>

@@ -1,21 +1,19 @@
-import { Outlet,useNavigate } from "react-router-dom";
-import {useState} from "react";
-import logo from "../../assets/mainLogo.png";
-import FamilyMoments from "../../assets/FamilyMoments.png";
-import styles from "./index.module.css";
+import { Routes, Route,useNavigate, Outlet } from "react-router-dom";
 
-const Landing = ()=>{
-    const nav=useNavigate();
-    setTimeout(()=>{
-        nav('login');
-    },1000);
+import Header from "../../components/Header";
 
-    return <div className={styles.wrapper}>
-        {/* <Outlet/> */}
-        <img src={FamilyMoments} alt="Family Moments" />
-        <div className={styles.landingFont}>가족들과 소중한 순간을 공유해보세요!</div>
-        <img src={logo} alt="Logo"/>
-    </div>
-}
+
+
+const Landing=(props)=>{
+
+    
+    return (<div>
+        <Header title={props.title}></Header>
+        <Outlet/>
+
+        
+
+    </div>)
+};
 
 export default Landing;

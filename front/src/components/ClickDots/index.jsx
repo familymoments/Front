@@ -8,11 +8,13 @@ const ClickDots =(props)=>{
 
     const nav=useNavigate();
 
+    const postId=props.postId;
+
     return(
        <div className={styles.wrapper}>
             <div className={styles.bottomLine} onClick={(e)=>{
                 e.preventDefault();
-                nav(`/Main/updatePost/${props.postId}`)
+                nav(`/Main/updatePost/${postId}`)
             }}>수정하기</div>
             <div className={styles.bottomLine}>신고하기</div>
             <div className={styles.ele}>삭제하기</div>

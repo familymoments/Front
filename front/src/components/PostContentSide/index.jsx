@@ -24,8 +24,7 @@ const PostContentSide=(props)=>{
                     (e)=>{
                         e.preventDefault();
                         setToggle(!toggle);
-                    }
-                }>   
+                }}>
             </BiDotsHorizontalRounded>
             {toggle&&<ClickDots postId={props.postId} postcontent={props.postcontent} onClickOutside={()=>{toggle(false)}}></ClickDots>}
             {/* 하트 */}

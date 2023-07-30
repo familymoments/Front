@@ -1,5 +1,5 @@
 import Styles from './Login.module.css';
-import Header from '../Landing';
+import Header from '../../components/Header';
 import Findid from '../Findid';
 import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
@@ -16,16 +16,15 @@ function Login({
     
     return(
     <div className={Styles.wrapper}>
-         <Header title="Family Moments" />
-    <div className={Styles.top}>
-        `<div className= {Styles.loginTopLogo}>
-            <img src={process.env.PUBLIC_URL + '/mainLogo.png'} /> 
+        <div className={Styles.top}>
+            <div className= {Styles.loginTopLogo}>
+                <img src={process.env.PUBLIC_URL + '/mainLogo.png'} /> 
+            </div>
+            <div>
+            <h2 className = {Styles.font}>안녕하세요 :-) <p>패밀리 모먼트입니다.</p>
+            <p id = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
+            </div>
         </div>
-        <div>
-        <h2 className = {Styles.font}>안녕하세요 :-) <p>패밀리 모먼트입니다.</p>
-        <p id = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
-        </div>
-    </div>
    
     <form className = {Styles.input} onSubmit={handleSubmit(onSubmit)}>
             <div>
