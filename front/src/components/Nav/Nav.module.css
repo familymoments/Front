@@ -1,0 +1,14 @@
+.navHeader {
+    display: flex;
+    align-items: center;
+
+    padding-left: 12px;
+    margin-bottom: 12px;
+
+    background-color: #5B6380;
+    width: 328px;
+    height: 32px;
+    color: white;
+
+    font-size: 18px;
+}

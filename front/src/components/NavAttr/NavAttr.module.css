@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 328px;
+    height: 68px;
+
+    padding: 18px 16px 18px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+
+    margin-right: 12px;
+}
+
+.canclick {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.title {
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.btn {
+    width: 20px;
+    height: 20px;
+}
