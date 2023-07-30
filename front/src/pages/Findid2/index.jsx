@@ -11,8 +11,12 @@ function Findid2(){
         <input className={Styles.idinput}></input>
         </div>
         <div className= {Styles.buttons}>
-        <BubbleButton type = "purple" text =" 수락" layout = ""/>
-        <BubbleButton type = "blue" text =" 거절" layout = ""/>
+            <div lassName = {Styles.ok}>
+        <BubbleButton  type = "purple" text =" 수락" layout = ""/>
+        </div>
+        < div className = {Styles.no}>
+        <BubbleButton  type = "blue" text =" 거절" layout = ""/>
+        </div>
         </div>
     </div>);
 }

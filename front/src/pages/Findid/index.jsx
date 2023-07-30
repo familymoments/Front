@@ -11,14 +11,16 @@ function Findid(){
     <div id = {Styles.page}>
         <Header title = "Family Moments" showIcon={true}/>
         <div className={Styles.top}>
-        <h1 id = {Styles.toptext}>아이디 찾기</h1>
-        <p id = {Styles.topsmalltext}>본인 확인을 위하여 이메일로 인증해주세요</p>
-        <h2 className ={Styles.topname}>이름</h2>
+        <h1 className = {Styles.findidtext}>아이디 찾기</h1>
+        <p className = {Styles.topsmalltext}>본인 확인을 위하여 이메일로 인증해주세요</p>
         </div>
+
+       
+        <h2 className ={Styles.topname}>이름</h2>
 
         <form className={Styles.nameform}>
         <div className = {Styles.namewindow}>
-        <Inputwindow className = {Styles.namewindow}placeholder='실명을 입력하세요 ex) 홍길동'></Inputwindow>
+        <Inputwindow placeholder='실명을 입력하세요 ex) 홍길동'></Inputwindow>
         </div>
         <button className = {Styles.deletebutton} type = "button"><TiDeleteOutline/></button> 
         </form>
