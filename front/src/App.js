@@ -27,15 +27,14 @@ function App() {
             <BrowserRouter>
                 <Routes>
 
-                   
-                        
+                    <Route path="/" element={<Landing/>}></Route>
                     <Route path = "login" element={<Login/>}></Route>
                     <Route path = "/findid" element = {<Findid/>}></Route>
                     <Route path = "/findid2" element = {<Findid2/>}></Route>
   
         
 
-                    <Route path='/' element={<NewFamily />} />
+                    <Route path='/newfamily' element={<NewFamily />} />
                     <Route path="/main/*" element={<Main/>} />
 
                     {/* 페이지 생성 시 기본 값 */}
