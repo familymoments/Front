@@ -31,6 +31,11 @@ const PostDetail=()=>{
         console.log(id+"하트누름");
         heart ? setHeart(false):setHeart(true);
     }
+
+    const submitComment=(content)=>{
+        console.log(content);
+    }
+
     return(
         <div className={styles.wrapper}>
             <PostUserHeader isnormal={false} username="딸내미" postdate="2023.04.12(일)"></PostUserHeader>
@@ -69,11 +74,11 @@ const PostDetail=()=>{
                             <span>하트 보기</span>
                         </div>
                     
-                    <CreateComment onSubmit="">댓글작성 컴포넌트</CreateComment>
+                    <CreateComment onSubmit={submitComment}>댓글작성 컴포넌트</CreateComment>
                     <div className={styles.showComments}>
                         <ShowComment heart={heart} pushHeart={()=>{
                             pushHeart();
-                        }}></ShowComment>
+                        }} createTime="7분전"></ShowComment>
                         <ShowComment heart={heart} pushHeart={()=>{
                             pushHeart();
                         }}></ShowComment>

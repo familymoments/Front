@@ -21,7 +21,7 @@ const ShowComment = (props)=>{
                 </div>
 
             </span>
-            <PostContentSide pushHeart={pushHeart} postHeart={props.heart}>
+            <PostContentSide pushHeart={pushHeart} postHeart={props.heart} createTime={props.createTime}>
 
             </PostContentSide>
         </div>

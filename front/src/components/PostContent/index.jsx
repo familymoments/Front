@@ -10,7 +10,6 @@ import PostContentSide from "../PostContentSide";
 const PostContent=(props)=>{
 
     const postId=props.postId;
-    
 
     const nav=useNavigate();
     
@@ -21,7 +20,7 @@ const PostContent=(props)=>{
             <span onClick={()=>{
                 nav("/Main/postdetail");
             }}>{props.postcontent}</span>
-            <PostContentSide postheart={props.postheart} pushHeart={props.pushHeart}>
+            <PostContentSide postId={postId} postheart={props.postheart} postcontent={props.postcontent} pushHeart={props.pushHeart}>
                 
             </PostContentSide>
             

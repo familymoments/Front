@@ -15,7 +15,7 @@ const CreateComment = (props)=>{
     return (
         <form method="" className={styles.wrapper} onSubmit={(e)=>{
             e.preventDefault();
-            props.onSubmit(e.target.value)
+            props.onSubmit(content);
         }}>
             <TextareaAutosize className={styles.textarea} placeholder="댓글 작성" value={content} onChange={handleContent} />
             <button className={styles.btn} type="submit">작성</button>

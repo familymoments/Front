@@ -25,10 +25,12 @@ const PostContentSide=(props)=>{
                         e.preventDefault();
                         setToggle(!toggle);
                     }
-                }></BiDotsHorizontalRounded>
-                {toggle&&<ClickDots onClickOutside={()=>{toggle(false)}}></ClickDots>}
-                {/* 하트 */}
-                <div onClick={pushHeart}>{loved===true ? (<AiFillHeart className={styles.iconFill} ></AiFillHeart>) : (<AiOutlineHeart className={styles.icon} ></AiOutlineHeart>)}</div>
+                }>   
+            </BiDotsHorizontalRounded>
+            {toggle&&<ClickDots postId={props.postId} postcontent={props.postcontent} onClickOutside={()=>{toggle(false)}}></ClickDots>}
+            {/* 하트 */}
+            <div onClick={pushHeart}>{loved===true ? (<AiFillHeart className={styles.iconFill} ></AiFillHeart>) : (<AiOutlineHeart className={styles.icon} ></AiOutlineHeart>)}</div>
+            {props.createTime && <div className={styles.createTime}>{props.createTime}</div>}
         </span>
     )
 };

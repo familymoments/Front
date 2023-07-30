@@ -19,7 +19,8 @@ const  Post =(props)=>{
         {src: "btn_select_photo.png"}];
 
     const [heart,setHeart]=useState();
-    const [postId,setPostId]=useState(props.postId);
+    const postId=props.postId;
+    console.log("postId in Post : "+postId);
 
     const pushHeart=(id)=>{
         console.log(id+"하트누름");

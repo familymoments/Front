@@ -7,6 +7,7 @@ import Post from "../components/Post";
 import { useState } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import PostDetail from "./PostDetail";
+import UpdatePost from "./UpdatePost";
 
 
 
@@ -28,6 +29,7 @@ const Main = ()=>{
                 <Route path="마이페이지" element={`마이페이지 컴포넌트`}></Route>
 
                 <Route  path="/postdetail" element={<PostDetail/>}/>
+                <Route  path="/updatePost/:postId" element={<UpdatePost />}/>
 
                 {/* 페이지 내부에서 추가적으로 route해야하는 페이지도 이 부분에 작성 */}
                 
