@@ -18,7 +18,7 @@ const PostContent=(props)=>{
     return(
         <div className={styles.postText}>
             <span onClick={()=>{
-                nav("/Main/postdetail");
+                nav(`/Main/postdetail/${postId}`);
             }}>{props.postcontent}</span>
             <PostContentSide postId={postId} postheart={props.postheart} postcontent={props.postcontent} pushHeart={props.pushHeart}>
                 

@@ -25,7 +25,8 @@ const PostDetail=()=>{
     
     
     const [heart,setHeart]=useState();
-    const postId=useParams();
+    const postId=useParams().postId;
+    console.log(postId);
     
     const pushHeart=(id)=>{
         console.log(id+"하트누름");
@@ -45,7 +46,7 @@ const PostDetail=()=>{
                     <div className={styles.postimg}>
                         <Swiper className={styles.swiper}
                             // install Swiper modules
-                            modules={[ Pagination]}
+                            modules={[Pagination]}
                             spaceBetween={80}
                             slidesPerView={1}
                             pagination={{ clickable: true }}
@@ -55,7 +56,7 @@ const PostDetail=()=>{
                                 {photos.map((photo,idx) => {
                                     return (
                                         <SwiperSlide key={idx}>
-                                    <div className={styles.swiperimg} >
+                                    <div className={styles.swiperimg}>
                                         <img className=""  src={photo.src}/></div></SwiperSlide>
                                     )
                                     })}

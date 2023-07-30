@@ -27,7 +27,7 @@ const Main = () => {
                     <Route path="/calendar" element={<Calendar />}></Route>
                     <Route path="/my" element={<MyPage />}></Route>
 
-                    <Route path="/postdetail" element={<PostDetail />} />
+                    <Route path="/postdetail/:postId" element={<PostDetail />} />
                     <Route path="/updatePost/:postId" element={<UpdatePost />} />
 
                     <Route path="/my/notice" element={<Notice />}></Route>
