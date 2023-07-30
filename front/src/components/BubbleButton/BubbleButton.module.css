@@ -1,0 +1,27 @@
+.button{
+    width: 136px;
+    height: 54px;
+    border: none;
+    border-radius: 60px;
+}
+.circle1 {
+    background-color: #EF88A1
+}
+.circle2 {
+    background-color: #9378FF;
+}
+.circle3{
+    background-color: #7A729F
+}
+.text{
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+}
