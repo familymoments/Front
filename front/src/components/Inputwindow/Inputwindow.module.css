@@ -1,7 +1,8 @@
-#shape{
+.shape{
     width: 328px;
     height: 46px;
     flex-shrink: 0;
     border-radius: 8px;
     border: 1.5px solid #A9A9A9;
+    margin-top: 10px;
 }

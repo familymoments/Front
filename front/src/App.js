@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import classes from "./App.module.css";
 import Landing from './pages/Landing';
 
-import Login from './pages/Login.jsx';
+import Login from './pages/Login';
 import Findid from './pages/Findid';
 import Findid2 from './pages/Findid2';
 import Main from './pages/Main';
@@ -28,13 +28,13 @@ function App() {
                 <Routes>
 
                     <Route path="/" element={<Landing/>}></Route>
-                    <Route path = "/login" element={<Login/>}></Route>
+                    <Route path = "login" element={<Login/>}></Route>
                     <Route path = "/findid" element = {<Findid/>}></Route>
                     <Route path = "/findid2" element = {<Findid2/>}></Route>
   
         
 
-                    <Route path='/' element={<NewFamily />} />
+                    <Route path='/newfamily' element={<NewFamily />} />
                     <Route path="/main/*" element={<Main/>} />
 
                     {/* 페이지 생성 시 기본 값 */}

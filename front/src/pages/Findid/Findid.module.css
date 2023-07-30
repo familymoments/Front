@@ -1,0 +1,114 @@
+.top{
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left:5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.nameform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.namewindow{
+    width: 305px;
+}
+.deletebutton{
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    outline: none;
+    outline: none;
+  box-shadow: none;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    border-radius: 0%;
+    border: white;
+    background-color: white;
+}
+#page{
+    font-family: Roboto;
+    
+}
+#toptext{
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    color: #5B6380;
+
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+}
+#topsmalltext{
+    margin-left: -20px;
+    text-align: center;
+    justify-content: center;
+        width: 292px;
+    height: 12px;
+    flex-shrink: 0;
+    color: #A9A9A9;
+   
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
+}
+#bottom{
+    margin-left:-280px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #A9A9A9;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; 
+}
+.topname{
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    color: #A9A9A9;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; 
+}
+
+#findidbutton{
+    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.confirmemail{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.certification{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+}
+.email{
+    width: 240px;
+    height: 46px;
+    flex-shrink: 0;
+  
+    border-radius: 8px;
+    border: 1.5px solid #A9A9A9;
+   
+    stroke-width: 1.5px;
+    stroke: #A9A9A9;
+    margin-right: 10px;
+}
