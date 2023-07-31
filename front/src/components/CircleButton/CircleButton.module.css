@@ -1,0 +1,53 @@
+.circle {
+    width: 550px;
+    height: 550px;
+    border-radius: 550px;
+}
+
+.circle1 {
+    background-color: #ef88a166;
+
+    transition: background-color 0.5s;
+}
+
+.activeCircle1 {
+    background-color: #ef88a1cc;
+}
+
+.circle2 {
+    background-color: #d8d3eb;
+
+    transition: background-color 0.5s;
+}
+
+.activeCircle2 {
+    background-color: #a89ae0;
+}
+
+.title1 {
+    color: #5b6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(0%, -180%); /* 컨텐츠를 가운데로 이동 */
+}
+
+.title2 {
+    color: #5b6380;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: "BM Dohyeon";
+    width: 150px;
+    height: 88px;
+
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-100%, -150%); /* 컨텐츠를 가운데로 이동 */
+}

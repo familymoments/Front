@@ -1,0 +1,38 @@
+
+.textBox{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textcontent{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position:static;
+    resize: none;
+    min-width: 328px;
+    width: 90%;
+    height: 230px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 15px;
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(243, 244, 247, 1);
+}
+
+.textBox span{
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    color: rgba(170, 170, 170, 1);
+ }
+
+ .btn{
+    position: relative;
+    min-height: 59px;
+}
+

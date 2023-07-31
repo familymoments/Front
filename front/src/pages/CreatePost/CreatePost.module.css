@@ -1,0 +1,53 @@
+.wrapper{
+    position: relative;
+    padding:16px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.postImg{
+    position: static;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    position: static;
+    font-size: 20px;
+    font-weight: 700;
+    color:rgba(91, 99, 128, 1);
+
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.tmp{
+    position: relative;
+}
+
+
+
+.subtitle{
+    position: static;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+
+    margin-top: 20px;
+}
+
+.postText{
+    position: relative;
+}
+
+.btn{
+    position: relative;
+    min-height: 59px;
+}
+
+

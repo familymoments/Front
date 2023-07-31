@@ -1,0 +1,67 @@
+.wrapper{
+    position: relative;
+
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filebox{
+    position: relative;
+    /* margin: 15px; */
+
+    height: auto;
+    min-height: 200px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+
+}
+.file{
+    position: relative;
+    margin: 15px;
+    right: 15px;
+    width: 100%;
+    min-width: 328px;
+    height: 200px;
+    border-radius: 7px;
+    background-color: rgba(243, 244, 247, 1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selecticon{
+    position: absolute;
+    
+
+}
+
+
+
+.imgSize{
+    position: relative;
+    width: 100%;
+    right: 15px;
+    margin-bottom: 20px;
+    
+}
+   
+
+input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+

@@ -1,0 +1,35 @@
+.NewFamily {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.area {
+    position: relative;
+    width: 100%; /* 컨테이너의 너비를 설정 (옵션) */
+    height: 100vh; /* 컨테이너의 높이를 뷰포트 높이의 100%로 설정 (옵션) */
+}
+
+.pinkCircleBtn {
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-75%, -62%); /* 컨텐츠를 가운데로 이동 */
+}
+
+.purpleCircleBtn {
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-25%, -30%); /* 컨텐츠를 가운데로 이동 */
+}
+
+.btn {
+    position: absolute;
+    top: 50%; /* 상단 여백을 50%로 설정 */
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-50%, 300%); /* 컨텐츠를 가운데로 이동 */
+}

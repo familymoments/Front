@@ -1,0 +1,26 @@
+.wrapper{
+    width: 55px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    gap:0px;
+}
+
+.icon {
+    width: 2rem;
+    height: auto;
+    cursor: pointer;
+    color: rgba(191, 191, 191, 1);
+    margin-bottom: 5px;
+    
+    
+}
+
+.text{
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    color: rgba(191, 191, 191, 1);
+}
