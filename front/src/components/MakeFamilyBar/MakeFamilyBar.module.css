@@ -1,0 +1,28 @@
+.searchBar {
+    width: 328px;
+    height: 41px;
+    top: 108px;
+    left: 15px;
+    background-color: #f3f4f7;
+    border-radius: 7px;
+    padding: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchBar input {
+    width: 300px;
+    height: 16px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background: #f3f4f7;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}

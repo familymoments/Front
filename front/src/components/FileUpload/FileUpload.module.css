@@ -1,0 +1,67 @@
+.uploadButton {
+    width: 328px;
+    height: 192px;
+    top: 154px;
+    left: 16px;
+    background-color: #f3f4f7;
+    color: #a9a9a9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.icon {
+    color: #a9a9a9;
+    width: 25px;
+    height: 25px;
+}
+
+.selectBox {
+    width: 224px;
+    color: #a9a9a9;
+    position: absolute;
+    border-radius: 6px;
+    padding: 8px;
+    z-index: 2;
+    top: 348px;
+    left: 68px;
+}
+
+.selectBox select:focus {
+    outline: none;
+    border: solid 1.5px #9378ff;
+}
+
+.selectBox select {
+    width: 224px;
+    height: 33px;
+    border: solid 1.5px #9378ff;
+    border-radius: 6px;
+    color: #a9a9a9;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.selectBox option {
+    width: 224px; 
+    height: 35px;
+    line-height: 35px;
+    border-radius: 6px;
+    color: black;
+    font-weight: 400;
+    font-size: 11px;
+    top: 8.75px;
+    left: 8px;
+    padding: 16px 0px 0px 0px;
+    position: relative;
+    cursor: pointer;
+}
+
+.selectBox select option[value="option1"] {
+    border-bottom: 0.68px solid #D8D8D8;
+}
