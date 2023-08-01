@@ -10,6 +10,7 @@ import Findid2 from './pages/Findid2';
 import Main from './pages/Main';
 import NewFamily from './pages/NewFamily';
 import MyPage from './pages/MyPage';
+import Signin from './pages/Signin';
 
 
 
@@ -32,6 +33,7 @@ function App() {
                     <Route path = "login" element={<Login/>}></Route>
                     <Route path = "/findid" element = {<Findid/>}></Route>
                     <Route path = "/findid2" element = {<Findid2/>}></Route>
+                    <Route path = "/signin" element = {<Signin/>}></Route>
   
         
 
