@@ -1,0 +1,59 @@
+.wrapper{
+    width: 100%;
+    min-height: 64px; 
+    border-radius: 8px;
+    background: #F4F4F4;
+
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+}
+
+.textarea{
+    min-width: 256px;
+    min-height: 44px; 
+    width: 70%;
+    border: 0px;
+    background: none;
+    resize: none;
+    overflow: hidden;
+    margin: 10px;
+
+    color: var(--d-9-d-9-d-9, #535353);
+    font-family: Roboto;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13px; /* 118.182% */
+
+}
+
+.textarea::placeholder{
+    color: #BFBFBF;
+
+        font-family: Roboto;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 13px; /* 118.182% */
+}
+
+.btn{
+    width: 42px;
+    height: 52px;
+    border-radius: 10px;
+    border: none;
+    background-color: #A1A3BA;
+
+    margin: 6px;
+    
+    color: #FFF;
+    text-align: center;
+
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 114.286% */
+}

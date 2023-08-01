@@ -5,7 +5,7 @@
     align-items:start;
 
 
-    padding: 15px;
+    padding: 6px;
     padding-right: 5px;
 }
 
@@ -17,9 +17,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 16px; /* 114.286% */
+    padding: 10px;
 
+    height: 150px;
 
-}
+} 
 
 .postText span:nth-child(2){
     display: flex;
@@ -28,16 +30,4 @@
     align-items: center;
 
 
-}
-.icon{
-    /* position: relative; */
-    width: 24px;
-    height: 24px;
-    margin-bottom: 6px;
-}
-
-.iconFill{
-    width: 24px;
-    height: 24px;
-    color: #EE2F51;
 }

@@ -1,6 +1,11 @@
 
 .textBox{
+    width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .textcontent{
@@ -25,4 +30,9 @@
     right: 15px;
     color: rgba(170, 170, 170, 1);
  }
+
+ .btn{
+    position: relative;
+    min-height: 59px;
+}
 

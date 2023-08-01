@@ -1,17 +1,21 @@
 // import "./App.css";
-import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import { useEffect,useState } from 'react';
 import classes from "./App.module.css";
-import Landing from './pages/Landing';
+import Loading from './pages/Loading';
 
+
+import MyPage from './pages/MyPage';
+import Landing from './pages/Landing';
+import Main from './pages/Main';
 import Login from './pages/Login';
 import Findid from './pages/Findid';
 import Findid2 from './pages/Findid2';
-import Main from './pages/Main';
 import NewFamily from './pages/NewFamily';
 import MyPage from './pages/MyPage';
 import Signin from './pages/Signin';
-
+import Header from './components/Header';
+import Header from './components/Header';
 
 
 function App() {
@@ -23,25 +27,37 @@ function App() {
     useEffect(() => {
         setScreenSize();
       });
+
+      const [title,setTitle]=useState("FamilyMoments");
+      const changeTitle=(e)=>{
+        setTitle(e);
+      }
+
     return (
         <div className={classes.App}>
             <BrowserRouter>
                 <Routes>
 
-                   
-                        
-                    <Route path = "login" element={<Login/>}></Route>
-                    <Route path = "/findid" element = {<Findid/>}></Route>
-                    <Route path = "/findid2" element = {<Findid2/>}></Route>
-                    <Route path = "/signin" element = {<Signin/>}></Route>
-  
-        
 
-                    <Route path='/' element={<NewFamily />} />
+                    <Route path="/" element={<Loading/>}></Route>
+                    <Route path = "/signin" element = {<Signin/>}></Route>
+
+                    {/* Header만 필요한 페이지들 */}
+                    <Route path="/landing" element={<Landing title={title}/>}>
+                        <Route path = "/landing/login" element={<Login />}></Route>
+                        <Route path = "/landing/findid" element = {<Findid changeTitle={changeTitle}/>}></Route>
+                        <Route path = "/landing/findid2" element = {<Findid2 changeTitle={changeTitle}/>}></Route>
+                        <Route path='/landing/newfamily' element={<NewFamily />} />
+
+                        {/* 생성 시 */}
+                        <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />
+                    </Route>
+
+                    {/* Header와 Footer가 필요한 페이지들 */}
                     <Route path="/main/*" element={<Main/>} />
 
                     {/* 페이지 생성 시 기본 값 */}
-                    <Route path="/ex" element={<Landing/>} />
+                    <Route path="/ex" element={<Loading/>} />
 
                 </Routes>
             </BrowserRouter>

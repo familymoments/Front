@@ -17,9 +17,8 @@ const CreatePost = ()=>{
             
    
             <div className={styles.subtitle}>글 작성</div>
-            <CreatePostText ></CreatePostText>
+            <CreatePostText btntitle="순간을 가족에게 공유하기"></CreatePostText>
 
-            <Button title="순간을 가족에게 공유하기" btn={styles.btn}></Button>
         </div>
      )
 };
