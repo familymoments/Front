@@ -3,9 +3,6 @@ import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import classes from "./App.module.css";
 import Loading from './pages/Loading';
-
-
-import MyPage from './pages/MyPage';
 import Landing from './pages/Landing';
 import Main from './pages/Main';
 import Login from './pages/Login';
@@ -14,7 +11,6 @@ import Findid2 from './pages/Findid2';
 import NewFamily from './pages/NewFamily';
 import MyPage from './pages/MyPage';
 import Signin from './pages/Signin';
-import Header from './components/Header';
 import Header from './components/Header';
 
 

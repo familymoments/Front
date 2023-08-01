@@ -5,7 +5,7 @@ import BubbleButton from "../../components/BubbleButton";
 function Findid2(){
     return (
     <div id = {Styles.page}>
-        <Header title = "Family Moments"/>
+      
         <h1 id = {Styles.toptext}>아이디 찾기</h1>
         <div className = {Styles.inputbox}>
         <input className={Styles.idinput}></input>
