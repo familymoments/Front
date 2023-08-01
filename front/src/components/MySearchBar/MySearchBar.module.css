@@ -1,0 +1,33 @@
+.searchBar {
+    width: 328px;
+    height: 38.95px;
+    border: 1.5px solid #a9a9a9;
+    border-radius: 8px;
+    padding: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 95px;
+    left: 16px;
+    font-size: 13px;
+}
+
+.searchBar input {
+    width: 300px;  
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    margin-right: 5px;
+    color: #a9a9a9;
+    top: 50%;
+    left: 10px;
+} 
