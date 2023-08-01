@@ -1,15 +1,15 @@
-.wrapper{
+.wrapper {
     width: 100%;
     height: 100%;
-    
+
     padding: 23px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.landingFont{
-    color: #96979C;
+.landingFont {
+    color: #96979c;
 
     /* family_fonts/LB1 - 13 */
     font-family: Roboto;
@@ -20,4 +20,18 @@
 
     margin-top: 9px;
     margin-bottom: 24px;
+}
+
+.fadeInOut {
+    animation: fadeInOut ease-in-out 3s;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
