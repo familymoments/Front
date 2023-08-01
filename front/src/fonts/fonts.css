@@ -11,3 +11,8 @@
     font-family: "BM Dohyeon";
     src: url("./BMDOHYEON_ttf.ttf");
 }
+
+@font-face {
+    font-family: "Poppins";
+    src: url("./Poppins-SemiBold.ttf");
+}
