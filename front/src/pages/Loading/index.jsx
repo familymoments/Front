@@ -8,9 +8,9 @@ const Loading = ()=>{
     const nav=useNavigate();
     useEffect(()=>{setTimeout(()=>{
         nav('/landing/login');
-    },1000);},[])
+    },3000);},[])
 
-    return <div className={styles.wrapper}>
+    return <div className={`${styles.wrapper} ${styles.fadeInOut}`}>
         <img src={FamilyMoments} alt="Family Moments" />
         <div className={styles.lending}>가족들과 소중한 순간을 공유해보세요!</div>
         <img src={logo} alt="Logo"/>
