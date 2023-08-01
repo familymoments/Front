@@ -12,6 +12,8 @@ import NewFamily from './pages/NewFamily';
 import MyPage from './pages/MyPage';
 import Signin from './pages/Signin';
 import Header from './components/Header';
+import Findpwd from './pages/Findpwd';
+import Findpwd3 from "./pages/Findpwd3";
 
 
 function App() {
@@ -37,6 +39,9 @@ function App() {
 
                     <Route path="/" element={<Loading/>}></Route>
                     <Route path = "/signin" element = {<Signin/>}></Route>
+                    <Route path = "/findpwd" element = {<Findpwd/>}></Route>
+                    <Route path = "/findpwd3" element = {<Findpwd3/>}></Route>
+                    
 
                     {/* Header만 필요한 페이지들 */}
                     <Route path="/landing" element={<Landing title={title}/>}>
