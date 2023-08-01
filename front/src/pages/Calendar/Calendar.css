@@ -1,0 +1,104 @@
+/* 달력 내부의 날짜 셀 스타일링 예시 */
+/* .react-calendar__tile {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+}
+
+.react-calendar__tile--active {
+    background-color: black;
+    color: white;
+} */
+
+/* navigation 부분 */
+
+.react-calendar__navigation {
+    background-color: #5b6380cc;
+    margin-top: 81px;
+    margin-bottom: 22px;
+    color: white;
+
+    width: inherit;
+    height: 64px;
+    border-radius: 8px;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+    background-color: transparent;
+}
+
+.react-calendar__navigation button[disabled] {
+    background-color: transparent;
+}
+
+abbr[title] {
+    text-decoration: none;
+}
+
+.react-calendar__navigation__label {
+    color: inherit;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.react-calendar__navigation__arrow {
+    color: inherit;
+    font-size: 32px;
+}
+
+
+
+/* viewContainer 부분 */
+.react-calendar__viewContainer {
+    background-color: aliceblue;
+    height: 272px;
+    border-radius: 16.5px;
+}
+
+.react-calendar__month-view {
+    padding: 8px 15px;
+}
+
+.react-calendar__month-view__weekdays {
+    font-family: "Poppins";
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: none;
+
+    /* margin-top: 15px; */
+    /* height: 30px; */
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    width: 36px;
+    height: 32px;
+}
+
+.react-calendar__tile {
+    width: 36px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.react-calendar__tile--active {
+    background-color: black;
+    color: white;
+    /* border-radius: 50%; */
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+    background-color: black;
+}
+
+.react-calendar__tile--now {
+    /* border-radius: 50%; */
+
+}

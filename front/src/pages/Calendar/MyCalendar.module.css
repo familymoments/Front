@@ -1,0 +1,25 @@
+/* MyCalendar.css */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.myCalendar {
+  /* 원하는 스타일을 추가하세요 */
+  width: 328px;
+  border: 0;
+  /* background-color: #f9f9f9; */
+  /* padding: 10px; */
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #5B6380;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+}
