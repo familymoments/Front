@@ -4,7 +4,6 @@ import styles from "./index.module.css";
 
 const PostUserHeader=(props)=>{
     const isnormal=props.isnormal;
-    console.log(isnormal);
     return (
         <div className={styles.postHeader}>
             <span className={`${isnormal===true ? styles.userinfo : styles.userinfobig}`}>
