@@ -1,6 +1,5 @@
-.id{
+.header{
     margin-top: 43px;
-    
 }
 .doublecheck{
     display: flex;
@@ -14,15 +13,16 @@
     font-weight: 700;
     line-height: 19px;
     display: flex;
-    justify-content:flex-start;
-    align-items: center;
-    align-items: center;
-    
-    
+    justify-content:center;
+    margin-top: 20px;
+    margin-right: 400px;
+    margin-left: 120px;
+    padding: 0px;
     
 }
 .small{
-    margin-right: 30px;
+    margin-right: 5px;
+    margin-left: 2px;
 }
 .certbutn{
     margin-top: 10px;
@@ -39,5 +39,54 @@
     justify-content: center;
 }
 .delbutninputwindow{
-    width: 290px;
+    width: 300px;
+}
+.nomalinput{
+    display: flex;
+    justify-content: center;
+}
+
+.alladmit{
+    display: flex;
+    justify-content: center;
+    
+}
+.alladmittxt{
+    width: 195.578px;
+    height: 18.153px;
+    color: #5B6380;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.signinbutn{
+    display: flex;
+    justify-content: center;
+}
+.smalladmit{
+    display: flex;
+    justify-content:center;
+  
+}
+.smalladmittxtbox{
+    
+    text-align: left;
+}
+.smalladmittxt{
+    color: #A9A9A9;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
+    
+}
+.checkbutn{
+    border: none;
+    background: none;
+    color: #A9A9A9;
+    margin-top: -12px;
 }

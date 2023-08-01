@@ -4,10 +4,14 @@ import Loginbutton from "../../components/Loginbutton";
 import Inputwindow from "../../components/Inputwindow";
 import CertificationButton from "../../components/CertificationButton";
 import { TiDeleteOutline } from 'react-icons/ti';
+import {AiFillCheckCircle} from 'react-icons/ai';
+import {GrNext} from 'react-icons/gr';
+import {FaCheck} from 'react-icons/fa';
 
 function Doublecheck(props){
     return(
     <div>
+        <h2 className={Styles.h2}>{props.title}</h2>
     <form className={Styles.doublecheck}>
         <div className = {Styles.small}>
             <Inputwindow  type = "small" placeholder = {props.placeholder}/>
@@ -36,22 +40,53 @@ function Deletebuttoninput(props){
 function Normalinput(props){
     return(
         <div>
-            <h2 className={Styles.h2}>생년월일</h2>
+            <h2 className={Styles.h2}>{props.title}</h2>
+            <form className={Styles.nomalinput}>
             <Inputwindow type = "big" placeholder = {props.placeholder}/>
+            </form>
         </div>
     );
 }
+function Alladmit(){
+    return(
+       
+            <form>
+                <div className={Styles.alladmit}>
+                <button className= {Styles.checkbutn}><AiFillCheckCircle/></button>
+                <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
+                </div>
+                <hr/>
+                <div>
+                <Smalladmit texts = "(필수) 서비스 이용 약관에 동의"/>
+                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관"/>
+                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의"/>
+                </div>
+            </form>
+      
+    )
+}
 
-
+function Smalladmit(props){
+    return(
+        <div>
+            <form className={Styles.smalladmit}>
+                <button className= {`${Styles.checkbutn}`}><FaCheck/></button>
+                <div className={Styles.smalladmittxtbox}>
+                <p className={Styles.smalladmittxt}>{props.texts}</p>
+                </div>
+                <button className= {Styles.checkbutn}><GrNext/></button>
+            </form>
+        </div>
+    )
+}
 
 function Signin(){
     return(
         <div>
-            <Header title = "회원가입"/>
-           
-            <div>
-                <h2 className={`${Styles.h2} ${Styles.id}`}>아이디</h2>
-                <Doublecheck placeholder = "아이디를 입력하세요"/>
+            
+            <Header  title = "회원가입"/>
+            <div className ={Styles.header}>
+                <Doublecheck  title = "아이디"placeholder = "아이디를 입력하세요"/>
             </div>
             <div>
                 <Deletebuttoninput title = "비밀번호" placeholder = "비밀번호를 입력하세요"/>
@@ -60,33 +95,27 @@ function Signin(){
                 <Deletebuttoninput title = "비밀번호 확인" placeholder = "비밀번호를 한번 더 입력하세요"/>
             </div>
             <div>
-                <h2 className={Styles.h2}>이름</h2>
-                <Inputwindow type = "big" placeholder = "아이디를 입력하세요"/>
+               
+                <Normalinput title = "이름" placeholder = "이름을 입력하세요"/>
             </div> 
             <div>
-                <h2 className={Styles.h2}>이메일 인증</h2>
-                <Doublecheck placeholder = "이메일을 입력하세요"/>
+                
+                <Doublecheck title = "이메일"placeholder = "이메일을 입력하세요"/>
             </div>
             <div>
-                <h2 className={Styles.h2}>생년월일</h2>
-                <Inputwindow type = "big" placeholder = "아이디를 입력하세요"className={`${Styles.input}`}/>
+               <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
             </div>
             <div>
-                <h2 className={Styles.h2}>닉네임</h2>  
-                <Inputwindow type = "big" placeholder = "아이디를 입력하세요"className={`${Styles.input}`}/>
+                <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
             </div>
             <div>
                 <h2 className={Styles.h2}>프로필 사진 선택</h2>
             </div>
-            <div>
-            <button></button>
-            <h2>모두 동의합니다</h2>
-            <p>(필수) 서비스 이용 약관에 동의</p>
-            <p>(필수) 본인관련 서비스 관련 이용 약관</p>
-            <p>(선택) 마케팅 정보 알림 및 수신 동의</p>
+            <Alladmit/>
+            <div className={Styles.signinbutn}>
             <Loginbutton texts = "Family Moments 시작하기" />
-            
             </div>
+            
         </div>
     );
 }
