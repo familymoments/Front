@@ -24,7 +24,7 @@ function Findid(props){
 
         <form className={Styles.nameform}>
         <div className = {Styles.namewindow}>
-        <Inputwindow placeholder='실명을 입력하세요 ex) 홍길동'></Inputwindow>
+        <Inputwindow type = "big" placeholder='실명을 입력하세요 ex) 홍길동'></Inputwindow>
         </div>
         <button className = {Styles.deletebutton} type = "button"><TiDeleteOutline/></button> 
         </form>
@@ -39,7 +39,7 @@ function Findid(props){
                 </div>
             </form>
         
-        <Inputwindow placeholder = '인증번호 6자리'></Inputwindow>
+        <Inputwindow type = "big" placeholder = '인증번호 6자리'></Inputwindow>
         </div>
         <div id = {Styles.findidbutton}>
         <Loginbutton  texts = "순간을 가족에게 공유하기"/>
