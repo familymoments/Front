@@ -44,16 +44,18 @@ function App() {
 
 
                     <Route path="/" element={<Loading/>}></Route>
-                    <Route path = "/signin" element = {<Signin/>}></Route>
-                    <Route path = "/findpwd" element = {<Findpwd/>}></Route>
-                    <Route path = "/findpwd3" element = {<Findpwd3/>}></Route>
+                    
                     
 
                     {/* Header만 필요한 페이지들 */}
                     <Route path="/landing" element={<Landing title={title}/>}>
-                        <Route path = "/landing/login" element={<Login />}></Route>
+                        <Route path = "/landing/login" element={<Login title = "Family Moments"/>}></Route>
+                        <Route path = "/landing/signin" element = {<Signin changeTitle={changeTitle}/>}></Route>
                         <Route path = "/landing/findid" element = {<Findid changeTitle={changeTitle}/>}></Route>
                         <Route path = "/landing/findid2" element = {<Findid2 changeTitle={changeTitle}/>}></Route>
+                        <Route path = "/landing/findpwd" element = {<Findpwd changeTitle={changeTitle}/>}></Route>
+                        <Route path = "/landing/findpwd3" element = {<Findpwd3 changeTitle={changeTitle}/>}></Route>
+                        
                         <Route path='/landing/newfamily' element={<NewFamily />} />
 
                         <Route path='/landing/createfamily' element={<CreateFamily />} />

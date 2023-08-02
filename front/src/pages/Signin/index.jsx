@@ -9,10 +9,7 @@ import {AiFillCheckCircle} from 'react-icons/ai';
 import {GrNext} from 'react-icons/gr';
 import {FaCheck} from 'react-icons/fa';
 import FileUploadButton from "../../components/FileUpload";
-
-// smooth scrollbar 적용
-import {Scrollbar} from 'smooth-scrollbar-react';
-
+import { useEffect } from 'react';
 
 
 
@@ -55,7 +52,7 @@ function Normalinput(props){
         </div>
     );
 }
-function Alladmit(){
+function Alladmit(props){
     return(
        
             <form>
@@ -88,12 +85,14 @@ function Smalladmit(props){
     )
 }
 
-function Signin(){
-    
+function Signin(props){
+    useEffect(()=>{
+        props.changeTitle("회원가입");
+    })
+
     return(
-        <div>
-            <Header  title = "회원가입"/>
-            <div className={Styles.page}>
+        
+        <div className={Styles.page}>
             <div className ={Styles.header}>
                 <Doublecheck  title = "아이디"placeholder = "아이디를 입력하세요"/>
             </div>
@@ -115,8 +114,8 @@ function Signin(){
             <div className={Styles.signinbutn}>
             <Loginbutton texts = "Family Moments 시작하기" />
             </div>
-            </div>
         </div>
+        
         
     );
 }
