@@ -1,0 +1,25 @@
+.imageStyle {
+    position: relative;
+    top: 138px;
+    left: 152px;
+    width: 56px;
+    height: 56px;
+}
+
+.pText {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    color: #989CAB;
+    top: 158px;
+    left: 87px;
+    width: 208px;
+    height: 41px;
+    position: relative;
+}
+
+.bubble {
+    position: relative;
+    top: 548px;
+    left: 68px;
+}

@@ -29,7 +29,13 @@
 
 .btn {
     position: absolute;
-    top: 50%; /* 상단 여백을 50%로 설정 */
+    top: 54%; /* 상단 여백을 50%로 설정 */ /* 54%로 수정했습니다! */
     left: 50%; /* 좌측 여백을 50%로 설정 */
     transform: translate(-50%, 300%); /* 컨텐츠를 가운데로 이동 */
+
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #5B6380;
+
 }

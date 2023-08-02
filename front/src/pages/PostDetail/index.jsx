@@ -74,6 +74,11 @@ const PostDetail=({showmodal})=>{
                             pagination={{ clickable: true }}
                             onSwiper={(swiper) => console.log(swiper)}
                             onSlideChange={(e) => console.log('swipe')}
+                            style={{
+                                "--swiper-pagination-color": "#9378FF",
+                                "--swiper-pagination-bullet-inactive-color": "#FFF",
+                                "--swiper-pagination-bullet-inactive-opacity": "1",
+                              }}
                             
                             >
                                 {postData.imgs.map((photo,idx) => {

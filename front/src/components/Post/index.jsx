@@ -14,6 +14,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 
+
 const  Post =({showmodal,postlist})=>{
 
 
@@ -38,7 +39,13 @@ const  Post =({showmodal,postlist})=>{
                             // install Swiper modules
                             modules={[ Pagination]}
                             spaceBetween={120}
-                            slidesPerView={1}         
+                            slidesPerView={1}
+                            pagination={{ clickable: true }}
+                            style={{
+                                "--swiper-pagination-color": "#9378FF",
+                                "--swiper-pagination-bullet-inactive-color": "#FFF",
+                                "--swiper-pagination-bullet-inactive-opacity": "1",
+                              }}
                             >
                                 {it.imgs.map((photo,idx) => {
                                     return (

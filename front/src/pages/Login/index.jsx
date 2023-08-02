@@ -3,17 +3,30 @@ import Header from '../../components/Header';
 import Findid from '../Findid';
 import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
+import Signin from '../Signin';
+import Findpwd from '../Findpwd';
+import { useEffect } from 'react';
 
+import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 
 function Login({
     onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
         alert(JSON.stringify(data));
-      },}){
+      },})
+      {
     const {register, 
         handleSubmit,
         formState: { isSubmitting, isSubmitted, errors },} = useForm();
+
     
+
+
+        <BrowserRouter>
+        <Route path = "/signin" element = {<Signin/>}></Route>
+        <Route path = "/findpwd" element = {<Findpwd/>}></Route>
+        <Route path = "/findid" element = {<Findid/>}></Route>
+        </BrowserRouter>
     return(
     <div className={Styles.wrapper}>
         <div className={Styles.top}>
@@ -59,11 +72,11 @@ function Login({
             </div>
         </form>
         <div className={Styles.accountbutton}>
-            <button className={Styles.accountbutton}>아이디 찾기</button>
+            <Link to= "/landing/findid"><button className={Styles.accountbutton}>아이디 찾기</button></Link>
             <p className={Styles.accountbutton}>|</p>
-            <button className={Styles.accountbutton}>비밀번호 찾기</button>
+            <Link to ="/landing/findpwd"><button className={Styles.accountbutton}>비밀번호 찾기</button></Link>
             <p className={Styles.accountbutton}>|</p>
-            <button className={Styles.accountbutton}>회원가입</button>
+            <Link to = "/landing/signin"><button className={Styles.accountbutton}>회원가입</button></Link>
         </div>
             <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
             <div>

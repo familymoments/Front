@@ -4,10 +4,12 @@ import Button from "../../components/Button";
 import classes from "./CreateFamily.module.css";
 import MySearchBar from "../../components/MySearchBar"
 import PersonInfo from "../../components/PersonInfo"
+import Header from '../../components/Header';
 
 const CreateFamily = () => {
     return (
-        <div className={classes.createFamily}>
+        <div>
+            <Header title="가족" />
             <MyText text="우리 가족 생성하기" />
             <MySearchBar placeholder="ID 검색" />
             <PersonInfo name="clohee" />
