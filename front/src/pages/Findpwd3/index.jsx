@@ -7,13 +7,15 @@ function Findpwd3(){
         <div>
             <Header title = "Family Moments"/>
             <h1 className={Styles.title}>비밀번호 재설정</h1>
-            <h>새로운 비밀번호를 설정해주세요</h>
-            <div>
-                <input placeholder="새 비밀번호"></input>
-                <input placeholder="새 비밀번호 확인"></input>
+            <div className={Styles.txtlocation}>
+            <h className = {Styles.txts}>새로운 비밀번호를 입력해주세요.</h>
             </div>
-            <div>
-                <Loginbutton/>
+            <div className={Styles.inputlocation}>
+                <input className = {Styles.inputstyle} placeholder="새 비밀번호"></input>
+                <input className = {Styles.inputstyle} placeholder="새 비밀번호 확인"></input>
+            </div>
+            <div className={Styles.buttonlocation}>
+                <Loginbutton texts =" 순간을 가족에게 공유하기"/>
             </div>
 
         </div>
