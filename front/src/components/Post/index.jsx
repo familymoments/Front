@@ -13,6 +13,7 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+
 const  Post =({showmodal,postlist})=>{
 
 
@@ -37,10 +38,7 @@ const  Post =({showmodal,postlist})=>{
                             // install Swiper modules
                             modules={[ Pagination]}
                             spaceBetween={120}
-                            slidesPerView={1}
-                            pagination={{ clickable: true }}
-                            
-                            
+                            slidesPerView={1}         
                             >
                                 {it.imgs.map((photo,idx) => {
                                     return (

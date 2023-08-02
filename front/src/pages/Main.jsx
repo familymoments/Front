@@ -13,8 +13,17 @@ import UpdatePost from "./UpdatePost";
 import Notice from "./MyPage/Notice";
 import Profile from "./MyPage/Profile";
 
+//modal state 상태관리
+import {atom} from "recoil";
+
+
+
 const Main = () => {
+
     const [mode, setmode] = useState("HOME");
+
+   
+
     const [modalopen,setModalopen]=useState(true);
 
     const showmodal=()=>{
@@ -37,7 +46,7 @@ const Main = () => {
                     <Route path="/calendar" element={<Calendar />}></Route>
                     <Route path="/my" element={<MyPage />}></Route>
 
-                    <Route path="/postdetail/:postId" element={<PostDetail />} />
+                    <Route path="/postdetail/:postId" element={<PostDetail showmodal={showmodal}/>} />
                     <Route path="/updatePost/:postId" element={<UpdatePost />} />
 
                     <Route path="/my/notice" element={<Notice />}></Route>

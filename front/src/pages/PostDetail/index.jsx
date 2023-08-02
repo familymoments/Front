@@ -16,7 +16,7 @@ import { useState } from "react";
 
 
 
-const PostDetail=()=>{
+const PostDetail=({showmodal})=>{
 
     const {state:{post}} = useLocation();
     console.log("post",post);
@@ -86,7 +86,7 @@ const PostDetail=()=>{
                         </Swiper>
                     </div>
                     
-                    <PostContent postlist={post} postId={postId} postcontent={postData.content} postheart={heart} 
+                    <PostContent showmodal={showmodal} postlist={post} postId={postId} postcontent={postData.content} postheart={heart} 
                         pushHeart={()=>{
                         pushHeart(postId);}} 
                     ></PostContent>

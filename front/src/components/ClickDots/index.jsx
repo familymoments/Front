@@ -1,20 +1,28 @@
 import styles from "./index.module.css";
 
 import { useNavigate } from "react-router-dom";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
-
+import {deletePostId,postid} from "../../atom";
+import { useRecoilValue,useRecoilState } from "recoil";
 
 const ClickDots =({post,showmodal})=>{
 
     const nav=useNavigate();
 
-    const postId=post.postId;
+    //const postId=post.postId;
+
+    const [deletepostid,setDeletepostid]=useRecoilState(deletePostId);
+    const [postId,setPostId]=useRecoilState(postid);
+    
+    
+    console.log("clickdots",deletepostid);
 
     
     const [popupOpen,setPopupOpen] = useState(false);
     const showDeletePopup=(e)=>{
         e.preventDefault();
+        setPostId(post.postId);
         showmodal();
     };
 
@@ -26,7 +34,6 @@ const ClickDots =({post,showmodal})=>{
             }}>수정하기</div>
             <div className={styles.bottomLine}>신고하기</div>
             <div className={styles.ele} onClick={showDeletePopup}>삭제하기</div>
-            {popupOpen&&<div className={styles.popup}>게시글을 삭제하시겠습니까? </div>}
        </div>
             
     )

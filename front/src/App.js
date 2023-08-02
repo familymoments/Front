@@ -1,7 +1,10 @@
-// import "./App.css";
+
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import classes from "./App.module.css";
+import {RecoilRoot, atom, selector, useRecoilState, useRecoilValue,} from "recoil";
+
+
 import Loading from './pages/Loading';
 
 
@@ -37,41 +40,43 @@ function App() {
     }
 
     return (
-        <div className={classes.App}>
-            <BrowserRouter>
-                <Routes>
+        <RecoilRoot>
+            <div className={classes.App}>
+                <BrowserRouter>
+                    <Routes>
 
-                    <Route path="/" element={<Loading/>}></Route>
+                        <Route path="/" element={<Loading/>}></Route>
 
-                    {/* Header만 필요한 페이지들 */}
-                    <Route path="/landing" element={<Landing title={title}/>}>
-                        <Route path = "/landing/login" element={<Login />}></Route>
-                        <Route path = "/landing/findid" element = {<Findid changeTitle={changeTitle}/>}></Route>
-                        <Route path = "/landing/findid2" element = {<Findid2 changeTitle={changeTitle}/>}></Route>
-                        <Route path='/landing/newfamily' element={<NewFamily />} />
+                        {/* Header만 필요한 페이지들 */}
+                        <Route path="/landing" element={<Landing title={title}/>}>
+                            <Route path = "/landing/login" element={<Login />}></Route>
+                            <Route path = "/landing/findid" element = {<Findid changeTitle={changeTitle}/>}></Route>
+                            <Route path = "/landing/findid2" element = {<Findid2 changeTitle={changeTitle}/>}></Route>
+                            <Route path='/landing/newfamily' element={<NewFamily />} />
 
-                        <Route path='/landing/createfamily' element={<CreateFamily />} />
-                        <Route path='/landing/createfamily2' element={<CreateFamily2 />} />
-                        <Route path='/landing/createfamily3' element={<CreateFamily3 />} />
-                        <Route path='/landing/createfamily4' element={<CreateFamily4 />} />
-                        <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
+                            <Route path='/landing/createfamily' element={<CreateFamily />} />
+                            <Route path='/landing/createfamily2' element={<CreateFamily2 />} />
+                            <Route path='/landing/createfamily3' element={<CreateFamily3 />} />
+                            <Route path='/landing/createfamily4' element={<CreateFamily4 />} />
+                            <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
 
 
-                        {/* 생성 시 */}
-                        <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />
-                    </Route>
+                            {/* 생성 시 */}
+                            <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />
+                        </Route>
 
-                    {/* Header와 Footer가 필요한 페이지들 */}
-                    <Route path="/main/*" element={<Main/>} />
+                        {/* Header와 Footer가 필요한 페이지들 */}
+                        <Route path="/main/*" element={<Main/>} />
 
-                    {/* 페이지 생성 시 기본 값 */}
-                    <Route path="/ex" element={<Loading/>} />
+                        {/* 페이지 생성 시 기본 값 */}
+                        <Route path="/ex" element={<Loading/>} />
 
-                </Routes>
-            </BrowserRouter>
-            
-            
-        </div>
+                    </Routes>
+                </BrowserRouter>
+                
+                
+            </div>
+        </RecoilRoot>
     );
 }
 
