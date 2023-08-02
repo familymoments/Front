@@ -10,9 +10,6 @@ const Landing=(props)=>{
     return (<div>
         <Header title={props.title}></Header>
         <Outlet/>
-
-        
-
     </div>)
 };
 

@@ -1,9 +1,19 @@
 import Styles from './Inputwindow.module.css';
-function Inputwindow(props){
+import {useState} from 'react';
 
+function Inputwindow(props){
+    const [isActive, setActive] = useState(false);
     return(
     <div>
-        <input className = {Styles.shape} placeholder={props.placeholder}></input>
+        <input 
+        className ={` 
+        ${Styles.shape} 
+        ${props.type == "big" ? Styles.big : ''}
+        ${props.type == "small" ? Styles.small : ''}
+        `} 
+        placeholder={props.placeholder} >
+
+        </input>
     </div> );
 }
 
