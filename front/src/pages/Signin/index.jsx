@@ -1,3 +1,4 @@
+
 import Styles from "./Signin.module.css";
 import Header from '../../components/Header';
 import Loginbutton from "../../components/Loginbutton";
@@ -7,11 +8,18 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import {AiFillCheckCircle} from 'react-icons/ai';
 import {GrNext} from 'react-icons/gr';
 import {FaCheck} from 'react-icons/fa';
+import FileUploadButton from "../../components/FileUpload";
+
+// smooth scrollbar 적용
+import {Scrollbar} from 'smooth-scrollbar-react';
+
+
+
 
 function Doublecheck(props){
     return(
     <div>
-        <h2 className={Styles.h2}>{props.title}</h2>
+        <div className={Styles.h2}><p className={Styles.title}>{props.title}</p></div>
     <form className={Styles.doublecheck}>
         <div className = {Styles.small}>
             <Inputwindow  type = "small" placeholder = {props.placeholder}/>
@@ -26,7 +34,7 @@ function Doublecheck(props){
 function Deletebuttoninput(props){
     return(
     <div>
-        <h2 className={Styles.h2}>{props.title}</h2>
+        <div className={Styles.h2}>{props.title}</div>
         <form className={Styles.delbutninputform}>
             <div className={Styles.delbutninputwindow}>
             <Inputwindow type = "big" placeholder = {props.placeholder}/>
@@ -81,42 +89,35 @@ function Smalladmit(props){
 }
 
 function Signin(){
+    
     return(
         <div>
-            
             <Header  title = "회원가입"/>
+            <div className={Styles.page}>
             <div className ={Styles.header}>
                 <Doublecheck  title = "아이디"placeholder = "아이디를 입력하세요"/>
             </div>
-            <div>
                 <Deletebuttoninput title = "비밀번호" placeholder = "비밀번호를 입력하세요"/>
-            </div>
-            <div>
                 <Deletebuttoninput title = "비밀번호 확인" placeholder = "비밀번호를 한번 더 입력하세요"/>
-            </div>
-            <div>
-               
                 <Normalinput title = "이름" placeholder = "이름을 입력하세요"/>
-            </div> 
-            <div>
-                
                 <Doublecheck title = "이메일"placeholder = "이메일을 입력하세요"/>
-            </div>
-            <div>
-               <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
-            </div>
-            <div>
+                <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
                 <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
-            </div>
             <div>
                 <h2 className={Styles.h2}>프로필 사진 선택</h2>
+                {/* <div className={Styles.fileupload}>
+                <FileUploadButton/>
+                </div> */}
             </div>
+            <div>
             <Alladmit/>
+            </div>
             <div className={Styles.signinbutn}>
             <Loginbutton texts = "Family Moments 시작하기" />
             </div>
-            
+            </div>
         </div>
+        
     );
 }
 

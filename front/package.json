@@ -20,6 +20,8 @@
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "react-textarea-autosize": "^8.5.2",
+    "smooth-scrollbar": "^8.8.4",
+    "smooth-scrollbar-react": "^2.4.1",
     "swiper": "^10.0.4",
     "web-vitals": "^2.1.0"
   },
