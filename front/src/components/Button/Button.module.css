@@ -1,12 +1,16 @@
 .button {
-    width: 328px;
-    height: 59px;
-    border-radius: 60px;
-    background-color: #5B6380;
     border: none;
     /* z-index: 1; */
 
 }
+
+/* 
+    style부분은 각 props로 전달하기
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #5B6380;
+*/
 
 .font {
     font-size: 18px;

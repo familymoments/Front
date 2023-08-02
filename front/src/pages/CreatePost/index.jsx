@@ -34,10 +34,7 @@ const CreatePost = ()=>{
         //Post실행
         
         // state값 전달하며 페이지 이동
-        nav("/Main/postlist",{state:{
-            imgs :imgs,
-            content: e,
-        }});
+        nav("/Main/postlist");
         setImgs([]);
     }
 

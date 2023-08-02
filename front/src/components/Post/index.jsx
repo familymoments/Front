@@ -13,7 +13,7 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const  Post =({postlist})=>{
+const  Post =({showmodal,postlist})=>{
 
 
     const [heart,setHeart]=useState();
@@ -52,7 +52,7 @@ const  Post =({postlist})=>{
                         </Swiper>
                     </div>
                     
-                    <PostContent postId={it.postId} postcontent={it.content} postheart={it.loved} 
+                    <PostContent showmodal={showmodal} postlist={it} postId={it.postId} postcontent={it.content} postheart={it.loved} 
                         pushHeart={(e)=>{
                         pushHeart(it.postId);}} 
                     ></PostContent>

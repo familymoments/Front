@@ -2,12 +2,13 @@ import styles from "./index.module.css";
 import HelloText from "../../components/HelloText";
 import Post from "../../components/Post";
 import {useNavigate, useLocation} from "react-router-dom";
+import { useEffect,useState } from "react";
 
-const Home=()=>{
+const Home=({showmodal})=>{
 
     const nav=useNavigate();
 
-    const data=[{    
+    const [data,setData]=useState([{    
         postId : 123456,
         writer : "딸내미",
         profileImg : "",
@@ -24,18 +25,21 @@ const Home=()=>{
             createdAt : "2023-03-27",
             loved : true
             },
-    ]
+    ]);
 
-    //navigation 으로 전달받은 state 받기
-    const location = useLocation();
-    console.log("location",location.state);
+    const DeletePost=(postid)=>{
+        setData(data.filter((post)=> postid !==post.postId));
+    }
+
+
+
 
     
 
     return(
         <div className={styles.wrapper}>
             <HelloText user="딸내미" Dday="2" />
-            <Post postlist={data}/>
+            <Post showmodal={showmodal} postlist={data}/>
         </div>)
 }
 
