@@ -74,6 +74,11 @@
     width: 100%;
     height: 100%;
 }
+
+.img{
+    width: 100%;
+}
+
 .commentline{
     width: 100%;
     border: solid 1px #F3F4F7;

@@ -8,9 +8,9 @@
 
 import classes from "./Button.module.css";
 
-const Button = props => {
+const Button = (props) => {
     return (
-        <button className={`${classes.button} ${props.btn}`}>
+        <button className={`${classes.button} ${props.btn}`} onClick={props.onClick}>
 
             <div  className={classes.font}>{props.title}</div>
         </button>

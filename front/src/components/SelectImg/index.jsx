@@ -1,13 +1,17 @@
 /**이미지 선택하는 컴포넌트 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SelectImg.module.css";
 import selectIcon from "../../assets/btn_select_photo.png";
 
 
-const SelectImg=()=>{
+const SelectImg=({handleChangeState})=>{
 
     const [imgList,setImgList]=useState([]);
+
+    useEffect(()=>{
+      handleChangeState(imgList);
+    },[imgList])
     
       let reader = new FileReader(); // FileReader API로 이미지 인식
       const handleUploadImg = e => {

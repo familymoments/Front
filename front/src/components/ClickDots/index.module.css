@@ -62,3 +62,9 @@
 
 
 }
+
+.popup{
+    position: fixed;
+    width: 100vh;
+    height: 100vw;
+}

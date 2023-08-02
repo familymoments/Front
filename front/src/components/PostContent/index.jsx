@@ -9,18 +9,17 @@ import PostContentSide from "../PostContentSide";
 
 const PostContent=(props)=>{
 
-    const postId=props.postId;
 
     const nav=useNavigate();
-    
+    const post=props.postlist;
     
 
     return(
         <div className={styles.postText}>
             <span onClick={()=>{
-                nav(`/Main/postdetail/${postId}`);
+                nav(`/Main/postdetail/${props.postId}` ,{state:{post}});
             }}>{props.postcontent}</span>
-            <PostContentSide postId={postId} postheart={props.postheart} postcontent={props.postcontent} pushHeart={props.pushHeart}>
+            <PostContentSide showmodal={props.showmodal} post={props.postlist} postId={props.postId} postheart={props.postheart} postcontent={props.postcontent} pushHeart={props.pushHeart}>
                 
             </PostContentSide>
             

@@ -12,8 +12,9 @@ const CreatePostText =(props)=>{
 
     const updateHandler=(e)=>{
         e.preventDefault();
-        console.log(e.target.postText.value);
-        
+        setContent(e.target.postText.value)
+        props.handleSubmit(content);
+        setContent("");
     }
     
 

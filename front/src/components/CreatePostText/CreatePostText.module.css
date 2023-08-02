@@ -34,5 +34,10 @@
  .btn{
     position: relative;
     min-height: 59px;
+
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #5B6380;
 }
 
