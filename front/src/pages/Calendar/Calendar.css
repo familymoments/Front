@@ -28,6 +28,8 @@ abbr[title] {
     color: inherit;
     font-weight: bold;
     font-size: 24px;
+    
+    pointer-events: none;
 }
 
 .react-calendar__navigation__arrow {
@@ -35,13 +37,16 @@ abbr[title] {
     font-size: 32px;
 }
 
-
-
 /* viewContainer 부분 */
 .react-calendar__viewContainer {
     background-color: aliceblue;
     height: 272px;
     border-radius: 16.5px;
+
+    background-image: url('../../assets/calendarBg.png'); /* 배경 이미지 경로를 입력합니다. */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* view header 부분 */
@@ -65,26 +70,41 @@ abbr[title] {
 .react-calendar__tile {
     width: 36px;
     height: 43px;
+    padding: 5px 0px;
 
-    border-radius: 50%;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 400;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+
+    background-color: transparent;
+    color: inherit;
 }
 
-.react-calendar__tile--active {
-    background-color: black;
-    color: white;
+.react-calendar__tile abbr {
+    flex-grow: 1;
 }
 
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-    background-color: black;
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: transparent;
 }
 
 .react-calendar__tile--now {
-    /* color: aqua; */
+    background-color: #9378ff99;
+    color: white;
+}
 
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+    background-color: #9378ff99;
+}
+
+.redText {
+    color: red;
 }
