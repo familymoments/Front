@@ -20,6 +20,9 @@ import CreateFamily4 from './pages/CreateFamily4';
 import FamilyParticipation from './pages/FamilyParticipation';
 import CreateFamily2 from './pages/CreateFamily2';
 import CreateFamily from './pages/CreateFamily';
+import CreateFamily5 from './pages/CreateFamily5';
+import NextTime from './pages/NextTime';
+import CreateFamily5_2 from './pages/CreateFamily5_2';
 
 
 function App() {
@@ -58,19 +61,22 @@ function App() {
                         
                         <Route path='/landing/newfamily' element={<NewFamily />} />
 
-                        <Route path='/landing/createfamily' element={<CreateFamily />} />
-                        <Route path='/landing/createfamily2' element={<CreateFamily2 />} />
-                        <Route path='/landing/createfamily3' element={<CreateFamily3 />} />
-                        <Route path='/landing/createfamily4' element={<CreateFamily4 />} />
                         <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
-
-
+                        <Route path='/landing/createfamily5' element={<CreateFamily5 />} />
+                        <Route path='/landing/createfamily5_2' element={<CreateFamily5_2 />} />
+                        
                         {/* 생성 시 */}
                         <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />
                     </Route>
 
                     {/* Header와 Footer가 필요한 페이지들 */}
                     <Route path="/main/*" element={<Main/>} />
+
+                    <Route path='/landing/createfamily' element={<CreateFamily />} />
+                    <Route path='/landing/createfamily2' element={<CreateFamily2 />} />
+                    <Route path='/landing/createfamily3' element={<CreateFamily3 />} />
+                    <Route path='/landing/createfamily4' element={<CreateFamily4 />} />
+                    <Route path='/landing/nexttime' element={<NextTime />} />
 
                     {/* 페이지 생성 시 기본 값 */}
                     <Route path="/ex" element={<Loading/>} />

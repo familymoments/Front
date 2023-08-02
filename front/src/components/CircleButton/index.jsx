@@ -30,9 +30,9 @@ const CircleButton = (props) => {
                 ${isActive ? (props.type === "pink" ? classes.activeCircle1 : '') : ''}
                 ${isActive ? (props.type === "purple" ? classes.activeCircle2 : '') : ''}
             `}
-            onClick={() => {
-                alert("CircleButton Click");
-            }}
+            // onClick={() => {
+            //     alert("CircleButton Click");
+            // }}
             onTouchStart={handleOnActive}
             onTouchEnd={handleOffActive}
         >

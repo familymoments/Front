@@ -1,11 +1,9 @@
 import styles from "./index.module.css";
 import HelloText from "../../components/HelloText";
 import Post from "../../components/Post";
-import {useNavigate} from "react-router-dom";
 
 const Home=()=>{
     const postId=1;
-    const nav=useNavigate();
 
     return(
         <div className={styles.wrapper}>
