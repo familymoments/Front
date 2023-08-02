@@ -1,0 +1,55 @@
+.title{
+    display: flex;
+    justify-content: center;
+    color: #5B6380;
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+    margin-top: 83px;
+    margin-right: 77px;
+    margin-bottom: 31px;
+}
+.txts{
+    width: 292px;
+    height: 12px;
+    flex-shrink: 0;
+    color: #5B6380;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    margin-bottom: 31px;
+}
+.txtlocation{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.inputlocation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+.inputstyle{
+    width: 328px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(169, 169, 169, 0.50);
+    background: rgba(251, 238, 255, 0.50);
+    margin-bottom: 18px;
+}
+.buttonlocation{
+    display: flex;
+    justify-content: center;
+    margin-top: 183px;
+
+}

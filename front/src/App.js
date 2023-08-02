@@ -3,17 +3,18 @@ import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import classes from "./App.module.css";
 import Loading from './pages/Loading';
-
-
-import MyPage from './pages/MyPage';
 import Landing from './pages/Landing';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Findid from './pages/Findid';
 import Findid2 from './pages/Findid2';
 import NewFamily from './pages/NewFamily';
-
+import MyPage from './pages/MyPage';
+import Signin from './pages/Signin';
 import Header from './components/Header';
+
+import Findpwd from './pages/Findpwd';
+import Findpwd3 from "./pages/Findpwd3";
 import CreateFamily3 from './pages/CreateFamily3';
 import CreateFamily4 from './pages/CreateFamily4';
 import FamilyParticipation from './pages/FamilyParticipation';
@@ -41,13 +42,20 @@ function App() {
             <BrowserRouter>
                 <Routes>
 
+
                     <Route path="/" element={<Loading/>}></Route>
+                    
+                    
 
                     {/* Header만 필요한 페이지들 */}
                     <Route path="/landing" element={<Landing title={title}/>}>
-                        <Route path = "/landing/login" element={<Login />}></Route>
+                        <Route path = "/landing/login" element={<Login title = "Family Moments"/>}></Route>
+                        <Route path = "/landing/signin" element = {<Signin changeTitle={changeTitle}/>}></Route>
                         <Route path = "/landing/findid" element = {<Findid changeTitle={changeTitle}/>}></Route>
                         <Route path = "/landing/findid2" element = {<Findid2 changeTitle={changeTitle}/>}></Route>
+                        <Route path = "/landing/findpwd" element = {<Findpwd changeTitle={changeTitle}/>}></Route>
+                        <Route path = "/landing/findpwd3" element = {<Findpwd3 changeTitle={changeTitle}/>}></Route>
+                        
                         <Route path='/landing/newfamily' element={<NewFamily />} />
 
                         <Route path='/landing/createfamily' element={<CreateFamily />} />
