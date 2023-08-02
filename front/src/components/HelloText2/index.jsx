@@ -4,21 +4,17 @@
  * user이름과 디데이
  */
 
-import styles from "./index.module.css";
+import styles from "./HelloText2.module.css";
 
-const HelloText =(props)=>{
+const HelloText2 =(props)=>{
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.firstline}>{props.user} 님, 반갑습니다.</div>
-            <div className={styles.secondline}>
-                <span>가족과 순간들을 공유한지</span>
-                <span> {props.Dday}일째 </span>
-                <span>입니다.</span>
-            </div>
+            <div className={styles.customText}>{props.customText}</div>
             <div className={styles.line}></div>
         </div>
     )
 };
 
-export default HelloText;
+export default HelloText2;

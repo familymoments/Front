@@ -6,10 +6,12 @@ import FileUploadButton from "../../components/FileUpload";
 import classes from "../CreateFamily/CreateFamily.module.css";
 import FamilySelect from "../../components/FamilySelect";
 import styles from "../../components/FamilySelect/SelectImage.module.css";
+import Header from '../../components/Header';
 
 const CreateFamily2 = () => {
     return (
-        <div className={classes.createFamily2}>
+        <div>
+            <Header title="가족" />
             <MyText text="우리 가족 생성하기" />
             <FamilySelect buttonText="가족 이름 정하기" customClass={styles.familySelect} />
             <MakeFamilyBar />
