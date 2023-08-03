@@ -114,10 +114,8 @@ function Smalladmit(props){
     return(
         <div className={Styles.smalladmitbox}>
             <form className={Styles.smalladmit}>
-                <button className= {`${Styles.checkbutn}`}><FaCheck/></button>
-                <div className={Styles.smalladmittxtbox}>
+                <button className={Styles.checkbutn}><FaCheck/></button>
                 <p className={Styles.smalladmittxt}>{props.texts}</p>
-                </div>
                 <button className= {Styles.checkbutn}><GrNext/></button>
             </form>
         </div>
