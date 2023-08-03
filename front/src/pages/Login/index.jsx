@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import Findid from '../Findid';
 import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
-import Signin from '../Signin';
+import Signin from '../Signup';
 import Findpwd from '../Findpwd';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, Outlet,useNavigate } from 'react-router-dom';
@@ -22,9 +22,9 @@ function Login({
 
 
         <BrowserRouter>
-        <Route path = "/signin" element = {<Signin/>}></Route>
-        <Route path = "/findpwd" element = {<Findpwd/>}></Route>
-        <Route path = "/findid" element = {<Findid/>}></Route>
+        <Route path = "/landing/signup" element = {<Signin/>}></Route>
+        <Route path = "/landing/findpwd" element = {<Findpwd/>}></Route>
+        <Route path = "landing/findid" element = {<Findid/>}></Route>
         </BrowserRouter>
     return(
     <div className={Styles.wrapper}>
@@ -75,7 +75,7 @@ function Login({
             <p className={Styles.accountbutton}>|</p>
             <button  onClick={()=>{navigate("/landing/findpwd")}}className={Styles.accountbutton}>비밀번호 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <button onClick={()=>{navigate("/landing/signin")}} className={Styles.accountbutton}>회원가입</button>
+            <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
             <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
             {/*  
