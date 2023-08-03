@@ -13,6 +13,8 @@ import 'swiper/css/pagination';
 import { useParams,useLocation } from "react-router-dom";
 import { useState } from "react";
 
+import axios from "axios";
+
 
 
 
@@ -54,9 +56,18 @@ const PostDetail=({showmodal})=>{
         console.log(id+"하트누름");
         heart ? setHeart(false):setHeart(true);
     }
-
+    const userId=1;
     const submitComment=(content)=>{
         console.log(content);
+        axios.post(`/api/comments/${userId}?postId=5`,{
+            "content":content,
+        })
+        .then(res=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
 
     return(
