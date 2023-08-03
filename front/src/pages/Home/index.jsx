@@ -5,8 +5,8 @@ import HelloText from "../../components/HelloText";
 import Post from "../../components/Post";
 
 //react 라이브러리
-import {useNavigate, useLocation} from "react-router-dom";
-import { useEffect,useState } from "react";
+import {useNavigate, useLocation,usecallback} from "react-router-dom";
+import { useCallback, useEffect,useState } from "react";
 
 //상태관리 라이브러리
 import { deletePostId } from "../../atom";
@@ -20,10 +20,18 @@ const Home=({showmodal})=>{
 
     const deletepostid=useRecoilValue(deletePostId);
 
+    const familyId =1;
     //postlist 받아오기
-    // const getposts=()=>{
+   const getposts=()=>{
+        axios.get(`api/posts?familyId=${familyId}`)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
 
-    // }
+        })
+    };
+    getposts();
 
     const [data,setData]=useState([{    
         postId : 123456,
@@ -44,9 +52,10 @@ const Home=({showmodal})=>{
             },
     ]);
 
-    const DeletePost=(postid)=>{
-        setData(data.filter((post)=> postid !==post.postId));
-    }
+    // useCallback(()=>{
+    //     getposts();
+    // },[]);
+
 
     useEffect(()=>{
         setData(data.filter((post)=> deletepostid !==post.postId));
