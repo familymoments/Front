@@ -17,7 +17,7 @@ function Findpwd(props){
                 <input className={Styles.idinput} placeholder = "ID"></input>
             </div>
             <div className={Styles.button}>
-                <Loginbutton texts =" 순간을 가족에게 공유하기"/>
+                <Loginbutton location = "/landing/findpwd2"texts =" 순간을 가족에게 공유하기"/>
             </div>
         </div>
     );

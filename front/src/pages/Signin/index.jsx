@@ -1,6 +1,5 @@
 
 import Styles from "./Signin.module.css";
-import Header from '../../components/Header';
 import Loginbutton from "../../components/Loginbutton";
 import Inputwindow from "../../components/Inputwindow";
 import CertificationButton from "../../components/CertificationButton";
@@ -11,9 +10,47 @@ import {FaCheck} from 'react-icons/fa';
 import FileUploadButton from "../../components/FileUpload";
 import { useEffect } from 'react';
 
+function Signin(props){
+    useEffect(()=>{
+        props.changeTitle("회원가입");
+    })
+
+    return(
+        
+        <div className={Styles.page}>
+            <div className ={Styles.header}>
+                <Doublecheckinput  title = "아이디"placeholder = "아이디를 입력하세요"/>
+            </div>
+                <Deletebuttoninput title = "비밀번호" placeholder = "비밀번호를 입력하세요"/>
+                <Deletebuttoninput title = "비밀번호 확인" placeholder = "비밀번호를 한번 더 입력하세요"/>
+                <Normalinput title = "이름" placeholder = "이름을 입력하세요"/>
+                <Doublecheckinput title = "이메일"placeholder = "이메일을 입력하세요"/>
+                <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
+                <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
+            <div>
+                <h2 className={Styles.h2}>프로필 사진 선택</h2>
+                
+                {/*파일업로드 컴포넌트 
+                <div className={Styles.fileupload}>
+                <FileUploadButton/>
+                </div> */}
+            </div>
+            <div>
+            <Alladmit/>
+            </div>
+            <div className={Styles.signinbutn}>
+            <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
+            </div>
+        </div>
+        
+        
+    );
+}
+
+export default Signin;
 
 
-function Doublecheck(props){
+function Doublecheckinput(props){
     return(
     <div>
         <div className={Styles.h2}><p className={Styles.title}>{props.title}</p></div>
@@ -85,39 +122,3 @@ function Smalladmit(props){
     )
 }
 
-function Signin(props){
-    useEffect(()=>{
-        props.changeTitle("회원가입");
-    })
-
-    return(
-        
-        <div className={Styles.page}>
-            <div className ={Styles.header}>
-                <Doublecheck  title = "아이디"placeholder = "아이디를 입력하세요"/>
-            </div>
-                <Deletebuttoninput title = "비밀번호" placeholder = "비밀번호를 입력하세요"/>
-                <Deletebuttoninput title = "비밀번호 확인" placeholder = "비밀번호를 한번 더 입력하세요"/>
-                <Normalinput title = "이름" placeholder = "이름을 입력하세요"/>
-                <Doublecheck title = "이메일"placeholder = "이메일을 입력하세요"/>
-                <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
-                <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
-            <div>
-                <h2 className={Styles.h2}>프로필 사진 선택</h2>
-                {/* <div className={Styles.fileupload}>
-                <FileUploadButton/>
-                </div> */}
-            </div>
-            <div>
-            <Alladmit/>
-            </div>
-            <div className={Styles.signinbutn}>
-            <Loginbutton texts = "Family Moments 시작하기" />
-            </div>
-        </div>
-        
-        
-    );
-}
-
-export default Signin;

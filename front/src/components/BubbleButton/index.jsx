@@ -1,10 +1,16 @@
 import Styles from "./BubbleButton.module.css";
-import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+//props.location = 페이지 이동
+//props.type = 색 정하기
+//props.text = 버튼 안의 글 내용
+
 function BubbleButton(props){
-    const [isActive, setActive] = useState(false);
+    
+    const navigate = useNavigate();
+
     return(
     <div>
-        <button
+        <button onClick={()=>{navigate(props.location)}}
             className={`${Styles.button}
                 ${props.layout}
                 ${props.type === "pink" ? Styles.button1 : ''}
