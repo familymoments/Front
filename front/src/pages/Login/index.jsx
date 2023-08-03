@@ -1,12 +1,11 @@
 import Styles from './Login.module.css';
-import Header from '../../components/Header';
-import Findid from '../Findid';
 import Loginbutton from '../../components/Loginbutton';
 import {useForm} from "react-hook-form";
-import Signin from '../Signin';
-import Findpwd from '../Findpwd';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link, Outlet,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {FcGoogle} from 'react-icons/fc';
+import {SiNaver} from 'react-icons/si';
+import {RiKakaoTalkFill} from 'react-icons/ri';
 
 function Login({
     onSubmit = async (data) => {
@@ -19,17 +18,10 @@ function Login({
         formState: { isSubmitting, isSubmitted, errors },} = useForm();
 
     const navigate = useNavigate();
-
-
-        <BrowserRouter>
-        <Route path = "/signin" element = {<Signin/>}></Route>
-        <Route path = "/findpwd" element = {<Findpwd/>}></Route>
-        <Route path = "/findid" element = {<Findid/>}></Route>
-        </BrowserRouter>
     return(
-    <div className={Styles.wrapper}>
+    <div>
         <div className={Styles.top}>
-            <div className= {Styles.loginTopLogo}>
+            <div className= {Styles.toplogo}>
                 <img src={process.env.PUBLIC_URL + '/mainLogo.png'} /> 
             </div>
             <div>
@@ -41,7 +33,7 @@ function Login({
     <form className = {Styles.input} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <p/>
-                <input id = "email" className={Styles.id} type= "email"  placeholder="ID"
+                <input id = "id" className={Styles.id} type= "email"  placeholder="ID"
                 aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : undefined} {...register("email", {required: "이메일은 필수 입력입니다.",
                 pattern: {
                 value: /\S+@\S+\.\S+/,
@@ -50,7 +42,6 @@ function Login({
                 {errors.email && <small role="alert">{errors.email.message}</small>}
             </div>
             <div>
-                
                 <input id ="password" className = {Styles.password} type='password'  placeholder='Password' 
                         aria-invalid={
                             isSubmitted ? (errors.password ? "true" : "false") : undefined
@@ -65,26 +56,25 @@ function Login({
                 />
                 {errors.password && <small role="alert">{errors.password.message}</small>}
             </div>
-        
-            <div>
                 <Loginbutton location = "/landing/newfamily"type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
-            </div>
         </form>
+
         <div className={Styles.accountbutton}>
             <button onClick={()=>{navigate("/landing/findid")}} className={Styles.accountbutton}>아이디 찾기</button>
             <p className={Styles.accountbutton}>|</p>
             <button  onClick={()=>{navigate("/landing/findpwd")}}className={Styles.accountbutton}>비밀번호 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <button onClick={()=>{navigate("/landing/signin")}} className={Styles.accountbutton}>회원가입</button>
+            <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
+
             <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
-            {/*  
-            소셜 로그인 구현 예정
-            <div>
-            <button onClick={''}>카카오 로그인</button>
-            <button onClick={''}>네이버 로그인</button>
-            <button onClick={''}>구글 로그인</button>
-            </div> */}
+            
+           
+            <div className = {Styles.socialloginbox}>
+            <button onClick={''} className={Styles.kakao}><RiKakaoTalkFill className={Styles.kakaodetail}/></button>
+            <button onClick={''} className={Styles.naver}><SiNaver/></button>
+            <button onClick={''} className = {Styles.google}><FcGoogle className={Styles.googledetail}/></button>
+            </div> 
         
     </div>
     );
