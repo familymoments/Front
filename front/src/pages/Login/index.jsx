@@ -6,8 +6,7 @@ import {useForm} from "react-hook-form";
 import Signin from '../Signin';
 import Findpwd from '../Findpwd';
 import { useEffect } from 'react';
-
-import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet,useNavigate } from 'react-router-dom';
 
 function Login({
     onSubmit = async (data) => {
@@ -19,7 +18,7 @@ function Login({
         handleSubmit,
         formState: { isSubmitting, isSubmitted, errors },} = useForm();
 
-    
+    const navigate = useNavigate();
 
 
         <BrowserRouter>
@@ -72,18 +71,20 @@ function Login({
             </div>
         </form>
         <div className={Styles.accountbutton}>
-            <Link to= "/landing/findid"><button className={Styles.accountbutton}>아이디 찾기</button></Link>
+            <button onClick={()=>{navigate("/landing/findid")}} className={Styles.accountbutton}>아이디 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <Link to ="/landing/findpwd"><button className={Styles.accountbutton}>비밀번호 찾기</button></Link>
+            <button  onClick={()=>{navigate("/landing/findpwd")}}className={Styles.accountbutton}>비밀번호 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <Link to = "/landing/signin"><button className={Styles.accountbutton}>회원가입</button></Link>
+            <button onClick={()=>{navigate("/landing/signin")}} className={Styles.accountbutton}>회원가입</button>
         </div>
             <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
+            {/*  
+            소셜 로그인 구현 예정
             <div>
             <button onClick={''}>카카오 로그인</button>
             <button onClick={''}>네이버 로그인</button>
             <button onClick={''}>구글 로그인</button>
-            </div>
+            </div> */}
         
     </div>
     );
