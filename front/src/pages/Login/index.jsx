@@ -67,7 +67,7 @@ function Login({
             </div>
         
             <div>
-                <Loginbutton type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
+                <Loginbutton location = "/landing/newfamily"type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
             </div>
         </form>
         <div className={Styles.accountbutton}>

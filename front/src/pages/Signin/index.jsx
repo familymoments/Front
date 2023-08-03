@@ -19,7 +19,7 @@ function Signin(props){
         
         <div className={Styles.page}>
             <div className ={Styles.header}>
-                <Doublecheckinput  title = "아이디"placeholder = "아이디를 입력하세요"/>
+                <Doublecheckinput  customClass = {Styles.header} title = "아이디"placeholder = "아이디를 입력하세요"/>
             </div>
                 <Deletebuttoninput title = "비밀번호" placeholder = "비밀번호를 입력하세요"/>
                 <Deletebuttoninput title = "비밀번호 확인" placeholder = "비밀번호를 한번 더 입력하세요"/>
@@ -27,19 +27,14 @@ function Signin(props){
                 <Doublecheckinput title = "이메일"placeholder = "이메일을 입력하세요"/>
                 <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
                 <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
-            <div>
                 <h2 className={Styles.h2}>프로필 사진 선택</h2>
-                
-                {/*파일업로드 컴포넌트 
+                {/* 사진 파일 올리는컴포넌트 위치 조정이 잘 안됌
                 <div className={Styles.fileupload}>
-                <FileUploadButton/>
+                <FileUploadButton />
                 </div> */}
-            </div>
-            <div>
-            <Alladmit/>
-            </div>
-            <div className={Styles.signinbutn}>
-            <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
+                <Alladmit/>
+                <div className={Styles.signinbutn}>
+                <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
             </div>
         </div>
         
