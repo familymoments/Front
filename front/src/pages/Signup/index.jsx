@@ -28,10 +28,10 @@ function Signup(props){
                 <Normalinput title = "생년월일"placeholder = "8자리 입력 ex)19990101"/>
                 <Normalinput title = "닉네임" placeholder = "3~8자리 입력 (특수문자 불가)"/>
                 <div className = {Styles.h2box}>
-                <h2 className={Styles.h2}>프로필 사진 선택</h2>
+                    <h2 className={Styles.h2}>프로필 사진 선택</h2>
                 </div>
                 <div className={Styles.fileupload}>
-                <FileUploadButton />
+                    <FileUploadButton />
                 </div> 
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>

@@ -7,7 +7,7 @@ import {FcGoogle} from 'react-icons/fc';
 import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
-function Login({
+function Login(props,{
     onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
         alert(JSON.stringify(data));
@@ -18,6 +18,9 @@ function Login({
         formState: { isSubmitting, isSubmitted, errors },} = useForm();
 
     const navigate = useNavigate();
+    useEffect(()=>{
+        props.changeTitle("Family Moments");
+    })
     return(
     <div>
         <div className={Styles.top}>
