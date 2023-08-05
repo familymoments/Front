@@ -40,10 +40,11 @@ abbr[title] {
 /* viewContainer 부분 */
 .react-calendar__viewContainer {
     background-color: aliceblue;
-    height: 272px;
+    height: 300px;
+    /* height: 272px; */
     border-radius: 16.5px;
 
-    background-image: url('../../assets/calendarBg.png'); /* 배경 이미지 경로를 입력합니다. */
+    background-image: url('../../assets/calendarBg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
