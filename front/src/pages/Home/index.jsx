@@ -20,8 +20,6 @@ const Home=({showmodal})=>{
 
     const deletepostid=useRecoilValue(deletePostId);
     const [data,setData]=useState([]);
-
-    const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzI3MC04MThlLTFmNjItYmFmYi05OGRjYjhhNjdjMmIiLCJpYXQiOjE2OTEwNzU1NDksImV4cCI6MTY5MTY4MDM0OX0.YVjJze6vUx0h-W47v22zgmzb92YXL9cVrUk3FMswV_M";
     
     // axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
@@ -36,6 +34,16 @@ const Home=({showmodal})=>{
            .then(res=>{
             console.log(res.data.result);
             setData(res.data.result);
+            })
+           .catch(err=>console.log(err));
+
+        axios.get(`/familes/1/created`,{
+            headers:{
+                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzMwNC1jN2I2LTFkZDQtYTJlYi02NTczNjU3ZDdjYWIiLCJpYXQiOjE2OTExNDUwNjAsImV4cCI6MTY5MTc0OTg2MH0.lHW1Hia_83PKSKaw-Kp1Tw03Sqozsm19HdArafP_3Sk"
+            }
+           })
+           .then(res=>{
+            console.log(res.data.result);
             })
            .catch(err=>console.log(err));
     },[]);
