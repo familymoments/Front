@@ -15,6 +15,12 @@ import { useState } from "react";
 
 import axios from "axios";
 
+const authToken = localStorage.getItem("jwtToken");
+// console.log(authToken)
+
+const headers = {
+    "X-AUTH-TOKEN": authToken,
+};
 
 
 

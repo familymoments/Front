@@ -9,6 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
+const authToken = localStorage.getItem("jwtToken");
+// console.log(authToken)
+
+const headers = {
+    "X-AUTH-TOKEN": authToken,
+};
+
 
 const CreatePost = ()=>{
 
@@ -42,12 +49,7 @@ const CreatePost = ()=>{
 
         
         // Post실행
-        await axios.post(`/posts?familyId=1`,fd,{
-            header:{
-                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzMwNC1jN2I2LTFkZDQtYTJlYi02NTczNjU3ZDdjYWIiLCJpYXQiOjE2OTExNDUwNjAsImV4cCI6MTY5MTc0OTg2MH0.lHW1Hia_83PKSKaw-Kp1Tw03Sqozsm19HdArafP_3Sk",
-                "Contest-Type" : "multipart/form-data",
-            }
-        })
+        await axios.post(`/posts?familyId=1`,fd,{headers})
         .then(res=>{
             console.log(res);
         })

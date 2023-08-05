@@ -14,6 +14,13 @@ import { useRecoilValue } from "recoil";
 
 import axios from "axios";
 
+const authToken = localStorage.getItem("jwtToken");
+// console.log(authToken)
+
+const headers = {
+    "X-AUTH-TOKEN": authToken,
+};
+
 const Home=({showmodal})=>{
 
     const nav=useNavigate();
@@ -21,27 +28,19 @@ const Home=({showmodal})=>{
     const deletepostid=useRecoilValue(deletePostId);
     const [data,setData]=useState([]);
     
-    // axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
 
 
     //postlist 받아오기
     useEffect(()=>{
-        axios.get(`/posts?familyId=1`,{
-            headers:{
-                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzMwNC1jN2I2LTFkZDQtYTJlYi02NTczNjU3ZDdjYWIiLCJpYXQiOjE2OTExNDUwNjAsImV4cCI6MTY5MTc0OTg2MH0.lHW1Hia_83PKSKaw-Kp1Tw03Sqozsm19HdArafP_3Sk"
-            }
-           })
+        axios.get(`/posts?familyId=1`,{headers})
            .then(res=>{
             console.log(res.data.result);
             setData(res.data.result);
             })
            .catch(err=>console.log(err));
 
-        axios.get(`/familes/1/created`,{
-            headers:{
-                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzMwNC1jN2I2LTFkZDQtYTJlYi02NTczNjU3ZDdjYWIiLCJpYXQiOjE2OTExNDUwNjAsImV4cCI6MTY5MTc0OTg2MH0.lHW1Hia_83PKSKaw-Kp1Tw03Sqozsm19HdArafP_3Sk"
-            }
-           })
+        axios.get(`/familes/1/created`,{headers})
            .then(res=>{
             console.log(res.data.result);
             })
