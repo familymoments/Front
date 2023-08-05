@@ -7,7 +7,7 @@ const PostUserHeader=(props)=>{
     return (
         <div className={styles.postHeader}>
             <span className={`${isnormal===true ? styles.userinfo : styles.userinfobig}`}>
-                <span><img src=""/> </span>
+                <span><img className={styles.userImg} src={props.userImg}/> </span>
                 <span>{props.username}</span>
             </span>
             <span className={`${isnormal ? styles.date : styles.datebig}`}>{props.postdate}</span>

@@ -36,6 +36,13 @@
 
     border-radius: 99999px;
     background-color: #F0F0F0;
+    overflow: hidden;
+}
+
+.userImg{
+    width: 39px;
+    height: 39px;
+    border-radius: 99999px;
 }
 
 .userinfo span:nth-child(2){

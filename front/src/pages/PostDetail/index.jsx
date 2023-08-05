@@ -25,6 +25,8 @@ const PostDetail=({showmodal})=>{
 
     //post 정보 navigation에서 state로 받아오기
     const postData=post;
+
+    
     
     
 

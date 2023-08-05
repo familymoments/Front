@@ -7,6 +7,8 @@ import Button from "../../components/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 
 const CreatePost = ()=>{
 
@@ -19,22 +21,43 @@ const CreatePost = ()=>{
 
     const [imgs,setImgs]=useState([]);
     const [content,setContent]=useState("");
+    const [img1,setImg1]=useState();
+    const [img2,setImg2]=useState();
+    const [img3,setImg3]=useState();
+    const [img4,setImg4]=useState();
 
 //  state값이 바뀔 때마다 state값 변경해주기
     const handleChangeState=(e)=>{
-        // setState({
-        //     ...state,
-        //     [name] : e,
-        // })
         setImgs(e);
     };
 
+    const postinfo ={
+        "content":content
+    }
     // submit 버튼 눌렀을 때 실행되는 함수
-    const handleSubmit=(e)=>{
-        //Post실행
+    const handleSubmit= async(e)=>{
+        const fd = new FormData();
+        fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], {type: "application/json"}));
+        fd.append("img1",imgs[0]);
+
         
+        // Post실행
+        await axios.post(`/posts?familyId=1`,fd,{
+            header:{
+                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWVlMzMwNC1jN2I2LTFkZDQtYTJlYi02NTczNjU3ZDdjYWIiLCJpYXQiOjE2OTExNDUwNjAsImV4cCI6MTY5MTc0OTg2MH0.lHW1Hia_83PKSKaw-Kp1Tw03Sqozsm19HdArafP_3Sk",
+                "Contest-Type" : "multipart/form-data",
+            }
+        })
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        
+        console.log(imgs[0],content);
         // state값 전달하며 페이지 이동
-        nav("/Main/postlist");
+        // nav("/Main/postlist");
         setImgs([]);
     }
 
@@ -47,7 +70,7 @@ const CreatePost = ()=>{
             <SelectImg handleChangeState={handleChangeState}></SelectImg>
    
             <div className={styles.subtitle}>글 작성</div>
-            <CreatePostText handleSubmit={handleSubmit} btntitle="순간을 가족에게 공유하기"></CreatePostText>
+            <CreatePostText handleSubmit={handleSubmit} setContent={setContent} btntitle="순간을 가족에게 공유하기"></CreatePostText>
 
         </div>
      )
