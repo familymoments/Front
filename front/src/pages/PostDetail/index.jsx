@@ -15,6 +15,12 @@ import { useState } from "react";
 
 import axios from "axios";
 
+const authToken = localStorage.getItem("jwtToken");
+// console.log(authToken)
+
+const headers = {
+    "X-AUTH-TOKEN": authToken,
+};
 
 
 
@@ -25,6 +31,8 @@ const PostDetail=({showmodal})=>{
 
     //post 정보 navigation에서 state로 받아오기
     const postData=post;
+
+    
     
     
 

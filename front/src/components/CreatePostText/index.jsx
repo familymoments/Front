@@ -12,7 +12,6 @@ const CreatePostText =(props)=>{
 
     const updateHandler=(e)=>{
         e.preventDefault();
-        setContent(e.target.postText.value)
         props.handleSubmit(content);
         setContent("");
     }
@@ -22,6 +21,7 @@ const CreatePostText =(props)=>{
         <form className={styles.textBox} onSubmit={updateHandler}>
             <textarea className={styles.textcontent} name="postText" value={content} placeholder="| 사진과 어울리는 내용을 작성하세요." onChange={e=>{
             setContent(e.target.value);
+            props.setContent(e.target.value);
             
             }}></textarea>
 

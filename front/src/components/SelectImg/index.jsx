@@ -8,10 +8,11 @@ import selectIcon from "../../assets/btn_select_photo.png";
 const SelectImg=({handleChangeState})=>{
 
     const [imgList,setImgList]=useState([]);
+    const [imgfile,setImgfile]=useState([]);
 
     useEffect(()=>{
-      handleChangeState(imgList);
-    },[imgList])
+      handleChangeState(imgfile);
+    },[imgfile])
     
       let reader = new FileReader(); // FileReader API로 이미지 인식
       const handleUploadImg = e => {
@@ -19,6 +20,7 @@ const SelectImg=({handleChangeState})=>{
         const file = e.target.files[0]; // file object는 e.target.files[0]에 있다.
     
         if (file) {
+          setImgfile(imgfile.concat(file));
           reader.readAsDataURL(file); // 1. reader에게 file을 먼저 읽히고
           // 사진 올리고 나서 처리하는 event
           reader.onloadend = () => {

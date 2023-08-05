@@ -9,7 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 const Modal  = ({showmodal,_mode})=>{
     let content=null;
     // mode 에 따라 안의 내용 바꿔줄거임~
-    const [mode,setMode]=useState("DELETE");
+    const [mode,setMode]=useState("");
 
     const [deletepostid,setDeletepostid]=useRecoilState(deletePostId);
     const postId=useRecoilValue(postid);
