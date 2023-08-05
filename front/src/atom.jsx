@@ -12,3 +12,10 @@ export const deletePostId = atom({
     default:0,
     //atom상태관리
 });
+export const loginData = atom({
+    key:"loginData",
+     id:"id",
+     pwd:"pwd",
+     default:0,
+     //atom상태관리
+ });
