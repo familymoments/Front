@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import MyText from "../../components/MyText";
 import InviteLinkBar from "../../components/InviteLinkBar";
 import Button from "../../components/Button";
@@ -12,7 +12,9 @@ const CreateFamily4 = () => {
             <MyText text="가족 초대 링크" />
             <InviteLinkBar />
             <Button btn={classes.btn2} title="초대 링크 복사"/>
+            <Link to="../landing/createfamily5">
             <Button btn={classes.btn} title="다음"/>
+            </Link>
         </div>
     );
 }
