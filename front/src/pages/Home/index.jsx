@@ -22,16 +22,16 @@ const Home=({showmodal})=>{
 
     const familyId =1;
     //postlist 받아오기
-   const getposts=()=>{
-        axios.get(`api/posts?familyId=${familyId}`)
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((err)=>{
+//    const getposts=()=>{
+//         axios.get(`/posts/5`)
+//         .then((res)=>{
+//             console.log(res);
+//         })
+//         .catch((err)=>{
 
-        })
-    };
-    getposts();
+//         })
+//     };
+//     getposts();
 
     const [data,setData]=useState([{    
         postId : 123456,
