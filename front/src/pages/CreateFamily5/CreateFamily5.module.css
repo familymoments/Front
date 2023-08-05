@@ -19,7 +19,25 @@
 }
 
 .bubble {
-    position: relative;
+    /* position: relative;
     top: 548px;
-    left: 68px;
+    left: 68px; */
+    position: absolute;
+    top: 480px;
+    left: 50%; /* 좌측 여백을 50%로 설정 */
+    transform: translate(-50%, 300%);
 }
+
+.content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-90%, 150%);
+}
+
+/* .content2 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-90%, 20%);
+} */
