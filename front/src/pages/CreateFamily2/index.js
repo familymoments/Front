@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import MyText from "../../components/MyText";
 import MakeFamilyBar from "../../components/MakeFamilyBar";
 import Button from "../../components/Button";
@@ -18,7 +18,9 @@ const CreateFamily2 = () => {
             <FamilySelect buttonText="가족 이미지 선택" customClass={styles.selectImage} />
             <FileUploadButton />
             <div className="imgUpload"></div> 
+            <Link to="../landing/createfamily3">
             <Button btn={classes.btn} title="다음 (2/3)"/>
+            </Link>
         </div>
     );
 }
