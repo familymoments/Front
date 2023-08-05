@@ -9,6 +9,10 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import PostDetail from "./PostDetail";
 import UpdatePost from "./UpdatePost";
 
+import AlbumDetail from "./Album/Detail";
+
+import CalendarDetail from "./Calendar/Detail";
+
 // mypage관련 라우팅 정리하기
 import Notice from "./MyPage/Notice";
 import Profile from "./MyPage/Profile";
@@ -16,13 +20,8 @@ import Profile from "./MyPage/Profile";
 //modal state 상태관리
 import {atom} from "recoil";
 
-
-
 const Main = () => {
-
     const [mode, setmode] = useState("HOME");
-
-   
 
     const [modalopen,setModalopen]=useState(true);
 
@@ -48,6 +47,8 @@ const Main = () => {
 
                     <Route path="/postdetail/:postId" element={<PostDetail showmodal={showmodal}/>} />
                     <Route path="/updatePost/:postId" element={<UpdatePost />} />
+
+                    <Route path="/calendar/detail" element={<CalendarDetail/>} />
 
                     <Route path="/my/notice" element={<Notice />}></Route>
                     <Route path="/my/profile" element={<Profile />}></Route>
