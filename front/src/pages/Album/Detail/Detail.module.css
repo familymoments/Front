@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hr {
+    width: 328px;
+    margin-top: 50px;
+}
+
+.dotWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 328px;
+}
+
+.dot {
+    width: 13px;
+    height: 13px;
+    background-color: #5B6380;
+    border-radius: 50%;
+}
+
+.content {
+    width: 300px;
+
+    margin-top: 20px;
+}
