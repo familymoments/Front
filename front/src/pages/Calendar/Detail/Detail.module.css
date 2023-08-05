@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 40px;
+}
+
+.header {
+    width: 328px;
+    height: 34px;
+    padding: 0px 10px;
+    
+    background-color: #5b6380cc;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    font-size: 18px;
+}

@@ -9,10 +9,10 @@ const NewFamily = () => {
         <div className={classes.NewFamily}>
             {/* <Header title="가족 정하기" showIcon={false} /> */}
             <div className={classes.area}>
-                <Link to="../CreateFamily">
+                <Link to="../createfamily">
                 <CircleButton title="우리 가족 생성하기" type="pink" layout={classes.pinkCircleBtn} />
                 </Link>
-                <Link to="../FamilyParticipation">
+                <Link to="../familyparticipation">
                 <CircleButton title="우리 가족 참여하기" type="purple" layout={classes.purpleCircleBtn} />
                 </Link>
             </div>

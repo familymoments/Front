@@ -1,6 +1,6 @@
 .imageStyle {
     position: relative;
-    top: 268px;
+    top: 108px;
     left: 152px;
     width: 56px;
     height: 56px;
@@ -11,7 +11,7 @@
     font-weight: 400;
     text-align: center;
     color: #989CAB;
-    top: 278px;
+    top: 128px;
     left: 56px;
     width: 245px;
     height: 41px;
@@ -20,6 +20,6 @@
 
 .bubble {
     position: relative;
-    top: 452px;
+    top: 322px;
     left: 108px;
 }
