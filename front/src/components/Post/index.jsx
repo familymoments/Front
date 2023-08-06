@@ -51,7 +51,7 @@ const Post = ({ showmodal, postlist }) => {
                                     return (
                                         <SwiperSlide key={idx}>
                                             <div className={styles.swiperimg}>
-                                                <img src={photo} />
+                                                <img className={styles.img} src={photo} />
                                             </div>
                                         </SwiperSlide>
                                     );

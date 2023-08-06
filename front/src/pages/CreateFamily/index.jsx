@@ -5,7 +5,10 @@ import MySearchBar from "../../components/MySearchBar"
 import PersonInfo from "../../components/PersonInfo"
 import Header from '../../components/Header';
 
+import{useNavigate} from "react-router-dom"
+
 const CreateFamily = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <Header title="가족" />
@@ -19,7 +22,7 @@ const CreateFamily = () => {
                 </div>
 
             <Button 
-                location ="/landing/createfamily2"
+                onClick={()=>{navigate("/landing/createfamily2")}}
                 btn={classes.btn} 
                 title="다음 (1/3)"/>
         </div>

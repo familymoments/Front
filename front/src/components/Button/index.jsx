@@ -5,14 +5,14 @@
  *        (만약, props drilling이 일어나면 상태관리 하기)
  * }
 */
-import { useNavigate } from "react-router-dom";
+
 import classes from "./Button.module.css";
 
 function Button (props) {
-    const navigate = useNavigate();
+    
     return(
     <div>
-        <button className={`${classes.button} ${props.btn}`} onClick={()=>{navigate(props.location)}}>
+        <button className={`${classes.button} ${props.btn}`}  onClick={props.onClick}>
         <div className = {classes.font}>{props.title}</div>
         </button>
     </div>
