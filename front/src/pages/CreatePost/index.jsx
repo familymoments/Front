@@ -9,22 +9,38 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
+
+//상태관리 라이브러리
+import { nextPostid,recentPosts } from "../../atom";
+import { useRecoilValue, useRecoilState } from "recoil";
+
+
+
 const authToken = localStorage.getItem("jwtToken");
 // console.log(authToken)
 
 const headers = {
     "X-AUTH-TOKEN": authToken,
+    "Content-Type" : "multipart/form-data",
+    "Access-Control-Allow-Origin" : "*",
+
+
+    
 };
 
 
 const CreatePost = ()=>{
 
+    //날짜정보 받아오기 (서버 연동되면 필요x)
+    const [date,setDate]=useState(new Date());
+    let year=date.getFullYear();
+    let month=date.getMonth()+1;
+    let day=date.getDate();
+    const [nextpostid,setNextpostid]=useRecoilState(nextPostid);
+    const [data,setData] = useRecoilState(recentPosts);
+
     const nav=useNavigate();
 
-    // const [state,setState]=useState({
-    //     content:"",
-    //     imgs:[],
-    // });
 
     const [imgs,setImgs]=useState([]);
     const [content,setContent]=useState("");
@@ -43,23 +59,40 @@ const CreatePost = ()=>{
     }
     // submit 버튼 눌렀을 때 실행되는 함수
     const handleSubmit= async(e)=>{
-        const fd = new FormData();
-        fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], {type: "application/json"}));
-        fd.append("img1",imgs[0]);
 
-        
         // Post실행
-        await axios.post(`/posts?familyId=1`,fd,{headers})
-        .then(res=>{
-            console.log(res);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+        // const fd = new FormData();
+        // fd.append("postInfo" , postinfo);
+        // fd.append("img1",imgs[0]);
+
+        // await axios.post(`/posts?familyId=1`,fd,{headers})
+        // .then(res=>{
+        //     console.log(res);
+        //setDate(data.concat(res.data));
+        // })
+        // .catch(err=>{
+        //     console.log(err);
+        // })
+
+        //더미데이터로 추가하기
+        const newPost={
+            postId : nextpostid,
+            writer : "융입니다",
+            profileImg : "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20131216_2%2Fxtjbx42795_1387160042980nSXHw_JPEG%2F2012-02-14_22%253B19%253B59.jpg&type=a340",
+            content : content,
+            imgs : imgs,
+            createdAt : `${year}년 ${month}월 ${day}일`,
+            loved : false
+        }
+
+        const newposts=[newPost,...data];
+        setData(newposts);
+        console.log(data);
+        setNextpostid(nextPostid+1);
         
         console.log(imgs[0],content);
         // state값 전달하며 페이지 이동
-        // nav("/Main/postlist");
+         nav("/Main/postlist");
         setImgs([]);
     }
 
@@ -80,4 +113,3 @@ const CreatePost = ()=>{
 
 
 export default CreatePost;
-

@@ -6,15 +6,17 @@ import Button from "../Button";
 import { deletePostId,postid } from "../../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-const Modal  = ({showmodal,_mode})=>{
+const Modal  = ({showmodal,modalmode})=>{
     let content=null;
     // mode 에 따라 안의 내용 바꿔줄거임~
-    const [mode,setMode]=useState("");
+    const [mode,setMode]=useState(modalmode);
 
     const [deletepostid,setDeletepostid]=useRecoilState(deletePostId);
     const postId=useRecoilValue(postid);
 
     const nav=useNavigate();
+
+    
 
     if(mode==="DELETE"){
         content=<div className={styles.container}>

@@ -39,19 +39,11 @@ const PostDetail=({showmodal})=>{
     const commentData=[
         {
 			commentId : 1,
-			nickname : "딸내미",
-			profileImg : "",
-			content : "담에 또가장",
+			nickname : "융입니다",
+			profileImg : "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20131216_2%2Fxtjbx42795_1387160042980nSXHw_JPEG%2F2012-02-14_22%253B19%253B59.jpg&type=a340",
+			content : "담에 또가요!!",
 			heart : false,
-            updatedAt : "22-03-04"
-		},
-		{
-			commentId : 2,
-			nickname : "마미",
-			profileImg : "",
-			content : "딸~~ 재밌었으~~",
-			heart : true,
-            updatedAt : "22-03-04"
+            updatedAt : "1시간 전"
 		}
     ]
     
@@ -67,15 +59,7 @@ const PostDetail=({showmodal})=>{
     const userId=1;
     const submitComment=(content)=>{
         console.log(content);
-        axios.post(`/api/comments/${userId}?postId=5`,{
-            "content":content,
-        })
-        .then(res=>{
-            console.log(res);
-        })
-        .catch((err)=>{
-            console.log(err);
-        });
+        //post
     }
 
     return(

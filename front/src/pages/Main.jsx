@@ -21,20 +21,22 @@ import Profile from "./MyPage/Profile";
 import {atom} from "recoil";
 
 const Main = () => {
-    const [mode, setmode] = useState("HOME");
+    
+    const [mode,setMode]=useState();
+    const [modalopen,setModalopen]=useState(false);
+    const [modalmode,setModalmode]=useState("");
 
-    const [modalopen,setModalopen]=useState(true);
-
-    const showmodal=()=>{
+    const showmodal=(modalmode)=>{
+        setModalmode(modalmode);
         setModalopen(!modalopen);
     }
-    useEffect(()=>{
-        showmodal(false);
-    },[mode]);
+    // useEffect(()=>{
+    //     showmodal(false);
+    // },[mode]);
 
     return (
         <div className={classes.wrapper}>
-            {modalopen&&<Modal showmodal={showmodal}></Modal>}
+            {modalopen&&<Modal showmodal={showmodal} modalmode={modalmode}></Modal>}
             <Header title="Family Moments" showIcon={true} />
             {/* route로 안의 내용만 바꿈 */}
             <div className={classes.tmp}>
