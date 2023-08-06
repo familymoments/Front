@@ -26,9 +26,12 @@ const Main = () => {
     const [modalopen,setModalopen]=useState(false);
     const [modalmode,setModalmode]=useState("");
 
+   
+
     const showmodal=(modalmode)=>{
         setModalmode(modalmode);
         setModalopen(!modalopen);
+    
     }
     // useEffect(()=>{
     //     showmodal(false);

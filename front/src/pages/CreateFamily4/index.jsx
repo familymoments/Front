@@ -5,8 +5,11 @@ import classes from "../CreateFamily/CreateFamily.module.css";
 import Header from '../../components/Header';
 import styles from "./CreateFamily4.module.css";
 
+import{useNavigate} from "react-router-dom"
+
 
 const CreateFamily4 = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <Header title="가족" />
@@ -20,8 +23,7 @@ const CreateFamily4 = () => {
             />
     
 
-            <Button 
-                location="/landing/createfamily5"
+            <Button onClick={()=>{navigate("/landing/createfamily5")}}
                 btn={classes.btn} 
                 title="다음"
             />

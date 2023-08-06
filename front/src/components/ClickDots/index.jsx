@@ -24,6 +24,7 @@ const ClickDots =({post,showmodal})=>{
         e.preventDefault();
         setPostId(post.postId);
         showmodal("DELETE");
+        console.log(postId);
     };
 
     return(

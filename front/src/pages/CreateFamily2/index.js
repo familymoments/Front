@@ -7,8 +7,10 @@ import FamilySelect from "../../components/FamilySelect";
 import styles from "../../components/FamilySelect/SelectImage.module.css";
 import Header from '../../components/Header';
 import style from './CreateFamily2.module.css';
+import{useNavigate} from "react-router-dom"
 
 const CreateFamily2 = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <Header title="가족" />
@@ -22,7 +24,7 @@ const CreateFamily2 = () => {
             </div>
             
             <Button 
-            location ="/landing/createfamily3"
+            onClick={()=>{navigate("/landing/createfamily3")}}
             btn={classes.btn} 
             title="다음 (2/3)"/>
             

@@ -16,8 +16,6 @@ const Modal  = ({showmodal,modalmode})=>{
 
     const nav=useNavigate();
 
-    
-
     if(mode==="DELETE"){
         content=<div className={styles.container}>
             <div className={styles.text}>
@@ -25,7 +23,6 @@ const Modal  = ({showmodal,modalmode})=>{
             </div>
             <div>
                 <Button title="삭제" btn={styles.btn1} onClick={(e)=>{
-                    e.preventDefault();
                     console.log('삭제하겠음?')
                     //삭제코드
                     setDeletepostid(postId);

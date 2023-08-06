@@ -37,6 +37,8 @@ const UpdatePost =(props)=>{
         let newposts=[...data];
         newposts[idx]=newPost;
         setData(newposts);
+
+        
         
 
         // state값 전달하며 페이지 이동
