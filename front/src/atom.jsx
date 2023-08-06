@@ -19,3 +19,14 @@ export const loginData = atom({
      default:0,
      //atom상태관리
  });
+ export const signupData = atom({
+    key:"loginData",
+     id:"id",
+     password:"pwd",
+     name: "name",
+     email: "email",
+     strBirthData: "birthdate",
+     nickname: 'nickname',
+     default:0,
+     //atom상태관리
+ });

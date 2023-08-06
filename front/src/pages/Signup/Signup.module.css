@@ -3,16 +3,9 @@
     overflow-x: hidden;
     width: 100%;
     height: 700px;
-}
-.header{
     margin-top: 43px;
 }
-.doublecheck{
-    display: flex;
-    justify-content: center;
-}
-
-.h2{
+.label{
     color: #5B6380;
     font-family: Roboto;
     font-size: 16px;
@@ -25,36 +18,44 @@
     padding: 0px;
     width: 150px;
 }
-.h2box{
+.smallinput{
+    width: 240px;
+    height: 46px;
+   
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1.5px solid #A9A9A9;
+}
+.labelbox{
     display: flex;
     justify-content: center;
     margin-bottom: 0px;
     margin-top: 20px;
     margin-left: -170px;
 }
-
-.small{
-    margin-right: 5px;
-    margin-left: 2px;
+.input{
+    width: 328px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1.5px solid #A9A9A9;
 }
-.certbutn{
-    margin-top: 10px;
-   
-}
-.deletebutton{
-    border: none;
-    background:none;
-    padding-top: 5px;
-    color: #A9A9A9;
-}
-.delbutninputform{
+.certinput{
     display: flex;
     justify-content: center;
 }
-.delbutninputwindow{
-    width: 300px;
+.delbtn{
+    border: none;
+    background:none;
+    margin-left:-30px;
+    color: #A9A9A9;
 }
-.nomalinput{
+.delbtndetail{
+    width:50px;
+    height: 50px;
+}
+
+.inputcontainer{
     display: flex;
     justify-content: center;
 }
@@ -130,7 +131,6 @@
 .profiletxt{
     display: flex;
     justify-content: center;
-    
     flex-shrink: 0;
     color: #A9A9A9;
     text-align: center;

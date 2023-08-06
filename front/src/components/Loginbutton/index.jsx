@@ -8,7 +8,7 @@ function Loginbutton (props) {
     const navigate = useNavigate();
 return(
 <div>
-<button onClick={()=>{navigate(props.location)}}className={Styles.button}>
+<button type = {props.type} onClick={()=>{navigate(props.location)}}className={Styles.button}>
     <div className={Styles.font}>
         <div className = {Styles.fontdetail}>{props.texts}</div>
     </div>
