@@ -3,6 +3,10 @@
     margin-top: 27px;
     color: rgba(83, 83, 83, 1);
     padding: 16px;
+    position: absolute;
+    top: 1%; 
+    left: 50%; 
+    transform: translate(-50%, 100%); 
 }
 
 .firstline{

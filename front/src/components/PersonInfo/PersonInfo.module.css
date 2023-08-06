@@ -2,8 +2,8 @@
     width: 328px;
     height: 64px;
     position: relative;
-    top: 110px;
-    left: 16px;
+    /* top: 110px;
+    left: 16px; */
     border-bottom: 1px solid #Bfbfbf;
     display: flex;
     align-items: center;
