@@ -13,13 +13,13 @@ const CreateFamily = () => {
         <div>
             <Header title="가족" />
                 <div className={classes.content3}>
-                <MyText text="우리 가족 생성하기" />
+                    <MyText text="우리 가족 생성하기" />
                 </div>
                 <div className={classes.content}>
-                <MySearchBar searchbar={classes.searchbar} placeholder="ID 검색" />
+                    <MySearchBar searchbar={classes.searchbar} placeholder="ID 검색" />
                 </div>
                 <div className={classes.content2}>
-                <PersonInfo person={classes.person} name="clohee" />
+                    <PersonInfo name="clohee" />
                 </div>
             <Button 
                 onClick={()=>{navigate("/landing/createfamily2")}}
