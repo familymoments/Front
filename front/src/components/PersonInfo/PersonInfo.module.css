@@ -19,14 +19,19 @@
 }
 
 .check {
-    margin-left: auto;
+    /* margin-left: auto; */
+    margin-left: 182px;
     cursor: pointer;
 }
 
 .checkIcon {
-    color: #ccc;
+    color: #a9a9a9;
 }
 
 .checkIconFilled {
     color: #5B6380;
+}
+
+.avatar {
+    margin-left: 12px;
 }

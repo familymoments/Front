@@ -34,6 +34,7 @@
     top: 11%;
     left: 50%;
     transform: translate(-50%, 250%);
+    transition: background-color 0.3s ease-in-out;
 }
 
 .content3 {
@@ -41,4 +42,8 @@
     top: 11%;
     left: 50%;
     transform: translate(-115%, 250%);
+}
+
+.content2:hover {
+    background-color: #D8D8D8;
 }
