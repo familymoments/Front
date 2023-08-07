@@ -13,16 +13,16 @@ const CreateFamily4 = () => {
     return (
         <div>
             <Header title="가족" />
-            <div className={styles.content}>
+            <div className={classes.content3}>
             <MyText text="가족 초대 링크" />
+            </div>
+            <div className={styles.content}>
             <InviteLinkBar />
             </div>
             <Button
                 btn={classes.btn2}
                 title="초대 링크 복사"
             />
-    
-
             <Button onClick={()=>{navigate("/landing/createfamily5")}}
                 btn={classes.btn} 
                 title="다음"

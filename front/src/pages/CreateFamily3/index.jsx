@@ -13,11 +13,12 @@ const CreateFamily3 = () => {
     return (
         <div>
             <Header title="가족" />
-            <div className={style.content}>
+            <div className={classes.content3}>
                 <MyText text="우리 가족 생성하기" />
+                </div>
+                <div className={style.content}>
                 <AlarmPeriod />
             </div>
-
             <Button 
             onClick={()=>{navigate("/landing/createfamily4")}}
             btn={classes.btn} 
