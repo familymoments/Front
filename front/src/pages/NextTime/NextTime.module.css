@@ -1,0 +1,23 @@
+.buttons {
+    margin-top: 330px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-flow: row wrap;
+}
+
+.ok {
+    margin-right: 20px;
+}
+
+.no {
+    margin-left: 20px;
+}
+
+/* .modal {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-flow: row wrap;
+} */
