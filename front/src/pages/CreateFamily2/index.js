@@ -14,8 +14,10 @@ const CreateFamily2 = () => {
     return (
         <div>
             <Header title="가족" />
-            <div className={style.content}>
+            <div className={classes.content3}>
                 <MyText text="우리 가족 생성하기" />
+                </div>
+                <div className={style.content}>
                 <FamilySelect buttonText="가족 이름 정하기" customClass={styles.familySelect} />
                 <MakeFamilyBar />
                 <FamilySelect buttonText="가족 이미지 선택" customClass={styles.selectImage} />
