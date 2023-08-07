@@ -24,12 +24,10 @@ const CreateFamily2 = () => {
                 <FileUploadButton />
             <div className="imgUpload"></div> 
             </div>
-            
             <Button 
             onClick={()=>{navigate("/landing/createfamily3")}}
             btn={classes.btn} 
             title="다음 (2/3)"/>
-            
         </div>
     );
 }
