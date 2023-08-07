@@ -19,7 +19,6 @@ const CreateFamily3 = () => {
                 <div className={style.content}>
                 <AlarmPeriod />
             </div>
-
             <Button 
             onClick={()=>{navigate("/landing/createfamily4")}}
             btn={classes.btn} 

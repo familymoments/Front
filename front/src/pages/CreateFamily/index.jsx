@@ -21,7 +21,6 @@ const CreateFamily = () => {
                 <div className={classes.content2}>
                 <PersonInfo person={classes.person} name="clohee" />
                 </div>
-
             <Button 
                 onClick={()=>{navigate("/landing/createfamily2")}}
                 btn={classes.btn} 
