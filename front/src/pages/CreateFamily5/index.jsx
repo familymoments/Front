@@ -8,7 +8,6 @@ import HelloText2 from '../../components/HelloText2';
 const CreateFamily5 = () => {
     return (
         <div>
-    
             <Union bubble={pStyle.bubble} message="+ 버튼을 눌러 가족에게 순간을 공유해보세요"/>
             <div className={pStyle.content2}>
             <HelloText2 user="융" customText="다른 가족들이 참여하기를 기다리는 중입니다." />
