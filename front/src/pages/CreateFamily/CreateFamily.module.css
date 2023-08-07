@@ -31,14 +31,21 @@
 
 .content {
     position: absolute;
-    top: 10%;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, 230%);
 }
 
 .content2 {
     position: absolute;
-    top: 10%;
+    top: 11%;
     left: 50%;
+    transform: translate(-50%, 250%);
+}
+
+.content3 {
+    position: absolute;
+    top: 17%;
+    left: 9%;
     transform: translate(-50%, 250%);
 }

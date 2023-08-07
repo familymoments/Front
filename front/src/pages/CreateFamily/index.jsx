@@ -12,8 +12,9 @@ const CreateFamily = () => {
     return (
         <div>
             <Header title="가족" />
-            
+                <div className={classes.content3}>
                 <MyText text="우리 가족 생성하기" />
+                </div>
                 <div className={classes.content}>
                 <MySearchBar searchbar={classes.searchbar} placeholder="ID 검색" />
                 </div>

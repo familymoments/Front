@@ -23,9 +23,9 @@
     top: 548px;
     left: 68px; */
     position: absolute;
-    top: 480px;
+    /* top: 10%; */
     left: 50%; /* 좌측 여백을 50%로 설정 */
-    transform: translate(-50%, 300%);
+    transform: translate(-50%, 1300%);
 }
 
 .content {
@@ -35,9 +35,13 @@
     transform: translate(-90%, 150%);
 }
 
-/* .content2 {
+.content2 {
+    display: flex;
+    justify-content: center; /* 가로 정렬을 가운데 정렬로 설정 */
+    align-items: center; /* 세로 정렬을 가운데 정렬로 설정 */
     position: absolute;
-    top: 10%;
+    width: 325px;
+    top: 80%;
     left: 50%;
-    transform: translate(-90%, 20%);
-} */
+    transform: translate(-50%, -420%); /* 가로와 세로를 모두 중앙 정렬로 수정 */
+}
