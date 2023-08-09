@@ -12,7 +12,7 @@ const SelectImg=({handleChangeState})=>{
 
     useEffect(()=>{
       handleChangeState(imgfile);
-    },[imgfile])
+    },[imgfile])//서버 연동시 imgfile 안의 값들 file로 변경-> 현재는 img
     
       let reader = new FileReader(); // FileReader API로 이미지 인식
       const handleUploadImg = e => {
@@ -20,12 +20,11 @@ const SelectImg=({handleChangeState})=>{
         const file = e.target.files[0]; // file object는 e.target.files[0]에 있다.
     
         if (file) {
-          setImgfile(imgfile.concat(file));
+          setImgfile(imgfile.concat(file)); //서버 연동시 살리기
           reader.readAsDataURL(file); // 1. reader에게 file을 먼저 읽히고
           // 사진 올리고 나서 처리하는 event
           reader.onloadend = () => {
             setImgList(imgList.concat({ imagePreviewUrl: reader.result }));
-            // dispatch(triggerImageCropModal()); // 사진 업로드 하면 crop창 띄움 -> reduct사용문장
             e.target.value = ''; 
           }; // 2. 비동기적으로 load가 끝나면 state에 저장
         }

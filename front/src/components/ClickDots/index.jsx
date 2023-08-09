@@ -23,7 +23,8 @@ const ClickDots =({post,showmodal})=>{
     const showDeletePopup=(e)=>{
         e.preventDefault();
         setPostId(post.postId);
-        showmodal();
+        showmodal("DELETE");
+        console.log(postId);
     };
 
     return(

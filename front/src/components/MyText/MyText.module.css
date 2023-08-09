@@ -1,9 +1,12 @@
 .myText {
     width: 142px;
     height: 21px;
-    position: relative;
+    /* position: relative;
     top: 60px;
-    left: 16px;
+    left: 16px; */
+    top: 15%; 
+    left: 6%; 
+    display: flex;
     color: #5b6381;
     font-weight: 500;
 }  

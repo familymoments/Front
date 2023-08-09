@@ -9,12 +9,12 @@ import {useNavigate, useLocation,usecallback} from "react-router-dom";
 import { useCallback, useEffect,useState } from "react";
 
 //상태관리 라이브러리
-import { deletePostId } from "../../atom";
-import { useRecoilValue } from "recoil";
+import { deletePostId, recentPosts } from "../../atom";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 import axios from "axios";
 
-const authToken = localStorage.getItem("jwtToken");
+const authToken="";
 // console.log(authToken)
 
 const headers = {
@@ -26,30 +26,52 @@ const Home=({showmodal})=>{
     const nav=useNavigate();
 
     const deletepostid=useRecoilValue(deletePostId);
-    const [data,setData]=useState([]);
+    const [familyInfo,setfamilyInfo]=useState([]);
+
+    const [data,setData]=useRecoilState(recentPosts);
+    
+
     
 
 
 
     //postlist 받아오기
     useEffect(()=>{
-        axios.get(`/posts?familyId=1`,{headers})
+        //최근 10개 게시물 서버에서 받아오기
+        axios.get(`http://43.202.90.230/posts?familyId=5`,{headers})
            .then(res=>{
             console.log(res.data.result);
             setData(res.data.result);
             })
            .catch(err=>console.log(err));
 
-        axios.get(`/familes/1/created`,{headers})
+        axios.get(`http://43.202.90.230/families/5/created`,{headers:{
+            "X-AUTH-TOKEN": authToken,
+            "Path":"/",
+            "Secure" : "HttpOnly",
+        }})
            .then(res=>{
             console.log(res.data.result);
+            setfamilyInfo(res.data.result);
             })
            .catch(err=>console.log(err));
+
+        
     },[]);
 
 
     useEffect(()=>{
-        setData(data.filter((post)=> deletepostid !==post.postId));
+        //DELETE요청
+        axios.delete(`http://43.202.90.230/posts/${deletepostid}`,{headers})
+        .then(res=>{
+            setData(data.filter((post)=> deletepostid !==post.postId));
+            console.log(res);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        //setData(data.filter((post)=> deletepostid !==post.postId));
+       
     },[deletepostid])
 
 
@@ -59,7 +81,7 @@ const Home=({showmodal})=>{
 
     return(
         <div className={styles.wrapper}>
-            <HelloText user="딸내미" Dday="2" />
+            <HelloText user={familyInfo.nickname} Dday={familyInfo.dday} />
             <Post showmodal={showmodal} postlist={data}/>
         </div>)
 }

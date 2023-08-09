@@ -82,7 +82,7 @@ const Profile = () => {
             </p>
         ),
         // ?. 옵셔널 체이닝 연산자 -> 객체하위 내용이 null 이거나 undefined인 경우
-        num: users?.totalUpload,
+        num: 10,// num: users?.totalUpload,
         color: {
             background: `linear-gradient( to right, #9378FF99, #9378FF )`,
         },
@@ -100,7 +100,7 @@ const Profile = () => {
                 함께한지
             </p>
         ),
-        num: users?.duration,
+        num: 3,// num: users?.duration,
         color: {
             background: `linear-gradient( to right, #EF88A199, #EF88A1 )`,
         },

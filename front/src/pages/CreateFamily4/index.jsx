@@ -1,20 +1,32 @@
-import { Link } from 'react-router-dom';
 import MyText from "../../components/MyText";
 import InviteLinkBar from "../../components/InviteLinkBar";
 import Button from "../../components/Button";
 import classes from "../CreateFamily/CreateFamily.module.css";
 import Header from '../../components/Header';
+import styles from "./CreateFamily4.module.css";
+
+import{useNavigate} from "react-router-dom"
+
 
 const CreateFamily4 = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <Header title="가족" />
+            <div className={classes.content3}>
             <MyText text="가족 초대 링크" />
+            </div>
+            <div className={styles.content}>
             <InviteLinkBar />
-            <Button btn={classes.btn2} title="초대 링크 복사"/>
-            <Link to="../landing/createfamily5">
-            <Button btn={classes.btn} title="다음"/>
-            </Link>
+            </div>
+            <Button
+                btn={classes.btn2}
+                title="초대 링크 복사"
+            />
+            <Button onClick={()=>{navigate("/landing/createfamily5")}}
+                btn={classes.btn} 
+                title="다음"
+            />
         </div>
     );
 }

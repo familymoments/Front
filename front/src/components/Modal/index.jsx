@@ -6,10 +6,10 @@ import Button from "../Button";
 import { deletePostId,postid } from "../../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-const Modal  = ({showmodal,_mode})=>{
+const Modal  = ({showmodal,modalmode})=>{
     let content=null;
     // mode 에 따라 안의 내용 바꿔줄거임~
-    const [mode,setMode]=useState("");
+    const [mode,setMode]=useState(modalmode);
 
     const [deletepostid,setDeletepostid]=useRecoilState(deletePostId);
     const postId=useRecoilValue(postid);
@@ -23,7 +23,6 @@ const Modal  = ({showmodal,_mode})=>{
             </div>
             <div>
                 <Button title="삭제" btn={styles.btn1} onClick={(e)=>{
-                    e.preventDefault();
                     console.log('삭제하겠음?')
                     //삭제코드
                     setDeletepostid(postId);

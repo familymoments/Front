@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./InviteLinkBar.module.css";
 
 const InviteLinkBar = () => {
-    const [searchTerm, setLinkTerm] = useState("");
+    const [searchTerm, setLinkTerm] = useState("http://www.dgjkdlkgzsldkfjgoqkdfnlmf");
 
     const handleChange = (event) => {
         setLinkTerm(event.target.value);

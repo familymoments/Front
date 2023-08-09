@@ -1,9 +1,3 @@
-/**홈 화면에서 user에게 건네는 인사와 일수를 나타내는 컴포넌트
- * 
- * props: user="" Dday=
- * user이름과 디데이
- */
-
 import styles from "./HelloText2.module.css";
 
 const HelloText2 =(props)=>{

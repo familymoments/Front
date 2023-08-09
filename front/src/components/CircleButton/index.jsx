@@ -33,6 +33,8 @@ const CircleButton = (props) => {
             // onClick={() => {
             //     alert("CircleButton Click");
             // }}
+            onMouseEnter={handleOnActive} // 마우스가 올라갈 때 이벤트 핸들러 추가
+            onMouseLeave={handleOffActive} 
             onTouchStart={handleOnActive}
             onTouchEnd={handleOffActive}
         >

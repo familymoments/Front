@@ -1,5 +1,8 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
+
+
+
 module.exports = (app) => {
     app.use(
         createProxyMiddleware("/posts", {
@@ -7,6 +10,9 @@ module.exports = (app) => {
             changeOrigin: true,
         })
     );
+
+    
+
 
     app.use(
         createProxyMiddleware("/users", {
