@@ -12,12 +12,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-
 // REACT_APP_SERVER="/users/sign-up";
 
     
 const data ={
-    id: "조천산",
+        id: "조천산",
         password: "1234",
         name: "조천산",
         email: "1dddd111@naver.com",
@@ -25,6 +24,7 @@ const data ={
         nickname: "아서"
 };
 
+        // "profileImg": "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
 
 function Signup(props,{ setBtn }){
     useEffect(()=>{
@@ -40,26 +40,41 @@ function Signup(props,{ setBtn }){
           watch,
         } = useForm();
         const password = watch("password");
+        const [text, setText] = useState("");
+        const [doubleCheck, setDoubleCheck] = useState("");
+        const displayText = (e) => {
+            setText(e.target.value);
+          };
+          const doubleCheckText = (e) => {
+            setDoubleCheck(e.target.value);
+          };
+        const onReset = (e) => {
+            setText("");
+          };
+          const doubleCheckReset = (e) => {
+            setDoubleCheck("");
+          };
+        
         function Auth(){
   
             axios
-                .post("/users/sign-up", data)
-                .then(function (response) {
-                        if(response.data.code == 200){
-                            console.log(response);
-                        } else {
-                            let message = response.data.message;
-                            if(response.data.code == 400){
-                                message = "회원가입에 실패했습니다."
-                                console.log("error");
-                            }
-                        }
-                    }).catch(function (error) {
-                        if(error.code === "ERR_BAD_REQUEST")
-                        {console.log(error);}
-                        
-                    });
-                }
+                .post("/users/sign-up", {
+                    id: "dsadsasadas",
+                    password: "12345678910",
+                    name: "조천산",
+                    email: "1dddd111@naver.com",
+                    strBirthDate:"19991119",
+                    nickname: "아서"
+            },{
+                profileImg: "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
+            } )   
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+                };
     return(
     <>
     <form className={Styles.page}>
@@ -83,37 +98,39 @@ function Signup(props,{ setBtn }){
                         message: "형식에 맞지 않는 아이디입니다.",
                         },
                     })}className = {Styles.smallinput} />
-                    <CertificationButton text = "중복확인"/>  
+                    <CertificationButton className = {Styles.certbtn}text = "중복확인"/>  
                     </div>
                     
             
             
             <Label label = "비밀번호"/>
             <div className = {Styles.inputcontainer}>
-            <input className ={Styles.input}
+            <input onChange={displayText} className ={Styles.input}
                 type="password"
-                {...register("password", {
-                maxLength: {
-                    value: 20,
-                    message: "20자리 이하로 작성해주세요",
-                },
-                minLength: {
-                    value: 8,
-                    message: "8자리 이상으로 작성해주세요",
-                },
-                pattern: {
-                    value: /^(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/,
-                    message: "형식에 맞지 않는 비밀번호 입니다.",
-                },
-                })}
+                value={text}
+                // {...register("password", {
+                // maxLength: {
+                //     value: 20,
+                //     message: "20자리 이하로 작성해주세요",
+                // },
+                // minLength: {
+                //     value: 8,
+                //     message: "8자리 이상으로 작성해주세요",
+                // },
+                // pattern: {
+                //     value: /^(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/,
+                //     message: "형식에 맞지 않는 비밀번호 입니다.",
+                // },
+                // })}
                 placeholder="비밀번호"
                 required
             />  
-            <button className = {Styles.delbtn}><TiDeleteOutline/></button>
+            <button  onClick = {onReset} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
             </div>
              <Label label = "비밀번호 확인"/>
              <div className = {Styles.inputcontainer}>
-                    <input className = {Styles.input}
+                    <input  onChange={doubleCheckText} className = {Styles.input} 
+                        value={doubleCheck}
                         type="password"
                         {...register("confirm", {
                         validate: {
@@ -124,7 +141,7 @@ function Signup(props,{ setBtn }){
                         placeholder="비밀번호를 한번 더 입력해주세요."
                         required
                     />
-                     <button className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
+                     <button onClick = {doubleCheckReset} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
             <Label label = "이름"/>
             <div className = {Styles.inputcontainer}>
@@ -172,7 +189,7 @@ function Signup(props,{ setBtn }){
                         },
                     })}
                     className = {Styles.smallinput} />
-                    <CertificationButton text = "인증하기"/>  
+                    <CertificationButton className = {Styles.certbtn} text = "인증하기"/>  
                     </div>
             
             
@@ -203,26 +220,26 @@ export default Signup;
 function Alladmit(props){
     return(
        
-            <form className={Styles.alladmitbox}>
+            <div className={Styles.alladmitbox}>
                 <div className={Styles.alladmit}>
                 <button className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
                 <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
                 </div>
-            </form>
+            </div>
       
-    )
+    );
 }
 
 function Smalladmit(props){
     return(
         <div className={Styles.smalladmitbox}>
-            <form className={Styles.smalladmit}>
-                <button className={Styles.checkbutn}><FaCheck/></button>
+            <div className={Styles.smalladmit}>
+                <button  className = {Styles.checkbutn}><FaCheck/></button>
                 <p className={Styles.smalladmittxt}>{props.texts}</p>
                 <button className= {Styles.checkbutn}><GrNext/></button>
-            </form>
+            </div>
         </div>
-    )
+    );
 }
 
 function Label(props){

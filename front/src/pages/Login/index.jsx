@@ -19,23 +19,6 @@ const login = {
      password: "yung1234",
  };
 
-const getAuth = () => {
-    // console.log(login);
-    axios
-        .post("/users/log-in", {
-            id: "familya1",
-            password: "yung1234",
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            // 오류발생시 실행
-        });
-    // axios.get("/posts/1/post-loves").then((res) => {
-    //     console.log(res)
-    // })
-};
 
 // const onLogin = () => {
 //     axios.post('/users/log-in', variables)
@@ -115,6 +98,24 @@ function Login(props,{
     const onPasswordHandler = (event) => {
         setPwd(event.currentTarget.value);
     }
+    const getAuth = () => {
+        // console.log(login);
+        axios
+            .post("/users/log-in", {
+                id: "familya1",
+                password: "yung1234",
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                // 오류발생시 실행
+            });
+        // axios.get("/posts/1/post-loves").then((res) => {
+        //     console.log(res)
+        // })
+    };
+    
     return(
     <div>
         <div className={Styles.top}>
