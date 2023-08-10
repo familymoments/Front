@@ -122,7 +122,7 @@ function Login(props,{
         <div className={Styles.accountbutton}>
             <button onClick={()=>{navigate("/landing/findid")}} className={Styles.accountbutton}>아이디 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <button  onClick={()=>{navigate("/landing/findpassword")}}className={Styles.accountbutton}>비밀번호 찾기</button>
+            <button  onClick={()=>{navigate("/landing/findpwd")}}className={Styles.accountbutton}>비밀번호 찾기</button>
             <p className={Styles.accountbutton}>|</p>
             <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
