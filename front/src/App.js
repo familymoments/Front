@@ -18,7 +18,7 @@ import MyPage from './pages/MyPage';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 
-import Findpwd from './pages/Findpwd';
+import Findpwd from './pages/FindAccount/Findpwd';
 import Findpwd2 from './pages/Findpwd2';
 import Findpwd3 from "./pages/Findpwd3";
 import CreateFamily3 from './pages/CreateFamily3';
