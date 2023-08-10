@@ -4,20 +4,15 @@ import { decodeToken } from "react-jwt";
 
 const cookies = new Cookies();
 
-// content-type : application/json
-// {
-//   “id” : “yung00”,
-//   “password” : “1234”
-// } 
 
 // 로그인 시 사용자 정보를 담은 쿠키를 생성한다
-export const setCookie = (id, password) => {
-  return cookies.set(id, password);
+export const setCookie = (token ,option) => {
+  return cookies.set(token,{...option});
 };
 
 // 사용자 인증이 필요한 데이터를 요청할 때 쿠키를 가져온다
-export const getCookie = (name) => {
-  return cookies.get(name);
+export const getCookie = (token) => {
+  return cookies.get(token);
 };
 
 //쿠키를 지운다

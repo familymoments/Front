@@ -1,78 +1,15 @@
 import Styles from './Login.module.css';
 import Loginbutton from '../../components/Loginbutton';
-import {get, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 import Swal from "sweetalert2";
-import { setCookie, decodeCookie, removeCookie } from "./Cookie";
-// import data from "./atom";
-
-const login = {
-    // id: "",
-    // password: "",
-     id: "familya1",
-     password: "yung1234",
- };
-
-
-// const onLogin = () => {
-//     axios.post('/users/log-in', variables)
-//       .then(res => {
-//         setCookie('token', res.payload.accessToken)
-//         setCookie('exp', res.payload.accessTokenExpiresIn)
-//         // token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
-//         axios.defaults.headers.common['Authorization'] = `Bearer ${res.payload.accessToken}`
-//         axios.get('/user/me')
-//           .then(res => {
-//             console.log(res);	
-//           })
-//       })
-//   }
-
-// const SERVER = location.env.REACT_APP_SERVER;
-
-
-
-// function Signin(data) {
-//     const navigate = useNavigate();
-//     //const location = useLocation('43.202.90.230');
-//     data.preventDefault();
-//     console.log(login);
-//     axios
-//       .post('/users/log-in', 
-//       {
-//         iD:"familya1",
-//         password:"yung1234",
-//       })
-//       .then((res) => {
-//         // const userId = res.data.userId;
-//         const accessToken = res.data.accesstoken;
-//         const refreshToken = res.data.refreshtoken;
-//         setCookie("accessToken", accessToken);
-//         setCookie("refreshToken", refreshToken);
-//         console.log(res);
-//         if (res.statusText === "OK") {
-//         navigate("/landing/newfamily");
-//         }
-//       })
-//       .catch((error) => {
-//         if (error.code === "ERR_BAD_REQUEST") {
-//             console.log("error");
-//           Swal.fire({
-//             icon: "error",
-//             title: "이메일 또는 비밀번호가 틀렸습니다.",
-//             text: "다시 확인해주세요.",
-//           });
-//         }
-//       });
-     
-//   }
-
+import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
+//import {loginData} from "../../atom";
 
 function Login(props,{
     onSubmit = async (data) => {
@@ -83,37 +20,51 @@ function Login(props,{
     const {
         register,
         handleSubmit,
+        watch,
         formState: { isSubmitting, isSubmitted, errors },
     } = useForm();
     
     useEffect(()=>{
         props.changeTitle("Family Moments");
     })
+    
+    //const [headers, setHeaders] = useRecoilState(headers);
     const navigate = useNavigate();
-    const [id, setId] = useState('');
-    const [pwd, setPwd] = useState('');
-    const onIdHandler = (event) => {
-        setId(event.currentTarget.value);
-    }
-    const onPasswordHandler = (event) => {
-        setPwd(event.currentTarget.value);
-    }
-    const getAuth = () => {
-        // console.log(login);
+    const getAuth = (data) => {
         axios
-            .post("/users/log-in", {
-                id: "familya1",
-                password: "yung1234",
-            })
+            .post("/users/log-in",data)
             .then(function (response) {
                 console.log(response);
+                const token = response.data.token;
+                //const accessToken = response.headers['authorization'];
+                const refreshToken = response.headers['refresh'];
+                const { accessToken } = response.data;
+
+                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                
+                setCookie("token", `JWT ${response.data.token}`, {
+                    path: "/",
+                    sameSite: "strict",
+                });
+                console.log('토큰 :', token);
+                console.log('refresh 토큰 :', refreshToken);
+                console.log('access 토큰 :', accessToken);
+                console.log(response.headers.authorization);
+                navigate("/landing/newfamily");
+                
             })
             .catch(function (error) {
-                // 오류발생시 실행
+                console.log(error.response.data);
+                Swal.fire({
+            icon: "error",
+            title: "아이디 또는 비밀번호가 틀렸습니다."
+           
+          });
             });
-        // axios.get("/posts/1/post-loves").then((res) => {
-        //     console.log(res)
-        // })
+                console.log(watch("id"));
+                console.log(watch("password"));
+        
     };
     
     return(
@@ -124,25 +75,29 @@ function Login(props,{
             </div>
             <div>
             <h2 className = {Styles.font}>안녕하세요 :-) <p>패밀리 모먼트입니다.</p>
-            <p id = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
+            <p className = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
             </div>
         </div>
    
-    <form className = {Styles.input} onSubmit={''}>
+    <form className = {Styles.input} onSubmit={handleSubmit(getAuth)}>
             <div>
-                  {/* onChange = {(e) =>setId(e.target.value) */}
-                <input id = "id" className={Styles.id} type= "email"  placeholder="ID"  onChange={onIdHandler}
-                aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : undefined} 
-                {...register("email", {required: "이메일은 필수 입력입니다.",
+              
+              {/* aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}  */}
+                  
+                  {errors.id && <small role="alert">{errors.id.message}</small>}
+                <input id = "id" className={Styles.id} type= "text"  placeholder="ID" 
+                {...register("id", {required: "아이디는 필수 입력입니다.",
                 pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "이메일 형식에 맞지 않습니다.",
+                    
+                message: "아이디가 올바르지 않습니다.",
+                
                 },})}/>
-                {errors.email && <small role="alert">{errors.email.message}</small>}
+                
+                
             </div>
             <div>
-                 {/* onChange={(e) =>setPw(e.target.value)} */}
-                <input id ="password" className = {Styles.password}  onChange={onPasswordHandler} type='password'  placeholder='Password' 
+                
+                <input id ="password" className = {Styles.password}  type='password'  placeholder='Password' 
                         aria-invalid={
                             isSubmitted
                                 ? errors.password
@@ -160,13 +115,14 @@ function Login(props,{
                 />
                 {errors.password && <small role="alert">{errors.password.message}</small>}
             </div>
-                <Loginbutton  type = "submit" disabled = {isSubmitting} texts ="로그인"></Loginbutton>
+                <button className={Styles.loginbtn} type = "submit"><Loginbutton  texts ="로그인"></Loginbutton></button>
+                
         </form>
 
         <div className={Styles.accountbutton}>
             <button onClick={()=>{navigate("/landing/findid")}} className={Styles.accountbutton}>아이디 찾기</button>
             <p className={Styles.accountbutton}>|</p>
-            <button  onClick={()=>{navigate("/landing/findpwd")}}className={Styles.accountbutton}>비밀번호 찾기</button>
+            <button  onClick={()=>{navigate("/landing/findpassword")}}className={Styles.accountbutton}>비밀번호 찾기</button>
             <p className={Styles.accountbutton}>|</p>
             <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
@@ -179,7 +135,6 @@ function Login(props,{
             <button onClick={''} className={Styles.naver}><SiNaver/></button>
             <button onClick={''} className = {Styles.google}><FcGoogle className={Styles.googledetail}/></button>
             </div> 
-         <button onClick={getAuth}>auth받아오자</button>
     </div>
     );
 }

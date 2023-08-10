@@ -38,7 +38,7 @@
     line-height: 29px;
 }
 
-#font2{
+.font2{
     color: #A9A9A9;
 
     font-family: Roboto;
@@ -148,4 +148,10 @@
 .googledetail{
     width: 36px;
     height: 36px;
+}
+.loginbtn{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    background: none;
 }
