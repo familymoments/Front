@@ -1,4 +1,4 @@
-import {atom} from "recoil";
+import {atom, selector} from "recoil";
 
 export const postid = atom({
     key:"postid",
@@ -18,11 +18,12 @@ export const deletePostId = atom({
     //atom상태관리
 });
 
-export const recentPosts = atom({
+ export const recentPosts = atom({
     key:"recentPosts",
     default:[],
     //최근 게시물 저장할 배열
-
-
-    
-})
+});
+export const headers = atom({
+    key:"headers",
+    default:'',
+});
