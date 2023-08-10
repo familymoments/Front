@@ -5,17 +5,53 @@ import ClickDots from "../ClickDots";
 import {BiDotsHorizontalRounded} from "react-icons/bi";
 import {AiOutlineHeart,AiFillHeart} from "react-icons/ai";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios  from "axios";
+
+import {token,postid} from "../../atom";
+import { useRecoilValue } from "recoil";
 
 const PostContentSide=(props)=>{
-
+    //토큰 헤더에 넣기
+    const authToken=useRecoilValue(token);
+    const headers = {
+        "X-AUTH-TOKEN": authToken,
+    };
+    console.log(props.post);
+    const postId=useRecoilValue(postid);
     const [toggle,setToggle]=useState(false);
-    const [loved,setLoved]=useState(props.postheart);
+    const [loved,setLoved]=useState();
+    // useEffect(()=>{
+    //     setLoved(props.postheart);
+    //     console.log(props.postheart);
+    // });
+    
+    
 
+    //하트 누르면 변경
     const pushHeart=(e)=>{
         e.preventDefault();
-        setLoved(!loved);
-        props.pushHeart(loved);
+        console.log(loved);
+        if(loved===false){
+            axios.post(`/postloves`,{"postId": postId},{headers})
+            .then(res=>{
+                setLoved(true);
+                //props.pushHeart(loved);
+                console.log(postId,loved,"하트채우기");
+            })
+            .catch(err=>console.log(err))
+        }
+        else if(loved===true){
+            axios.delete(`/postloves`,{"postId": postId},{headers})
+            .then(res=>{
+                setLoved(false);
+                //props.pushHeart(loved);
+                console.log(postId,loved,"하트비우기");
+            })
+            .catch()
+        }
+        
+        
     }
 
     return (

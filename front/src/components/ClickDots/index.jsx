@@ -16,7 +16,7 @@ const ClickDots =({post,showmodal})=>{
     const [postId,setPostId]=useRecoilState(postid);
     
     
-    console.log("clickdots",deletepostid);
+    console.log("clickdots",postId);
 
     
     const [popupOpen,setPopupOpen] = useState(false);

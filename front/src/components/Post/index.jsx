@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import PostUserHeader from "../PostUserHeader";
 import PostContent from "../PostContent";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,7 +11,19 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Post = ({ showmodal, postlist }) => {
+import axios from "axios";
+import {token,postid,userImg} from "../../atom";
+import { useRecoilState,useRecoilValue } from "recoil";
+
+
+
+const Post = ({ showmodal, it }) => {
+    const authToken=useRecoilValue(token);
+    const [postId,setPostId] = useRecoilState(postid);
+    const headers = {
+    "X-AUTH-TOKEN": authToken,
+    };
+    
     const [heart, setHeart] = useState();
 
     const pushHeart = (id) => {
@@ -21,12 +33,19 @@ const Post = ({ showmodal, postlist }) => {
 
     const nav = useNavigate();
 
+    const [postuserImg,setPostuserImg]=useRecoilState(userImg);
+
+    // useEffect(()=>{
+    //     setPostuserImg(it.profileImg);
+    //     console.log(postId);
+        
+    // },[]);
+
     return (
         <div>
-            {postlist.map((it, idx) => (
-                <div key={it.postId} className={styles.wrapper}>
+            <div key={it.postId} className={styles.wrapper}>
                     <PostUserHeader
-                        userImg={it.profileImg}
+                        userImg={postuserImg}
                         username={it.writer}
                         postdate={it.createdAt}
                     ></PostUserHeader>
@@ -71,7 +90,7 @@ const Post = ({ showmodal, postlist }) => {
                         ></PostContent>
                     </div>
                 </div>
-            ))}
+            
         </div>
     );
 };

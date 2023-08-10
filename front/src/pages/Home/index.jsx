@@ -3,25 +3,31 @@
 import styles from "./index.module.css";
 import HelloText from "../../components/HelloText";
 import Post from "../../components/Post";
+import CreateFamily5 from "../CreateFamily5";
 
 //react 라이브러리
 import {useNavigate, useLocation,usecallback} from "react-router-dom";
 import { useCallback, useEffect,useState } from "react";
 
 //상태관리 라이브러리
-import { deletePostId, recentPosts } from "../../atom";
+import { deletePostId, recentPosts,token } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import axios from "axios";
 
-const authToken="";
-// console.log(authToken)
 
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+
 
 const Home=({showmodal})=>{
+    // const header = useRecoilValue(headers);
+    // console.log(header);
+    const authToken=useRecoilValue(token);
+
+
+    const headers = {
+    "X-AUTH-TOKEN": authToken,
+};
+    //console.log(headers);
 
     const nav=useNavigate();
 
@@ -29,32 +35,33 @@ const Home=({showmodal})=>{
     const [familyInfo,setfamilyInfo]=useState([]);
 
     const [data,setData]=useRecoilState(recentPosts);
-    
-
-    
+    const [isnot,setIsnot]=useState(false);
 
 
 
     //postlist 받아오기
-    useEffect(()=>{
+    useEffect( ()=>{
         //최근 10개 게시물 서버에서 받아오기
-        axios.get(`http://43.202.90.230/posts?familyId=5`,{headers})
+        axios.get(`/posts?familyId=8`,{headers})
            .then(res=>{
-            console.log(res.data.result);
-            setData(res.data.result);
+            if(res.data.code===404){
+                setIsnot(true);
+            }else {
+                setData(res.data.result);
+            }
             })
            .catch(err=>console.log(err));
 
-        axios.get(`http://43.202.90.230/families/5/created`,{headers:{
+        axios.get(`/families/8/created`,{headers:{
             "X-AUTH-TOKEN": authToken,
             "Path":"/",
             "Secure" : "HttpOnly",
         }})
            .then(res=>{
-            console.log(res.data.result);
             setfamilyInfo(res.data.result);
+            
             })
-           .catch(err=>console.log(err));
+           .catch();
 
         
     },[]);
@@ -62,7 +69,7 @@ const Home=({showmodal})=>{
 
     useEffect(()=>{
         //DELETE요청
-        axios.delete(`http://43.202.90.230/posts/${deletepostid}`,{headers})
+        axios.delete(`/posts/${deletepostid}`,{headers})
         .then(res=>{
             setData(data.filter((post)=> deletepostid !==post.postId));
             console.log(res);
@@ -70,7 +77,7 @@ const Home=({showmodal})=>{
         .catch(err=>{
             console.log(err);
         })
-        //setData(data.filter((post)=> deletepostid !==post.postId));
+        // setData(data.filter((post)=> deletepostid !==post.postId));
        
     },[deletepostid])
 
@@ -82,7 +89,11 @@ const Home=({showmodal})=>{
     return(
         <div className={styles.wrapper}>
             <HelloText user={familyInfo.nickname} Dday={familyInfo.dday} />
-            <Post showmodal={showmodal} postlist={data}/>
+            {/* {data.map((da)=>(
+                <Post showmodal={showmodal} it={da}/>
+            ))} */}
+            {/* <Post showmodal={showmodal} postlist={data}/> */}
+            {(isnot)?<CreateFamily5/>:""}
         </div>)
 }
 

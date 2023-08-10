@@ -11,23 +11,18 @@ import axios from "axios";
 
 
 //상태관리 라이브러리
-import { nextPostid,recentPosts } from "../../atom";
+import { nextPostid,recentPosts,token } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
-
-const authToken="";
-// const authToken = localStorage.getItem("jwtToken");
-// console.log(authToken)
-
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-    "Content-Type" : "multipart/form-data",
-
-    
-};
-
-
 const CreatePost = ()=>{
+    const authtoken = useRecoilValue(token);
+
+    const headers = {
+        "X-AUTH-TOKEN" : authtoken,
+        "Content-Type" : "multipart/form-data",
+    
+        
+    };
 
     //날짜정보 받아오기 (서버 연동되면 필요x)
     const [date,setDate]=useState(new Date());
@@ -64,7 +59,7 @@ const CreatePost = ()=>{
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
         fd.append("img1",imgs[0]);
 
-        await axios.post(`http://43.202.90.230/posts?familyId=5`,fd,{headers})
+        await axios.post(`/posts?familyId=8`,fd,{headers})
         .then(res=>{
             console.log(res);
         setDate(data.concat(res.data));
