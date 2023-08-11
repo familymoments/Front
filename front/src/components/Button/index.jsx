@@ -12,7 +12,7 @@ function Button (props) {
     
     return(
     <div>
-        <button className={`${classes.button} ${props.btn}`}  onClick={props.onClick}>
+        <button type={props?.type} className={`${classes.button} ${props.btn}`}  onClick={props.onClick}>
         <div className = {classes.font}>{props.title}</div>
         </button>
     </div>
