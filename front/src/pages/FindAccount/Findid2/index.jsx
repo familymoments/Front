@@ -1,7 +1,6 @@
 import Styles from "./Findid2.module.css"
-import Header from "../../components/Header";
 
-import BubbleButton from "../../components/BubbleButton";
+import BubbleButton from "../../../components/BubbleButton";
 function Findid2(){
     return (
     <div id = {Styles.page}>

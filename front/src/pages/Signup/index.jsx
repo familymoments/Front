@@ -1,7 +1,6 @@
 
 import Styles from "./Signup.module.css";
 import Loginbutton from "../../components/Loginbutton";
-import Inputwindow from "../../components/Inputwindow";
 import CertificationButton from "../../components/CertificationButton";
 import { TiDeleteOutline } from 'react-icons/ti';
 import {AiFillCheckCircle} from 'react-icons/ai';
@@ -12,10 +11,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-// REACT_APP_SERVER="/users/sign-up";
+
 
     
-const data ={
+const tempData ={
         id: "조천산",
         password: "1234",
         name: "조천산",
@@ -55,17 +54,10 @@ function Signup(props,{ setBtn }){
             setDoubleCheck("");
           };
         
-        function Auth(){
+        function getAuth(data){
   
             axios
-                .post("/users/sign-up", {
-                    id: "dsadsasadas",
-                    password: "12345678910",
-                    name: "조천산",
-                    email: "1dddd111@naver.com",
-                    strBirthDate:"19991119",
-                    nickname: "아서"
-            },{
+                .post("/users/sign-up", tempData,{
                 profileImg: "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
             } )   
             .then(function (response) {
@@ -73,11 +65,16 @@ function Signup(props,{ setBtn }){
             })
             .catch(function (error) {
                 console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "다시 한번 확인해주세요."
+                   
+                  });
             });
                 };
     return(
     <>
-    <form className={Styles.page}>
+    <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
             
                 <Label label = "아이디"/>
                 <div className ={Styles. certinput}>
@@ -209,7 +206,7 @@ function Signup(props,{ setBtn }){
                 <div className={Styles.signupbutn}>
                     <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
                 </div>
-            <button onClick={Auth}>에이피아이 전송</button>
+            <button onClick={getAuth}>에이피아이 전송</button>
     </form>
     </> 
     );

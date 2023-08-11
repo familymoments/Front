@@ -1,7 +1,7 @@
-import CertificationButton from '../../components/CertificationButton';
-import Loginbutton from '../../components/Loginbutton';
+import CertificationButton from '../../../components/CertificationButton';
+import Loginbutton from '../../../components/Loginbutton';
 import Styles from './Findpwd2.module.css'
-import Inputwindow from '../../components/Inputwindow';
+import Inputwindow from '../../../components/Inputwindow';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
