@@ -1,0 +1,104 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+
+    height: 180px;
+    margin-top: 18px;
+}
+
+.p1 {
+    font-size: 16px;
+}
+
+.p2 {
+    font-size: 16px;
+    color: #9378FF;
+}
+
+.img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background-color: aqua;
+}
+
+.hr {
+    margin: 0px;
+    width: 328px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    margin: 17px;
+
+    width: 328px;
+}
+
+.box {
+    border: 1px solid black;
+    border-radius: 8px;
+
+    height: 46px;
+    
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.input {
+    width: 100%;
+    border: 0px;
+    outline: none;
+}
+
+.input::selection {
+    background-color: black;
+}
+
+.cancel {
+    width: 28px;
+    height: 28px;
+
+    color: #D8D8D8;
+}
+
+.btnWrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.btn {
+    width: 136px;
+    height: 54px;
+    background-color: #7A729F;   
+    border-radius: 60px;
+}
+
+.btn2 {
+    width: 136px;
+    height: 54px;
+    background-color: #9378FF;   
+    border-radius: 60px;
+}
