@@ -9,8 +9,8 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
-//import {loginData} from "../../atom";
-
+import {headers} from "../../atom";
+import { useRecoilState } from 'recoil';
 function Login(props,{
     onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
@@ -28,7 +28,7 @@ function Login(props,{
         props.changeTitle("Family Moments");
     })
     
-    //const [headers, setHeaders] = useRecoilState(headers);
+    const [headers, setHeaders] = useRecoilState(headers);
     const navigate = useNavigate();
     const getAuth = (data) => {
         axios
@@ -51,6 +51,7 @@ function Login(props,{
                 console.log('refresh 토큰 :', refreshToken);
                 console.log('access 토큰 :', accessToken);
                 console.log(response.headers.authorization);
+                setHeaders(token);
                 navigate("/landing/newfamily");
                 
             })

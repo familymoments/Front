@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from "react-router-dom";
 
     
 const tempData ={
@@ -53,15 +53,17 @@ function Signup(props,{ setBtn }){
           const doubleCheckReset = (e) => {
             setDoubleCheck("");
           };
+          const navigate = useNavigate();
         
         function getAuth(data){
   
             axios
                 .post("/users/sign-up", tempData,{
-                profileImg: "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
+                profileImg: ""
             } )   
             .then(function (response) {
                 console.log(response);
+                navigate( "/landing/login");
             })
             .catch(function (error) {
                 console.log(error);
@@ -72,6 +74,7 @@ function Signup(props,{ setBtn }){
                   });
             });
                 };
+                console.log(watch("birth"));
     return(
     <>
     <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
@@ -159,11 +162,17 @@ function Signup(props,{ setBtn }){
             </div>
                  <Label label = "생년월일"/>
                         <div className={Styles.inputcontainer}>
-                        <input className = {Styles.input} type="date"
-                        min="1900-01-01"
-                        max="2003-12-31"
-                        required  {...register("birth")} placeholder = "생년월일"/>
+                        <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
+                        
+                        required  {...register("strBirthDate", {
+                            minLength: {
+                              value: 8,
+                              message: "양식에 맞게 작성해주세요.",
+                            },
+                          })} />
+                        
                         </div>
+                        
 
             
              <Label label = "이메일 인증"/>
@@ -204,7 +213,7 @@ function Signup(props,{ setBtn }){
                 <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관"/>
                 <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의"/>
                 <div className={Styles.signupbutn}>
-                    <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
+                    <Loginbutton  texts = "Family Moments 시작하기" />
                 </div>
             <button onClick={getAuth}>에이피아이 전송</button>
     </form>
