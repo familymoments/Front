@@ -1,18 +1,26 @@
-import MyText from "../../components/MyText";
-import AlarmPeriod from "../../components/AlarmPeriod";
-import Button from "../../components/Button";
+import MyText from "../../../components/MyText";
+import AlarmPeriod from "../../../components/AlarmPeriod";
+import Button from "../../../components/Button";
 import style from './CreateFamily3.module.css';
 import classes from "../CreateFamily/CreateFamily.module.css";
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 
-import{useNavigate} from "react-router-dom"
+import{useNavigate, useLocation} from "react-router-dom"
 
 const CreateFamily3 = () => {
+    const location = useLocation();
+    console.log("location.state:", location.state);
+    const { selectedFamilyName } = location.state;
+    console.log("selectedFamilyName in CreateFamily3:", selectedFamilyName);
 
+    // const key = location.state.key;
+    // const familyInfo = {...location.state};
     const navigate = useNavigate();
+    
     return (
         <div>
             <Header title="가족" />
+            <p>{selectedFamilyName}</p>
             <div className={classes.content3}>
                 <MyText text="우리 가족 생성하기" />
                 </div>
@@ -27,4 +35,4 @@ const CreateFamily3 = () => {
         );
     }
 
-export default CreateFamily3;
+    export default CreateFamily3;

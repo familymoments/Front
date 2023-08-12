@@ -1,8 +1,8 @@
-import MyText from "../../components/MyText";
-import InviteLinkBar from "../../components/InviteLinkBar";
-import Button from "../../components/Button";
+import MyText from "../../../components/MyText";
+import InviteLinkBar from "../../../components/InviteLinkBar";
+import Button from "../../../components/Button";
 import classes from "../CreateFamily/CreateFamily.module.css";
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import styles from "./CreateFamily4.module.css";
 
 import{useNavigate} from "react-router-dom"
