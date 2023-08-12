@@ -1,9 +1,9 @@
 import React from 'react';
-import Union from "../../components/Union";
-import Footer from '../../components/Footer';
-import mediaImage from "../../assets/media_image.jpg";
+import Union from "../../../components/Union";
+import Footer from '../../../components/Footer';
+import mediaImage from "../../../assets/media_image.jpg";
 import pStyle from "./CreateFamily5.module.css";
-import HelloText2 from '../../components/HelloText2';
+import HelloText2 from '../../../components/HelloText2';
 
 const CreateFamily5 = () => {
     return (

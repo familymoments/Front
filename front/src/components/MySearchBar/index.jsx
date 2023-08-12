@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import styles from "./MySearchBar.module.css";
 
-const MySearchBar = ({ placeholder }) => {
+const MySearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event) => {
@@ -20,9 +20,9 @@ const MySearchBar = ({ placeholder }) => {
         <div className={styles.searchText}>
           <input
             type="text"
-            value={searchTerm}
-            onChange={handleChange}
-            placeholder={placeholder}
+            value={props.value}
+            onChange={props.onChange}
+            placeholder={props.placeholder}
             className={styles.searchInput}
           />
         </div>

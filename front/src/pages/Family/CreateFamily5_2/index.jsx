@@ -1,10 +1,10 @@
-import Union from "../../components/Union";
-import Footer from '../../components/Footer';
-import mediaImage from "../../assets/media_image.jpg";
+import Union from "../../../components/Union";
+import Footer from '../../../components/Footer';
+import mediaImage from "../../../assets/media_image.jpg";
 import pStyle from "./CreateFamily5_2.module.css";
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
 import classes from "../CreateFamily/CreateFamily.module.css";
-import HelloText2 from "../../components/HelloText2";
+import HelloText2 from "../../../components/HelloText2";
 
 import{useNavigate} from "react-router-dom"
 
