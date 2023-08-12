@@ -1,11 +1,12 @@
-import MyText from "../../components/MyText";
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
+import Header from "../../../components/Header";
+import MySearchBar from "../../../components/MySearchBar";
+import MyText from "../../../components/MyText";
 import classes from "./CreateFamily.module.css";
-import MySearchBar from "../../components/MySearchBar"
-import PersonInfo from "../../components/PersonInfo"
-import Header from '../../components/Header';
+import PersonInfo from "../../../components/PersonInfo";
 
 import{useNavigate} from "react-router-dom"
+
 
 const CreateFamily = () => {
     const navigate = useNavigate();
