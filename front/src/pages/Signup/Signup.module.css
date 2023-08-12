@@ -159,3 +159,16 @@
     line-height: 16px;
    
 }
+.hiddenbtn{
+    background-color: none;
+    padding: 0px;
+    margin: 0px;
+    color: none;
+    border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

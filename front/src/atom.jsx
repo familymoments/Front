@@ -23,7 +23,7 @@ export const deletePostId = atom({
     default:[],
     //최근 게시물 저장할 배열
 });
-export const headers = atom({
-    key:"headers",
-    default:'',
+export const header = atom({
+    key:"header",
+    default:{},
 });

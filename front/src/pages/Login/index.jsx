@@ -9,7 +9,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
-import {headers} from "../../atom";
+import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props,{
     onSubmit = async (data) => {
@@ -28,8 +28,9 @@ function Login(props,{
         props.changeTitle("Family Moments");
     })
     
-    const [headers, setHeaders] = useRecoilState(headers);
+    const [headers, setHeaders] = useRecoilState(header);
     const navigate = useNavigate();
+    
     const getAuth = (data) => {
         axios
             .post("/users/log-in",data)
@@ -39,19 +40,18 @@ function Login(props,{
                 //const accessToken = response.headers['authorization'];
                 const refreshToken = response.headers['refresh'];
                 const { accessToken } = response.data;
-
+               
                 // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
                 axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
                 
-                setCookie("token", `JWT ${response.data.token}`, {
+                setCookie("token", response.headers.get("x-auth-token"), {
                     path: "/",
                     sameSite: "strict",
                 });
-                console.log('토큰 :', token);
-                console.log('refresh 토큰 :', refreshToken);
-                console.log('access 토큰 :', accessToken);
-                console.log(response.headers.authorization);
-                setHeaders(token);
+                
+                console.log(response.headers.get("x-auth-token"));
+                setHeaders(response.headers.get("x-auth-token"));
+                localStorage.setItem('token', response.headers.get("x-auth-token"));
                 navigate("/landing/newfamily");
                 
             })
@@ -65,6 +65,8 @@ function Login(props,{
             });
                 console.log(watch("id"));
                 console.log(watch("password"));
+                
+                console.log(headers);
         
     };
     
