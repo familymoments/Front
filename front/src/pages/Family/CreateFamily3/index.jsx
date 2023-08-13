@@ -13,14 +13,11 @@ const CreateFamily3 = () => {
     const { selectedFamilyName } = location.state;
     console.log("selectedFamilyName in CreateFamily3:", selectedFamilyName);
 
-    // const key = location.state.key;
-    // const familyInfo = {...location.state};
     const navigate = useNavigate();
     
     return (
         <div>
             <Header title="가족" />
-            <p>{selectedFamilyName}</p>
             <div className={classes.content3}>
                 <MyText text="우리 가족 생성하기" />
                 </div>
