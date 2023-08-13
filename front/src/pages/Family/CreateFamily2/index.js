@@ -14,11 +14,12 @@ import { useNavigate } from "react-router-dom";
 const CreateFamily2 = () => {
     const navigate = useNavigate();
     const [selectedFamilyName, setSelectedFamilyName] =useState();
+
     const handleNextClick = async () => {
         await navigate("/landing/createfamily3", { 
             state: {
-                selectedFamilyName: selectedFamilyName 
-            } 
+                selectedFamilyName: selectedFamilyName, 
+            }, 
         });
     };
     
@@ -34,7 +35,10 @@ const CreateFamily2 = () => {
                     customClass={style.familySelect}
                     onSelect={setSelectedFamilyName} // 가족 이름 선택 시 상태 업데이트
                 />
-                <MakeFamilyBar selectedFamilyName={selectedFamilyName} />
+                <MakeFamilyBar 
+                    selectedFamilyName={selectedFamilyName}
+                    onSelect={setSelectedFamilyName}
+                />
                 <FamilySelect 
                     buttonText="가족 이미지 선택" 
                     customClass={style.selectImage} 
