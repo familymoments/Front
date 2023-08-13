@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./FamilySelect.module.css";
 
 const FamilySelect = ({ buttonText, customClass }) => {
     return (
-    <div className={`${styles.familySelect} ${customClass}`}>
+    <div className={`${customClass}`}>
         {buttonText}
     </div>
     );
