@@ -14,11 +14,13 @@ import { useNavigate } from "react-router-dom";
 const CreateFamily2 = () => {
     const navigate = useNavigate();
     const [selectedFamilyName, setSelectedFamilyName] =useState();
+    const [selectedImage, setSelectedImage] = useState();
 
     const handleNextClick = async () => {
         await navigate("/landing/createfamily3", { 
             state: {
                 selectedFamilyName: selectedFamilyName, 
+                selectedImage: selectedImage,
             }, 
         });
     };
@@ -33,7 +35,6 @@ const CreateFamily2 = () => {
                 <FamilySelect
                     buttonText="가족 이름 정하기"
                     customClass={style.familySelect}
-                    onSelect={setSelectedFamilyName} // 가족 이름 선택 시 상태 업데이트
                 />
                 <MakeFamilyBar 
                     selectedFamilyName={selectedFamilyName}
@@ -43,7 +44,7 @@ const CreateFamily2 = () => {
                     buttonText="가족 이미지 선택" 
                     customClass={style.selectImage} 
                 />
-                <FileUploadButton />
+                <FileUploadButton onselectImage={setSelectedImage} /> 
                 <div className="imgUpload"></div>
             </div>
             <Button onClick={handleNextClick} btn={classes.btn} title="다음 (2/3)" />

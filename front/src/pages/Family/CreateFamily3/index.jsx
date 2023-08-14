@@ -6,14 +6,28 @@ import classes from "../CreateFamily/CreateFamily.module.css";
 import Header from '../../../components/Header';
 
 import{useNavigate, useLocation} from "react-router-dom"
+import { useState } from "react";
 
 const CreateFamily3 = () => {
     const location = useLocation();
-    console.log("location.state:", location.state);
-    const { selectedFamilyName } = location.state;
-    console.log("selectedFamilyName in CreateFamily3:", selectedFamilyName);
-
     const navigate = useNavigate();
+
+    console.log("location.state:", location.state);
+    // console.log("selectedFamilyName in CreateFamily3:", selectedFamilyName);
+
+    const { selectedFamilyName } = location.state;
+    const { selectedImage } = location.state;
+    const [selectedAlarm, setselectedAlarm] = useState();
+
+    const handleNextClick = async () => {
+        await navigate("/landing/createfamily4", {
+            state: {
+                selectedAlarm: selectedAlarm, // 선택한 알람 주기 상태를 다음 경로로 전달
+                selectedImage: selectedImage, // 선택한 사진 전달
+                selectedFamilyName: selectedFamilyName,             
+            },
+        });
+    };
     
     return (
         <div>
@@ -22,10 +36,13 @@ const CreateFamily3 = () => {
                 <MyText text="우리 가족 생성하기" />
                 </div>
                 <div className={style.content}>
-                <AlarmPeriod />
+                <AlarmPeriod 
+                    selectedAlarm={selectedAlarm}
+                    onSelect={setselectedAlarm}
+                />
             </div>
             <Button 
-            onClick={()=>{navigate("/landing/createfamily4")}}
+            onClick={handleNextClick}
             btn={classes.btn} 
             title="가족 생성하기"/>
         </div>
