@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./MakeFamilyBar.module.css";
 
-const MakeFamilyBar = () => {
+const MakeFamilyBar = ({onSelect}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    onSelect(event.target.value);
   };
 
   const handleSubmit = (event) => {

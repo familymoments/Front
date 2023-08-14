@@ -1,25 +1,23 @@
 import React, { useState, useRef } from "react";
-import styles from "./FileUpload.module.css";
 import imgUpload from "../../assets/Group 30.png";
-
+import defaultImg from "../../assets/default.png";
+import styles from "./FileUpload.module.css";
 import {profileImg} from "../../atom";
 import { useRecoilState } from 'recoil';
 
-const FileUploadButton = () => {
+const FileUploadButton = ({onselectImage}) => {
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-
-  //상태관리
   const [profileimg,setprofileimg]=useRecoilState(profileImg);
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-    setSelectedImage(null); // Reset selected image when option changes
-
-    if (event.target.value === "gallery") {
-      openFileInput(); // Open file input dialog if "갤러리에서 선택" is chosen
+  const handleOptionChange = (e) => {
+    if (e.target.value === "gallery") {
+      openFileInput();
+    } else if (e.target.value === "default") { // 기본 이미지 선택 시
+      setSelectedImage(defaultImg); // defaultImg로 이미지 설정
+      setShowOptions(false);
     }
   };
 
@@ -31,20 +29,15 @@ const FileUploadButton = () => {
     fileInput.addEventListener('change', async (event) => {
       const selectedFile = event.target.files[0];
       if (selectedFile) {
-        const imageUrl = URL.createObjectURL(selectedFile);
+        setShowOptions(false);
+        setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
+        onselectImage(URL.createObjectURL(selectedFile));
         setSelectedImage(imageUrl);
-        console.log(selectedFile,"dddddd");
         setprofileimg(selectedFile);
       }
     });
 
     fileInput.click();
-  };
-
-  const handleOutsideClick = (event) => {
-    if (selectRef.current && !selectRef.current.contains(event.target)) {
-      setShowOptions(false);
-    }
   };
 
   const handleButtonClick = () => {
@@ -56,7 +49,11 @@ const FileUploadButton = () => {
   return (
     <div>
       <button className={styles.uploadButton} onClick={handleButtonClick}>
-        <img src={imgUpload} alt="Upload" />
+        {selectedImage ? (
+          <img src={selectedImage} alt="Selected" className={styles.selectedImage}/> // 선택한 이미지 보여주기
+          ) : (
+            <img src={imgUpload} alt="Upload" />
+          )}
       </button>
       {showOptions && (
         <div ref={selectRef} className={selectBoxClassName}>
@@ -68,9 +65,6 @@ const FileUploadButton = () => {
             <option value="default">기본 이미지로 하기</option>
           </select>
         </div>
-      )}
-      {selectedImage && (
-        <div className={styles.background} style={{ backgroundImage: `url(${selectedImage})` }} />
       )}
     </div>
   );

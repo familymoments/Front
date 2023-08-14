@@ -5,11 +5,17 @@ import classes from "../CreateFamily/CreateFamily.module.css";
 import Header from '../../../components/Header';
 import styles from "./CreateFamily4.module.css";
 
-import{useNavigate} from "react-router-dom"
+import {useNavigate, useLocation} from "react-router-dom"
 
 
 const CreateFamily4 = () => {
     const navigate = useNavigate();
+
+    const location = useLocation();
+    console.log("location.state:", location.state);
+    const { selectedAlarm } = location.state;
+    console.log("selectedAlarm in CreateFamily4:", selectedAlarm);
+
     return (
         <div>
             <Header title="가족" />
