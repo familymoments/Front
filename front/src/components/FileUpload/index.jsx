@@ -2,12 +2,15 @@ import React, { useState, useRef } from "react";
 import imgUpload from "../../assets/Group 30.png";
 import defaultImg from "../../assets/default.png";
 import styles from "./FileUpload.module.css";
+import {profileImg} from "../../atom";
+import { useRecoilState } from 'recoil';
 
 const FileUploadButton = ({onselectImage}) => {
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null); // 추가: 선택한 이미지 저장
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [profileimg,setprofileimg]=useRecoilState(profileImg);
 
   const handleOptionChange = (e) => {
     if (e.target.value === "gallery") {
@@ -29,6 +32,8 @@ const FileUploadButton = ({onselectImage}) => {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
         onselectImage(URL.createObjectURL(selectedFile));
+        setSelectedImage(imageUrl);
+        setprofileimg(selectedFile);
       }
     });
 
