@@ -15,73 +15,61 @@ import { useNavigate } from "react-router-dom";
 import {profileImg} from "../../atom";
 import { useRecoilValue } from 'recoil';
     
-const newUser ={
-        id: "dfdsfsdf",
-        password: "1234fsd",
-        name: "fsdfsdfsd",
-        email: "1ddd1@naver.com",
-        strBirthDate:"19991119",
-        nickname: "아서"
-};
-function Signup(props,{ setBtn }){
+
+function Signup(props){
+    const [selectedImage, setSelectedImage] = useState();
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
-    const onSignBtn = () => {
-        setBtn((x) => !x);
-      };
       const {
           register,
           handleSubmit,
-          formState: { errors },
           resetField,
           watch,
         } = useForm();
-    const password = watch("password");        
+           
     const navigate = useNavigate();
-        //비밀번호 초기화 버튼 
+        //비밀번호 초기화  
         function resetPassword(){
             resetField("password");
           };
-          //비밀번호 확인 초기화 버튼 
+        //비밀번호 확인 초기화
         function resetConfirm(){
             resetField("confirm");
           };
+          //이미지 상태관리
           const profile = useRecoilValue(profileImg);
         //회원가입 데이터 전송
-        function getAuth(data){
-  
-            // axios
-            //     .post("/users/sign-up", tempData,{
-            //     profileImg: ""
-            // } )   
-            // .then(function (response) {
-            //     console.log(response);
-            //     navigate( "/landing/login");
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            //     Swal.fire({
-            //         icon: "error",
-            //         title: "다시 한번 확인해주세요."
-                   
-            //       });
-            // });
-
-             // Post실행
+        function getAuth(){
+             
+             const signUpData ={
+                id: watch("id"),
+                password: watch("password"),
+                name: watch("name"),
+                email: watch("email"),
+                strBirthDate:watch("strBirthDate"),
+                nickname: watch("nickname")
+                 };
+                 //if(check == true && echeck ==true){}
+                 //else{Swal()}
             const fd = new FormData();
-            fd.append("newUser" , new Blob([JSON.stringify(data)], { type: 'application/json' }));
+            fd.append("newUser",new Blob([JSON.stringify(signUpData)], { type: 'application/json' }));
             fd.append("profileImg",profile);
-            console.log(data,profile);
+            console.log(signUpData,profile);
+            // Post실행
+            axios.post(`/users/sign-up`,fd)
+            .then((res)=>{
 
-             axios.post(`/users/sign-up`,fd)
-            .then(res=>{
-                console.log(res);
-                
-            
+                if(res.data.code == 200){
+                    navigate("/landing/login");
+                }
+                if(res.data.code == 400){
+                    Swal.fire("입력하신 값을 다시확인해주세요.");
+                }
             })
             .catch(err=>{
                 console.log(err);
+                Swal.fire("입력하신 값을 다시확인해주세요.");
             })
                 };
            //아이디 중복검사 진행 
@@ -94,13 +82,13 @@ function Signup(props,{ setBtn }){
                    axios
                        .post("/users/check-id", { id: id })
                        .then((res) => {
-                       if (res.status === 200) {
+                       if (res.data.code === 200) {
                            Swal.fire("사용가능한 아이디 입니다.");
                            setCheck(true);
                        }
                        })
                        .catch((error) => {
-                       if (error.code === "ERR_BAD_REQUEST") {
+                       if (error.data.code === 400) {
                            Swal.fire("중복된 아이디 입니다.");
                            setCheck(false);
                        }
@@ -111,7 +99,6 @@ function Signup(props,{ setBtn }){
                //이메일 중복검사 진행
                 const [echeck, setECheck] = useState(false);
                 const emailCheck = () => {
-                    
                     const email = watch("email");
                     if (email === "") {
                     Swal.fire("값을 먼저 입력해주세요.");
@@ -119,13 +106,13 @@ function Signup(props,{ setBtn }){
                     axios
                         .post('/users/check-email', { email: email })
                         .then((res) => {
-                        if (res.status === 200) {
+                        if (res.data.code === 200) {
                             Swal.fire("사용가능한 이메일 아이디 입니다.");
                             setECheck(true);
                         }
                         })
                         .catch((error) => {
-                        if (error.code === "ERR_BAD_REQUEST") {
+                        if (error.data.code === 400) {
                             Swal.fire("중복된 이메일 아이디 입니다.");
                             setECheck(false);
                         }
@@ -138,47 +125,18 @@ function Signup(props,{ setBtn }){
     <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
             
                 <Label label = "아이디"/>
-                <div className ={Styles. certinput}>
+                <div className ={Styles.certinput}>
                     <input  type="text"
                     placeholder="아이디를 입력해주세요."
                     required
-                    {...register("id", {
-                        maxLength: {
-                        value: 15,
-                        message: "15글자 이하로 작성해주세요",
-                        },
-                        minLength: {
-                        value: 5,
-                        message: "5글자 이상으로 작성해주세요",
-                        },
-                        pattern: {
-                        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,10}$/,
-                        message: "형식에 맞지 않는 아이디입니다.",
-                        },
-                    })}className = {Styles.smallinput} />
+                    {...register("id")}className = {Styles.smallinput} />
                     <button onClick = {idCheck} className ={Styles.hiddenbtn}><CertificationButton className = {Styles.certbtn}text = "중복확인"/></button> 
                     </div>
-                    
-            
-            
             <Label label = "비밀번호"/>
             <div className = {Styles.inputcontainer}>
             <input  className ={Styles.input}
                 type="password"
-                {...register("password", {
-                maxLength: {
-                    value: 20,
-                    message: "20자리 이하로 작성해주세요",
-                },
-                minLength: {
-                    value: 8,
-                    message: "8자리 이상으로 작성해주세요",
-                },
-                pattern: {
-                    value: /^(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/,
-                    message: "형식에 맞지 않는 비밀번호 입니다.",
-                },
-                })}
+                {...register("password")}
                 placeholder="비밀번호"
                 required
             />  
@@ -188,20 +146,10 @@ function Signup(props,{ setBtn }){
              <div className = {Styles.inputcontainer}>
                     <input className = {Styles.input} 
                         type="password"
-                        {...register("confirm", {
-                        validate: {
-                            confirmPw: (v) =>
-                            v === password || "비밀번호가 일치하지 않습니다.",
-                        },
-                        })}
+                        {...register("confirm")}
                         placeholder="비밀번호를 한번 더 입력해주세요."
                         required
                     />
-                    {/* {errors?.confirm?.message === undefined ? (
-                        <div>"비밀번호를 다시 입력해주세요."</div>
-                    ) : (
-                        <div>{errors?.confirm?.message}</div>
-                    )} */}
                      <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
             <Label label = "이름"/>
@@ -209,85 +157,38 @@ function Signup(props,{ setBtn }){
             <input placeholder = "실명을 입력하세요. ex) 홍길동" className= {Styles.input}
               type="text"
               required
-              {...register("name", {
-                maxLength: {
-                  value: 5,
-                  message: "5자리 이하로 작성해주세요",
-                },
-                pattern: {
-                  value: /^[가-힣a-zA-Z]+$/,
-                  message: "형식에 맞지 않는 이름 입니다.",
-                },
-              })}
+              {...register("name")}
             />
             </div>
                  <Label label = "생년월일"/>
                         <div className={Styles.inputcontainer}>
                         <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
                         
-                        required  {...register("strBirthDate", {
-                            minLength: {
-                              value: 8,
-                              message: "양식에 맞게 작성해주세요.",
-                            },
-                          })} />
+                        required  {...register("strBirthDate")} />
                         
                         </div>
                         
 
-            
              <Label label = "이메일 인증"/>
              <div className = {Styles.certinput}> 
                     <input  type="email"
                     placeholder="이메일을 입력해주세요."
                     required
-                    {...register("email", {
-                        maxLength: {
-                        value: 10,
-                        message: "10글자 이하로 작성해주세요",
-                        },
-                        minLength: {
-                        value: 1,
-                        message: "1글자 이상으로 작성해주세요",
-                        },
-                        pattern: {
-                        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,10}$/,
-                        message: "형식에 맞지 않는 이메일 입니다.",
-                        },
-                    })}
+                    {...register("email")}
                     className = {Styles.smallinput} />
                     <button className = {Styles.hiddenbtn} onClick={emailCheck}><CertificationButton className = {Styles.certbtn} text = "인증하기"/> </button>
                     </div>
                     <Label label = "닉네임"/>
                         <div className={Styles.inputcontainer}>
                         <input className = {Styles.input} type="text" placeholder = "3~8자리 입력(특수문자 불가)"
-                        
-                        required  {...register("nickname", {
-                            maxLength: {
-                                value: 8,
-                                message: "8글자 이하로 작성해주세요",
-                                },
-                            minLength: {
-                              value: 3,
-                              message: "3글자 이상로 작성해주세요.",
-                            }, pattern: {
-                                value: /^[가-힣a-zA-Z]+$/,
-                                message: "형식에 맞지 않는  닉네임입니다.",
-                              },
-                          })} />
-                        
+                        required  {...register("nickname")} />
                         </div>
             
 
             <Label label = "프로필 사진 선택"/>
-            {/* <input style={{"zIndex":"100"}} className = {Styles.input} type="file" onChange={(e)=>{
-                const file=e.target.files[0];
-                console.log(file);
-            }} /> */}
                 <div className={Styles.fileupload}>
-                    <FileUploadButton />
+                    <FileUploadButton className = {Styles.filebtndetail}onselectImage={setSelectedImage}/>
                 </div> 
-
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>
                 <hr/>
@@ -298,7 +199,6 @@ function Signup(props,{ setBtn }){
                     <button type = "submit" className = {Styles.hiddenbtn}><Loginbutton  texts = "Family Moments 시작하기" /></button>
                 </div>
     </form>
-    <button onClick={getAuth}>에이피아이 전송</button>
     </> 
     );
 }
@@ -334,8 +234,6 @@ function Label(props){
     return(
     <div className = {Styles.labelbox}>
         <label className={Styles.label}>{props.label}</label>
-        
-       
     </div>
     )
 }
