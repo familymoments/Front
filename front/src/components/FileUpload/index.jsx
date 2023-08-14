@@ -3,16 +3,16 @@ import imgUpload from "../../assets/Group 30.png";
 import defaultImg from "../../assets/default.png";
 import styles from "./FileUpload.module.css";
 
-const FileUploadButton = () => {
+const FileUploadButton = ({onselectImage}) => {
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null); // 추가: 선택한 이미지 저장
 
-  const handleOptionChange = (event) => {
-    if (event.target.value === "gallery") {
+  const handleOptionChange = (e) => {
+    if (e.target.value === "gallery") {
       openFileInput();
-    } else if (event.target.value === "default") { // 기본 이미지 선택 시
+    } else if (e.target.value === "default") { // 기본 이미지 선택 시
       setSelectedImage(defaultImg); // defaultImg로 이미지 설정
       setShowOptions(false);
     }
@@ -28,6 +28,7 @@ const FileUploadButton = () => {
       if (selectedFile) {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
+        onselectImage(URL.createObjectURL(selectedFile));
       }
     });
 
