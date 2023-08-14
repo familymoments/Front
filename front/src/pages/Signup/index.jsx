@@ -12,13 +12,14 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
+import {profileImg} from "../../atom";
+import { useRecoilValue } from 'recoil';
     
 const newUser ={
-        id: "조천산",
-        password: "1234",
-        name: "조천산",
-        email: "1dddd111@naver.com",
+        id: "dfdsfsdf",
+        password: "1234fsd",
+        name: "fsdfsdfsd",
+        email: "1ddd1@naver.com",
         strBirthDate:"19991119",
         nickname: "아서"
 };
@@ -46,6 +47,7 @@ function Signup(props,{ setBtn }){
         function resetConfirm(){
             resetField("confirm");
           };
+          const profile = useRecoilValue(profileImg);
         //회원가입 데이터 전송
         function getAuth(data){
   
@@ -68,12 +70,14 @@ function Signup(props,{ setBtn }){
 
              // Post실행
             const fd = new FormData();
-            fd.append("newUser" , new Blob([JSON.stringify(newUser)], { type: 'application/json' }));
-            fd.append("profileImg",'');
+            fd.append("newUser" , new Blob([JSON.stringify(data)], { type: 'application/json' }));
+            fd.append("profileImg",profile);
+            console.log(data,profile);
 
              axios.post(`/users/sign-up`,fd)
             .then(res=>{
                 console.log(res);
+                
             
             })
             .catch(err=>{
@@ -88,7 +92,7 @@ function Signup(props,{ setBtn }){
                    Swal.fire("값을 먼저 입력해주세요.");
                    } else {
                    axios
-                       .get("/users/check-id", { id: id })
+                       .post("/users/check-id", { id: id })
                        .then((res) => {
                        if (res.status === 200) {
                            Swal.fire("사용가능한 아이디 입니다.");
@@ -113,7 +117,7 @@ function Signup(props,{ setBtn }){
                     Swal.fire("값을 먼저 입력해주세요.");
                     } else {
                     axios
-                        .get('/users/check-email', { email: email })
+                        .post('/users/check-email', { email: email })
                         .then((res) => {
                         if (res.status === 200) {
                             Swal.fire("사용가능한 이메일 아이디 입니다.");
@@ -290,15 +294,11 @@ function Signup(props,{ setBtn }){
                 <Smalladmit texts = "(필수) 서비스 이용 약관에 동의"/>
                 <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관"/>
                 <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의"/>
-                <div className={Styles.signupbutn}>
-                    <Loginbutton  texts = "Family Moments 시작하기" />
+                <div  className={Styles.signupbutn}>
+                    <button type = "submit" className = {Styles.hiddenbtn}><Loginbutton  texts = "Family Moments 시작하기" /></button>
                 </div>
-            <button onClick={getAuth}>에이피아이 전송</button>
-            <input   type="file" onChange={(e)=>{
-                const file=e.target.files[0];
-                console.log(file);
-            }} />
     </form>
+    <button onClick={getAuth}>에이피아이 전송</button>
     </> 
     );
 }
@@ -323,7 +323,7 @@ function Smalladmit(props){
         <div className={Styles.smalladmitbox}>
             <div className={Styles.smalladmit}>
                 <button  className = {Styles.checkbutn}><FaCheck/></button>
-                <p className={Styles.smalladmittxt}>{props.texts}</p>
+                <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
                 <button className= {Styles.checkbutn}><GrNext/></button>
             </div>
         </div>
@@ -334,7 +334,7 @@ function Label(props){
     return(
     <div className = {Styles.labelbox}>
         <label className={Styles.label}>{props.label}</label>
-        {/* 연습 */}
+        
        
     </div>
     )

@@ -2,11 +2,17 @@ import React, { useState, useRef } from "react";
 import styles from "./FileUpload.module.css";
 import imgUpload from "../../assets/Group 30.png";
 
+import {profileImg} from "../../atom";
+import { useRecoilState } from 'recoil';
+
 const FileUploadButton = () => {
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+
+  //상태관리
+  const [profileimg,setprofileimg]=useRecoilState(profileImg);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -27,6 +33,8 @@ const FileUploadButton = () => {
       if (selectedFile) {
         const imageUrl = URL.createObjectURL(selectedFile);
         setSelectedImage(imageUrl);
+        console.log(selectedFile,"dddddd");
+        setprofileimg(selectedFile);
       }
     });
 

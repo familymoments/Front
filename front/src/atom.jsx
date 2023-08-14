@@ -17,7 +17,10 @@ export const deletePostId = atom({
     default:0,
     //atom상태관리
 });
-
+export const idFounded = atom({
+    key: "idFounded",
+    default: "",
+});
  export const recentPosts = atom({
     key:"recentPosts",
     default:[],
@@ -26,4 +29,8 @@ export const deletePostId = atom({
 export const header = atom({
     key:"header",
     default:{},
+});
+export const profileImg = atom({
+key:"profileImg",
+default:null,
 });

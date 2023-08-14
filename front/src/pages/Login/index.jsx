@@ -88,7 +88,7 @@ function Login(props,{
               {/* aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}  */}
                   
                   {errors.id && <small role="alert">{errors.id.message}</small>}
-                <input id = "id" className={Styles.id} type= "text"  placeholder="ID" 
+                <input id = "text" className={Styles.id} type= "text"  placeholder="ID" 
                 {...register("id", {required: "아이디는 필수 입력입니다.",
                 pattern: {
                     
