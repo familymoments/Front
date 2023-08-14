@@ -13,6 +13,11 @@ import AlbumDetail from "./Album/Detail";
 
 import CalendarDetail from "./Calendar/Detail";
 
+//강퇴페이지
+import Withdrawal from './Exit/Withdrawal';
+import Withdrawal2 from './Exit/Withdrawal2';
+import Withdrawal4 from "./Exit/Withdrawal4";
+
 // mypage관련 라우팅 정리하기
 import Notice from "./MyPage/Notice";
 import Profile from "./MyPage/Profile";
@@ -26,7 +31,6 @@ const Main = () => {
     const [modalopen,setModalopen]=useState(false);
     const [modalmode,setModalmode]=useState("");
 
-   
 
     const showmodal=(modalmode)=>{
         setModalmode(modalmode);
@@ -57,6 +61,11 @@ const Main = () => {
 
                     <Route path="/my/notice" element={<Notice />}></Route>
                     <Route path="/my/profile" element={<Profile />}></Route>
+
+                    {/*강퇴 페이지*/}
+                    <Route path='/withdrawal' element={<Withdrawal />} />
+                    <Route path='/withdrawal2' element={<Withdrawal2 />} />
+                    <Route path='/withdrawal4' element={<Withdrawal4 />} />
 
                     {/* 페이지 내부에서 추가적으로 route해야하는 페이지도 이 부분에 작성 */}
                 </Routes>

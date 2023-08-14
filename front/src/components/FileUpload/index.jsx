@@ -10,7 +10,7 @@ const FileUploadButton = ({onselectImage}) => {
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [profileimg,setprofileimg]=useRecoilState(profileImg);
+  const [profileimg, setprofileimg]=useRecoilState(profileImg);
 
   const handleOptionChange = (e) => {
     if (e.target.value === "gallery") {
@@ -32,7 +32,7 @@ const FileUploadButton = ({onselectImage}) => {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
         onselectImage(URL.createObjectURL(selectedFile));
-        setSelectedImage(imageUrl);
+        // setSelectedImage(imageUrl);
         setprofileimg(selectedFile);
       }
     });
