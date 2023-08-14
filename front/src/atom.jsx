@@ -34,3 +34,7 @@ export const profileImg = atom({
 key:"profileImg",
 default:null,
 });
+export const ID = atom({
+    key:"ID",
+    default:"",
+    });

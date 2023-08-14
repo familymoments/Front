@@ -5,10 +5,17 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import { ID } from "../../../atom";
 function Findpwd(props){
     useEffect(()=>{
         props.changeTitle("비밀번호 찾기");
     })
+    
+     //상태관리
+    const [id,setId] = useRecoilState(ID);
+    
+    
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
@@ -16,7 +23,6 @@ function Findpwd(props){
         register,
         handleSubmit,
         watch,
-        resetField,
       } = useForm();
     const getAuth = (e) => {
         
@@ -26,6 +32,7 @@ function Findpwd(props){
             console.log(res);
             if (res.data.code === 200) {
                 console.log(e);
+                setId = watch("userId");
                 navigate( "/landing/findpwd2");
             }
             if (res.data.code === 404) {

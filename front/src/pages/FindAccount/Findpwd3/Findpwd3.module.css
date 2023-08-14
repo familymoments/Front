@@ -53,3 +53,10 @@
     margin-top: 183px;
 
 }
+.hiddenbtn{
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    color: none;
+    border: none;
+}

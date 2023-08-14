@@ -75,7 +75,7 @@ const {
                    if (res.data.code === 200) {
                        console.log(e);
                        
-                       navigate( "/landing/findid2");
+                       navigate( "/landing/findpwd3");
                    }
                    if (res.data.code === 404) {
                        Swal.fire("이메일과 인증번호를 다시 한번 확인해주세요.");
