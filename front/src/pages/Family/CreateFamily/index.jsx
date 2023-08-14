@@ -7,8 +7,7 @@ import PersonInfo from "../../../components/PersonInfo";
 
 import{useNavigate} from "react-router-dom"
 
-
-const CreateFamily = () => {
+const CreateFamily = (props) => {
     const navigate = useNavigate();
     return (
         <div>
