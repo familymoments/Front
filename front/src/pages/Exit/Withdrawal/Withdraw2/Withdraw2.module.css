@@ -1,0 +1,32 @@
+.content1 {
+    width: 328px;
+    height: 107px;
+    top: 234px;
+    left: 16px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 110%);
+}
+
+.btn {
+    position: absolute;
+    top: 54%; 
+    left: 50%; 
+    transform: translate(-50%, 300%); 
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #EF88A1;
+}
+
+.bar {
+    width: 328px;
+    height: 107px;
+    top: 234px;
+    left: 16px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-55%, 130%);
+}
