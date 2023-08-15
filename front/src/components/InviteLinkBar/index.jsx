@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import styles from "./InviteLinkBar.module.css";
 
-const InviteLinkBar = () => {
-    const [searchTerm, setLinkTerm] = useState("http://www.dgjkdlkgzsldkfjgoqkdfnlmf");
+const InviteLinkBar = ({ placeholder, onSearchTermChange, searchTerm, style }) => {
+  const handleChange = (event) => {
+    onSearchTermChange(event.target.value);
+  };
 
-    const handleChange = (event) => {
-        setLinkTerm(event.target.value);
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
-
-return (
+  return (
     <form onSubmit={handleSubmit} className={styles.linkBar}>
       <div className={styles.linkcontainer}>
         <div className={styles.linkText}>
@@ -21,10 +19,12 @@ return (
             value={searchTerm}
             onChange={handleChange}
             className={styles.searchInput}
+            placeholder={placeholder}
+            style={style}
           />
         </div>
       </div>
-      </form>
+    </form>
   );
 };
 

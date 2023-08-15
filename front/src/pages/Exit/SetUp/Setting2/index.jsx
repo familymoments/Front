@@ -1,12 +1,12 @@
-import MyText from "../../../components/MyText";
-import classes from "./Withdrawal.module.css";
-import PersonInfo from "../../../components/PersonInfo";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
+import MyText from "../../../../components/MyText";
+import classes from "../Setting/Setting.module.css";
+import PersonInfo from "../../../../components/PersonInfo";
 
 import{useNavigate} from "react-router-dom"
 
 
-const Withdrawal = () => {
+const Setting2 = () => {
     const navigate = useNavigate();
     return (
         <div>
@@ -17,11 +17,11 @@ const Withdrawal = () => {
                     <PersonInfo name="clohee" />
                 </div>
             <Button 
-                onClick={()=>{navigate("/Main/withdrawal2")}}
-                btn={classes.btn2} 
+                onClick={()=>{navigate()}}
+                btn={classes.btn} 
                 title="탈퇴시키기"/>
         </div>
     );
 }
 
-export default Withdrawal;
+export default Setting2;
