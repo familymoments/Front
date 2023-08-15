@@ -70,6 +70,7 @@ function App() {
                         <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
                         <Route path='/landing/createfamily5' element={<CreateFamily5 />} />
                         <Route path='/landing/createfamily5_2' element={<CreateFamily5_2 />} />
+
                         
                         {/* 생성 시 */}
                         <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />
