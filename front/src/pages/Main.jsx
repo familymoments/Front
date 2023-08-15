@@ -19,6 +19,10 @@ import Setting2 from './Exit/SetUp/Setting2';
 import Withdraw from "./Exit/Withdrawal/Withdraw";
 import Withdraw2 from "./Exit/Withdrawal/Withdraw2";
 import Withdraw3 from "./Exit/Withdrawal/Withdraw3";
+import Delete1 from "./Exit/Delete/Delete1";
+import Delete2 from "./Exit/Delete/Delete2";
+import Delete3 from "./Exit/Delete/Delete3";
+
 
 
 // mypage관련 라우팅 정리하기
@@ -71,6 +75,9 @@ const Main = () => {
                     <Route path='/withdraw' element={<Withdraw />} />
                     <Route path='/withdraw2' element={<Withdraw2 />} />
                     <Route path='/withdraw3' element={<Withdraw3 />} />
+                    <Route path='/delete1' element={<Delete1 />} />
+                    <Route path='/delete2' element={<Delete2 />} />
+                    <Route path='/delete3' element={<Delete3 />} />
 
 
                     {/* 페이지 내부에서 추가적으로 route해야하는 페이지도 이 부분에 작성 */}
