@@ -14,9 +14,12 @@ import AlbumDetail from "./Album/Detail";
 import CalendarDetail from "./Calendar/Detail";
 
 //강퇴페이지
-import Withdrawal from './Exit/Withdrawal';
-import Withdrawal2 from './Exit/Withdrawal2';
-import Withdrawal4 from "./Exit/Withdrawal4";
+import Setting from './Exit/SetUp/Setting';
+import Setting2 from './Exit/SetUp/Setting2';
+import Withdraw from "./Exit/Withdrawal/Withdraw";
+import Withdraw2 from "./Exit/Withdrawal/Withdraw2";
+import Withdraw3 from "./Exit/Withdrawal/Withdraw3";
+
 
 // mypage관련 라우팅 정리하기
 import Notice from "./MyPage/Notice";
@@ -63,9 +66,12 @@ const Main = () => {
                     <Route path="/my/profile" element={<Profile />}></Route>
 
                     {/*강퇴 페이지*/}
-                    <Route path='/withdrawal' element={<Withdrawal />} />
-                    <Route path='/withdrawal2' element={<Withdrawal2 />} />
-                    <Route path='/withdrawal4' element={<Withdrawal4 />} />
+                    <Route path='/setting' element={<Setting />} />
+                    <Route path='/setting2' element={<Setting2 />} />
+                    <Route path='/withdraw' element={<Withdraw />} />
+                    <Route path='/withdraw2' element={<Withdraw2 />} />
+                    <Route path='/withdraw3' element={<Withdraw3 />} />
+
 
                     {/* 페이지 내부에서 추가적으로 route해야하는 페이지도 이 부분에 작성 */}
                 </Routes>
