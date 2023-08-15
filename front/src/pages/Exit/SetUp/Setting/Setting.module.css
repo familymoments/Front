@@ -86,3 +86,29 @@
     font-size: 16px;
     line-height: 24px;
 }
+
+.bold3 {
+    width: 328px;
+    height: 24px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-56%, 720%);
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+    color: #EE2F51;
+}
+
+.bold4 {
+    width: 328px;
+    height: 24px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 720%);
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+    color: #EE2F51;
+}
