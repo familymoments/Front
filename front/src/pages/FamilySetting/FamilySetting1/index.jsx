@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import MyText from "../../../components/MyText";
 import InviteLinkBar from "../../../components/InviteLinkBar";
 import Button from "../../../components/Button";
-import classes from "../CreateFamily/CreateFamily.module.css";
-import Header from '../../../components/Header';
-import styles from "./CreateFamily4.module.css";
+import classes from "../../Family/CreateFamily/CreateFamily.module.css";
+import styles from "../../Family/CreateFamily4/CreateFamily4.module.css";
 
-import {useNavigate, useLocation} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 
-const CreateFamily4 = () => {
+const FamilySetting1 = () => {
     const navigate = useNavigate();
 
     const handleSearchTermChange = (newTerm) => {
@@ -18,14 +17,9 @@ const CreateFamily4 = () => {
     };
     const [searchTerm, setSearchTerm] = useState(""); 
 
-    const location = useLocation();
-    console.log("location.state:", location.state);
-    const { selectedAlarm } = location.state;
-    console.log("selectedAlarm in CreateFamily4:", selectedAlarm);
 
     return (
         <div>
-            <Header title="가족" />
             <div className={classes.content3}>
             <MyText text="가족 초대 링크" />
             </div>
@@ -39,7 +33,7 @@ const CreateFamily4 = () => {
                 btn={classes.btn2}
                 title="초대 링크 복사"
             />
-            <Button onClick={()=>{navigate("/landing/createfamily5")}}
+            <Button onClick={()=>{navigate("/Main/familysetting2")}}
                 btn={classes.btn} 
                 title="다음"
             />
@@ -47,4 +41,4 @@ const CreateFamily4 = () => {
     );
 }
 
-export default CreateFamily4;
+export default FamilySetting1;
