@@ -23,6 +23,15 @@ import Delete1 from "./Exit/Delete/Delete1";
 import Delete2 from "./Exit/Delete/Delete2";
 import Delete3 from "./Exit/Delete/Delete3";
 
+//가족 설정페이지
+import FamilySetting1 from "./FamilySetting/FamilySetting1";
+import FamilySetting2 from "./FamilySetting/FamilySetting2";
+import Authority from "./FamilySetting/Authority";
+import Authority2 from "./FamilySetting/Authority2";
+import Add from "./FamilySetting/Add";
+import Withdraw4 from "./FamilySetting/Withdraw4";
+import Delete4 from "./FamilySetting/Delete4";
+import Check from "./FamilySetting/Check";
 
 
 // mypage관련 라우팅 정리하기
@@ -31,6 +40,7 @@ import Profile from "./MyPage/Profile";
 
 //modal state 상태관리
 import {atom} from "recoil";
+
 
 const Main = () => {
     
@@ -78,6 +88,16 @@ const Main = () => {
                     <Route path='/delete1' element={<Delete1 />} />
                     <Route path='/delete2' element={<Delete2 />} />
                     <Route path='/delete3' element={<Delete3 />} />
+
+                    {/*가족 설정 페이지*/}
+                    <Route path='/familysetting1' element={<FamilySetting1 />} />
+                    <Route path='/familysetting2' element={<FamilySetting2 />} />
+                    <Route path='/authority' element={<Authority />} />
+                    <Route path='/authority2' element={<Authority2 />} />
+                    <Route path='/add' element={<Add />} />
+                    <Route path='/withdraw4' element={<Withdraw4/>} />
+                    <Route path='/delete4' element={<Delete4/>} />
+                    <Route path='/check' element={<Check/>} />
 
 
                     {/* 페이지 내부에서 추가적으로 route해야하는 페이지도 이 부분에 작성 */}
