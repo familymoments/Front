@@ -20,23 +20,26 @@ function Findpwd3(props){
         register,
         handleSubmit,
         watch,
-        resetField,
+        formState: { errors },
       } = useForm();
-      const getAuth = (e) => {
-        const passwordA=watch("passwordA")  
-        const passwordB=watch("passwordB")
 
-        if(passwordA == "" || passwordB == ""){
+      //password
+    const passwordA=watch("passwordA");  
+    const passwordB=watch("passwordB");
+
+      const getAuth = (e) => {
+        if(passwordA === "" || passwordB === ""){
             Swal.fire("새로운 비밀번호를 입력해주십시오.");
         }
-        else {
+        else if(passwordA === passwordB){
         axios
         .patch(`/users/auth/modify-pwd?id=${id}`, e)   
         .then(function (res) {
-            console.log(res);
+             console.log(id);
+             console.log(res);
             if (res.data.code === 200) {
-                console.log(e);
                 navigate( "/landing/findpwd3");
+                Swal.fire("비밀번호가 재설정됐습니다.");
             }
             if (res.data.code === 404) {
                 Swal.fire("존재하지 않는 아이디입니다.");
@@ -49,6 +52,9 @@ function Findpwd3(props){
         .catch(function (err) {
             Swal.fire("일치하는 회원 정보가 없습니다.");
             });
+        }
+        else if(passwordA =! passwordB){
+            Swal.fire("비밀번호를 다시 한번 확인해주세요.")
         }
         console.log(e);
        
@@ -70,8 +76,16 @@ function Findpwd3(props){
                 <input className = {Styles.inputstyle} placeholder="새 비밀번호 확인"
                 type = "password"
                 required
-                {...register("passwordB")}/>
+                  {...register("passwordB",  {
+                    required:"입력한 비밀번호가 일치하지 않습니다",
+                    validate: {
+                      confirmPw: (v) =>
+                         v === passwordA || "입력한 비밀번호가 일치하지 않습니다",
+                    },
+                  })}/>
             </div>
+            {errors?.passwordB?.message === undefined ? (<p className = {Styles.alert}>입력한 비밀번호가 일치합니다</p>) : 
+                    ( <p className = {Styles.alert}> {errors?.passwordB?.message}</p>)}
             <div className={Styles.buttonlocation}>
                 <button type = "submit" className={Styles.hiddenbtn}><Loginbutton texts =" 순간을 가족에게 공유하기"/></button>
             </div>

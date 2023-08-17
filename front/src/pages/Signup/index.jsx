@@ -32,7 +32,7 @@ function Signup(props){
           handleSubmit,
           resetField,
           watch,
-          formState: { isSubmitting, isSubmitted, errors },
+          formState: { errors },
         } = useForm();
         //비밀번호 값 추적
         const password = watch("password");
@@ -308,7 +308,7 @@ function Smalladmit(props){
     return(
         <div className={Styles.smalladmitbox}>
             <div className={Styles.smalladmit}>
-                <button  type="button" className = {Styles.checkbutn}><FaCheck/></button>
+                <button  type="button" className = {Styles.checkbutn} onClick={()=>{}}><FaCheck/></button>
                 <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
                 <button type="button" className= {Styles.checkbutn} onClick={()=>{navigate(props.location)}}><GrNext/></button>
             </div>

@@ -60,3 +60,12 @@
     color: none;
     border: none;
 }
+.alert{
+    color: #FF7160;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13px;
+}
