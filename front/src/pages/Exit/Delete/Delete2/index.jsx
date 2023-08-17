@@ -1,19 +1,12 @@
-import React, { useState } from "react";
 import Button from "../../../../components/Button";
 import MyText from "../../../../components/MyText";
-import styles from "./Withdraw2.module.css";
+import styles from "../../Withdrawal/Withdraw2/Withdraw2.module.css";
 import InviteLinkBar from "../../../../components/InviteLinkBar";
 import{useNavigate} from "react-router-dom"
 
 
-const Withdraw2 = () => {
+const Delete2 = () => {
     const navigate = useNavigate();
-    const [currentPassword, setCurrentPassword] = useState(""); // 추가: 상태 관리
-
-    const handlePasswordChange = (newPassword) => {
-      setCurrentPassword(newPassword); // 비밀번호 상태 업데이트
-    };
-
     return (
         <div>
             <div className={styles.content1}>
@@ -25,15 +18,10 @@ const Withdraw2 = () => {
             } />
             </div>  
             <div className={styles.bar}>
-            <InviteLinkBar 
-                placeholder="현재 비밀번호" 
-                style={{ fontSize: "13px" }}
-                onSearchTermChange={handlePasswordChange} // 상태 업데이트 함수 전달
-                searchTerm={currentPassword} // 현재 비밀번호 상태 전달
-                />  
+            <InviteLinkBar placeholder="현재 비밀번호" style={{ fontSize: "13px" }} />  
             </div>        
             <Button 
-                onClick={()=>{navigate("/Main/withdraw3")}}
+                onClick={()=>{navigate("/Main/delete3")}}
                 btn={styles.btn} 
                 title="계속하기"
             />
@@ -41,4 +29,4 @@ const Withdraw2 = () => {
     );
 }
 
-export default Withdraw2;
+export default Delete2;

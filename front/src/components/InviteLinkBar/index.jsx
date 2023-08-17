@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styles from "./InviteLinkBar.module.css";
 
-const InviteLinkBar = ({ placeholder, onSearchTermChange, searchTerm, style }) => {
+const InviteLinkBar = ({ text, onSearchTermChange, placeholder, style }) => {
+  const [searchTerm, setSearchTerm] = useState(""); // searchTerm 상태 추가
+
   const handleChange = (event) => {
-    onSearchTermChange(event.target.value);
+    const newTerm = event.target.value;
+    setSearchTerm(newTerm); // searchTerm 상태 업데이트
+    onSearchTermChange(newTerm);
   };
 
   const handleSubmit = (event) => {
@@ -15,7 +19,7 @@ const InviteLinkBar = ({ placeholder, onSearchTermChange, searchTerm, style }) =
       <div className={styles.linkcontainer}>
         <div className={styles.linkText}>
           <input
-            type="text"
+            type={text}
             value={searchTerm}
             onChange={handleChange}
             className={styles.searchInput}
