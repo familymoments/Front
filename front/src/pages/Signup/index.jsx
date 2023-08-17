@@ -14,13 +14,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {profileImg} from "../../atom";
 import { useRecoilValue } from 'recoil';
-    
+
 
 function Signup(props){
     const [selectedImage, setSelectedImage] = useState();
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
+    
       const {
           register,
           handleSubmit,
@@ -122,6 +123,7 @@ function Signup(props){
                 };
     return(
     <>
+    
     <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
             
                 <Label label = "아이디"/>
@@ -192,9 +194,9 @@ function Signup(props){
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>
                 <hr/>
-                <Smalladmit texts = "(필수) 서비스 이용 약관에 동의"/>
-                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관"/>
-                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의"/>
+                <Smalladmit texts = "(필수) 서비스 이용 약관에 동의" location = "/signup/TOS1"/>
+                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관" location = "/signup/TOS2"/>
+                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의" location = "/signup/TOS3"/>
                 <div  className={Styles.signupbutn}>
                     <button type = "submit" className = {Styles.hiddenbtn}><Loginbutton  texts = "Family Moments 시작하기" /></button>
                 </div>
@@ -210,7 +212,7 @@ function Alladmit(props){
        
             <div className={Styles.alladmitbox}>
                 <div className={Styles.alladmit}>
-                <button className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
+                <button type = "button"className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
                 <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
                 </div>
             </div>
@@ -219,12 +221,13 @@ function Alladmit(props){
 }
 
 function Smalladmit(props){
+    const navigate = useNavigate();
     return(
         <div className={Styles.smalladmitbox}>
             <div className={Styles.smalladmit}>
-                <button  className = {Styles.checkbutn}><FaCheck/></button>
+                <button  type="button" className = {Styles.checkbutn}><FaCheck/></button>
                 <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
-                <button className= {Styles.checkbutn}><GrNext/></button>
+                <button type="button" className= {Styles.checkbutn} onClick={()=>{navigate(props.location)}}><GrNext/></button>
             </div>
         </div>
     );
