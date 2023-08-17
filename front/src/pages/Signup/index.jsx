@@ -27,6 +27,7 @@ function Signup(props){
           handleSubmit,
           resetField,
           watch,
+          formState: { isSubmitting, isSubmitted, errors },
         } = useForm();
            
     const navigate = useNavigate();
@@ -60,13 +61,27 @@ function Signup(props){
             // Post실행
             axios.post(`/users/sign-up`,fd)
             .then((res)=>{
-
+                console.log(res);
+                
                 if(res.data.code == 200){
                     navigate("/landing/login");
                 }
-                if(res.data.code == 400){
-                    Swal.fire("입력하신 값을 다시확인해주세요.");
+                if(res.data.message== "닉네임 형식을 확인해주세요."){
+                    Swal.fire("닉네임 형식을 확인해주세요.");
                 }
+                if(res.data.message== "비밀번호 형식을 확인해주세요."){
+                    Swal.fire("비밀번호 형식을 확인해주세요.");
+                }
+                if(res.data.message== "생년월일 형식을 확인해주세요."){
+                    Swal.fire("생년월일 형식을 확인해주세요.");
+                }
+                if(res.data.message== "이메일 형식을 확인해주세요."){
+                    Swal.fire("이메일 형식을 확인해주세요.");
+                }
+                if(res.data.message== "이미 가입한 이메일이 존재합니다."){
+                    Swal.fire("이미 가입한 이메일이 존재합니다.");
+                }
+                
             })
             .catch(err=>{
                 console.log(err);
@@ -128,19 +143,37 @@ function Signup(props){
             
                 <Label label = "아이디"/>
                 <div className ={Styles.certinput}>
-                    <input  type="text"
-                    placeholder="아이디를 입력해주세요."
-                    required
-                    {...register("id")}className = {Styles.smallinput} />
+                    <input  id = "id" type="text" placeholder="아이디를 입력해주세요." className = {Styles.smallinput}
+                     aria-invalid={isSubmitting ? (errors.id ? "true" : "false") : undefined}
+                    {...register("id" ,{
+                    required: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                    minLength: {
+                        value: 6,
+                        message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                },})} />
                     <button onClick = {idCheck} className ={Styles.hiddenbtn}><CertificationButton className = {Styles.certbtn}text = "중복확인"/></button> 
                     </div>
+                {errors.id && <small className = {Styles.alert} role="alert">{errors.id.message}</small>}
             <Label label = "비밀번호"/>
             <div className = {Styles.inputcontainer}>
-            <input  className ={Styles.input}
-                type="password"
-                {...register("password")}
+            <input  className ={Styles.input}  type="password"
+             aria-invalid={isSubmitted? errors.password? "true" : "false": undefined }
+                {...register("password",{
+                    required: 
+                    "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요 ",
+                    minLength: {
+                        value: 8,
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                },})}
                 placeholder="비밀번호"
-                required
             />  
             <button  onClick = {resetPassword} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
             </div>
@@ -148,9 +181,20 @@ function Signup(props){
              <div className = {Styles.inputcontainer}>
                     <input className = {Styles.input} 
                         type="password"
-                        {...register("confirm")}
+                        {...register("confirm", {
+                            required: 
+                            "비밀번호는 필수 입력입니다.",
+                            minLength: {
+                                value: 8,
+                                message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                        },
+                        maxLength: {
+                            value: 12,
+                            message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                        },
+                    })}
                         placeholder="비밀번호를 한번 더 입력해주세요."
-                        required
+                        
                     />
                      <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>

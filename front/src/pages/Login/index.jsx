@@ -85,19 +85,22 @@ function Login(props,{
     <form className = {Styles.input} onSubmit={handleSubmit(getAuth)}>
             <div>
               
-              {/* aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}  */}
+            
                   
-                  {errors.id && <small role="alert">{errors.id.message}</small>}
-                <input id = "text" className={Styles.id} type= "text"  placeholder="ID" 
+                
+                <input id = "id" className={Styles.id} type= "text"  placeholder="ID"   
+                aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined} 
                 {...register("id", {required: "아이디는 필수 입력입니다.",
-                pattern: {
-                    
-                message: "아이디가 올바르지 않습니다.",
-                
-                },})}/>
-                
-                
+                minLength: {
+                    value: 6,
+                    message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                    },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                    },})}/>     
             </div>
+            {errors.id && <small className = {Styles.alert} role="alert">{errors.id.message}</small>}
             <div>
                 
                 <input id ="password" className = {Styles.password}  type='password'  placeholder='Password' 
@@ -113,11 +116,18 @@ function Login(props,{
                     "비밀번호는 필수 입력입니다.",
                     minLength: {
                         value: 8,
-                        message: "8자리 이상 비밀번호를 사용하세요.",
-                }, })}
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                },
+                
+             })}
                 />
-                {errors.password && <small role="alert">{errors.password.message}</small>}
+                
             </div>
+            {errors.password && <small className = {Styles.alert}role="alert">{errors.password.message}</small>}
                 <button className={Styles.loginbtn} type = "submit"><Loginbutton  texts ="로그인"></Loginbutton></button>
                 
         </form>
@@ -129,15 +139,15 @@ function Login(props,{
             <p className={Styles.accountbutton}>|</p>
             <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
-
-            <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
+            {/* 소셜 로그인 */}
+            {/* <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
             
            
             <div className = {Styles.socialloginbox}>
             <button onClick={''} className={Styles.kakao}><RiKakaoTalkFill className={Styles.kakaodetail}/></button>
             <button onClick={''} className={Styles.naver}><SiNaver/></button>
             <button onClick={''} className = {Styles.google}><FcGoogle className={Styles.googledetail}/></button>
-            </div> 
+            </div>  */}
     </div>
     );
 }

@@ -179,3 +179,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.alert{
+    color: red;
+    margin-top: 5px;
+}

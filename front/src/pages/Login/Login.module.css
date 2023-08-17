@@ -157,3 +157,7 @@
     margin: 0px;
     background: none;
 }
+.alert{
+    color: red;
+    margin-top: 5px;
+}
