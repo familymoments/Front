@@ -20,7 +20,7 @@ function Signup(props){
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
-    
+
     const navigate = useNavigate();
 
     //이미지 업로드 컴포넌트 상태관리
@@ -176,10 +176,9 @@ function Signup(props){
             
                 <Label label = "아이디"/>
                 <div className ={Styles.certinput}>
-                    <input  id = "id" type="text" placeholder="아이디를 입력해주세요." className = {Styles.smallinput}
-                    //  aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}
+                    <input  id ="id" type="text" placeholder="아이디를 입력해주세요." className = {Styles.smallinput}
                     {...register("id" ,{
-                    required: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                    required:"사용하실 아이디를 입력해주세요",
                     minLength: {
                         value: 6,
                         message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
@@ -187,14 +186,17 @@ function Signup(props){
                     maxLength: {
                         value: 12,
                         message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
-                        },})} />
+                        },
+                   })}/>
                     <button onClick = {idCheck} className ={Styles.hiddenbtn}><CertificationButton className = {Styles.certbtn}text = "중복확인"/></button> 
                     </div>
-                {errors.id && <small className = {Styles.alert} role="alert">{errors.id.message}</small>}
+                
+                {errors.id && <p className = {Styles.alert} role="alert">{errors.id.message}</p>}
+                  
             <Label label = "비밀번호"/>
             <div className = {Styles.inputcontainer}>
             <input  className ={Styles.input}  type="password"
-             aria-invalid={isSubmitted? errors.password? "true" : "false": undefined }
+            
                 {...register("password",{
                     required: 
                     "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요 ",
@@ -205,34 +207,46 @@ function Signup(props){
                     maxLength: {
                         value: 12,
                         message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
-                },})}
+                },
+                pattern: {
+                    value: /^[0-9a-zA-Z]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                  },})}
                 placeholder="비밀번호"
             />  
             <button  onClick = {resetPassword} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
             </div>
+            {errors.password && <p className = {Styles.alert} role="alert">{errors.password.message}</p>}
              <Label label = "비밀번호 확인"/>
              <div className = {Styles.inputcontainer}>
-                    <input className = {Styles.input} type="password"  placeholder="비밀번호를 한번 더 입력해주세요."
+                    <input id="confirm" className = {Styles.input} type="password"  placeholder="비밀번호를 한번 더 입력해주세요."
                         {...register("confirm",  {
-                            required:"비밀번호가 일치하지 않습니다",
+                            required:"입력한 비밀번호가 일치하지 않습니다",
                             validate: {
                               confirmPw: (v) =>
-                                 v === password || "비밀번호가 일치하지 않습니다",
+                                 v === password || "입력한 비밀번호가 일치하지 않습니다",
                             },
                           })}/>
                      <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
-                    {errors.confirm && <small className = {Styles.alert}role="alert">{errors.confirm?.message}</small>}
-           
-         
+                    {/* {errors.confirm && <small className = {Styles.alert} role="alert">{errors.confirm.message}</small>} */}
+                    {errors?.confirm?.message === undefined ? (<p className = {Styles.alert}>입력한 비밀번호가 일치합니다</p>) : 
+                    ( <p className = {Styles.alert}> {errors?.confirm?.message}</p>)}
             <Label label = "이름"/>
             <div className = {Styles.inputcontainer}>
             <input placeholder = "실명을 입력하세요. ex) 홍길동" className= {Styles.input}
               type="text"
-              required
-              {...register("name")}
+              {...register("name",  {
+                maxLength: {
+                  value: 5,
+                  message: "5자리 이하로 작성해주세요",
+                },pattern: {
+                value: /^[가-힣a-zA-Z]+$/,
+                message: "형식에 맞지 않는 이름 입니다.",
+              },})}
             />
             </div>
+
                  <Label label = "생년월일"/>
                     <div className={Styles.inputcontainer}>
                         <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"

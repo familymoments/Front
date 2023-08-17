@@ -56,7 +56,7 @@ function Login(props) {
                 
             })
             .catch(function (error) {
-                console.log(error.error.data);
+                console.log(error);
                 Swal.fire({
                  icon: "error",
                  title: "아이디 또는 비밀번호가 틀렸습니다."
