@@ -11,63 +11,57 @@ import Swal from "sweetalert2";
 import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
-function Login(props,{
-    onSubmit = async (data) => {
-        await new Promise((r) => setTimeout(r, 1000));
-        alert(JSON.stringify(data));
-    },
-}) {
+function Login(props) {
     const {
         register,
         handleSubmit,
         watch,
-        formState: { isSubmitting, isSubmitted, errors },
+        formState: { errors },
     } = useForm();
     
     useEffect(()=>{
         props.changeTitle("Family Moments");
     })
-    
+    // 상태관리
     const [headers, setHeaders] = useRecoilState(header);
+    //navigate
     const navigate = useNavigate();
-    
+    // id 값 관리
+    const id = watch("id");
+    // password 값 관리
+    const password = watch("password");
+    //login data 전송
     const getAuth = (data) => {
         axios
             .post("/users/log-in",data)
-            .then(function (response) {
-                console.log(response);
-                const token = response.data.token;
-                //const accessToken = response.headers['authorization'];
-                const refreshToken = response.headers['refresh'];
-                const { accessToken } = response.data;
+            .then(function (res) {
+                console.log(res);
+                const token = res.data.token;
+                //const accessToken = res.headers['authorization'];
+                const refreshToken = res.headers['refresh'];
+                const { accessToken } = res.data;
                
                 // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
                 axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
                 
-                setCookie("token", response.headers.get("x-auth-token"), {
+                setCookie("token", res.headers.get("x-auth-token"), {
                     path: "/",
                     sameSite: "strict",
                 });
                 
-                console.log(response.headers.get("x-auth-token"));
-                setHeaders(response.headers.get("x-auth-token"));
-                localStorage.setItem('token', response.headers.get("x-auth-token"));
+                console.log(res.headers.get("x-auth-token"));
+                setHeaders(res.headers.get("x-auth-token"));
+                localStorage.setItem('token', res.headers.get("x-auth-token"));
                 navigate("/landing/newfamily");
                 
             })
             .catch(function (error) {
-                console.log(error.response.data);
+                console.log(error);
                 Swal.fire({
-            icon: "error",
-            title: "아이디 또는 비밀번호가 틀렸습니다."
-           
+                 icon: "error",
+                 title: "아이디 또는 비밀번호가 틀렸습니다."
           });
             });
-                console.log(watch("id"));
-                console.log(watch("password"));
-                
-                console.log(headers);
-        
     };
     
     return(
@@ -84,42 +78,36 @@ function Login(props,{
    
     <form className = {Styles.input} onSubmit={handleSubmit(getAuth)}>
             <div>
-              
-              {/* aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}  */}
-                  
-                  {errors.id && <small role="alert">{errors.id.message}</small>}
-                <input id = "text" className={Styles.id} type= "text"  placeholder="ID" 
+                <input id = "id" className={Styles.id} type= "text"  placeholder="ID"   
                 {...register("id", {required: "아이디는 필수 입력입니다.",
-                pattern: {
-                    
-                message: "아이디가 올바르지 않습니다.",
-                
-                },})}/>
-                
-                
+                minLength: {
+                    value: 6,
+                    message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                    },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
+                        },})}/>     
             </div>
+            {errors.id && <small className = {Styles.alert} role="alert">{errors.id.message}</small>}
+
             <div>
-                
                 <input id ="password" className = {Styles.password}  type='password'  placeholder='Password' 
-                        aria-invalid={
-                            isSubmitted
-                                ? errors.password
-                                    ? "true"
-                                    : "false"
-                                : undefined
-                        }
                 {...register("password", {
                     required: 
                     "비밀번호는 필수 입력입니다.",
                     minLength: {
                         value: 8,
-                        message: "8자리 이상 비밀번호를 사용하세요.",
-                }, })}
-                />
-                {errors.password && <small role="alert">{errors.password.message}</small>}
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                },
+            })}/>
             </div>
-                <button className={Styles.loginbtn} type = "submit"><Loginbutton  texts ="로그인"></Loginbutton></button>
-                
+            {errors.password && <small className = {Styles.alert}role="alert">{errors.password.message}</small>}
+                <button className={Styles.loginbtn} type = "submit"><Loginbutton  texts ="로그인"></Loginbutton></button>  
         </form>
 
         <div className={Styles.accountbutton}>
@@ -129,15 +117,15 @@ function Login(props,{
             <p className={Styles.accountbutton}>|</p>
             <button onClick={()=>{navigate("/landing/signup")}} className={Styles.accountbutton}>회원가입</button>
         </div>
-
-            <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
+            {/* 소셜 로그인 */}
+            {/* <div id={Styles.hrsect}>SNS 계정으로 로그인</div>
             
            
             <div className = {Styles.socialloginbox}>
             <button onClick={''} className={Styles.kakao}><RiKakaoTalkFill className={Styles.kakaodetail}/></button>
             <button onClick={''} className={Styles.naver}><SiNaver/></button>
             <button onClick={''} className = {Styles.google}><FcGoogle className={Styles.googledetail}/></button>
-            </div> 
+            </div>  */}
     </div>
     );
 }

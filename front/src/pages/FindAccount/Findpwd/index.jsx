@@ -31,23 +31,17 @@ function Findpwd(props){
         .then(function (res) {
             console.log(res);
             if (res.data.code === 200) {
-                console.log(e);
-                setId = watch("userId");
-                navigate( "/landing/findpwd2");
+                setId = watch("id");
+                console.log(id);
+                navigate("/landing/findpwd2");
             }
             if (res.data.code === 404) {
                 Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
-            }
-           
-            
+            } 
         })
         .catch(function (err) {
-            if (err.data.code === 404) {
-                
             Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
-            }});
-        console.log(e);
-       
+        });
     };
     return(
         <form onSubmit={handleSubmit(getAuth)}>
@@ -58,9 +52,7 @@ function Findpwd(props){
             </div>
             <div className={Styles.inputlocation}>
                 <input className={Styles.idinput} placeholder = "ID" type="text"
-                        required
-                        {...register("userId")}
-                        />
+             required {...register("id")}/>
             </div>
             <div className={Styles.button}>
                <button type = "submit" className={Styles.hiddenbtn}> <Loginbutton texts =" 순간을 가족에게 공유하기"/></button>

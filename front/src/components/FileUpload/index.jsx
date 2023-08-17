@@ -32,9 +32,10 @@ const FileUploadButton = ({onselectImage}) => {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
         onselectImage(URL.createObjectURL(selectedFile));
+        const imageUrl = URL.createObjectURL(selectedFile);
+        setprofileimg(selectedFile);
         //const imageUrl = URL.createObjectURL(selectedFile);
         // setSelectedImage(imageUrl);
-        setprofileimg(selectedFile);
       }
     });
 
