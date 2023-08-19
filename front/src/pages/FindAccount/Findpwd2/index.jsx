@@ -1,22 +1,22 @@
-import CertificationButton from '../../components/CertificationButton';
-import Loginbutton from '../../components/Loginbutton';
-import Styles from './Findid.module.css'
-import Inputwindow from '../../components/Inputwindow';
+import CertificationButton from '../../../components/CertificationButton';
+import Loginbutton from '../../../components/Loginbutton';
+import Styles from './Findpwd2.module.css'
+import Inputwindow from '../../../components/Inputwindow';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function Findid(props){
+function Findpwd2(props){
 
     useEffect(()=>{
-        props.changeTitle("아이디 찾기");
+        props.changeTitle("비밀번호 찾기");
     })
     const navigate = useNavigate();
     return(
     <div>
         <div className={Styles.top}>
-            <h1 className = {Styles.findidtext}>아이디 찾기</h1>
+            <h1 className = {Styles.findidtext}>비밀번호 찾기</h1>
             <p className = {Styles.topsmalltext}>본인 확인을 위하여 이메일로 인증해주세요</p>
             </div>
             <h2 className ={Styles.topname}>이름</h2>
@@ -39,10 +39,10 @@ function Findid(props){
             </div>
 
             <div id = {Styles.findidbutton}>
-            <Loginbutton  location ="/landing/findid2" texts = "순간을 가족에게 공유하기"/>
+            <Loginbutton  location ="/landing/findpwd3" texts = "순간을 가족에게 공유하기"/>
             </div>
-
+            
         </div>);
 }
 
-export default Findid;
+export default Findpwd2;

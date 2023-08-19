@@ -1,21 +1,16 @@
 import Styles from './Login.module.css';
 import Loginbutton from '../../components/Loginbutton';
-import {get, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-// import Swal from "sweetalert2";
-import {atom,useRecoilState,useRecoilValue} from "recoil";
-// import { setCookie, decodeCookie, removeCookie } from "./Cookie";
-// import {loginData} from "./atom.jsx";
-
-
-
-
+import Swal from "sweetalert2";
+import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
+//import {headers} from "../../atom";
+import { useRecoilState } from 'recoil';
 function Login(props,{
     onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
@@ -25,44 +20,52 @@ function Login(props,{
     const {
         register,
         handleSubmit,
+        watch,
         formState: { isSubmitting, isSubmitted, errors },
     } = useForm();
     
-    // useEffect(()=>{
-    //     props.changeTitle("Family Moments");
-    // })
+    useEffect(()=>{
+        props.changeTitle("Family Moments");
+    })
     
-    // const [loginData, setloginData] = useRecoilState(loginData);
+    //const [headers, setHeaders] = useRecoilState(headers);
     const navigate = useNavigate();
-    const [id, setId] = useState('');
-    const [password, setPwd] = useState('');
-    const onIdHandler = (event) => {
-       setId(event.currentTarget.value);
-    }
-    const onPasswordHandler = (event) => {
-       setPwd(event.currentTarget.value);
-   }
-    const body = {
-        id : id,
-        password : password,
-      };
-    const getAuth = (e) => {
-        console.log(body);
+    
+    const getAuth = (data) => {
         axios
-            .post("/users/log-in",body)
+            .post("/users/log-in",data)
             .then(function (response) {
                 console.log(response);
-                navigate("/landing/newfamily")
-                // setloginData()
+                const token = response.data.token;
+                //const accessToken = response.headers['authorization'];
+                const refreshToken = response.headers['refresh'];
+                const { accessToken } = response.data;
+
+                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                
+                setCookie("token", `JWT ${response.data.token}`, {
+                    path: "/",
+                    sameSite: "strict",
+                });
+                console.log('토큰 :', token);
+                console.log('refresh 토큰 :', refreshToken);
+                console.log('access 토큰 :', accessToken);
+                console.log(response.headers.authorization);
+                //setHeaders(token);
+                navigate("/landing/newfamily");
+                
             })
             .catch(function (error) {
-                console.log(error);
-        //         Swal.fire({
-        //     icon: "error",
-        //     title: "이메일 또는 비밀번호가 틀렸습니다."
+                console.log(error.response.data);
+                Swal.fire({
+            icon: "error",
+            title: "아이디 또는 비밀번호가 틀렸습니다."
            
-        //   });
+          });
             });
+                console.log(watch("id"));
+                console.log(watch("password"));
         
     };
     
@@ -74,29 +77,29 @@ function Login(props,{
             </div>
             <div>
             <h2 className = {Styles.font}>안녕하세요 :-) <p>패밀리 모먼트입니다.</p>
-            <p id = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
+            <p className = {Styles.font2}>가족들과 소중한 순간을 공유해 보세요.</p></h2>
             </div>
         </div>
    
     <form className = {Styles.input} onSubmit={handleSubmit(getAuth)}>
             <div>
-              {/* onChange={onIdHandler} */}
-                  {/* onChange = {(e) =>setId(e.target.value)} */}
-                <input id = "id" className={Styles.id} type= "id"  placeholder="ID"   onChange = {(e) =>setId(e.target.value)}
-                aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined} 
+              
+              {/* aria-invalid={isSubmitted ? (errors.id ? "true" : "false") : undefined}  */}
+                  
+                  {errors.id && <small role="alert">{errors.id.message}</small>}
+                <input id = "id" className={Styles.id} type= "text"  placeholder="ID" 
                 {...register("id", {required: "아이디는 필수 입력입니다.",
                 pattern: {
-                
+                    
                 message: "아이디가 올바르지 않습니다.",
                 
                 },})}/>
-                {errors.id && <small role="alert">{errors.id.message}</small>}
+                
                 
             </div>
             <div>
-                 {/* onChange={(e) =>setPw(e.target.value)} */}
-                 {/* onChange={onPasswordHandler} */}
-                <input id ="password" className = {Styles.password} onChange={(e) =>setPwd(e.target.value)} type='password'  placeholder='Password' 
+                
+                <input id ="password" className = {Styles.password}  type='password'  placeholder='Password' 
                         aria-invalid={
                             isSubmitted
                                 ? errors.password
@@ -115,6 +118,7 @@ function Login(props,{
                 {errors.password && <small role="alert">{errors.password.message}</small>}
             </div>
                 <button className={Styles.loginbtn} type = "submit"><Loginbutton  texts ="로그인"></Loginbutton></button>
+                
         </form>
 
         <div className={Styles.accountbutton}>

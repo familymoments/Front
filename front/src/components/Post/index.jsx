@@ -19,7 +19,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 
 const Post = ({ showmodal, it }) => {
     const authToken=useRecoilValue(token);
-    const [postId,setPostId] = useRecoilState(postid);
+    // const [postId,setPostId] = useRecoilState(postid);
     const headers = {
     "X-AUTH-TOKEN": authToken,
     };
@@ -35,11 +35,10 @@ const Post = ({ showmodal, it }) => {
 
     const [postuserImg,setPostuserImg]=useRecoilState(userImg);
 
-    // useEffect(()=>{
-    //     setPostuserImg(it.profileImg);
-    //     console.log(postId);
+    useEffect(()=>{
+        console.log(it);
         
-    // },[]);
+    },[]);
 
     return (
         <div>

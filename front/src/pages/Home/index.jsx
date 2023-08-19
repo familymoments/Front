@@ -13,6 +13,8 @@ import { useCallback, useEffect,useState } from "react";
 import { deletePostId, recentPosts,token } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
+import {postdata} from "../../state/post";
+
 import axios from "axios";
 
 
@@ -27,14 +29,15 @@ const Home=({showmodal})=>{
     const headers = {
     "X-AUTH-TOKEN": authToken,
 };
-    //console.log(headers);
+    //postdata
+    const [postData,setPostData]=useRecoilState(postdata);
 
     const nav=useNavigate();
 
     const deletepostid=useRecoilValue(deletePostId);
     const [familyInfo,setfamilyInfo]=useState([]);
 
-    const [data,setData]=useRecoilState(recentPosts);
+    //const [data,setData]=useRecoilState(recentPosts);
     const [isnot,setIsnot]=useState(false);
 
 
@@ -47,11 +50,10 @@ const Home=({showmodal})=>{
             if(res.data.code===404){
                 setIsnot(true);
             }else {
-                setData(res.data.result);
+                setPostData(res.data.result);
             }
             })
            .catch(err=>console.log(err));
-
         axios.get(`/families/8/created`,{headers:{
             "X-AUTH-TOKEN": authToken,
             "Path":"/",
@@ -66,20 +68,19 @@ const Home=({showmodal})=>{
         
     },[]);
 
-
-    useEffect(()=>{
-        //DELETE요청
-        axios.delete(`/posts/${deletepostid}`,{headers})
-        .then(res=>{
-            setData(data.filter((post)=> deletepostid !==post.postId));
-            console.log(res);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-        // setData(data.filter((post)=> deletepostid !==post.postId));
+    // useEffect(()=>{
+    //     //DELETE요청
+    //     axios.delete(`/posts/${deletepostid}`,{headers})
+    //     .then(res=>{
+    //         setPostData(postData.filter((post)=> deletepostid !==post.postId));
+    //         console.log(res);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err);
+    //     })
+    //     // setData(data.filter((post)=> deletepostid !==post.postId));
        
-    },[deletepostid])
+    // },[deletepostid])
 
 
 
@@ -89,10 +90,11 @@ const Home=({showmodal})=>{
     return(
         <div className={styles.wrapper}>
             <HelloText user={familyInfo.nickname} Dday={familyInfo.dday} />
-            {/* {data.map((da)=>(
-                <Post showmodal={showmodal} it={da}/>
-            ))} */}
-            {/* <Post showmodal={showmodal} postlist={data}/> */}
+            {console.log(postData)}
+            {postData.map((post)=>(
+                <Post showmodal={showmodal} it={post}/>
+            ))}
+            {/* <Post showmodal={showmodal} postlist={post}/> */}
             {(isnot)?<CreateFamily5/>:""}
         </div>)
 }

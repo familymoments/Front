@@ -31,7 +31,7 @@ const ClickDots =({post,showmodal})=>{
        <div className={styles.wrapper}>
             <div className={styles.bottomLine} onClick={(e)=>{
                 e.preventDefault();
-                nav(`/Main/updatePost/${postId}`, {state:{post}})
+                nav(`/Main/updatePost/${post.postId}`, {state:{post}})
             }}>수정하기</div>
             <div className={styles.bottomLine}>신고하기</div>
             <div className={styles.ele} onClick={showDeletePopup}>삭제하기</div>

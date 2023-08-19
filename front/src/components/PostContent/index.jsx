@@ -12,14 +12,9 @@ import { useRecoilState } from "recoil";
 
 const PostContent=(props)=>{
 
-    const [postId,setPostId]=useRecoilState(postid);
+    const postId = props.postId;
     const nav=useNavigate();
     const post=props.postlist;
-
-    useEffect(()=>{
-        setPostId(props.postId);
-        console.log("PostContent",postId);
-    });
     
 
     return(

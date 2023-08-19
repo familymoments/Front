@@ -4,7 +4,7 @@ import CreatePostText from "../../components/CreatePostText";
 import SelectImg from "../../components/SelectImg";
 
 import { useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation,useNavigate, useParams } from "react-router-dom";
 
 //상태관리 라이브러리
 import { nextPostid,recentPosts,postid ,token} from "../../atom";
@@ -23,11 +23,11 @@ const UpdatePost =(props)=>{
     const {state:{post}}=useLocation();
 
    const [content,setContent]=useState(post.content);
-    const [nextpostid,setNextpostid]=useRecoilState(nextPostid);
     const [data,setData] = useRecoilState(recentPosts);
     const idx = data.findIndex((d)=>d.postId === post.postId);
 
-    const nowpostId=useRecoilValue(postid);
+    // const nowpostId=useRecoilValue(postid);
+    const nowpostId=useParams().postId;
 
     
 
@@ -36,6 +36,7 @@ const UpdatePost =(props)=>{
         const postinfo={
             "content":content
         }
+        console.log(nowpostId);
         
         // Patch실행
         const fd = new FormData();
@@ -44,10 +45,10 @@ const UpdatePost =(props)=>{
 
         await axios.patch(`/posts/${nowpostId}`,fd,{headers})
         .then(res=>{
-            console.log(res);
+            console.log("수정",res);
         })
         .catch(err=>{
-            console.log(err);
+            console.log("수정",err);
         })
 
         //더미데이터로 추가하기

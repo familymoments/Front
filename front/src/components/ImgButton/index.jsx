@@ -2,16 +2,16 @@ import { useNavigate } from "react-router-dom";
 import classes from "./ImgButton.module.css";
 
 const ImgButton = (props) => {
-    const nav = useNavigate();
 
     return (
         <>
             <img
-                src={`${props.lnk}`}
+                src={`${props.img1}`}
                 className={classes.wrapper}
-                id={props.id}
-                onClick={() => alert("게시글 모달창")}
-                // onClick={() => nav("./detail", { state: "---inner data---" })}
+                id={props.postId}
+                // onClick={() => alert("hel")}
+                // 상위 컴포넌트의 함수를 불러와서 실행
+                onClick={() => props.modalValue(props.img1)}
             ></img>
         </>
     );

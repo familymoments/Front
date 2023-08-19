@@ -17,14 +17,12 @@ const PostContentSide=(props)=>{
     const headers = {
         "X-AUTH-TOKEN": authToken,
     };
-    console.log(props.post);
     const postId=useRecoilValue(postid);
     const [toggle,setToggle]=useState(false);
     const [loved,setLoved]=useState();
-    // useEffect(()=>{
-    //     setLoved(props.postheart);
-    //     console.log(props.postheart);
-    // });
+    useEffect(()=>{
+        console.log(props.postId);
+    },[]);
     
     
 

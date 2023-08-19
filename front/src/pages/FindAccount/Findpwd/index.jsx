@@ -1,6 +1,5 @@
 import Styles from "./Findpwd.module.css";
-import Header from "../../components/Header";
-import Loginbutton from "../../components/Loginbutton";
+import Loginbutton from "../../../components/Loginbutton";
 import { useEffect } from 'react';
 function Findpwd(props){
     useEffect(()=>{

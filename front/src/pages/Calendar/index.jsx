@@ -7,37 +7,13 @@ import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import useAsync from "../../hooks/useAsync";
 
 const authToken = localStorage.getItem("jwtToken");
 
 const headers = {
     "X-AUTH-TOKEN": authToken,
 };
-
-function reducer(state, action) {
-    switch (action.type) {
-        case "LOADING":
-            return {
-                loading: true,
-                data: null,
-                error: null,
-            };
-        case "SUCCESS":
-            return {
-                loading: false,
-                data: action.data,
-                error: null,
-            };
-        case "ERROR":
-            return {
-                loading: false,
-                data: null,
-                error: action.error,
-            };
-        default:
-            throw new Error(`Unhandled action type: ${action.type}`);
-    }
-}
 
 const FECalendar = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -49,55 +25,25 @@ const FECalendar = () => {
 
     const nav = useNavigate();
 
-    const [state, dispatch] = useReducer(reducer, {
-        loading: false,
-        data: null,
-        error: null,
-    });
-
-    const fetchList = async () => {
-        dispatch({ type: "LOADING" });
-        try {
-            const response = await axios.get(
-                `/posts/calendar?familyId=1&year=${year}&month=${month}`,
-                { headers }
-            );
-            dispatch({ type: "SUCCESS", data: response.data.result });
-            setMark(response.data.result);
-            console.log(response.data.result);
-        } catch (e) {
-            dispatch({ type: "ERROR", error: e });
-        }
+    const getUsers = async () => {
+        const response = await axios.get(
+            `/posts/calendar?familyId=5&year=${year}&month=${month}`,
+            { headers }
+        );
+        return response.data;
     };
 
-    const url = (y, m) => {
-        const mon = m < 9 ? `0${m}` : m;
-        console.log(`${y}, ${mon}`);
+    const [state, refetch] = useAsync(getUsers, []);
 
-        //api 키 .env파일에 local로 처리해야함
-        return `url + API_KEY`;
-    };
+    const { loading, data, error } = state;
 
-    const holidayfetchList = async () => {
-        const u = url(year, month);
-        console.log(u);
+    const dateLst = data?.result;
 
-        dispatch({ type: "LOADING" });
-        try {
-            const res = await axios.get(u);
-            console.log(res.data);
-        } catch (e) {
-            dispatch({ type: "ERROR", error: e });
-        }
-        const res = await axios.get(u);
-        console.log(res.data);
-    };
-
-    // 예시 날짜
     useEffect(() => {
-        fetchList();
-        // holidayfetchList();
-    }, [year, month]);
+        if (Array.isArray(dateLst)) {
+            setMark([...dateLst]);
+        }
+    }, [dateLst]);
 
     const dateChangeHandler = (date) => {
         setSelectedDate(date);
@@ -149,12 +95,10 @@ const FECalendar = () => {
         setMonth(date.getMonth() + 1);
     };
 
-    const { loading, data: users, error } = state; // state.data 를 users 키워드로 조회
-
     // loading을 이렇게 처리하지말고 원형으로 빙글 돌아가는 거로 처리하기!!!!!!!!!!!!!!!!!
-    // if (loading) return <div>로딩중..</div>;
+    if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    // if (!users) return null;
+    if (!dateLst) return null;
     return (
         <div className={classes.wrapper}>
             <Calendar
@@ -184,7 +128,6 @@ const FECalendar = () => {
                     }
                 }}
             />
-            {/* <button onClick={holidayfetchList}>api 주세요</button> */}
         </div>
     );
 };
