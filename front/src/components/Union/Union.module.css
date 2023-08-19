@@ -1,37 +1,29 @@
-.container {
+.wrapper{
     position: relative;
 }
 
-.bubble {
-    position: relative;
-    width: 223px;
-    height: 43px;
-    background: #9378ff;
-    border-radius: 10px;
-    cursor: pointer;
-}
 
-.bubble:after {
-    content: "";
-    position: absolute;
-    border-style: solid;
-    border-width: 15px 15px 0;
-    border-color: #9378ff transparent;
-    display: block;
-    width: 0;
-    z-index: 1;
-    bottom: -15px;
-    left: 97px;
-}
+.bubble {  
+    position:relative; 
+    margin: 50px;
+    width:240px; 
+    height:40px;
+     background:#9378ff; 
+     border-radius: 10px;
+     color: #fff;
+     padding-top: 13px;
+     text-align: center;
+     font-size: 11px;
+   }
+.bubble:after { 
+    border-top:10px solid #9378ff; 
+    border-left: 10px solid transparent; 
+    border-right: 10px solid transparent; 
+    border-bottom: 0px solid transparent; 
+    content:""; 
+    position:absolute;
+    bottom:-10px;
+    left:110px;  
+   }
 
-.text {
-    position: absolute;
-    color: #fff;
-    padding-top: 13px;
-    /* border-radius: 8px; */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 223px;
-    text-align: center;
-    font-size: 11px;
-}
+

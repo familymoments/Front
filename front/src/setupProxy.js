@@ -6,7 +6,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = (app) => {
     app.use(
         createProxyMiddleware("/posts", {
-            target: "http://43.202.90.230",
+            target: "process.env.REACT_APP_SERVER_URL",
             changeOrigin: true,
         })
     );
@@ -16,21 +16,21 @@ module.exports = (app) => {
 
     app.use(
         createProxyMiddleware("/users", {
-            target: "http://43.202.90.230",
+            target: "process.env.REACT_APP_SERVER_URL",
             changeOrigin: true,
         })
     );
     
     app.use(
         createProxyMiddleware("/families", {
-            target: "http://43.202.90.230",
+            target: "process.env.REACT_APP_SERVER_URL",
             changeOrigin: true,
         })
     );
 
     app.use(
         createProxyMiddleware("/comments", {
-            target: "http://43.202.90.230",
+            target: "process.env.REACT_APP_SERVER_URL",
             changeOrigin: true,
         })
     );
