@@ -8,10 +8,11 @@ import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
 import Swal from "sweetalert2";
-import { setCookie,  getCookie, decodeCookie, removeCookie } from "./Cookie";
+import { setCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props) {
+    const SERVER = process.env.REACT_APP_SERVER;
     const {
         register,
         handleSubmit,
@@ -33,7 +34,7 @@ function Login(props) {
     //login data 전송
     const getAuth = (data) => {
         axios
-            .post("/users/log-in",data)
+            .post(`${SERVER}/log-in`,data)
             .then(function (res) {
                 console.log(res);
                 const token = res.data.token;
