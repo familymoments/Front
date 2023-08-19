@@ -11,11 +11,8 @@ function Findpwd(props){
     useEffect(()=>{
         props.changeTitle("비밀번호 찾기");
     })
-    
      //상태관리
-    const [id,setId] = useRecoilState(ID);
-    
-    
+    let [id,setId] = useRecoilState(ID);
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
@@ -24,24 +21,28 @@ function Findpwd(props){
         handleSubmit,
         watch,
       } = useForm();
+      
+    
     const getAuth = (e) => {
-        
         axios
         .post("/users/auth/check-id", e)   
-        .then(function (res) {
-            console.log(res);
+        .then( (res)=> {
             if (res.data.code === 200) {
-                setId = watch("id");
-                console.log(id);
                 navigate("/landing/findpwd2");
             }
             if (res.data.code === 404) {
                 Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
             } 
         })
-        .catch(function (err) {
-            Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
-        });
+            .catch( (err)=> {
+                if (err.data.code === 404) {
+                    Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
+                } 
+            });
+              const userId =  watch("userId");
+              setId = userId;
+              console.log(userId);
+              console.log(id);
     };
     return(
         <form onSubmit={handleSubmit(getAuth)}>
@@ -52,7 +53,7 @@ function Findpwd(props){
             </div>
             <div className={Styles.inputlocation}>
                 <input className={Styles.idinput} placeholder = "ID" type="text"
-             required {...register("id")}/>
+             required {...register("userId")}/>
             </div>
             <div className={Styles.button}>
                <button type = "submit" className={Styles.hiddenbtn}> <Loginbutton texts =" 순간을 가족에게 공유하기"/></button>
