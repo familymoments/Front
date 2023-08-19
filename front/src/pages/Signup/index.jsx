@@ -12,9 +12,8 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {profileImg} from "../../atom";
-import { useRecoilValue } from 'recoil';
-
+import {profileImg, click} from "../../atom";
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 function Signup(props){
     useEffect(()=>{
@@ -70,7 +69,7 @@ function Signup(props){
                 nickname: watch("nickname")
             };
 
-            if(checkID === true && eCheck === true){
+            if(checkID === true && eCheck === true && admit === true){
             const fd = new FormData();
             fd.append("newUser",new Blob([JSON.stringify(signUpData)], { type: 'application/json' }));
             fd.append("profileImg",profile);
@@ -109,7 +108,7 @@ function Signup(props){
                 else if(checkID === false || eCheck === false){
                     Swal.fire("아이디 혹은 이메일 중복확인을 먼저 실시해주세요.");
                 }
-                // else if(){
+                // else if(admit === false ){
 
                 // }
             };
@@ -168,12 +167,28 @@ function Signup(props){
                     }
                     console.log(eCheck);
                 };
-                
+                const [allClicked, setAllClicked] = useState(false);
+                const [admit, setAdmit] = useRecoilState(click);
+                function Smalladmit(props){
+                    const [clicked, setClicked] = useRecoilState(click);
+                    //allClicked == true ? setClicked(true) : setClicked(false)
+                     return(
+                         <div className={Styles.smalladmitbox}>
+                             <div className={Styles.smalladmit}>
+                                 <button  onClick={()=>{{clicked === false ? setClicked(true): setClicked(false)}
+                                 console.log(clicked)}}
+                                 className = {`${Styles.checkbutn}
+                             ${clicked === true ? Styles.clickedbtn : Styles.unclickedbtn}
+                            `}
+                                 type="button"  ><FaCheck/></button>
+                                 <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
+                                 <button type="button" className= {Styles.checkbutn} onClick={()=>{navigate(props.location)}}><GrNext/></button>
+                             </div>
+                         </div>
+                     );
+                 }
     return(
-    <>
-
     <form  onSubmit={handleSubmit(getAuth)}  className={Styles.page}>
-            
                 <Label label = "아이디"/>
                 <div className ={Styles.certinput}>
                     <input  id ="id" type="text" placeholder="아이디를 입력해주세요." className = {Styles.smallinput}
@@ -254,18 +269,15 @@ function Signup(props){
                     value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{2,5}$/,
                     message: "이름이 올바르게 입력됐는지 확인해주세요.",
                       },
-               
             })}
             />
             </div>
-
             <Label label = "생년월일"/>
                 <div className={Styles.inputcontainer}>
                     <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
                     {...register("strBirthDate", { maxLength: {value: 8}},)}/>
                 </div>
                         
-
              <Label label = "이메일 인증"/>
              <div className = {Styles.certinput}> 
                 <input  type="email"
@@ -304,46 +316,32 @@ function Signup(props){
                     <FileUploadButton className = {Styles.filebtndetail} onSelectImage={setSelectedImage}/>
                 </div> 
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
-                <Alladmit/>
+                <div className={Styles.alladmitbox}>
+                                <div className={Styles.alladmit}>
+                                <button onClick={()=>{
+                                    {allClicked === false ? setAllClicked (true) : setAllClicked(false)}
+                                    {allClicked === false ? setAdmit (true) : setAdmit(false)}
+                                    console.log(allClicked);
+                            }} 
+                                className= {`${Styles.checkbutn} ${Styles.allcheckbtn}
+                                ${allClicked === true ? Styles.clickedbtn : Styles.unclickedbtn}`}
+                                type = "button"><AiFillCheckCircle/></button>
+                                <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
+                                </div>
+                            </div>
                 <hr/>
                 <Smalladmit texts = "(필수) 서비스 이용 약관에 동의" location = "/signup/TOS1"/>
-                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관" location = "/signup/TOS2"/>
-                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의" location = "/signup/TOS3"/>
+                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관" location = "/signup/TOS1"/>
+                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의" location = "/signup/TOS1"/>
                 <div  className={Styles.signupbutn}>
                     <button type = "submit" className = {Styles.hiddenbtn}><Loginbutton  texts = "Family Moments 시작하기" /></button>
                 </div>
     </form>
-    </> 
     );
 }
 
 export default Signup;
 
-function Alladmit(props){
-    return(
-       
-            <div className={Styles.alladmitbox}>
-                <div className={Styles.alladmit}>
-                <button type = "button"className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
-                <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
-                </div>
-            </div>
-      
-    );
-}
-
-function Smalladmit(props){
-    const navigate = useNavigate();
-    return(
-        <div className={Styles.smalladmitbox}>
-            <div className={Styles.smalladmit}>
-                <button  type="button" className = {Styles.checkbutn} onClick={()=>{}}><FaCheck/></button>
-                <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
-                <button type="button" className= {Styles.checkbutn} onClick={()=>{navigate(props.location)}}><GrNext/></button>
-            </div>
-        </div>
-    );
-}
 
 function Label(props){
     return(

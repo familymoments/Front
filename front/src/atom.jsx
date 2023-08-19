@@ -38,7 +38,11 @@ export const ID = atom({
     key:"ID",
     default:"",
     });
-
+    export const click = atom({
+        key:"click",
+        default:false,
+        });
+    
 
 
 export const token = atom({

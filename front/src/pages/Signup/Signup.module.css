@@ -137,12 +137,15 @@
     margin-top: -12px;
 }
 
-.checkbutn:hover,:active,:focus{
+/* .checkbutn:hover,:active,:focus{
     color:#5B6380;
-}
+} */
 
 .clickedbtn{
     color:#5B6380;
+}
+.unclickedbtn{
+    color: #A9A9A9; 
 }
 .fileupload{
     display: flex;
