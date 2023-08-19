@@ -12,7 +12,7 @@ import { setCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props) {
-    const SERVER = process.env.REACT_APP_SERVER;
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     const {
         register,
         handleSubmit,
@@ -34,7 +34,7 @@ function Login(props) {
     //login data 전송
     const getAuth = (data) => {
         axios
-            .post(`${SERVER}/log-in`,data)
+            .post(`${SERVER}/users/log-in`,data)
             .then(function (res) {
                 console.log(res);
                 const token = res.data.token;
@@ -78,7 +78,7 @@ function Login(props) {
             </div>
         </div>
    
-    <form className = {Styles.input} onSubmit={handleSubmit(getAuth)}>
+    <form className = {Styles.input} onSubmit={handleSubmit(getAuth)} method="POST">
             <div>
                 <input id = "id" className={Styles.id} type= "text"  placeholder="ID"   
                 {...register("id", {required: "아이디는 필수 입력입니다.",
@@ -89,7 +89,12 @@ function Login(props) {
                 maxLength: {
                     value: 12,
                     message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
-                        },})}/>     
+                        },
+                 pattern: {
+                     value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}$/,
+                     message: "영문과 숫자를 사용하여, 6~12글자의 아이디를 입력해주세요.",
+                       },
+                       })}/>     
             </div>
             {errors.id && <small className = {Styles.alert} role="alert">{errors.id.message}</small>}
 
@@ -100,12 +105,17 @@ function Login(props) {
                     "비밀번호는 필수 입력입니다.",
                     minLength: {
                         value: 8,
-                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
                 },
                 maxLength: {
                     value: 12,
-                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.  ",
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
                 },
+                pattern: {
+                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
+                      },
+               
             })}/>
             </div>
             {errors.password && <small className = {Styles.alert}role="alert">{errors.password.message}</small>}
