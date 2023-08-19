@@ -51,6 +51,7 @@ function Login(props) {
                 
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
+                console.log(headers);
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
                 navigate("/landing/newfamily");
                 

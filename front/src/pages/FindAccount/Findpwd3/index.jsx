@@ -39,8 +39,8 @@ function Findpwd3(props){
              console.log(id);
              console.log(res);
             if (res.data.code === 200) {
-                navigate( "/landing/findpwd3");
                 Swal.fire("비밀번호가 재설정됐습니다.");
+                navigate( "/landing/login");
             }
             if (res.data.code === 404) {
                 Swal.fire("존재하지 않는 아이디입니다.");
