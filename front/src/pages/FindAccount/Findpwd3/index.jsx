@@ -13,6 +13,7 @@ function Findpwd3(props){
     })
     //id
      const id = useRecoilValue(ID);
+     console.log(id);
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
@@ -57,13 +58,10 @@ function Findpwd3(props){
             Swal.fire("비밀번호를 다시 한번 확인해주세요.")
         }
         console.log(e);
-       
     };
 
     return(
-        
         <form onSubmit={handleSubmit(getAuth)}>
-            
             <h1 className={Styles.title}>비밀번호 재설정</h1>
             <div className={Styles.txtlocation}>
             <h className = {Styles.txts}>새로운 비밀번호를 입력해주세요.</h>
@@ -84,12 +82,10 @@ function Findpwd3(props){
                     },
                   })}/>
             </div>
-            {errors?.passwordB?.message === undefined ? (<p className = {Styles.alert}>입력한 비밀번호가 일치합니다</p>) : 
-                    ( <p className = {Styles.alert}> {errors?.passwordB?.message}</p>)}
+            {errors.passwordB && <p className = {Styles.alert} role="alert">{errors.passwordB.message}</p>}
             <div className={Styles.buttonlocation}>
                 <button type = "submit" className={Styles.hiddenbtn}><Loginbutton texts =" 순간을 가족에게 공유하기"/></button>
             </div>
-
         </form>
     );
 }

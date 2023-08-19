@@ -12,7 +12,7 @@ function Findpwd(props){
         props.changeTitle("비밀번호 찾기");
     })
      //상태관리
-    let [id,setId] = useRecoilState(ID);
+    const [id,setId] = useRecoilState(ID);
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
@@ -28,6 +28,9 @@ function Findpwd(props){
         .post("/users/auth/check-id", e)   
         .then( (res)=> {
             if (res.data.code === 200) {
+                const userID = watch("userId");
+                setId(userID);
+                console.log(id);
                 navigate("/landing/findpwd2");
             }
             if (res.data.code === 404) {
@@ -39,14 +42,10 @@ function Findpwd(props){
                     Swal.fire("입력하신 아이디와 일치하는 회원 정보가 없습니다.");
                 } 
             });
-              const userId =  watch("userId");
-              setId = userId;
-              console.log(userId);
-              console.log(id);
-    };
+              
+    }
     return(
         <form onSubmit={handleSubmit(getAuth)}>
-           
                 <h1 className={Styles.title}>비밀번호 찾기</h1>
              <div className={Styles.txtlocation}>
                 <p className={Styles.texts}>비밀번호를 찾고자하는 아이디를 입력해주세요</p>
