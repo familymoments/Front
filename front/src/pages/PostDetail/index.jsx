@@ -11,28 +11,52 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { useParams,useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-const authToken = localStorage.getItem("jwtToken");
-// console.log(authToken)
+//상태관리
+import {token,userImg} from "../../atom";
+import { useRecoilState,useRecoilValue } from "recoil";
 
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+
 
 
 
 const PostDetail=({showmodal})=>{
+    //헤더에 토큰추가
+    const authToken = useRecoilValue(token);
+    const headers = {
+        "X-AUTH-TOKEN": authToken,
+    };
 
-    const {state:{post}} = useLocation();
-    console.log("post",post);
+    //현재 게시물 상세조회
+   
+    const postId=useParams().postId;
+    const [postuserImg,setpostuserImg]=useRecoilState(userImg);
+    // console.log("post",postId);
 
     //post 정보 navigation에서 state로 받아오기
-    const postData=post;
+    const [postData,setPostData]=useState( {
+        "postId" : undefined,
+        "writer" : "",
+        "profileImg" : "",
+        "content" : "",
+        "imgs" :[],
+        "createdAt" : "",
+        "countLove" : undefined,
+        "loved" : null
+    });
 
-    
+    useEffect(()=>{
+        axios.get(`/posts/${postId}`,{headers})
+        .then(res=>{
+            setPostData(res.data.result);
+            setpostuserImg(res.data.result.profileImg);
+        })
+        .catch()
+    },[]);
+
     
     
 
@@ -48,14 +72,11 @@ const PostDetail=({showmodal})=>{
     ]
     
     
-    const [heart,setHeart]=useState(postData.loved);
-    const postId=useParams().postId;
-    console.log(postId);
     
-    const pushHeart=(id)=>{
-        console.log(id+"하트누름");
-        heart ? setHeart(false):setHeart(true);
-    }
+    // const pushHeart=(id)=>{
+    //     console.log(id+"하트누름");
+    //     heart ? setHeart(false):setHeart(true);
+    // }
     const userId=1;
     const submitComment=(content)=>{
         console.log(content);
@@ -64,7 +85,7 @@ const PostDetail=({showmodal})=>{
 
     return(
         <div className={styles.wrapper}>
-            <PostUserHeader isnormal={false} userimg={postData.profileImg} username={postData.writer} postdate={postData.createdAt}></PostUserHeader>
+           <PostUserHeader isnormal={false} userimg={postuserImg} username={postData.writer} postdate={postData.createdAt}></PostUserHeader>
             <div className={styles.line}></div>
 
             <div className={styles.postContent}>
@@ -94,9 +115,10 @@ const PostDetail=({showmodal})=>{
                         </Swiper>
                     </div>
                     
-                    <PostContent showmodal={showmodal} postlist={post} postId={postId} postcontent={postData.content} postheart={heart} 
+                    <PostContent showmodal={showmodal} postlist={postData} postcontent={postData.content} postheart={postData.loved} postId={postId}
                         pushHeart={()=>{
-                        pushHeart(postId);}} 
+                        //pushHeart(postId);
+                    }} 
                     ></PostContent>
                     <div className={styles.commentline}></div>
 
@@ -112,7 +134,7 @@ const PostDetail=({showmodal})=>{
                     <div className={styles.showComments}>
                         {commentData.map((comment)=>(
                             <ShowComment commentinfo={comment} heart={comment.heart} pushHeart={()=>{
-                                pushHeart();
+                                //pushHeart();
                             }}></ShowComment>
                         ))}
                     </div>

@@ -2,12 +2,16 @@
 
 import styles from "./index.module.css";
 
+import {token,postid,userImg} from "../../atom";
+import { useRecoilState,useRecoilValue } from "recoil";
+
 const PostUserHeader=(props)=>{
+    const postuserImg=useRecoilValue(userImg);
     const isnormal=props.isnormal;
     return (
         <div className={styles.postHeader}>
             <span className={`${isnormal===true ? styles.userinfo : styles.userinfobig}`}>
-                <span><img className={styles.userImg} src={props.userImg}/> </span>
+                <span><img className={styles.userImg} src={postuserImg}/> </span>
                 <span>{props.username}</span>
             </span>
             <span className={`${isnormal ? styles.date : styles.datebig}`}>{props.postdate}</span>
