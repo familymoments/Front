@@ -11,202 +11,277 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import {profileImg} from "../../atom";
+import { useRecoilValue } from 'recoil';
 
 
-    
-const tempData ={
-        id: "조천산",
-        password: "1234",
-        name: "조천산",
-        email: "1dddd111@naver.com",
-        strBirthDate:"19991119",
-        nickname: "아서"
-};
-
-        // "profileImg": "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
-
-function Signup(props,{ setBtn }){
+function Signup(props){
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
-    const onSignBtn = () => {
-        setBtn((x) => !x);
-      };
+
+    const navigate = useNavigate();
+
+    //이미지 업로드 컴포넌트 상태관리
+    const [selectedImage, setSelectedImage] = useState();
+    
+    //react-hook-from 관리
       const {
           register,
           handleSubmit,
-          formState: { errors },
+          resetField,
           watch,
+          formState: { errors },
         } = useForm();
+        //비밀번호 값 추적
         const password = watch("password");
-        const [text, setText] = useState("");
-        const [doubleCheck, setDoubleCheck] = useState("");
-        const displayText = (e) => {
-            setText(e.target.value);
+        // 아이디 값 추적
+        const id = watch("id");
+        // 이메일 값 추적
+        const email = watch("emil");
+       
+        //비밀번호 인풋 초기화  
+        function resetPassword(){
+            resetField("password");
           };
-          const doubleCheckText = (e) => {
-            setDoubleCheck(e.target.value);
+        //비밀번호 확인 인풋 초기화
+        function resetConfirm(){
+            resetField("confirm");
           };
-        const onReset = (e) => {
-            setText("");
-          };
-          const doubleCheckReset = (e) => {
-            setDoubleCheck("");
-          };
-        
-        function getAuth(data){
-  
-            axios
-                .post("/users/sign-up", tempData,{
-                profileImg: "https://familymoments-image-bucket.s3.ap-northeast-2.amazonaws.com/530e581e-0ab9-4e8f-804b-fa1666efd48e.jpg"
-            } )   
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-                Swal.fire({
-                    icon: "error",
-                    title: "다시 한번 확인해주세요."
-                   
-                  });
-            });
+          //이미지 상태관리
+          const profile = useRecoilValue(profileImg);
+
+          //이메일 중복검사 진행
+          const [eCheck, setECheck] = useState(false);
+
+          //아이디 중복검사 진행 
+          const [checkID, setIdCheck] = useState(false);
+
+        //회원가입 데이터 전송
+        function getAuth(e){
+            e.preventDefault();
+             const signUpData ={
+                id: watch("id"),
+                password: watch("password"),
+                name: watch("name"),
+                email: watch("email"),
+                strBirthDate:watch("strBirthDate"),
+                nickname: watch("nickname")
+            };
+
+            if(checkID === true && eCheck === true){
+            const fd = new FormData();
+            fd.append("newUser",new Blob([JSON.stringify(signUpData)], { type: 'application/json' }));
+            fd.append("profileImg",profile);
+            console.log(signUpData,profile);
+            // Post실행
+            axios.post(`/users/sign-up`,fd)
+            .then((res)=>{
+                console.log(res);
+                
+                if(res.data.code === 200){
+                    navigate("/landing/login");
+                    Swal.fire('Familt Moments에 가입됐습니다.');
+                }
+                if(res.data.message === "닉네임 형식을 확인해주세요."){
+                    Swal.fire("닉네임 형식을 확인해주세요.");
+                }
+                if(res.data.message === "비밀번호 형식을 확인해주세요."){
+                    Swal.fire("비밀번호 형식을 확인해주세요.");
+                }
+                if(res.data.message === "생년월일 형식을 확인해주세요."){
+                    Swal.fire("생년월일 형식을 확인해주세요.");
+                }
+                if(res.data.message === "이메일 형식을 확인해주세요."){
+                    Swal.fire("이메일 형식을 확인해주세요.");
+                }
+                if(res.data.message === "이미 가입한 이메일이 존재합니다."){
+                    Swal.fire("이미 가입한 이메일이 존재합니다.");
+                }
+                
+                })
+                .catch(err=>{
+                    console.log(err);
+                    Swal.fire("입력하신 값을 다시확인해주세요.");
+                })
+                }
+                else if(checkID === false || eCheck === false){
+                    Swal.fire("아이디 혹은 이메일 중복확인을 먼저 실시해주세요.");
+                }
+                // else if(){
+
+                // }
+            };
+
+               const idCheck = (e) => {
+                e.preventDefault();
+                   if (id === "") {
+                   Swal.fire("아이디를 먼저 입력해주세요.");
+                   } else {
+                   axios
+                       .post("/users/check-id", { id: id })
+                       .then((res) => {
+                        console.log(res);
+                       if (res.data.code === 200) {
+                           Swal.fire("사용가능한 아이디 입니다.");
+                           setIdCheck(true);
+                       }
+                       if (res.data.code === 400) {
+                        Swal.fire("이미 가입한 아이디가 존재합니다.");
+                        setIdCheck(false);
+                    }
+                       })
+                       .catch((error) => {
+                       if (error.data.code === 400) {
+                           Swal.fire("이미 가입한 아이디가 존재합니다.");
+                           setIdCheck(false);
+                       }
+                       });
+                   }
+                   console.log(checkID);
+               };
+                const emailCheck = (e) => {
+                    e.preventDefault();
+                    if (email === "") {
+                    Swal.fire("이메일을 먼저 입력해주세요.");
+                    } else {
+                    axios
+                        .post('/users/check-email', { email: email })
+                        .then((res) => {
+                        console.log(res);
+                        if (res.data.code === 200) {
+                            Swal.fire("사용가능한 이메일 아이디 입니다.");
+                            setECheck(true);
+                        }
+                        if (res.data.code === 400) {
+                            Swal.fire("이미 가입한 이메일이 존재합니다.");
+                            setECheck(false);
+                        }
+                        })
+                        .catch((error) => {
+                        if (error.data.code === 400) {
+                            Swal.fire("이미 가입한 이메일이 존재합니다.");
+                            setECheck(false);
+                        }
+                        });
+                    }
+                    console.log(eCheck);
                 };
+                
     return(
     <>
+    
     <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
             
                 <Label label = "아이디"/>
-                <div className ={Styles. certinput}>
-                    <input  type="id"
-                    placeholder="아이디를 입력해주세요."
-                    required
-                    {...register("id", {
-                        maxLength: {
-                        value: 10,
-                        message: "10글자 이하로 작성해주세요",
+                <div className ={Styles.certinput}>
+                    <input  id ="id" type="text" placeholder="아이디를 입력해주세요." className = {Styles.smallinput}
+                    {...register("id" ,{
+                    required:"사용하실 아이디를 입력해주세요",
+                    minLength: {
+                        value: 6,
+                        message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
                         },
-                        minLength: {
-                        value: 1,
-                        message: "1글자 이상으로 작성해주세요",
+                    maxLength: {
+                        value: 12,
+                        message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
                         },
-                        pattern: {
-                        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,10}$/,
-                        message: "형식에 맞지 않는 아이디입니다.",
-                        },
-                    })}className = {Styles.smallinput} />
-                    <CertificationButton className = {Styles.certbtn}text = "중복확인"/>  
+                   })}/>
+                    <button onClick = {idCheck} className ={Styles.hiddenbtn}><CertificationButton className = {Styles.certbtn}text = "중복확인"/></button> 
                     </div>
-                    
-            
-            
+                
+                {errors.id && <p className = {Styles.alert} role="alert">{errors.id.message}</p>}
+                  
             <Label label = "비밀번호"/>
             <div className = {Styles.inputcontainer}>
-            <input onChange={displayText} className ={Styles.input}
-                type="password"
-                value={text}
-                // {...register("password", {
-                // maxLength: {
-                //     value: 20,
-                //     message: "20자리 이하로 작성해주세요",
-                // },
-                // minLength: {
-                //     value: 8,
-                //     message: "8자리 이상으로 작성해주세요",
-                // },
-                // pattern: {
-                //     value: /^(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/,
-                //     message: "형식에 맞지 않는 비밀번호 입니다.",
-                // },
-                // })}
+            <input  className ={Styles.input}  type="password"
+            
+                {...register("password",{
+                    required: 
+                    "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요 ",
+                    minLength: {
+                        value: 8,
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                },
+                    maxLength: {
+                        value: 12,
+                        message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                },
+                pattern: {
+                    value: /^[0-9a-zA-Z]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                  },})}
                 placeholder="비밀번호"
-                required
             />  
-            <button  onClick = {onReset} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
+            <button  onClick = {resetPassword} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
             </div>
+            {errors.password && <p className = {Styles.alert} role="alert">{errors.password.message}</p>}
              <Label label = "비밀번호 확인"/>
              <div className = {Styles.inputcontainer}>
-                    <input  onChange={doubleCheckText} className = {Styles.input} 
-                        value={doubleCheck}
-                        type="password"
-                        {...register("confirm", {
-                        validate: {
-                            confirmPw: (v) =>
-                            v === password || "비밀번호가 일치하지 않습니다.",
-                        },
-                        })}
-                        placeholder="비밀번호를 한번 더 입력해주세요."
-                        required
-                    />
-                     <button onClick = {doubleCheckReset} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
+                    <input id="confirm" className = {Styles.input} type="password"  placeholder="비밀번호를 한번 더 입력해주세요."
+                        {...register("confirm",  {
+                            required:"입력한 비밀번호가 일치하지 않습니다",
+                            validate: {
+                              confirmPw: (v) =>
+                                 v === password || "입력한 비밀번호가 일치하지 않습니다",
+                            },
+                          })}/>
+                     <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
+                    {errors.confirm && <p className = {Styles.alert} role="alert">{errors.confirm.message}</p>}
+                   
             <Label label = "이름"/>
             <div className = {Styles.inputcontainer}>
             <input placeholder = "실명을 입력하세요. ex) 홍길동" className= {Styles.input}
               type="text"
-              required
-              {...register("name", {
+              {...register("name",  {
                 maxLength: {
                   value: 5,
                   message: "5자리 이하로 작성해주세요",
-                },
-                pattern: {
-                  value: /^[가-힣a-zA-Z]+$/,
-                  message: "형식에 맞지 않는 이름 입니다.",
-                },
-              })}
+                },pattern: {
+                value: /^[가-힣a-zA-Z]+$/,
+                message: "형식에 맞지 않는 이름 입니다.",
+              },})}
             />
             </div>
-                 <Label label = "생년월일"/>
-                        <div className={Styles.inputcontainer}>
-                        <input className = {Styles.input} type="date"
-                        min="1900-01-01"
-                        max="2003-12-31"
-                        required  {...register("birth")} placeholder = "생년월일"/>
-                        </div>
 
-            
+                 <Label label = "생년월일"/>
+                    <div className={Styles.inputcontainer}>
+                        <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
+                        {...register("strBirthDate", {required:"", minLength: {value: 4,},maxLength: {value: 4,}},)}/>
+                    </div>
+                        
+
              <Label label = "이메일 인증"/>
              <div className = {Styles.certinput}> 
                     <input  type="email"
                     placeholder="이메일을 입력해주세요."
                     required
-                    {...register("email", {
-                        maxLength: {
-                        value: 10,
-                        message: "10글자 이하로 작성해주세요",
-                        },
-                        minLength: {
-                        value: 1,
-                        message: "1글자 이상으로 작성해주세요",
-                        },
-                        pattern: {
-                        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,10}$/,
-                        message: "형식에 맞지 않는 이메일 입니다.",
-                        },
-                    })}
+                    {...register("email")}
                     className = {Styles.smallinput} />
-                    <CertificationButton className = {Styles.certbtn} text = "인증하기"/>  
+                    <button className = {Styles.hiddenbtn} onClick={emailCheck}><CertificationButton className = {Styles.certbtn} text = "중복확인"/> </button>
                     </div>
-            
+                    <Label label = "닉네임"/>
+                        <div className={Styles.inputcontainer}>
+                        <input className = {Styles.input} type="text" placeholder = "3~8자리 입력(특수문자 불가)"
+                        required  {...register("nickname")} />
+                        </div>
             
 
             <Label label = "프로필 사진 선택"/>
-
-                {/* <div className={Styles.fileupload}>
-                    <FileUploadButton />
-                </div>  */}
-
+                <div className={Styles.fileupload}>
+                    <FileUploadButton className = {Styles.filebtndetail}onselectImage={setSelectedImage}/>
+                </div> 
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>
                 <hr/>
-                <Smalladmit texts = "(필수) 서비스 이용 약관에 동의"/>
-                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관"/>
-                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의"/>
-                <div className={Styles.signupbutn}>
-                    <Loginbutton location = "/landing/login" texts = "Family Moments 시작하기" />
+                <Smalladmit texts = "(필수) 서비스 이용 약관에 동의" location = "/signup/TOS1"/>
+                <Smalladmit texts = "(필수) 본인관련 서비스 관련 이용 약관" location = "/signup/TOS2"/>
+                <Smalladmit texts = "(선택) 마케팅 정보 알림 및 수신 동의" location = "/signup/TOS3"/>
+                <div  className={Styles.signupbutn}>
+                    <button type = "submit" className = {Styles.hiddenbtn}><Loginbutton  texts = "Family Moments 시작하기" /></button>
                 </div>
-            <button onClick={getAuth}>에이피아이 전송</button>
     </form>
     </> 
     );
@@ -219,7 +294,7 @@ function Alladmit(props){
        
             <div className={Styles.alladmitbox}>
                 <div className={Styles.alladmit}>
-                <button className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
+                <button type = "button"className= {`${Styles.checkbutn} ${Styles.allcheckbtn}`}><AiFillCheckCircle/></button>
                 <h2 className= {Styles.alladmittxt}>모두 동의합니다</h2>
                 </div>
             </div>
@@ -228,12 +303,13 @@ function Alladmit(props){
 }
 
 function Smalladmit(props){
+    const navigate = useNavigate();
     return(
         <div className={Styles.smalladmitbox}>
             <div className={Styles.smalladmit}>
-                <button  className = {Styles.checkbutn}><FaCheck/></button>
-                <p className={Styles.smalladmittxt}>{props.texts}</p>
-                <button className= {Styles.checkbutn}><GrNext/></button>
+                <button  type="button" className = {Styles.checkbutn} onClick={()=>{}}><FaCheck/></button>
+                <p className={`${Styles.smalladmittxt}`}>{props.texts}</p>
+                <button type="button" className= {Styles.checkbutn} onClick={()=>{navigate(props.location)}}><GrNext/></button>
             </div>
         </div>
     );

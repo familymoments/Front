@@ -17,16 +17,28 @@ export const deletePostId = atom({
     default:0,
     //atom상태관리
 });
-
+export const idFounded = atom({
+    key: "idFounded",
+    default: "",
+});
  export const recentPosts = atom({
     key:"recentPosts",
     default:[],
     //최근 게시물 저장할 배열
 });
-export const headers = atom({
-    key:"headers",
-    default:'',
+export const header = atom({
+    key:"header",
+    default:{"X-AUTH-TOKEN": localStorage.getItem('token')},
 });
+export const profileImg = atom({
+key:"profileImg",
+default:null,
+});
+export const ID = atom({
+    key:"ID",
+    default:"",
+    });
+
 
 
 export const token = atom({

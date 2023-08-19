@@ -3,14 +3,14 @@
 import styles from "./index.module.css";
 import HelloText from "../../components/HelloText";
 import Post from "../../components/Post";
-import CreateFamily5 from "../CreateFamily5";
+import CreateFamily5 from "../Family/CreateFamily5";
 
 //react 라이브러리
 import {useNavigate, useLocation,usecallback} from "react-router-dom";
 import { useCallback, useEffect,useState } from "react";
 
 //상태관리 라이브러리
-import { deletePostId, recentPosts,token } from "../../atom";
+import { deletePostId, recentPosts,token,header } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import {postdata} from "../../state/post";
@@ -26,9 +26,7 @@ const Home=({showmodal})=>{
     const authToken=useRecoilValue(token);
 
 
-    const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+    const headers = useRecoilValue(header);
     //postdata
     const [postData,setPostData]=useRecoilState(postdata);
 
@@ -55,7 +53,7 @@ const Home=({showmodal})=>{
             })
            .catch(err=>console.log(err));
         axios.get(`/families/8/created`,{headers:{
-            "X-AUTH-TOKEN": authToken,
+            ...headers,
             "Path":"/",
             "Secure" : "HttpOnly",
         }})

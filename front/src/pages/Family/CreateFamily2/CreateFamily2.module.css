@@ -1,0 +1,30 @@
+.content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-55%, 7%);
+}
+
+.familySelect {
+    width: 105px;
+    height: 18px;
+    position: relative;
+    top: 95px;
+    left: 128px;
+    color: #000000;
+    line-height: 18.15px;
+    font-weight: 500;
+    font-size: 14px;
+}  
+
+.selectImage {
+    width: 105px;
+    height: 18px;
+    position: relative;
+    top: 135px;
+    left: 128px;
+    color: #000000;
+    line-height: 18.15px;
+    font-weight: 500;
+    font-size: 14px;
+}

@@ -1,11 +1,8 @@
 .myText {
-    width: 142px;
-    height: 21px;
-    /* position: relative;
-    top: 60px;
-    left: 16px; */
-    top: 15%; 
-    left: 6%; 
+    /* width: 142px; */
+    /* height: 21px; */
+    /* top: 15%; 
+    left: 6%;  */
     display: flex;
     color: #5b6381;
     font-weight: 500;

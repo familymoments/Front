@@ -15,15 +15,14 @@
     cursor: pointer;
 }
 
-.icon {
+/* .icon {
     color: #a9a9a9;
     width: 25px;
     height: 25px;
-}
+} */
 
 .selectBox {
     width: 224px;
-    color: #a9a9a9;
     position: absolute;
     border-radius: 6px;
     padding: 8px;
@@ -62,6 +61,14 @@
     cursor: pointer;
 }
 
-.selectBox select option[value="option1"] {
+/* .selectBox select option[value="option1"] { 
     border-bottom: 0.68px solid #D8D8D8;
+}  */
+
+.selectedImage {
+    width: 328px;
+    height: 192px;
+    object-fit: cover;
+    top: 154px;
+    left: 16px;
 }
