@@ -39,8 +39,8 @@ function Findpwd3(props){
              console.log(id);
              console.log(res);
             if (res.data.code === 200) {
-                navigate( "/landing/findpwd3");
                 Swal.fire("비밀번호가 재설정됐습니다.");
+                navigate( "/landing/login");
             }
             if (res.data.code === 404) {
                 Swal.fire("존재하지 않는 아이디입니다.");
@@ -70,7 +70,19 @@ function Findpwd3(props){
                 <input className = {Styles.inputstyle} placeholder="새 비밀번호"
                 type = "password"
                 required
-                {...register("passwordA")}/>
+                {...register("passwordA",{
+                minLength: {
+                    value: 8,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                             },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                            },
+                pattern: {
+                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
+                            }},)}/>
                 <input className = {Styles.inputstyle} placeholder="새 비밀번호 확인"
                 type = "password"
                 required

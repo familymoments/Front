@@ -24,7 +24,7 @@ function Signup(props){
     const navigate = useNavigate();
 
     //이미지 업로드 컴포넌트 상태관리
-    const [selectedImage, setSelectedImage] = useState();
+    const [electedImage, setSelectedImage] = useState();
     
     //react-hook-from 관리
       const {
@@ -39,7 +39,7 @@ function Signup(props){
         // 아이디 값 추적
         const id = watch("id");
         // 이메일 값 추적
-        const email = watch("emil");
+        const email = watch("email");
        
         //비밀번호 인풋 초기화  
         function resetPassword(){
@@ -115,7 +115,7 @@ function Signup(props){
             };
 
                const idCheck = (e) => {
-                e.preventDefault();
+                //e.preventDefault();
                    if (id === "") {
                    Swal.fire("아이디를 먼저 입력해주세요.");
                    } else {
@@ -141,8 +141,8 @@ function Signup(props){
                    }
                    console.log(checkID);
                };
-                const emailCheck = (e) => {
-                    e.preventDefault();
+               console.log(email);
+                function emailCheck (){
                     if (email === "") {
                     Swal.fire("이메일을 먼저 입력해주세요.");
                     } else {
@@ -171,8 +171,8 @@ function Signup(props){
                 
     return(
     <>
-    
-    <form  onSubmit={handleSubmit(getAuth)} className={Styles.page}>
+
+    <form  onSubmit={handleSubmit(getAuth)}  className={Styles.page}>
             
                 <Label label = "아이디"/>
                 <div className ={Styles.certinput}>
@@ -187,6 +187,11 @@ function Signup(props){
                         value: 12,
                         message: "영문과 숫자만 사용하여, 6~12글자의 아이디를 입력해주세요",
                         },
+                    pattern: {
+                        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}$/,
+                        message: "영문과 숫자를 사용하여, 6~12글자의 아이디를 입력해주세요.",
+                        },
+                       
                    })}/>
                     <button onClick = {idCheck} className ={Styles.hiddenbtn}><CertificationButton className = {Styles.certbtn}text = "중복확인"/></button> 
                     </div>
@@ -209,9 +214,10 @@ function Signup(props){
                         message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
                 },
                 pattern: {
-                    value: /^[0-9a-zA-Z]{8,12}$/,
-                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
-                  },})}
+                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
+                },
+                })}
                 placeholder="비밀번호"
             />  
             <button  onClick = {resetPassword} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
@@ -239,39 +245,63 @@ function Signup(props){
                 maxLength: {
                   value: 5,
                   message: "5자리 이하로 작성해주세요",
-                },pattern: {
-                value: /^[가-힣a-zA-Z]+$/,
-                message: "형식에 맞지 않는 이름 입니다.",
-              },})}
+                },
+                minLength: {
+                    value: 2,
+                    message: "2자리 이상으로 작성해주세요",
+                  },
+                pattern: {
+                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{2,5}$/,
+                    message: "이름이 올바르게 입력됐는지 확인해주세요.",
+                      },
+               
+            })}
             />
             </div>
 
-                 <Label label = "생년월일"/>
-                    <div className={Styles.inputcontainer}>
-                        <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
-                        {...register("strBirthDate", {required:"", minLength: {value: 4,},maxLength: {value: 4,}},)}/>
-                    </div>
+            <Label label = "생년월일"/>
+                <div className={Styles.inputcontainer}>
+                    <input className = {Styles.input} type="number" placeholder = "생년월일 ex)19990101"
+                    {...register("strBirthDate", { maxLength: {value: 8}},)}/>
+                </div>
                         
 
              <Label label = "이메일 인증"/>
              <div className = {Styles.certinput}> 
-                    <input  type="email"
+                <input  type="email"
                     placeholder="이메일을 입력해주세요."
                     required
                     {...register("email")}
                     className = {Styles.smallinput} />
-                    <button className = {Styles.hiddenbtn} onClick={emailCheck}><CertificationButton className = {Styles.certbtn} text = "중복확인"/> </button>
-                    </div>
-                    <Label label = "닉네임"/>
-                        <div className={Styles.inputcontainer}>
-                        <input className = {Styles.input} type="text" placeholder = "3~8자리 입력(특수문자 불가)"
-                        required  {...register("nickname")} />
-                        </div>
-            
+                <button className = {Styles.hiddenbtn} onClick={emailCheck}><CertificationButton className = {Styles.certbtn} text = "중복확인"/> </button>
+            </div>
+            {errors.email && <p className = {Styles.alert} role="alert">{errors.email.message}</p>}
+            <Label label = "닉네임"/>
+                <div className={Styles.inputcontainer}>
+                    <input className = {Styles.input} type="text" placeholder = "3~8자리 입력(특수문자 불가)"
+                        required  {...register("nickname"
+                        ,{
+                            required: 
+                            "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요 ",
+                            minLength: {
+                                value: 8,
+                                message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을입력해주세요",
+                        },
+                            maxLength: {
+                                value: 12,
+                                message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요",
+                        },
+                        pattern: {
+                            value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
+                            message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요.",
+                        },
+                        })}/>
+                </div>
+                {errors.nickname && <p className = {Styles.alert} role="alert">{errors.nickname.message}</p>}
 
             <Label label = "프로필 사진 선택"/>
                 <div className={Styles.fileupload}>
-                    <FileUploadButton className = {Styles.filebtndetail}onselectImage={setSelectedImage}/>
+                    <FileUploadButton className = {Styles.filebtndetail} onSelectImage={setSelectedImage}/>
                 </div> 
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>
