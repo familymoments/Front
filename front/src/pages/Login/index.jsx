@@ -12,7 +12,7 @@ import { setCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props) {
-    const SERVER = process.env.REACT_APP_SERVER;
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     const {
         register,
         handleSubmit,
