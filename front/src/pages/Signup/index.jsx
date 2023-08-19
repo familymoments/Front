@@ -24,7 +24,7 @@ function Signup(props){
     const navigate = useNavigate();
 
     //이미지 업로드 컴포넌트 상태관리
-    const [selectedImage, setSelectedImage] = useState();
+    const [electedImage, setSelectedImage] = useState();
     
     //react-hook-from 관리
       const {
@@ -271,7 +271,7 @@ function Signup(props){
 
             <Label label = "프로필 사진 선택"/>
                 <div className={Styles.fileupload}>
-                    <FileUploadButton className = {Styles.filebtndetail}onselectImage={setSelectedImage}/>
+                    <FileUploadButton className = {Styles.filebtndetail} onSelectImage={setSelectedImage}/>
                 </div> 
                 <p className={Styles.profiletxt}>사용하실 프로필 이미지를 선택해주세요.</p>
                 <Alladmit/>
