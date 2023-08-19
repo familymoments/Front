@@ -70,7 +70,19 @@ function Findpwd3(props){
                 <input className = {Styles.inputstyle} placeholder="새 비밀번호"
                 type = "password"
                 required
-                {...register("passwordA")}/>
+                {...register("passwordA",{
+                minLength: {
+                    value: 8,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                             },
+                maxLength: {
+                    value: 12,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요",
+                            },
+                pattern: {
+                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{8,12}$/,
+                    message: "영문과 숫자를 사용하여, 8~12글자의 비밀번호를 입력해주세요.",
+                            }},)}/>
                 <input className = {Styles.inputstyle} placeholder="새 비밀번호 확인"
                 type = "password"
                 required
