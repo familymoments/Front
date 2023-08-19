@@ -24,10 +24,11 @@ const FamilyParticipation = () => {
     const handleParticipate = () => {
         // 초대 링크를 사용하여 가족 정보를 가져오는 서버 요청
         console.log(inviteLink);
-        axios.post('/families/inviteCode', inviteLink ,{ headers })
+        axios.post('/families/inviteCode', {inviteCode: inviteLink} ,{ headers })
             .then(res => {
                 if (res.data.isSuccess && res.data.result) {
                     setFamilyInfo(res.data.result);
+                    console.log("요청에 성공했습니다.");
                 } else {
                     console.log("가족이 존재하지 않습니다.");
                 }

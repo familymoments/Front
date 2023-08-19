@@ -10,21 +10,24 @@ import FamilySelect from "../../../components/FamilySelect";
 
 import { useNavigate } from "react-router-dom";
 
-
 const CreateFamily2 = () => {
     const navigate = useNavigate();
-    const [selectedFamilyName, setSelectedFamilyName] =useState();
+    const [selectedFamilyName, setSelectedFamilyName] = useState();
     const [selectedImage, setSelectedImage] = useState();
 
     const handleNextClick = async () => {
-        await navigate("/landing/createfamily3", { 
+        await navigate("/landing/createfamily3", {
             state: {
-                selectedFamilyName: selectedFamilyName, 
+                selectedFamilyName: selectedFamilyName,
                 selectedImage: selectedImage,
-            }, 
+            },
         });
     };
-    
+
+    const handleImageSelect = (image) => {
+        setSelectedImage(image);
+    };
+
     return (
         <div>
             <Header title="가족" />
@@ -35,16 +38,18 @@ const CreateFamily2 = () => {
                 <FamilySelect
                     buttonText="가족 이름 정하기"
                     customClass={style.familySelect}
+                    onSelect={setSelectedFamilyName}
                 />
-                <MakeFamilyBar 
+                <MakeFamilyBar
                     selectedFamilyName={selectedFamilyName}
                     onSelect={setSelectedFamilyName}
                 />
-                <FamilySelect 
-                    buttonText="가족 이미지 선택" 
-                    customClass={style.selectImage} 
+                <FamilySelect
+                    buttonText="가족 이미지 선택"
+                    customClass={style.selectImage}
+                    onSelect={handleImageSelect} // 이미지 선택 시 호출되는 콜백
                 />
-                <FileUploadButton onselectImage={setSelectedImage} /> 
+                <FileUploadButton onSelectImage={handleImageSelect} />
                 <div className="imgUpload"></div>
             </div>
             <Button onClick={handleNextClick} btn={classes.btn} title="다음 (2/3)" />
