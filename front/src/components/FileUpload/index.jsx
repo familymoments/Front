@@ -5,7 +5,7 @@ import styles from "./FileUpload.module.css";
 import {profileImg} from "../../atom";
 import { useRecoilState } from 'recoil';
 
-const FileUploadButton = ({onselectImage}) => {
+const FileUploadButton = ({onSelectImage}) => {
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,6 +17,7 @@ const FileUploadButton = ({onselectImage}) => {
       openFileInput();
     } else if (e.target.value === "default") { // 기본 이미지 선택 시
       setSelectedImage(defaultImg); // defaultImg로 이미지 설정
+      onSelectImage(defaultImg); // 기본 이미지를 부모 컴포넌트로 전달
       setShowOptions(false);
     }
   };
@@ -31,7 +32,7 @@ const FileUploadButton = ({onselectImage}) => {
       if (selectedFile) {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
-        onselectImage(URL.createObjectURL(selectedFile));
+        onSelectImage(URL.createObjectURL(selectedFile));
         const imageUrl = URL.createObjectURL(selectedFile);
         setprofileimg(selectedFile);
         //const imageUrl = URL.createObjectURL(selectedFile);
