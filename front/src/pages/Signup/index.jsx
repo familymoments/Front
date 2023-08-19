@@ -229,9 +229,8 @@ function Signup(props){
                           })}/>
                      <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
-                    {/* {errors.confirm && <small className = {Styles.alert} role="alert">{errors.confirm.message}</small>} */}
-                    {errors?.confirm?.message === undefined ? (<p className = {Styles.alert}>입력한 비밀번호가 일치합니다</p>) : 
-                    ( <p className = {Styles.alert}> {errors?.confirm?.message}</p>)}
+                    {errors.confirm && <p className = {Styles.alert} role="alert">{errors.confirm.message}</p>}
+                   
             <Label label = "이름"/>
             <div className = {Styles.inputcontainer}>
             <input placeholder = "실명을 입력하세요. ex) 홍길동" className= {Styles.input}
