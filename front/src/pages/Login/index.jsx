@@ -37,7 +37,7 @@ function Login(props) {
         axios
             .post(`${SERVER}/users/log-in`,data)
             .then(function (res) {
-                console.log(res);
+                console.log(res.data);
                 const token = res.data.token;
                 //const accessToken = res.headers['authorization'];
                 //const refreshToken = res.getCookie("refresh-token");

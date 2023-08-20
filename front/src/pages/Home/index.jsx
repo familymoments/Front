@@ -43,7 +43,7 @@ const Home=({showmodal})=>{
     //postlist 받아오기
     useEffect( ()=>{
         //최근 10개 게시물 서버에서 받아오기
-        axios.get(`/posts?familyId=8`,{headers})
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=5`,{headers})
            .then(res=>{
             if(res.data.code===404){
                 setIsnot(true);
@@ -52,7 +52,7 @@ const Home=({showmodal})=>{
             }
             })
            .catch(err=>console.log(err));
-        axios.get(`/families/8/created`,{headers:{
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/families/5/created`,{headers:{
             ...headers,
             "Path":"/",
             "Secure" : "HttpOnly",
@@ -66,19 +66,19 @@ const Home=({showmodal})=>{
         
     },[]);
 
-    // useEffect(()=>{
-    //     //DELETE요청
-    //     axios.delete(`/posts/${deletepostid}`,{headers})
-    //     .then(res=>{
-    //         setPostData(postData.filter((post)=> deletepostid !==post.postId));
-    //         console.log(res);
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    //     // setData(data.filter((post)=> deletepostid !==post.postId));
+    useEffect(()=>{
+        //DELETE요청
+        axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${deletepostid}`,{headers})
+        .then(res=>{
+            //setPostData(postData.filter((post)=> deletepostid !==post.postId));
+            console.log(res);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        // setData(data.filter((post)=> deletepostid !==post.postId));
        
-    // },[deletepostid])
+    },[deletepostid])
 
 
 

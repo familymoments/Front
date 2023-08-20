@@ -7,17 +7,15 @@ import { useState } from "react";
 import { useLocation,useNavigate, useParams } from "react-router-dom";
 
 //상태관리 라이브러리
-import { nextPostid,recentPosts,postid ,token} from "../../atom";
+import { nextPostid,recentPosts,postid ,header} from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import axios from "axios";
 
 const UpdatePost =(props)=>{
     //헤더추가
-    const authToken = useRecoilValue(token);
-    const headers = {
-        "X-AUTH-TOKEN": authToken,
-    };
+    // const authToken = useRecoilValue(token);
+    const headers = useRecoilValue(header);
 
     const nav=useNavigate();
     const {state:{post}}=useLocation();
@@ -43,7 +41,7 @@ const UpdatePost =(props)=>{
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
         fd.append("img1",post.imgs[0]);
 
-        await axios.patch(`/posts/${nowpostId}`,fd,{headers})
+        await axios.patch(`${process.env.REACT_APP_SERVER_URL}/posts/${nowpostId}`,fd,{headers})
         .then(res=>{
             console.log("수정",res);
         })
