@@ -19,7 +19,7 @@ function Signup(props){
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
-
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     const navigate = useNavigate();
 
     //이미지 업로드 컴포넌트 상태관리
@@ -75,7 +75,7 @@ function Signup(props){
             fd.append("profileImg",profile);
             console.log(signUpData,profile);
             // Post실행
-            axios.post(`/users/sign-up`,fd)
+            axios.post(`${SERVER}/users/sign-up`,fd)
             .then((res)=>{
                 console.log(res);
                 
@@ -119,7 +119,7 @@ function Signup(props){
                    Swal.fire("아이디를 먼저 입력해주세요.");
                    } else {
                    axios
-                       .post("/users/check-id", { id: id })
+                       .post(`${SERVER}/users/check-id`, { id: id })
                        .then((res) => {
                         console.log(res);
                        if (res.data.code === 200) {
@@ -146,7 +146,7 @@ function Signup(props){
                     Swal.fire("이메일을 먼저 입력해주세요.");
                     } else {
                     axios
-                        .post('/users/check-email', { email: email })
+                        .post(`${SERVER}/users/check-email`, { email: email })
                         .then((res) => {
                         console.log(res);
                         if (res.data.code === 200) {

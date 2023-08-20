@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from "axios";
 import Swal from "sweetalert2";
-import { setCookie } from "./Cookie";
+import { setCookie,getCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
+import Cookie from "js-cookie";
+import moment from "moment";
 function Login(props) {
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const {
@@ -23,8 +25,9 @@ function Login(props) {
     useEffect(()=>{
         props.changeTitle("Family Moments");
     })
-    // 상태관리
+    // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
+    const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
     // id 값 관리
@@ -36,25 +39,15 @@ function Login(props) {
         axios
             .post(`${SERVER}/users/log-in`,data)
             .then(function (res) {
-                console.log(res.data);
+                console.log(res);
                 const token = res.data.token;
-                //const accessToken = res.headers['authorization'];
-                const refreshToken = res.headers['refresh'];
-                const { accessToken } = res.data;
-               
-                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-                
-                setCookie("token", res.headers.get("x-auth-token"), {
-                    path: "/",
-                    sameSite: "strict",
-                });
-                
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
-                console.log(headers);
-                localStorage.setItem('token', res.headers.get("x-auth-token"));
                 navigate("/landing/newfamily");
+                //const refreshToken = getCookie("refresh-token");
+                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+                //axios.defaults.headers.common['Authorization'] = `Bearer ${refreshToken}`;
+                //const refreshToken = Cookie.get("refresh-token");
                 
             })
             .catch(function (error) {
@@ -66,6 +59,41 @@ function Login(props) {
             });
     };
     
+    // const refresh = async (config) => {
+    //     const refreshToken = Cookie.get("refreshToken");
+    //     console.log(refreshToken);
+    //     const expireAt = sessionStorage.getItem("expiresAt");
+    //     let token = sessionStorage.getItem("x-auth-token");
+    //     console.log("만료확인");
+    //     // 토큰이 만료되었다면
+    //     if (moment(expireAt).diff(moment()) < 0) {
+    //         var body = {
+    //           //email: sessionStorage.getItem("email"),
+    //           header,
+    //         };
+        
+    //         console.log("토큰을 재발급합니다!");
+    //         //재발급 요청
+    //         const res = await axios.post(
+    //             `${SERVER}/users/auth/reissue`,
+    //             body
+    //         );
+    //         console.log("재발급 성공", res.data.x-auth-token);
+    //         sessionStorage.setItem("x-auth-token", res.data.x-auth-token);
+    //         sessionStorage.setItem(
+    //             "expiresAt",
+    //             moment().add(3, "minute").format("yyyy-MM-DD HH:mm:ss")
+    //         );
+    //         config.headers["Authorization"] = `Bearer ${token}`; // 토큰 교체
+    //         }
+        
+    //         return config;
+    //     };
+    //     const refreshErrorHandle = () => {
+    //         //Cookie.remove("refreshToken");
+    //       };
+          
+    //       //export { refresh, refreshErrorHandle };
     return(
     <div>
         <div className={Styles.top}>

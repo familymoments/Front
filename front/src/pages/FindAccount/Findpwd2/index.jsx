@@ -9,6 +9,7 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 function Findpwd2(props){
+    const SERVER = process.env.REACT_APP_SERVER_URL;
 //react-hook-form 선언
 const {
     register,
@@ -32,7 +33,7 @@ const {
                Swal.fire("값을 먼저 입력해주세요.");
                } else {
                axios
-                   .post('/users/auth/send-email', { 
+                   .post(`${SERVER}/users/auth/send-email`, { 
                        name: name,
                        email: email })
                    .then((res) => {
