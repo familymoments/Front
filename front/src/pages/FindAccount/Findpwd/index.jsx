@@ -11,6 +11,7 @@ function Findpwd(props){
     useEffect(()=>{
         props.changeTitle("비밀번호 찾기");
     })
+    const SERVER = process.env.REACT_APP_SERVER_URL;
      //상태관리
     const [id,setId] = useRecoilState(ID);
     //navigate
@@ -25,7 +26,7 @@ function Findpwd(props){
     
     const getAuth = (e) => {
         axios
-        .post("/users/auth/check-id", e)   
+        .post(`${SERVER}/users/auth/check-id`, e)   
         .then( (res)=> {
             if (res.data.code === 200) {
                 const userID = watch("userId");

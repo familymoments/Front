@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import { idFounded } from "../../../atom";
 
 function Findid(props){
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     //상태관리
   const [idfounded,setIdFounded] = useRecoilState(idFounded);
   //헤더 문구
@@ -43,7 +44,7 @@ function Findid(props){
                 Swal.fire("값을 먼저 입력해주세요.");
                 } else {
                 axios
-                    .post('/users/auth/send-email', { 
+                    .post(`${SERVER}/users/auth/send-email`, { 
                         name: name,
                         email: email })
                     .then((res) => {

@@ -8,7 +8,7 @@ import {SiNaver} from 'react-icons/si';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios from 'axios';
 import Swal from "sweetalert2";
-import { setCookie } from "./Cookie";
+import { setCookie,getCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props) {
@@ -23,8 +23,9 @@ function Login(props) {
     useEffect(()=>{
         props.changeTitle("Family Moments");
     })
-    // 상태관리
+    // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
+    const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
     // id 값 관리
@@ -39,18 +40,16 @@ function Login(props) {
                 console.log(res);
                 const token = res.data.token;
                 //const accessToken = res.headers['authorization'];
-                const refreshToken = res.headers['refresh'];
-                const { accessToken } = res.data;
+                //const refreshToken = res.getCookie("refresh-token");
+               // const { accessToken } = res.headers.get;
                
                 // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-                
-                setCookie("token", res.headers.get("x-auth-token"), {
-                    path: "/",
-                    sameSite: "strict",
-                });
+                //axios.defaults.headers.common['Authorization'] = `Bearer ${refreshToken}`;
+                //console.log(refreshToken);
+                //setCookie("refreshtoken", refreshToken);
                 
                 console.log(res.headers.get("x-auth-token"));
+                console.log(res.headers.get("refresh-token"));
                 setHeaders(res.headers.get("x-auth-token"));
                 console.log(headers);
                 localStorage.setItem('token', res.headers.get("x-auth-token"));

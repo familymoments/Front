@@ -11,6 +11,7 @@ function Findpwd3(props){
     useEffect(()=>{
         props.changeTitle("회원가입");
     })
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     //id
      const id = useRecoilValue(ID);
      console.log(id);
@@ -34,7 +35,7 @@ function Findpwd3(props){
         }
         else if(passwordA === passwordB){
         axios
-        .patch(`/users/auth/modify-pwd?id=${id}`, e)   
+        .patch(`${SERVER}/users/auth/modify-pwd?id=${id}`, e)   
         .then(function (res) {
              console.log(id);
              console.log(res);

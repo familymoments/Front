@@ -11,8 +11,8 @@ export const setCookie = (token ,option) => {
 };
 
 // 사용자 인증이 필요한 데이터를 요청할 때 쿠키를 가져온다
-export const getCookie = (token) => {
-  return cookies.get(token);
+export const getCookie = (refreshtoken) => {
+  return cookies.get(refreshtoken);
 };
 
 //쿠키를 지운다
