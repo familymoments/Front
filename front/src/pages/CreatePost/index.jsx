@@ -11,18 +11,13 @@ import axios from "axios";
 
 
 //상태관리 라이브러리
-import { nextPostid,recentPosts,token } from "../../atom";
+import { nextPostid,recentPosts,token,header } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 const CreatePost = ()=>{
     const authtoken = useRecoilValue(token);
 
-    const headers = {
-        "X-AUTH-TOKEN" : authtoken,
-        "Content-Type" : "multipart/form-data",
-    
-        
-    };
+    const headers = useRecoilValue(header);
 
     //날짜정보 받아오기 (서버 연동되면 필요x)
     const [date,setDate]=useState(new Date());
@@ -59,9 +54,9 @@ const CreatePost = ()=>{
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
         fd.append("img1",imgs[0]);
 
-        await axios.post(`/posts?familyId=8`,fd,{headers})
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=5`,fd,{headers})
         .then(res=>{
-            console.log(res);
+           // console.log(res);
         setDate(data.concat(res.data));
         })
         .catch(err=>{

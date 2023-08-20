@@ -16,6 +16,8 @@ const Modal  = ({showmodal,modalmode})=>{
 
     const nav=useNavigate();
 
+    
+
     if(mode==="DELETE"){
         content=<div className={styles.container}>
             <div className={styles.text}>
