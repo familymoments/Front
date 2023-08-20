@@ -14,7 +14,6 @@ function Findpwd3(props){
     const SERVER = process.env.REACT_APP_SERVER_URL;
     //id
      const id = useRecoilValue(ID);
-     console.log(headers);
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
