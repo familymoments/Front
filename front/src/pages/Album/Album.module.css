@@ -35,16 +35,6 @@
     margin-left: 1px;
 }
 
-/* .modal {
-    width: 300px;
-    height: 300px;
-
-    position: absolute;
-    top: 50%;
-
-    background-color: aqua;
-} */
-
 .hidden {
     display: none;
 }
@@ -66,7 +56,4 @@
     width: 300px;
     height: 300px;
     z-index: 100;
-
-    /* background-color: aqua; */
-    /* overflow: hidden; */
 }

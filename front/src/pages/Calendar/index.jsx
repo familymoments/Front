@@ -8,12 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import useAsync from "../../hooks/useAsync";
-
-const authToken = localStorage.getItem("jwtToken");
-
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+import { header } from "../../atom";
+import { useRecoilState } from "recoil";
 
 const FECalendar = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,11 +19,14 @@ const FECalendar = () => {
     const [holiday, setHoliday] = useState([]);
     const customWeekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
+    const SERVER = process.env.REACT_APP_SERVER_URL;
+    const [headers, setHeaders] = useRecoilState(header);
+
     const nav = useNavigate();
 
     const getUsers = async () => {
         const response = await axios.get(
-            `/posts/calendar?familyId=5&year=${year}&month=${month}`,
+            `${SERVER}/posts/calendar?familyId=8&year=${year}&month=${month}`,
             { headers }
         );
         return response.data;
