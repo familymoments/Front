@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 178px;
+}
+
+.p {
+    color: #5B6380;
+    font-size: 18px;
+    text-align: left;
+
+    margin-bottom: 58px;
+}
+
+.h3 {
+    color: #5B6380;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn {
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #EF88A1;
+
+    margin-top: 103px;
+}
+
+.btn2 {
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #5B6380;
+
+    margin-top: 20px;
+}
