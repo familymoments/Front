@@ -9,14 +9,8 @@ import useAsync from "../../../hooks/useAsync";
 import { Link } from "react-router-dom";
 import ProfileEdit from "./ProfileEdit";
 import ProfileMain from "./ProfileMain";
-
-const authToken = localStorage.getItem("token");
-
-// console.log(authToken)
-
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+import { useRecoilState } from "recoil";
+import { header } from "../../../atom";
 
 // 프로필 페이지
 const Profile = () => {
@@ -25,30 +19,20 @@ const Profile = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [profImg, setProfImg] = useState("");
+    const [nickName, setNickName] = useState("");
+    const [birthDate, setBirthDate] = useState("");
     const [num, setNum] = useState();
     const [day, setDay] = useState();
 
-    // api로 토큰 불러오는 코드
-    const loginData = {
-        id: "familya1",
-        password: "yung1234",
-    };
-    const fetchLogin = async () => {
-        const response = await axios.post("/users/log-in", loginData);
-        const token = response.headers.get("x-auth-token");
-
-        return token;
-    };
-    useEffect(() => {
-        fetchLogin().then((res) => localStorage.setItem("token", res));
-    }, []);
+    const SERVER = process.env.REACT_APP_SERVER_URL;
+    const [headers, setHeaders] = useRecoilState(header);
 
     const editHandler = () => {
         setIsEdit(!isEdit);
     };
 
     const getUsers = async () => {
-        const response = await axios.get(`/users/profile?familyId=5`, {
+        const response = await axios.get(`${SERVER}/users/profile?familyId=5`, {
             headers,
         });
         return response.data;
@@ -61,26 +45,28 @@ const Profile = () => {
     const users = data?.result;
 
     useEffect(() => {
-        setName(users?.nickName);
+        setName(users?.name);
         setEmail(users?.email);
         setProfImg(users?.profileImg);
+        setNickName(users?.nickName);
+        setBirthDate(users?.birthDate);
         setNum(users?.totalUpload);
         setDay(users?.duration);
-
-        // console.log(users);
     }, [users]);
 
     const user = {
         name,
         email,
         profImg,
+        nickName,
+        birthdate: birthDate,
         num,
         day,
     };
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    // if (!users) return <p>No Exist User.</p>;
+    if (!users) return <p>No Exist User.</p>;
     return (
         <div>
             {isEdit ? (
