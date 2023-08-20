@@ -11,7 +11,7 @@ const ImgButton = (props) => {
                 id={props.postId}
                 // onClick={() => alert("hel")}
                 // 상위 컴포넌트의 함수를 불러와서 실행
-                onClick={() => props.modalValue(props.img1)}
+                onClick={() => props.modalValue(props.img1, props.postId)}
             ></img>
         </>
     );

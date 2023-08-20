@@ -1,42 +1,128 @@
 import classes from "./Edit.module.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../../../components/Button";
 
 import { MdCancel } from "react-icons/md";
+import FileUploadButton from "../../../../components/FileUpload";
+import { useRecoilState } from "recoil";
+import { header } from "../../../../atom";
 
 const ProfileEdit = (props) => {
+    const SERVER = process.env.REACT_APP_SERVER_URL;
+    const [headers, setHeaders] = useRecoilState(header);
+
     const [profImg, setProfImg] = useState("");
-    const [formData, setFormData] = useState({
+    const [data, setData] = useState({
         name: "",
-        nickName: "",
-        birthDay: "",
+        nickname: "",
+        birthdate: "",
     });
+
+    const tagsRef = useRef([]);
 
     useEffect(() => {
         setProfImg(props.profImg);
+        setData({
+            ...data,
+            name: props.name,
+            nickname: props.nickName,
+            birthdate: props.birthdate,
+        });
     }, [props]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        setData({ ...data, [name]: value });
+    };
+
+    const handleRemoveInput = (index) => {
+        const targetTag = tagsRef.current[index];
+        if (targetTag) {
+            setData({ ...data, [targetTag.name]: "" });
+        }
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // 폼 데이터를 사용하여 원하는 작업 수행
-        // alert("submit");
-        console.log(formData);
-
+        alert("[modifying] patch 500 error");
         props.editHandler();
+
+        // console.log("patch API: ");
+        // sendInfo();
+    };
+
+    const sendInfo = async () => {
+        // const formData = new FormData();
+        // formData.append("profileImg", profImg);
+        // // const blob = new Blob([JSON.stringify(data)], {type: "application/json"})
+        // // formData.append("PatchProfileReqRes",blob)
+        // formData.append("PatchProfileReqRes", JSON.stringify(data));
+        // // console.log(formData.entries());
+        // for (const [name, value] of formData.entries()) {
+        //     console.log(`${name}:`, value);
+        //   }
+
+        // const fd = new FormData();
+        // fd.append(
+        //     "PatchProfileReqRes",
+        //     new Blob([JSON.stringify(data)], { type: "application/json" })
+        // );
+        // fd.append("profileImg", profImg);
+
+        // const response = await axios.patch("/users", fd, {
+        //     headers,
+        // });
+        // console.log(response.data);
+        // return response.data;
+
+        const formData = new FormData();
+        formData.append("profileImg", profImg);
+
+        // JSON 데이터 생성
+        const jsonData = {
+            name: "정유영",
+            nickname: "융융융",
+            birthdate: "20001217",
+        };
+
+        // FormData와 JSON 데이터를 함께 보내기 위해 FormData에 JSON 데이터 추가
+        formData.append("PatchProfileReqRes", JSON.stringify(jsonData));
+
+        const body = {
+            name: "정유영",
+            nickname: "융융융",
+            birthdate: "20001217",
+            profileImg: profImg,
+        };
+
+        console.log('fromData:')
+        for (const [name, value] of formData.entries()) {
+            console.log(`${name}:`, value);
+        }
+
+        console.log("body: ", body)
+
+        // API 요청
+        axios
+            .patch(`${SERVER}/users`, body, {headers})
+            .then((response) => {
+                console.log("Patch request successful", response.data);
+            })
+            .catch((error) => {
+                console.error("Error making patch request", error);
+            });
     };
 
     return (
         <div className={classes.wrapper}>
-            {/* <button onClick={goBack}>뒤로 가기</button> */}
             <div className={classes.top}>
                 <p className={classes.p1}>프로필 편집</p>
-                <img className={classes.img} alt="프로필 사진" src={profImg}></img>
+                <img
+                    className={classes.img}
+                    alt="프로필 사진"
+                    src={profImg}
+                ></img>
                 <p
                     className={classes.p2}
                     onClick={() => {
@@ -47,7 +133,7 @@ const ProfileEdit = (props) => {
                 </p>
             </div>
             <hr className={classes.hr} />
-            <form onSubmit={handleSubmit} className={classes.bottom}>
+            <form className={classes.bottom}>
                 <div className={classes.div}>
                     <label>이름</label>
                     <div className={classes.box}>
@@ -55,13 +141,14 @@ const ProfileEdit = (props) => {
                             className={classes.input}
                             type="text"
                             name="name"
-                            value={formData.name}
+                            value={data.name}
                             autoComplete="off"
                             onChange={handleInputChange}
+                            ref={(el) => (tagsRef.current[0] = el)}
                         />
                         <MdCancel
                             className={classes.cancel}
-                            onClick={() => alert("clear")}
+                            onClick={() => handleRemoveInput(0)}
                         />
                     </div>
                 </div>
@@ -71,14 +158,15 @@ const ProfileEdit = (props) => {
                         <input
                             className={classes.input}
                             type="text"
-                            name="nickName"
-                            value={formData.nickName}
+                            name="nickname"
+                            value={data.nickname}
                             autoComplete="off"
                             onChange={handleInputChange}
+                            ref={(el) => (tagsRef.current[1] = el)}
                         />
                         <MdCancel
                             className={classes.cancel}
-                            onClick={() => alert("clear")}
+                            onClick={() => handleRemoveInput(1)}
                         />
                     </div>
                 </div>
@@ -87,15 +175,16 @@ const ProfileEdit = (props) => {
                     <div className={classes.box}>
                         <input
                             className={classes.input}
-                            type="date"
-                            name="birthDay"
-                            value={formData.birthDay}
+                            type="text"
+                            name="birthdate"
+                            value={data.birthdate}
                             autoComplete="off"
                             onChange={handleInputChange}
+                            ref={(el) => (tagsRef.current[2] = el)}
                         />
                         <MdCancel
                             className={classes.cancel}
-                            onClick={() => alert("clear")}
+                            onClick={() => handleRemoveInput(2)}
                         />
                     </div>
                 </div>
@@ -106,9 +195,16 @@ const ProfileEdit = (props) => {
                         type="button"
                         onClick={props.editHandler}
                     />
-                    <Button title="완료" btn={classes.btn2} type="submit" />
+                    <Button
+                        title="완료"
+                        btn={classes.btn2}
+                        type="submit"
+                        onClick={handleSubmit}
+                    />
                 </div>
             </form>
+            {/* <button onClick={handleSubmit}>button</button> */}
+            {/* <FileUploadButton></FileUploadButton> */}
         </div>
     );
 };

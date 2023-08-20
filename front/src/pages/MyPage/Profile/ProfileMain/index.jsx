@@ -8,13 +8,6 @@ import axios from "axios";
 import useAsync from "../../../../hooks/useAsync";
 import { Link } from "react-router-dom";
 
-const authToken = localStorage.getItem("token");
-
-// console.log(authToken)
-
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
 
 // 프로필 페이지
 const ProfileMain = (props) => {
@@ -22,15 +15,17 @@ const ProfileMain = (props) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [profImg, setProfImg] = useState('');
+    const [nickName, setNickName] = useState("");
+    const [birthDate, setBirthDate] = useState("");
     const [num, setNum] = useState();
     const [day, setDay] = useState();
-
-    console.log(props)
 
     useEffect(() => {
         setName(props.name)
         setEmail(props.email)
         setProfImg(props.profImg)
+        setNickName(props.nickName)
+        setBirthDate(props.birthDate)
         setNum(props.num)
         setDay(props.day)
     }, [props])
@@ -81,7 +76,7 @@ const ProfileMain = (props) => {
                     src={profImg}
                     alt="프로필 사진"
                 ></img>
-                <p className={classes.name}>{name}</p>
+                <p className={classes.name}>{nickName}</p>
                 <p className={classes.email}>{email}</p>
             </div>
             <hr className={classes.hr}></hr>

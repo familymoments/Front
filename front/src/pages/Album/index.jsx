@@ -4,28 +4,36 @@ import classes from "./Album.module.css";
 
 import axios from "axios";
 import useAsync from "../../hooks/useAsync";
-
-const authToken = localStorage.getItem("jwtToken");
-// console.log(authToken)
-
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+import AlbumModal from "./AlbumModal";
+import { useRecoilState } from "recoil";
+import { header } from "../../atom";
 
 const Album = () => {
     const [imgLst, setImgLst] = useState([]);
     const [isModal, setIsModal] = useState(false);
     const [focusImg, setFocusImg] = useState('');
+    const [postId, setPostId] = useState();
+
+    const propsModal = {
+        focusImg,
+        postId,
+        setIsModal,
+    }
+
+    const SERVER = process.env.REACT_APP_SERVER_URL;
+    const [headers, setHeaders] = useRecoilState(header);
 
     // imgButton 컴포넌트(하위 컴포넌트)에서 사용하는 함수 -> 매개변수도 imgButton 컴포넌트에서 가져옴
-    const modalHandler = (selectedImg) => {
+    const modalHandler = (selectedImg, selectedId) => {
         setFocusImg(selectedImg)
-
+        setPostId(selectedId)
+        
         setIsModal(true);
     };
 
     const getImgs = async () => {
-        const response = await axios.get(`/posts/album?familyId=5`);
+        const response = await axios.get(`${SERVER}/posts/album?familyId=5`, {headers});
+        console.log(response.data)
         return response.data;
     };
 
@@ -48,20 +56,7 @@ const Album = () => {
 
     return (
         <div className={classes.wrapper}>
-            {isModal && (
-                <div
-                    className={`${classes.backdrop}`}
-                    onClick={() => setIsModal(false)}
-                ></div>
-            )}
-            {isModal && (
-                <img
-                    src={focusImg}
-                    className={`${classes.modal} ${
-                        isModal ? classes.show : ""
-                    }`}
-                ></img>
-            )}
+            {isModal && <AlbumModal {...propsModal} />}
             <hr className={classes.hr} />
             <div className={classes.dotWrapper}>
                 <div className={classes.dot}></div>
