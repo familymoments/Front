@@ -9,8 +9,6 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import PostDetail from "./PostDetail";
 import UpdatePost from "./UpdatePost";
 
-import AlbumDetail from "./Album/Detail";
-
 import CalendarDetail from "./Calendar/Detail";
 
 //강퇴페이지
@@ -40,6 +38,8 @@ import Profile from "./MyPage/Profile";
 
 //modal state 상태관리
 import {atom} from "recoil";
+import PwChange from "./MyPage/PwChange";
+import Resign from "./MyPage/Resign";
 
 
 const Main = () => {
@@ -78,6 +78,9 @@ const Main = () => {
 
                     <Route path="/my/notice" element={<Notice />}></Route>
                     <Route path="/my/profile" element={<Profile />}></Route>
+                    <Route path="/my/pwchange" element={<PwChange />}></Route>
+                    
+                    <Route path="/my/resign" element={<Resign />}></Route>
 
                     {/*강퇴 페이지*/}
                     <Route path='/setting' element={<Setting />} />
