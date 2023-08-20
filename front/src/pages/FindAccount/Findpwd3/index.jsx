@@ -14,7 +14,7 @@ function Findpwd3(props){
     const SERVER = process.env.REACT_APP_SERVER_URL;
     //id
      const id = useRecoilValue(ID);
-     console.log(id);
+     console.log(headers);
     //navigate
     const navigate = useNavigate();
     //react-hook-form 선언
@@ -49,7 +49,6 @@ function Findpwd3(props){
             if (res.data.code === 400) {
                 Swal.fire("입력한 비밀번호와 일치하지 않습니다.");
             }
-            
         })
         .catch(function (err) {
             Swal.fire("일치하는 회원 정보가 없습니다.");
@@ -58,9 +57,8 @@ function Findpwd3(props){
         else if(passwordA =! passwordB){
             Swal.fire("비밀번호를 다시 한번 확인해주세요.")
         }
-        console.log(e);
+        console.log(e);  
     };
-
     return(
         <form onSubmit={handleSubmit(getAuth)}>
             <h1 className={Styles.title}>비밀번호 재설정</h1>
@@ -100,6 +98,7 @@ function Findpwd3(props){
                 <button type = "submit" className={Styles.hiddenbtn}><Loginbutton texts =" 순간을 가족에게 공유하기"/></button>
             </div>
         </form>
+        
     );
 }
 
