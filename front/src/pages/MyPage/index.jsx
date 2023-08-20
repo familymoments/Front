@@ -21,7 +21,7 @@ const MyPage = () => {
                 <NavAttr iconName={FiUser} title="Profile" lnk="./profile" />
                 <NavAttr iconName={FiLock} title="Password" lnk="./pwchange" />
                 <NavAttr iconName={FiBell} title="알림" lnk="./notice" />
-                <NavAttr iconName={FiSettings} title="가족 설정" lnk="./setting" />
+                <NavAttr iconName={FiSettings} title="가족 설정" lnk="./set" />
             </Nav>
             <Nav title="More" style={classes.header}>
                 <NavAttr iconName={FiStar} title="Log out" onClick={modalHandler} />

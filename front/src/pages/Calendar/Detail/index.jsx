@@ -23,7 +23,7 @@ const Detail = () => {
 
     const getPosts = async () => {
         const response = await axios.get(
-            `${SERVER}/posts/calendar?familyId=8&year=${year}&month=${month}&day=${day}`,
+            `${SERVER}/posts/calendar?familyId=5&year=${year}&month=${month}&day=${day}`,
             { headers }
         );
         return response.data;
@@ -34,7 +34,7 @@ const Detail = () => {
     const { loading, data, error } = state;
 
     const lists = data?.result;
-    console.log(lists)
+    // console.log("lists :", lists)
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
@@ -49,13 +49,8 @@ const Detail = () => {
                 {/* <BsChevronRight className={classes.btn} /> */}
             </div>
             <div>
-                Post 컴포넌트 수정필요
-                {/* <Post /> */}
-                {/* post컴포넌트에서 writer 에러 남 */}
                 {lists.map((item) => {
-                    {console.log(item)}
-                    <Post it={item} />
-
+                    return <Post it={item}/>
                 })}
             </div>
         </div>
