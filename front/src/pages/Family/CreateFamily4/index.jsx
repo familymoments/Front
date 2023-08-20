@@ -39,9 +39,9 @@ const CreateFamily4 = () => {
                 btn={classes.btn2}
                 title="초대 링크 복사"
             />
-            <Button onClick={()=>{navigate("/landing/createfamily5")}}
+            <Button onClick={()=>{navigate("/landing/createfamily")}}
                 btn={classes.btn} 
-                title="다음"
+                title="다음 (3/3)"
             />
         </div>
     );

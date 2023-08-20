@@ -7,7 +7,7 @@ const NewFamily = () => {
     return (
         <div className={classes.NewFamily}>
             <div className={classes.area}>
-                <Link to="../createfamily">
+                <Link to="../createfamily2">
                 <CircleButton title="우리 가족 생성하기" type="pink" layout={classes.pinkCircleBtn} />
                 </Link>
                 <Link to="../familyparticipation">

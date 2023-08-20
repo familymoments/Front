@@ -44,7 +44,7 @@ const CreateFamily3 = () => {
             <Button 
             onClick={handleNextClick}
             btn={classes.btn} 
-            title="가족 생성하기"/>
+            title="다음 (2/3)"/>
         </div>
         );
     }
