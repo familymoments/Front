@@ -50,68 +50,42 @@ const ProfileEdit = (props) => {
 
         // console.log("patch API: ");
         // sendInfo();
+        // test();
     };
 
-    const sendInfo = async () => {
-        // const formData = new FormData();
-        // formData.append("profileImg", profImg);
-        // // const blob = new Blob([JSON.stringify(data)], {type: "application/json"})
-        // // formData.append("PatchProfileReqRes",blob)
-        // formData.append("PatchProfileReqRes", JSON.stringify(data));
-        // // console.log(formData.entries());
-        // for (const [name, value] of formData.entries()) {
-        //     console.log(`${name}:`, value);
-        //   }
+    const test = () => {
+        const blob = new Blob([JSON.stringify(data)], { type: "application/json" })
+        blob.text().then((text) => {
+            console.log(text);
+          });
+    }
 
-        // const fd = new FormData();
-        // fd.append(
-        //     "PatchProfileReqRes",
-        //     new Blob([JSON.stringify(data)], { type: "application/json" })
-        // );
-        // fd.append("profileImg", profImg);
+    const sendInfo = () => {
+        const formData = new FormData(); // FormData 객체를 생성
 
-        // const response = await axios.patch("/users", fd, {
-        //     headers,
-        // });
-        // console.log(response.data);
-        // return response.data;
-
-        const formData = new FormData();
+        // 이미지 데이터를 추가
         formData.append("profileImg", profImg);
 
-        // JSON 데이터 생성
-        const jsonData = {
-            name: "정유영",
-            nickname: "융융융",
-            birthdate: "20001217",
-        };
+        // 다른 데이터도 추가할 경우
+        formData.append(
+            "PatchProfileReqRes",
+            new Blob([JSON.stringify({...data})], { type: "application/json" })
+        );
 
-        // FormData와 JSON 데이터를 함께 보내기 위해 FormData에 JSON 데이터 추가
-        formData.append("PatchProfileReqRes", JSON.stringify(jsonData));
-
-        const body = {
-            name: "정유영",
-            nickname: "융융융",
-            birthdate: "20001217",
-            profileImg: profImg,
-        };
-
-        console.log('fromData:')
-        for (const [name, value] of formData.entries()) {
-            console.log(`${name}:`, value);
+        for (const entry of formData.entries()) {
+            console.log(entry);
         }
 
-        console.log("body: ", body)
+        // const body = { ...data, profileImg: profImg };
+        // console.log("body: ", body);
 
-        // API 요청
-        axios
-            .patch(`${SERVER}/users`, body, {headers})
-            .then((response) => {
-                console.log("Patch request successful", response.data);
-            })
-            .catch((error) => {
-                console.error("Error making patch request", error);
-            });
+        const response = axios.patch(`${SERVER}/users`, formData, {
+            headers: {
+                ...headers,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+        console.log("response:", response.data);
     };
 
     return (
