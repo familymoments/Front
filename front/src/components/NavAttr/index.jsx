@@ -32,7 +32,7 @@ const NavAttr = (props) => {
             {props.iconName !== undefined ? (
                 <div className={classes.wrapper}>
                     <props.iconName className={classes.icon} />
-                    <Link to={props.lnk} className={classes.canclick}>
+                    <Link to={props.lnk} className={classes.canclick} onClick={props?.onClick}>
                         <div className={classes.title}>{props.title}</div>
                         <BsChevronRight className={classes.btn} />
                     </Link>
