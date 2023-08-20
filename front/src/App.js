@@ -31,8 +31,7 @@ import CreateFamily5 from './pages/Family/CreateFamily5';
 import CreateFamily5_2 from './pages/Family/CreateFamily5_2';
 // 이용약관
 import TOS1 from "./pages/Signup/TOS1";
-import TOS3 from "./pages/Signup/TOS2";
-import TOS2 from "./pages/Signup/TOS3";
+
 
 function App() {
 
@@ -81,8 +80,7 @@ function App() {
                     {/* 이용약관 */}
                     
                         <Route path = "/signup/TOS1" element = {<TOS1/>}/>
-                        <Route path = "/signup/TOS2" element = {<TOS2/>}/>
-                        <Route path = "/signup/TOS3" element = {<TOS3/>}/>
+                        
                     
                     {/* Header와 Footer가 필요한 페이지들 */}
                     <Route path="/main/*" element={<Main/>} />

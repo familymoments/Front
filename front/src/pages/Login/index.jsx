@@ -12,7 +12,7 @@ import { setCookie } from "./Cookie";
 import {header} from "../../atom";
 import { useRecoilState } from 'recoil';
 function Login(props) {
-    const SERVER = process.env.REACT_APP_SERVER;
+    const SERVER = process.env.REACT_APP_SERVER_URL;
     const {
         register,
         handleSubmit,
@@ -78,7 +78,7 @@ function Login(props) {
             </div>
         </div>
    
-    <form className = {Styles.input} onSubmit={handleSubmit(getAuth)} method="POST">
+    <form className = {Styles.input} onSubmit={handleSubmit(getAuth)} method="post">
             <div>
                 <input id = "id" className={Styles.id} type= "text"  placeholder="ID"   
                 {...register("id", {required: "아이디는 필수 입력입니다.",
