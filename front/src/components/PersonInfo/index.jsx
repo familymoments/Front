@@ -4,17 +4,45 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import styles from "./PersonInfo.module.css";
 
-const PersonInfo = ({ name }) => {
+const PersonInfo = ({ name, image }) => {
   const [checked, setChecked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     setChecked(!checked);
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const avatarStyle = {
+    width: "38px",   
+    height: "38px",
+    borderRadius: "50%",
+  };
+
+  const personInfoStyle = {
+    backgroundColor: isHovered ? "#ccc" : "transparent", // 배경 색상 변경
+  };
+
   return (
-    <div className={styles.personInfo}>
+    <div 
+        className={styles.personInfo}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={personInfoStyle} // 배경 색상 적용
+      >
       <div className={styles.avatar}>
-        <FaUser size={38} color="#ccc" />
+      {image ? (
+          <img src={image} alt={`${name}의 프로필`} style={avatarStyle} />
+        ) : (
+        <FaUser style={avatarStyle} />
+        )}
       </div>
       <div className={styles.details}>
         <div className={styles.name}>{name}</div>
