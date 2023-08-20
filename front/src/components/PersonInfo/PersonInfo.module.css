@@ -16,11 +16,12 @@
 .name {
     color: #1B1A54;
     font-size: 14px;
+    margin-left: 5px;
 }
 
 .check {
-    /* margin-left: auto; */
-    margin-left: 182px;
+    position: absolute;
+    margin-left: 280px;
     cursor: pointer;
 }
 

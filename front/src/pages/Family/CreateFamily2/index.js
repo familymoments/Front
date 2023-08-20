@@ -52,7 +52,7 @@ const CreateFamily2 = () => {
                 <FileUploadButton onSelectImage={handleImageSelect} />
                 <div className="imgUpload"></div>
             </div>
-            <Button onClick={handleNextClick} btn={classes.btn} title="다음 (2/3)" />
+            <Button onClick={handleNextClick} btn={classes.btn} title="다음 (1/3)" />
         </div>
     );
 }

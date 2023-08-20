@@ -9,24 +9,45 @@ import PersonInfo from "../../../components/PersonInfo";
 import Header from '../../../components/Header';
 
 import { useNavigate } from "react-router-dom";
-import { recentPosts } from "../../../atom";
-import { useRecoilState } from "recoil";
+import { header, recentPosts } from "../../../atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-const authToken = "";   //토큰 가져와야 함
-const headers = {
-    "X-AUTH-TOKEN": authToken,
-};
+    const CreateFamily = () => {
+        const navigate = useNavigate();
+        const [data, setData] = useRecoilState(recentPosts);
+        const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태
 
-const CreateFamily = () => {
-    const nav = useNavigate();
-    const [data, setData] = useRecoilState(recentPosts);
-    const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태
+        const [selectedUserId, setSelectedUserId] = useState();
+        const [selectedImage, setSelectedImage] = useState();
+
+        const handleNextClick = async () => {
+            await navigate("/landing/createfamily5", {
+                state: {
+                    selectedUserId: selectedUserId,
+                    selectedImage: selectedImage,
+                },
+            });
+        };
+    
+  // PersonInfo 컴포넌트에서 사용자 선택 시 호출되는 함수
+        const handlePersonInfoClick = (userId, userImage) => {
+            setSelectedUserId(userId);
+            setSelectedImage(userImage);
+        };
+
+       // 헤더 아톰에서 헤더 값 가져오기
+        const authToken = useRecoilValue(header);
+        const headers = {
+        "X-AUTH-TOKEN": authToken,
+        };
 
     const handleSearch = () => {
+        console.log("Search Keyword:", searchKeyword); // 검색어 출력
         // 유저 검색을 위한 서버 요청
-        axios.get(`http://43.202.90.230/users?keyword=${searchKeyword}`, { headers })
+        // 헤더를 포함한 axios 요청
+        axios.get(`https://familymoments-be.site/users?keyword=${searchKeyword}`, { headers })
             .then(res => {
-                console.log(res.data.result);
+                console.log(res.data);
                 // 최대 5개의 유저만 보여주도록 잘라냄
                 const filteredData = Array.isArray(res.data.result)
                 ? res.data.result.filter(user => user.status === 1).slice(0, 5)
@@ -43,31 +64,48 @@ const CreateFamily = () => {
         }
     }, [searchKeyword]);
 
+
+    const handleSearchInputChange = (e) => {
+        setSearchKeyword(e.target.value);
+    };
+
+    const handleSearchSubmit = () => {
+        handleSearch();
+    };
+
     return (
         <div>
             <Header title="가족" />
             <div className={classes.content3}>
-                <MyText text="우리 가족 생성하기" />
-            </div>
-            <div className={classes.content}>
-                <MySearchBar
-                    searchbar={classes.searchbar}
-                    placeholder="ID 검색"
-                    value={searchKeyword}
-                    onChange={(e) => setSearchKeyword(e.target.value)}
-                />
-            </div>
-            {data.map(user => (
-                <div key={user.Id} className={classes.content2}>
-                    <PersonInfo name={user.Id} />
-                </div>
-            ))}
+            <MyText text="우리 가족 생성하기" />
+        </div>
+        <div className={classes.content}>
+            <MySearchBar
+            searchbar={classes.searchbar}
+            placeholder="ID 검색"
+            value={searchKeyword}
+            onChange={handleSearchInputChange}
+            onSubmit={handleSearchSubmit}
+        />
+        </div>
+
+        <div className={classes.user}>
+        {data.map((user) => (
+        <PersonInfo 
+            key={user.id} 
+            name={user.id} 
+            image={user.profileImg} 
+            onClick={() => handlePersonInfoClick(user.id, user.profileImg)}
+        />
+        ))}
+        </div>
             <Button
-                onClick={() => { nav("/landing/createfamily2"); }}
+            onClick={handleNextClick}
                 btn={classes.btn}
-                title="다음 (1/3)" />
+                title="가족 생성하기"
+            />
         </div>
     );
-}
-
-export default CreateFamily;
+};
+    
+    export default CreateFamily;

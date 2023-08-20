@@ -8,16 +8,18 @@ import MySearchBar from '../../../components/MySearchBar';
 import Member from "../../../components/Member";
 import styles from "../CreateFamily/CreateFamily.module.css";
 
+import { useRecoilState, useRecoilValue } from "recoil";
+import { header} from "../../../atom";
+
+
 const FamilyParticipation = () => {
     const [inviteLink, setInviteLink] = useState("");//사용자가 입력해야하는 코드
     const [familyInfo, setFamilyInfo] = useState(null);
 
-    const authToken="eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTE2Njg4OTUsInN1YiI6ImFjY2Vzcy10b2tlbiIsInV1aWQiOiIwMWVlMzVhZS05NTE2LTExY2EtOGU2OC1jNTk3YzM1NmU1MmQiLCJpYXQiOjE2OTE2Njg4MzV9.dmCGMzZqiQK8-JFnyrqL85u8_Vs9c7hJq_BmkVL88ME";
-
-
+    const authToken = useRecoilValue(header);
     const headers = {
     "X-AUTH-TOKEN": authToken,
-};
+    };
 
 
 
