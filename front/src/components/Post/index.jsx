@@ -94,8 +94,8 @@ const Post = ({ showmodal, it }) => {
     );
 };
 
-Post.defaultProps = {
-    postlist: [],
-};
+// Post.defaultProps = {
+//     postlist: [],
+// };
 
 export default Post;
