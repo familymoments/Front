@@ -1,9 +1,8 @@
 .imageStyle {
-    position: relative;
-    top: 108px;
-    left: 152px;
-    width: 56px;
-    height: 56px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 260%); 
 }
 
 .pText {
@@ -11,16 +10,36 @@
     font-weight: 400;
     text-align: center;
     color: #989CAB;
-    top: 128px;
-    left: 56px;
     width: 245px;
     height: 41px;
     position: relative;
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, 260%); 
 }
+
+
 
 .bubble {
-    position: relative;
-    top: 322px;
-    left: 108px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-37%, 345%); 
 }
 
+/* .text {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-40%, 25%); 
+} */
+
+.text {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 320px;
+    transform: translate(-50%, 60%); 
+}

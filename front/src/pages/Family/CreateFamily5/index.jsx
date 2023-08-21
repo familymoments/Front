@@ -12,12 +12,20 @@ const CreateFamily5 = () => {
     const selectedImage = location.state?.selectedImage;
 
     return (
-        <div className={pStyle.wrapper}>
+        <div>
+            <div className={pStyle.text}>
+            <HelloText2 user="융" customText="지금 바로 Family Moments를 시작해보세요!" />
+            </div>
             <div className={pStyle.content}>
                 <img src={mediaImage} alt="media image" className={pStyle.imageStyle}/>
                 <p className={pStyle.pText}>아직 공유한 순간이 없습니다.<br />지금 바로 순간을 공유해보세요!</p>
             </div>
-            <Union/>
+            <Footer />
+            <div className={pStyle.union}>
+            <Union message="+ 버튼을 눌러 가족에게 순간을 공유해보세요"/>
+            </div>
+            <Footer />
+            
         </div>
     );
 }

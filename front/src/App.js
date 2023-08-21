@@ -54,7 +54,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Loading/>}></Route>
-                    
+
                     
                     {/* Header만 필요한 페이지들 */}
                     <Route path="/landing" element={<Landing title={title}/>}>
@@ -70,9 +70,9 @@ function App() {
 
 
                         <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
-                        <Route path='/landing/createfamily5' element={<CreateFamily5 />} />
                         <Route path='/landing/createfamily5_2' element={<CreateFamily5_2 />} />
-                        
+                        <Route path='/landing/createfamily5' element={<CreateFamily5 />} />
+
                         
                         {/* 생성 시 */}
                         <Route path='/landing/페이지링크' element={"페이지 컴포넌트"} />

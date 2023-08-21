@@ -13,10 +13,10 @@
 }
 
 .imageStyle {
-    position: relative;
-    width: 56px;
-    height: 56px;
-    margin-top: 50px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 460%); 
 }
 
 .pText {
@@ -24,8 +24,14 @@
     font-weight: 400;
     text-align: center;
     color: #989CAB;
-    position: relative;
+    width: 100%;
+    height: 41px;
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, 870%); 
 }
+
 
 .content {
     position: relative;
@@ -35,3 +41,17 @@
     align-items: center;
 }
 
+.union {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 345%); 
+}
+
+.text {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 320px;
+    transform: translate(-50%, 60%); 
+}
