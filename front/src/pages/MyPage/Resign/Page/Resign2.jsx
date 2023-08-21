@@ -10,12 +10,20 @@ const Resign2 = ({ idxHandler }) => {
     const [headers, setHeaders] = useRecoilState(header);
 
     const [password, setPassword] = useState("");
+    const [code, setCode] = useState(0);
+    const [message, setMessage] = useState("");
 
-    const params = { "password": password };
+    const params = { password: password };
 
     const fetchPW = async () => {
-        const response = await axios.get(`${SERVER}/users/auth/compare-pwd`, {params});
+        const response = await axios.post(
+            `${SERVER}/users/auth/compare-pwd`,
+            params,
+            { headers }
+        );
         console.log(response.data);
+        setCode(response.data.code);
+        setMessage(response.data.message);
         return response.data;
     };
 
@@ -26,12 +34,15 @@ const Resign2 = ({ idxHandler }) => {
 
     const continueHandler = () => {
         console.log("password : ", password);
-        // fetchPW();
-        alert("[api update: get -> post]");
-        idxHandler(2);
+        fetchPW();
     };
 
-    // useEffect(() => console.log(pw), [pw])
+    useEffect(() => {
+        if (code === 200) {
+            // localStorage.removeItem("token");
+            idxHandler(2);
+        }
+    }, [code]);
 
     return (
         <div className={classes.wrapper}>
@@ -45,9 +56,11 @@ const Resign2 = ({ idxHandler }) => {
                     className={classes.input}
                     placeholder="현재 비밀번호"
                     name="password"
+                    type="password"
                     value={password}
                     onChange={handleInputChange}
                 ></input>
+                {code !== 200 && <p className={classes.errorText}>{message}</p>}
                 <Button
                     title="계속하기"
                     btn={classes.btn}
