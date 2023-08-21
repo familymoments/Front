@@ -8,12 +8,13 @@
 
 import classes from "./Header.module.css"
 import { AiOutlineBell } from 'react-icons/ai';
-
+import { useNavigate } from "react-router-dom";
 const Header = props => {
+    const nav = useNavigate();
     return (
         <div className={classes.Header}>
             <div className={classes.font}>{props.title}</div>
-            {props.showIcon && <AiOutlineBell className={classes.icon} onClick={() => alert("알람버튼.")}/>}
+            {props.showIcon && <AiOutlineBell className={classes.icon} onClick={()=>{nav("/main/alam")}}/>}
         </div>
     );
 };
