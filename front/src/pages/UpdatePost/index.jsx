@@ -41,7 +41,9 @@ const UpdatePost =(props)=>{
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
         fd.append("img1",post.imgs[0]);
 
-        await axios.patch(`${process.env.REACT_APP_SERVER_URL}/posts/${nowpostId}`,fd,{headers})
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${nowpostId}/edit`,fd,{
+            ...headers
+            })
         .then(res=>{
             console.log("수정",res);
         })

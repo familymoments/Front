@@ -48,11 +48,14 @@ const CreatePost = ()=>{
     // submit 버튼 눌렀을 때 실행되는 함수
     const handleSubmit= async(e)=>{
 
-        console.log(imgs[0]);
+        console.log(imgs);
         // Post실행
         const fd = new FormData();
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
-        fd.append("img1",imgs[0]);
+        imgs.map((img,idx)=>(
+            fd.append(`img${idx+1}`,img)
+        ))
+        // fd.append("images",imgs);
 
         await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=5`,fd,{headers})
         .then(res=>{
