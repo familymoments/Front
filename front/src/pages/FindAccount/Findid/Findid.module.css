@@ -71,7 +71,8 @@
     border: white;
     background: none;
     color: #D8D8D8;
-    margin-left:-30px;
+    margin-left:-40px;
+    z-index: 1;
 }
 
 
@@ -119,6 +120,7 @@
     text-align: center;
     justify-content: center;
     margin-bottom: 11px;
+    margin-left: 12px;
 }
 .email{
     width: 240px;
@@ -138,6 +140,9 @@
     margin: 0px;
     color: none;
     border: none;
+}
+.certnum{
+    margin-left: 10px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

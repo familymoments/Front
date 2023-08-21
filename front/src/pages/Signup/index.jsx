@@ -59,7 +59,7 @@ function Signup(props){
 
         //회원가입 데이터 전송
         function getAuth(e){
-            e.preventDefault();
+            
              const signUpData ={
                 id: watch("id"),
                 password: watch("password"),
@@ -85,6 +85,8 @@ function Signup(props){
                 }
                 if(res.data.message === "닉네임 형식을 확인해주세요."){
                     Swal.fire("닉네임 형식을 확인해주세요.");
+                }if(res.data.message === "이름을 입력해주세요."){
+                    Swal.fire("이름을 입력해주세요.");
                 }
                 if(res.data.message === "비밀번호 형식을 확인해주세요."){
                     Swal.fire("비밀번호 형식을 확인해주세요.");
@@ -235,7 +237,7 @@ function Signup(props){
                 })}
                 placeholder="비밀번호"
             />  
-            <button  onClick = {resetPassword} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
+            <button  onClick = {resetPassword}type = "button" className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
             </div>
             {errors.password && <p className = {Styles.alert} role="alert">{errors.password.message}</p>}
              <Label label = "비밀번호 확인"/>
@@ -248,7 +250,7 @@ function Signup(props){
                                  v === password || "입력한 비밀번호가 일치하지 않습니다",
                             },
                           })}/>
-                     <button onClick = {resetConfirm} className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
+                     <button onClick = {resetConfirm} type = "button"className = {Styles.delbtn}><TiDeleteOutline className = {Styles.delbtndetail}/></button>
                     </div>
                     {errors.confirm && <p className = {Styles.alert} role="alert">{errors.confirm.message}</p>}
                    
@@ -296,11 +298,11 @@ function Signup(props){
                             required: 
                             "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요 ",
                             minLength: {
-                                value: 8,
+                                value: 3,
                                 message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을입력해주세요",
                         },
                             maxLength: {
-                                value: 12,
+                                value: 8,
                                 message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요",
                         },
                         // pattern: {

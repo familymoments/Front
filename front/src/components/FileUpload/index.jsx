@@ -29,6 +29,7 @@ const FileUploadButton = ({onSelectImage}) => {
 
     fileInput.addEventListener('change', async (event) => {
       const selectedFile = event.target.files[0];
+      setprofileimg(selectedFile);
       if (selectedFile) {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정
