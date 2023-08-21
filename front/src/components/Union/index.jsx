@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./Union.module.css";
 
-const Union = () => {
+const Union = ({message}) => {
     return (
         <div className={styles.wrapper}>        
             <div className={styles.bubble}>
-                + 버튼을 눌러 가족에게 순간을 공유해보세요
+                {message}
             </div>
         </div>
 
