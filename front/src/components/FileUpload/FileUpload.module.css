@@ -15,12 +15,6 @@
     cursor: pointer;
 }
 
-/* .icon {
-    color: #a9a9a9;
-    width: 25px;
-    height: 25px;
-} */
-
 .selectBox {
     width: 224px;
     position: absolute;
@@ -61,10 +55,6 @@
     cursor: pointer;
 }
 
-/* .selectBox select option[value="option1"] { 
-    border-bottom: 0.68px solid #D8D8D8;
-}  */
-
 .selectedImage {
     width: 328px;
     height: 192px;
@@ -72,3 +62,60 @@
     top: 154px;
     left: 16px;
 }
+
+/* .wrapper{
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filebox{
+    position: relative;
+    height: auto;
+    min-height: 200px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.file{
+    position: relative;
+    transform: translate(5%, 70%);
+    margin: 15px auto;
+    width: 100%;
+    min-width: 328px;
+    height: 200px;
+    border-radius: 7px;
+    background-color: rgba(243, 244, 247, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selecticon{
+    position: absolute;
+}
+
+.imgSize{
+    position: relative;
+    width: 100%;
+    right: 15px;
+    margin-bottom: 20px;
+    
+}
+
+input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+} */
+

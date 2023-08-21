@@ -41,7 +41,7 @@ const CreateFamily4 = () => {
             />
             <Button onClick={()=>{navigate("/landing/createfamily")}}
                 btn={classes.btn} 
-                title="다음 (3/3)"
+                title="다음"
             />
         </div>
     );

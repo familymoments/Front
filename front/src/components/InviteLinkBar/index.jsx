@@ -16,7 +16,7 @@ const InviteLinkBar = ({ text, onSearchTermChange, placeholder, style }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.linkBar}>
-      <div className={styles.linkcontainer}>
+      <div>
         <div className={styles.linkText}>
           <input
             type={text}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MakeFamilyBar from "../../../components/MakeFamilyBar";
 import Button from "../../../components/Button";
-import FileUploadButton from "../../../components/FileUpload";
+import FileUpload from "../../../components/FileUpload";
 import classes from "../CreateFamily/CreateFamily.module.css";
 import style from './CreateFamily2.module.css';
 import Header from "../../../components/Header";
@@ -49,7 +49,7 @@ const CreateFamily2 = () => {
                     customClass={style.selectImage}
                     onSelect={handleImageSelect} // 이미지 선택 시 호출되는 콜백
                 />
-                <FileUploadButton onSelectImage={handleImageSelect} />
+                <FileUpload onSelectImage={handleImageSelect} />
                 <div className="imgUpload"></div>
             </div>
             <Button onClick={handleNextClick} btn={classes.btn} title="다음 (1/3)" />
