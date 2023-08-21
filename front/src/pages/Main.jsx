@@ -13,7 +13,6 @@ import CalendarDetail from "./Calendar/Detail";
 
 //강퇴페이지
 import Setting from './Exit/SetUp/Setting';
-import Setting2 from './Exit/SetUp/Setting2';
 import Withdraw from "./Exit/Withdrawal/Withdraw";
 import Withdraw2 from "./Exit/Withdrawal/Withdraw2";
 import Withdraw3 from "./Exit/Withdrawal/Withdraw3";
@@ -25,7 +24,6 @@ import Delete3 from "./Exit/Delete/Delete3";
 import FamilySetting1 from "./FamilySetting/FamilySetting1";
 import FamilySetting2 from "./FamilySetting/FamilySetting2";
 import Authority from "./FamilySetting/Authority";
-import Authority2 from "./FamilySetting/Authority2";
 import Add from "./FamilySetting/Add";
 import Withdraw4 from "./FamilySetting/Withdraw4";
 import Delete4 from "./FamilySetting/Delete4";
@@ -85,7 +83,6 @@ const Main = () => {
 
                     {/*강퇴 페이지*/}
                     <Route path='/setting' element={<Setting />} />
-                    <Route path='/setting2' element={<Setting2 />} />
                     <Route path='/withdraw' element={<Withdraw />} />
                     <Route path='/withdraw2' element={<Withdraw2 />} />
                     <Route path='/withdraw3' element={<Withdraw3 />} />
@@ -97,7 +94,6 @@ const Main = () => {
                     <Route path='/familysetting1' element={<FamilySetting1 />} />
                     <Route path='/familysetting2' element={<FamilySetting2 />} />
                     <Route path='/authority' element={<Authority />} />
-                    <Route path='/authority2' element={<Authority2 />} />
                     <Route path='/add' element={<Add />} />
                     <Route path='/withdraw4' element={<Withdraw4/>} />
                     <Route path='/delete4' element={<Delete4/>} />
