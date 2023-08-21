@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 //상태관리
-import {token,userImg} from "../../atom";
+import {token,userImg,header} from "../../atom";
 import { useRecoilState,useRecoilValue } from "recoil";
 
 
@@ -26,9 +26,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 const PostDetail=({showmodal})=>{
     //헤더에 토큰추가
     const authToken = useRecoilValue(token);
-    const headers = {
-        "X-AUTH-TOKEN": authToken,
-    };
+    const headers = useRecoilValue(header);
 
     //현재 게시물 상세조회
    
@@ -49,10 +47,10 @@ const PostDetail=({showmodal})=>{
     });
 
     useEffect(()=>{
-        axios.get(`/posts/${postId}`,{headers})
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,{headers})
         .then(res=>{
             setPostData(res.data.result);
-            setpostuserImg(res.data.result.profileImg);
+            console.log(res.data.result);
         })
         .catch()
     },[]);
@@ -77,7 +75,7 @@ const PostDetail=({showmodal})=>{
     //     console.log(id+"하트누름");
     //     heart ? setHeart(false):setHeart(true);
     // }
-    const userId=1;
+    
     const submitComment=(content)=>{
         console.log(content);
         //post
@@ -85,7 +83,7 @@ const PostDetail=({showmodal})=>{
 
     return(
         <div className={styles.wrapper}>
-           <PostUserHeader isnormal={false} userimg={postuserImg} username={postData.writer} postdate={postData.createdAt}></PostUserHeader>
+           <PostUserHeader isnormal={false} userImg={postData.profileImg} username={postData.writer} postdate={postData.createdAt}></PostUserHeader>
             <div className={styles.line}></div>
 
             <div className={styles.postContent}>
