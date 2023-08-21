@@ -265,10 +265,10 @@ function Signup(props){
                     value: 2,
                     message: "2자리 이상으로 작성해주세요",
                   },
-                pattern: {
-                    value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{2,5}$/,
-                    message: "이름이 올바르게 입력됐는지 확인해주세요.",
-                      },
+                // pattern: {
+                //     value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{2,5}$/,
+                //     message: "이름이 올바르게 입력됐는지 확인해주세요.",
+                //       },
             })}
             />
             </div>
@@ -303,10 +303,10 @@ function Signup(props){
                                 value: 12,
                                 message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요",
                         },
-                        pattern: {
-                            value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
-                            message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요.",
-                        },
+                        // pattern: {
+                        //     value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
+                        //     message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요.",
+                        // },
                         })}/>
                 </div>
                 {errors.nickname && <p className = {Styles.alert} role="alert">{errors.nickname.message}</p>}
