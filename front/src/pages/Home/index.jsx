@@ -66,19 +66,19 @@ const Home=({showmodal})=>{
         
     },[]);
 
-    useEffect(()=>{
-        //DELETE요청
-        axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${deletepostid}`,{headers})
-        .then(res=>{
-            //setPostData(postData.filter((post)=> deletepostid !==post.postId));
-            console.log(res);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-        // setData(data.filter((post)=> deletepostid !==post.postId));
+    // useEffect(()=>{
+    //     //DELETE요청
+    //     axios.delete(`/posts/${deletepostid}`,{headers})
+    //     .then(res=>{
+    //         setPostData(postData.filter((post)=> deletepostid !==post.postId));
+    //         console.log(res);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err);
+    //     })
+    //     // setData(data.filter((post)=> deletepostid !==post.postId));
        
-    },[deletepostid])
+    // },[deletepostid])
 
 
 

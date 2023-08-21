@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import axios from "axios";
-import {token,postid,userImg} from "../../atom";
+import {token,postid,userImg,header} from "../../atom";
 import { useRecoilState,useRecoilValue } from "recoil";
 
 
@@ -20,9 +20,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 const Post = ({ showmodal, it }) => {
     const authToken=useRecoilValue(token);
     // const [postId,setPostId] = useRecoilState(postid);
-    const headers = {
-    "X-AUTH-TOKEN": authToken,
-    };
+    const headers = useRecoilValue(header);
     
     const [heart, setHeart] = useState();
 
@@ -33,10 +31,9 @@ const Post = ({ showmodal, it }) => {
 
     const nav = useNavigate();
 
-    const [postuserImg,setPostuserImg]=useRecoilState(userImg);
 
     useEffect(()=>{
-        console.log(it);
+        console.log("it",it);
         
     },[]);
 
@@ -44,7 +41,7 @@ const Post = ({ showmodal, it }) => {
         <div>
             <div key={it.postId} className={styles.wrapper}>
                     <PostUserHeader
-                        userImg={postuserImg}
+                        userImg={it.profileImg}
                         username={it.writer}
                         postdate={it.createdAt}
                     ></PostUserHeader>

@@ -35,3 +35,9 @@
 
     margin-top: 236px;
 }
+
+.errorText {
+    color: red;
+    margin: 0px;
+    width: 328px;
+}
