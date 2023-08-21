@@ -59,10 +59,6 @@
     transform: translate(-115%, 250%);
 }
 
-.content2:hover {
-    background-color: #D8D8D8;
-}
-
 .bold {
     width: 328px;
     height: 24px;
@@ -111,4 +107,25 @@
     font-size: 20px;
     line-height: 24px;
     color: #EE2F51;
+}
+
+.blueBtn {
+    background-color: #5B6380;
+}
+
+.content5 {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 60%); 
+    transition: background-color 0.3s ease-in-out;
+}
+
+.marginBetween {
+    margin-top: 20px; /* 원하는 간격으로 조정 */
+}
+
+.blueBtn {
+    background-color: #5B6380; 
+    color: white; 
 }
