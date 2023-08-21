@@ -15,8 +15,8 @@ const MakeFamilyBar = ({onSelect}) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.searchBar}>
-      <div className={styles.searchContainer}>
-        <div className={styles.searchText}>
+      <div>
+        <div>
           <input
             type="text"
             value={searchTerm}
