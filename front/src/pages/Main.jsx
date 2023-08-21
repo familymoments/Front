@@ -10,7 +10,7 @@ import PostDetail from "./PostDetail";
 import UpdatePost from "./UpdatePost";
 
 import CalendarDetail from "./Calendar/Detail";
-
+import Alam from './Alam';
 //강퇴페이지
 import Setting from './Exit/SetUp/Setting';
 import Setting2 from './Exit/SetUp/Setting2';
@@ -67,6 +67,7 @@ const Main = () => {
                 <Routes>
                     <Route path="/postlist" element={<Home showmodal={showmodal}/>}></Route>
                     <Route path="/album" element={<Album />}></Route>
+                    <Route path='/alam' element={<Alam/>}/>
                     <Route path="/createPost" element={<CreatePost />}></Route>
                     <Route path="/calendar" element={<Calendar />}></Route>
                     <Route path="/my" element={<MyPage />}></Route>
