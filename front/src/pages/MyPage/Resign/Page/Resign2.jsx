@@ -11,13 +11,10 @@ const Resign2 = ({ idxHandler }) => {
 
     const [password, setPassword] = useState("");
 
-    const GetPwdReq = { "password": "aaassss" };
+    const params = { "password": password };
 
     const fetchPW = async () => {
-        const response = await axios.get(`${SERVER}/users/auth/compare-pwd`, {
-            headers,
-            GetPwdReq,
-        });
+        const response = await axios.get(`${SERVER}/users/auth/compare-pwd`, {params});
         console.log(response.data);
         return response.data;
     };
@@ -30,7 +27,7 @@ const Resign2 = ({ idxHandler }) => {
     const continueHandler = () => {
         console.log("password : ", password);
         // fetchPW();
-        alert("api 연동 필요");
+        alert("[api update: get -> post]");
         idxHandler(2);
     };
 

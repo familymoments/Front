@@ -40,6 +40,7 @@ import Profile from "./MyPage/Profile";
 import {atom} from "recoil";
 import PwChange from "./MyPage/PwChange";
 import Resign from "./MyPage/Resign";
+import Set from "./MyPage/Set";
 
 
 const Main = () => {
@@ -80,7 +81,7 @@ const Main = () => {
                     <Route path="/my/notice" element={<Notice />}></Route>
                     <Route path="/my/profile" element={<Profile />}></Route>
                     <Route path="/my/pwchange" element={<PwChange />}></Route>
-                    
+                    <Route path="/my/set" element={<Set />}></Route>
                     <Route path="/my/resign" element={<Resign />}></Route>
 
                     {/*강퇴 페이지*/}

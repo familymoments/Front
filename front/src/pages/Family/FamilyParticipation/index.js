@@ -9,16 +9,17 @@ import Member from "../../../components/Member";
 import styles from "../CreateFamily/CreateFamily.module.css";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { header} from "../../../atom";
+import { header } from "../../../atom";
 
 
 const FamilyParticipation = () => {
     const [inviteLink, setInviteLink] = useState("");//사용자가 입력해야하는 코드
     const [familyInfo, setFamilyInfo] = useState(null);
+    const [status, setStatus] = useState(0);
 
     const authToken = useRecoilValue(header);
     const headers = {
-    "X-AUTH-TOKEN": authToken,
+        "X-AUTH-TOKEN": authToken,
     };
 
 
@@ -26,16 +27,18 @@ const FamilyParticipation = () => {
     const handleParticipate = () => {
         // 초대 링크를 사용하여 가족 정보를 가져오는 서버 요청
         console.log(inviteLink);
-        axios.post('/families/inviteCode', {inviteCode: inviteLink} ,{ headers })
+        axios.post('https://familymoments-be.site/families/inviteCode', {inviteCode: inviteLink} ,{ headers })
             .then(res => {
+                console.log("서버 응답데이터:", res.data);
                 if (res.data.isSuccess && res.data.result) {
                     setFamilyInfo(res.data.result);
+                    setStatus(1);
                     console.log("요청에 성공했습니다.");
                 } else {
                     console.log("가족이 존재하지 않습니다.");
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log("에러:", err));
     };
 
     return (
@@ -51,7 +54,7 @@ const FamilyParticipation = () => {
                     onChange={(e) => setInviteLink(e.target.value)}
                 />
             </div>
-            {familyInfo ? (
+            {status === 1 && familyInfo ? (
                 <div className={styles.content2}>
                     <Member name={familyInfo.familyName} />
                 </div>

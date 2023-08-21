@@ -9,14 +9,14 @@
     position: relative;
     display: flex;
     align-items: center;
+    font-size: 13px;
 }
 
 .searchBar input {
-    width: 300px;
-    height: 16px;
+    width: 328px;
+    height: 100%;
     border: none;
     outline: none;
-    font-size: 13px;
     background: #f3f4f7;
 }
 

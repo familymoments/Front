@@ -32,7 +32,10 @@
 
 .input:nth-of-type(1) {
     margin-top: 26px;
-    margin-bottom: 40px;
+}
+
+.input:nth-of-type(2) {
+    margin-top: 60px;
 }
 
 .input:nth-of-type(3) {
@@ -46,4 +49,9 @@
     background-color: #5B6380;
 
     margin-top: 67px;
+}
+
+.errorText {
+    color: red;
+    margin: 0px;
 }

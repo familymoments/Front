@@ -30,7 +30,7 @@ const NavAttr = (props) => {
             {/* true == mypage용 NavAttr */}
             {/* false == notice용 NavAttr */}
             {props.iconName !== undefined ? (
-                <div className={classes.wrapper}>
+                <div className={`${classes.wrapper} ${props?.style}`}>
                     <props.iconName className={classes.icon} />
                     <Link to={props.lnk} className={classes.canclick} onClick={props?.onClick}>
                         <div className={classes.title}>{props.title}</div>
