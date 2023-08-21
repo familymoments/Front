@@ -28,3 +28,10 @@
     font-weight: 500;
     font-size: 14px;
 }
+
+.fileupload {
+    position: absolute;
+    width: 328px;
+    height: 192px;
+    transform: translate(5%, 77%);
+}
