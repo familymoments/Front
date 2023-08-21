@@ -63,8 +63,9 @@
 .delbtn{
     border: none;
     background:none;
-    margin-left:-30px;
+    margin-left:-40px;
     color: #A9A9A9;
+    z-index: 1;
 }
 .delbtndetail{
     width:20px;
