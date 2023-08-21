@@ -27,7 +27,6 @@ import FamilyParticipation from './pages/Family/FamilyParticipation';
 import CreateFamily2 from './pages/Family/CreateFamily2';
 import CreateFamily from './pages/Family/CreateFamily';
 import CreateFamily5 from './pages/Family/CreateFamily5';
-import Alam from './pages/Alam';
 // import NextTime from './pages/NextTime';
 import CreateFamily5_2 from './pages/Family/CreateFamily5_2';
 // 이용약관
@@ -91,7 +90,7 @@ function App() {
                     <Route path='/landing/createfamily3' element={<CreateFamily3 />} />
                     <Route path='/landing/createfamily4' element={<CreateFamily4 />} />
                     {/* <Route path='/landing/nexttime' element={<NextTime />} /> */}
-                    <Route path='/landing/alam' element={<Alam/>}/>
+                  
                     {/* 페이지 생성 시 기본 값 */}
                     <Route path="/ex" element={<Loading/>} />
 

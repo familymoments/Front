@@ -8,26 +8,27 @@ import { useState } from "react";
 
 const Authority = () => {
     const navigate = useNavigate();
-    const [personInfoSelected, setPersonInfoSelected] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
-    const handlePersonInfoSelect= () => {
-        setPersonInfoSelected(true);
+    const handlePersonInfoClick = () => {
+        setIsChecked(!isChecked);
     };
+
+    const handleButtonClick = () => {
+        navigate();
+    }
 
     return (
         <div>
-            <div className={classes.content3}>
+            <div className={classes.content5}>
                 <MyText text="권한 넘기기" />
+                <div className={classes.marginBetween} />
+                <PersonInfo name="clohee" isChecked={isChecked} onCheckIconClick={handlePersonInfoClick}/>
             </div>
-                <div className={classes.content2}>
-                    <PersonInfo name="clohee" onSelect = {handlePersonInfoSelect} />
-                </div>
             <Button 
-                onClick={()=>{navigate("/Main/authority2")}}
-                btn={`${classes.btn2} ${personInfoSelected ? classes.activeButton : classes.disabledButton}`}
-        title={personInfoSelected ? "선택 완료" : "권한 넘기기"}
-        disabled={!personInfoSelected}
-        />
+                onClick={handleButtonClick}
+                btn={isChecked ? `${classes.btn2} ${classes.blueBtn}` : classes.btn2} // 남색 버튼 클래스 추가
+                title="권한 넘기기"/>
         </div>
     );
 }

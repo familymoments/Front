@@ -4,13 +4,13 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import styles from "./PersonInfo.module.css";
 
-const PersonInfo = ({ name, image }) => {
-  const [checked, setChecked] = useState(false);
+const PersonInfo = ({ name, image, onCheckIconClick, isChecked}) => {
+  // const [checked, setChecked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    setChecked(!checked);
-  };
+  // const handleClick = () => {
+  //   setChecked(!checked);
+  // };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -48,10 +48,10 @@ const PersonInfo = ({ name, image }) => {
         <div className={styles.name}>{name}</div>
       </div>
       <div className={styles.check}>
-        {checked ? (
-          < AiFillCheckCircle className={styles.checkIconFilled} onClick={handleClick} size={30}/>
+        {isChecked ? (
+          < AiFillCheckCircle className={styles.checkIconFilled} onClick={onCheckIconClick} size={30}/>
         ) : (
-          <BsCircle className={styles.checkIcon} onClick={handleClick} size={30}/>
+          <BsCircle className={styles.checkIcon} onClick={onCheckIconClick} size={30}/>
         )}
       </div>
     </div>
