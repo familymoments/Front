@@ -21,17 +21,26 @@
     text-align: center;
     justify-content: center;
     margin-top: 60px;
+   
 }
 .idinput{
-    
     width: 240px;
     height: 46px;
-    fill: rgba(251, 238, 255, 0.50);
+    padding-top: 12px;
+    padding-left: 10px;
+    background-color: rgba(251, 238, 255, 0.50);
     stroke-width: 1px;
     stroke: rgba(169, 169, 169, 0.50);
     border: 1.5px solid #A9A9A9;
     border-radius: 8px;
     flex-shrink: 0;
+    color: #5B6380;
+    text-align:left;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
 }
 .buttons{
     margin-top: 300px;
