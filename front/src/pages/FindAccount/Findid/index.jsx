@@ -73,7 +73,7 @@ function Findid(props){
             const getAuth = (e) => {
                 if(echeck === true){
                 axios
-                .post("/users/auth/find-id", e)   
+                .post(`${SERVER}/users/auth/find-id`, e)   
                 .then(function (res) {
                     console.log(res);
                     if (res.data.code === 200) {
@@ -136,9 +136,9 @@ function Findid(props){
                     // message: "형식에 맞지 않는 이메일 입니다.",
                     // },
                 })}/>
-                <button onClick = {sendEmail} className = {Styles.hiddenbtn}><CertificationButton text = "인증하기"/></button>
+                <button onClick = {sendEmail} type = "button"className = {Styles.hiddenbtn}><CertificationButton text = "인증하기"/></button>
                 </div>
-                <div><input className = {Styles.input}  type = "number" placeholder="인증번호"
+                <div className={Styles.certnum}><input className = {Styles.input}  type = "number" placeholder="인증번호"
                 required  {...register("code", {
                     // minLength: {
                     //   value: 6,
