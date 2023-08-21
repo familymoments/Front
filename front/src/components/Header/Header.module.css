@@ -23,6 +23,14 @@
     color: rgba(91, 99, 128, 1);
 }
 
+.back {
+    position: absolute;
+    left: 8vw;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
 .icon {
     position: absolute;
     right: 8vw;
