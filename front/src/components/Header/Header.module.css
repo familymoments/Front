@@ -38,3 +38,10 @@
     height: 26px;
     cursor: pointer;
 }
+.back{
+    position: absolute;
+    left: 8vw;
+    width: 21.32px;
+    height: 26px;
+    cursor: pointer;
+}

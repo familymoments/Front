@@ -19,6 +19,7 @@ const FileUploadButton = ({onSelectImage}) => {
       setSelectedImage(defaultImg); // defaultImg로 이미지 설정
       onSelectImage(defaultImg); // 기본 이미지를 부모 컴포넌트로 전달
       setShowOptions(false);
+      setprofileimg(defaultImg);
     }
   };
 
@@ -29,7 +30,7 @@ const FileUploadButton = ({onSelectImage}) => {
 
     fileInput.addEventListener('change', async (event) => {
       const selectedFile = event.target.files[0];
-      setprofileimg(selectedFile);
+      
       if (selectedFile) {
         setShowOptions(false);
         setSelectedImage(URL.createObjectURL(selectedFile)); // 선택한 이미지 설정

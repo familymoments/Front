@@ -50,7 +50,6 @@ function Findid(props){
                     .then((res) => {
                     if (res.data.code === 200) {
                         Swal.fire("이메일이 전송됐습니다.");
-                        console.log(res);
                         setECheck(true);
                     }
                     })
@@ -64,10 +63,7 @@ function Findid(props){
                         setECheck(false);
                     }
                     });
-                }
-                console.log(email);
-                console.log(name);
-                
+                }  
             };
 
             const getAuth = (e) => {
@@ -77,8 +73,7 @@ function Findid(props){
                 .then(function (res) {
                     console.log(res);
                     if (res.data.code === 200) {
-                        console.log(e);
-                        setIdFounded(res.data.result);
+                        setIdFounded(res.data.result.userId);
                         navigate( "/landing/findid2");
                     }
                     if (res.data.code === 404) {
