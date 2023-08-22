@@ -3,46 +3,52 @@ import selectIcon from "../../assets/btn_select_photo.png";
 import CreatePostText from "../../components/CreatePostText";
 import SelectImg from "../../components/SelectImg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation,useNavigate, useParams } from "react-router-dom";
 
 //상태관리 라이브러리
-import { nextPostid,recentPosts,postid ,header} from "../../atom";
+import { recentPosts,postid ,header} from "../../atom";
+import { preupdate } from "../../state/post";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import axios from "axios";
 
-const UpdatePost =(props)=>{
+const UpdatePost =()=>{
     //헤더추가
-    // const authToken = useRecoilValue(token);
     const headers = useRecoilValue(header);
 
     const nav=useNavigate();
-    const {state:{post}}=useLocation();
+    // const {state:{post}}=useLocation();
 
-   const [content,setContent]=useState(post.content);
-    const [data,setData] = useRecoilState(recentPosts);
-    const idx = data.findIndex((d)=>d.postId === post.postId);
+    //업데이트 전 상태값(이미지, 내용)
+    const preup=useRecoilValue(preupdate);
 
-    // const nowpostId=useRecoilValue(postid);
-    const nowpostId=useParams().postId;
+
+    const [content_,setContent]=useState(preup.content);
+
+    const postid=useParams().postId;
+
+
 
     
 
 
     const handleSubmit= async(e)=>{
         const postinfo={
-            "content":content
+            "content":content_
         }
-        console.log(nowpostId);
+        console.log(postid);
         
         // Patch실행
         const fd = new FormData();
         fd.append("postInfo" , new Blob([JSON.stringify(postinfo)], { type: 'application/json' }));
-        fd.append("img1",post.imgs[0]);
-
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${nowpostId}/edit`,fd,{
-            ...headers
+        preup.imgs.map((img,idx)=>(
+            fd.append(`img${idx+1}`,img)
+        ))
+        console.log(postinfo);
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${postid}/edit`,fd,{
+            ...headers,
+            "Content-Type" : "multipart/form-data"
             })
         .then(res=>{
             console.log("수정",res);
@@ -78,20 +84,19 @@ const UpdatePost =(props)=>{
             
             <div className={styles.title}>글 업로드</div>
             <div className={styles.imgbox}>
-                {post.imgs.map((img)=>(
+                {preup.imgs.map((img)=>(
                     <img className={styles.imgSize} src={img}></img>
                 ))}
                 
 
             </div>
-            
-            {/* <SelectImg></SelectImg> */}
+        
             
    
             <div className={styles.subtitle}>글 작성</div>
            
 
-            <CreatePostText setContent={setContent} handleSubmit={handleSubmit} content={post.content} btntitle="수정하기"></CreatePostText>
+            <CreatePostText setContent={setContent} handleSubmit={handleSubmit} content={preup.content} btntitle="수정하기"></CreatePostText>
                 
             
         </div>

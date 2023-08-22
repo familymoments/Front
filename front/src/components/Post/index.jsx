@@ -17,7 +17,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 
 
 
-const Post = ({ showmodal, it }) => {
+const Post = ({it}) => {
     const authToken=useRecoilValue(token);
     // const [postId,setPostId] = useRecoilState(postid);
     const headers = useRecoilValue(header);
@@ -32,10 +32,10 @@ const Post = ({ showmodal, it }) => {
     const nav = useNavigate();
 
 
-    useEffect(()=>{
-        console.log("it",it);
+    // useEffect(()=>{
+    //     console.log("it",it);
         
-    },[]);
+    // },[]);
 
     return (
         <div>
@@ -75,14 +75,11 @@ const Post = ({ showmodal, it }) => {
                         </div>
 
                         <PostContent
-                            showmodal={showmodal}
                             postlist={it}
-                            postId={it.postId}
-                            postcontent={it.content}
-                            postheart={it.loved}
                             pushHeart={(e) => {
                                 pushHeart(it.postId);
                             }}
+                            
                         ></PostContent>
                     </div>
                 </div>

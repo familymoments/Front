@@ -23,15 +23,13 @@ import { useRecoilState,useRecoilValue } from "recoil";
 
 
 
-const PostDetail=({showmodal})=>{
+const PostDetail=()=>{
     //헤더에 토큰추가
-    const authToken = useRecoilValue(token);
     const headers = useRecoilValue(header);
 
     //현재 게시물 상세조회
    
     const postId=useParams().postId;
-    const [postuserImg,setpostuserImg]=useRecoilState(userImg);
     // console.log("post",postId);
 
     //post 정보 navigation에서 state로 받아오기
@@ -58,27 +56,47 @@ const PostDetail=({showmodal})=>{
     
     
 
-    const commentData=[
-        {
-			commentId : 1,
-			nickname : "융입니다",
-			profileImg : "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20131216_2%2Fxtjbx42795_1387160042980nSXHw_JPEG%2F2012-02-14_22%253B19%253B59.jpg&type=a340",
-			content : "담에 또가요!!",
-			heart : false,
-            updatedAt : "1시간 전"
-		}
-    ]
+    const [commentData,setCommentData]=useState([]);
+
+    
+    useEffect(()=>{
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,{headers})
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.code!==404){
+                setCommentData(res.data.result);
+            }
+            // if(res.data.code===461){
+            //     axios.post(`${process.env.REACT_APP_SERVER_URL}/users/auth/reissue`)
+            // }
+            
+
+        })
+    },[])
     
     
+
+   
     
-    // const pushHeart=(id)=>{
-    //     console.log(id+"하트누름");
-    //     heart ? setHeart(false):setHeart(true);
-    // }
+    const submitComment= async (content_)=>{
+        console.log(content_);
+        const fd = new FormData()
     
-    const submitComment=(content)=>{
-        console.log(content);
+        const postCommentReq = {
+            content:content_
+          }
+          
+          const blob = new Blob([JSON.stringify(postCommentReq)], {type: "application/json"}) 
+          
+          fd.append("postCommentReq",blob);
+          console.log(fd);
+
         //post
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,fd,{headers})
+        .then(
+            res=>console.log(res)
+        )
+        .catch(err=>console.log(err))
     }
 
     return(
@@ -113,7 +131,7 @@ const PostDetail=({showmodal})=>{
                         </Swiper>
                     </div>
                     
-                    <PostContent showmodal={showmodal} postlist={postData} postcontent={postData.content} postheart={postData.loved} postId={postId}
+                    <PostContent postlist={postData} postcontent={postData.content} postheart={postData.loved} postId={postId}
                         pushHeart={()=>{
                         //pushHeart(postId);
                     }} 

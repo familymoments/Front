@@ -13,7 +13,7 @@ import { useCallback, useEffect,useState } from "react";
 import { deletePostId, recentPosts,token,header } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
-import {postdata} from "../../state/post";
+import {postdata,featposts} from "../../state/post";
 
 import axios from "axios";
 
@@ -23,7 +23,6 @@ import axios from "axios";
 const Home=({showmodal})=>{
     // const header = useRecoilValue(headers);
     // console.log(header);
-    const authToken=useRecoilValue(token);
 
 
     const headers = useRecoilValue(header);
@@ -32,11 +31,12 @@ const Home=({showmodal})=>{
 
     const nav=useNavigate();
 
-    const deletepostid=useRecoilValue(deletePostId);
     const [familyInfo,setfamilyInfo]=useState([]);
 
-    //const [data,setData]=useRecoilState(recentPosts);
     const [isnot,setIsnot]=useState(false);
+
+    //게시글리스트에 수정이 있는지
+    const featpostss=useRecoilValue(featposts);
 
 
 
@@ -64,21 +64,7 @@ const Home=({showmodal})=>{
            .catch();
 
         
-    },[]);
-
-    // useEffect(()=>{
-    //     //DELETE요청
-    //     axios.delete(`/posts/${deletepostid}`,{headers})
-    //     .then(res=>{
-    //         setPostData(postData.filter((post)=> deletepostid !==post.postId));
-    //         console.log(res);
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    //     // setData(data.filter((post)=> deletepostid !==post.postId));
-       
-    // },[deletepostid])
+    },[featpostss]);
 
 
 
@@ -90,7 +76,7 @@ const Home=({showmodal})=>{
             <HelloText user={familyInfo.nickname} Dday={familyInfo.dday} />
             {console.log(postData)}
             {postData.map((post)=>(
-                <Post showmodal={showmodal} it={post}/>
+                <Post it={post}/>
             ))}
             {/* <Post showmodal={showmodal} postlist={post}/> */}
             {(isnot)?<CreateFamily5/>:""}

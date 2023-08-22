@@ -7,3 +7,19 @@ export const postdata = atom({
     default:[],
     //게시글리스트 받아오기
 });
+
+
+export const preupdate = atom({
+    key:"preupdate",
+    default:{
+        "imgs":[],
+        "content":"",
+    },
+    //업데이트 전 정보들 
+});
+
+export const featposts = atom({
+    key:"featposts",
+    default:0,
+    //post의 수정이 있는지
+});
