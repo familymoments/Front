@@ -2,8 +2,6 @@ import Button from "../../../../components/Button";
 import MyText from "../../../../components/MyText";
 import classes from "../../SetUp/Setting/Setting.module.css";
 import{useNavigate} from "react-router-dom"
-
-
 const Delete1 = () => {
     const navigate = useNavigate();
     return (
@@ -28,7 +26,7 @@ const Delete1 = () => {
                 title="계속하기"
             />
             <Button 
-                onClick={()=>{navigate()}}
+                onClick={()=>{navigate("/main/my")}}
                 btn={classes.btn} 
                 title="취소"
                 />

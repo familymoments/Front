@@ -36,10 +36,12 @@ function Login(props) {
     const password = watch("password");
     //login data 전송
     const getAuth = (data) => {
+        const crossOriginIsolated = {withCredentials: true}
         axios
-            .post(`${SERVER}/users/log-in`,data)
+            .post(`${SERVER}/users/log-in`,data,crossOriginIsolated )
             .then(function (res) {
                 console.log(res);
+                console.log(crossOriginIsolated);
                 const token = res.data.token;
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));

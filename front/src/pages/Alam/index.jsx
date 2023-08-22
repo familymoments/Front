@@ -1,15 +1,20 @@
 import styles from './Alam.module.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import {header} from "../../atom";
+import {header, userImg} from "../../atom";
 import { useRecoilValue } from 'recoil';
 import PostUserHeader from '../../components/PostUserHeader';
-function Alam(props){
+function Alam(it){
     const SERVER = process.env.REACT_APP_SERVER_URL;
-    const token = useRecoilValue(header);
-    axios.get(`${SERVER}/users/invitation`,{token})
+    const headers = useRecoilValue(header);
+    const postuserImg=useRecoilValue(userImg);
+    console.log(headers);
+    axios.get(`${SERVER}/users/invitation`,{headers})
     .then(function (res) {
-         
+        console.log(res);
+         console.log(res.result.familyName);
+         console.log(res.result.nickname);
+         console.log(res.result.profileImg);
     }).catch(function (err) {
        console.log(err);
     });
@@ -26,7 +31,12 @@ function Alam(props){
         <div  className={styles.h1container}>
         <p className = {`${styles.h1} ${styles.h1detail}`}>읽음</p>
     </div>
-    <PostUserHeader/>
+    {/* <div>
+    <PostUserHeader
+         userImg={it.profileImg}
+         username={it.writer}
+         postdate={it.createdAt}/>
+    </div> */}
     </div>
     );}
 export default Alam;
