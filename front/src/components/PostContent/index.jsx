@@ -10,19 +10,22 @@ import {postid} from "../../atom"
 import { useRecoilState } from "recoil";
 
 
-const PostContent=(props)=>{
+const PostContent=({postlist})=>{
 
-    const postId = props.postId;
+    useEffect(()=>{
+    console.log('postcontent',postlist);
+    },[]);
+    
+    const post=postlist;
     const nav=useNavigate();
-    const post=props.postlist;
     
 
     return(
         <div className={styles.postText}>
             <span onClick={()=>{
-                nav(`/Main/postdetail/${postId}`);
-            }}>{props.postcontent}</span>
-            <PostContentSide showmodal={props.showmodal} post={props.postlist} postId={props.postId} postheart={post.loved} postcontent={props.postcontent} pushHeart={props.pushHeart}>
+                nav(`/Main/postdetail/${post.postId}`);
+            }}>{post.content}</span>
+            <PostContentSide post={post}>
                 
             </PostContentSide>
             
