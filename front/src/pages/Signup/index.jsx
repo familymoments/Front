@@ -142,7 +142,6 @@ function Signup(props){
                    }
                    console.log(checkID);
                };
-               console.log(email);
                 function emailCheck (){
                     if (email === "") {
                     Swal.fire("이메일을 먼저 입력해주세요.");

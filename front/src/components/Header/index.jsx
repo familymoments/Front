@@ -23,7 +23,7 @@ const Header = props => {
             {/* 뒤로가기 버튼 :  props로 backIcon을 전달할때 true면 아이콘 보임 */}
             {props.backIcon && <BsChevronLeft className={classes.back} onClick={backHandler} />}
             <div className={classes.font}>{props.title}</div>
-            {props.showIcon && <AiOutlineBell className={classes.icon} onClick={() => alert("알람버튼.")}/>}
+            {props.showIcon && <AiOutlineBell className={classes.icon} onClick={()=>{nav("/main/alam")}}/>}
         </div>
     );
 };

@@ -3,12 +3,31 @@ import MyText from "../../../../components/MyText";
 import styles from "../../Withdrawal/Withdraw2/Withdraw2.module.css";
 import InviteLinkBar from "../../../../components/InviteLinkBar";
 import{useNavigate} from "react-router-dom"
-
-
+import {header} from "../../../../atom";
+import { useRecoilValue } from 'recoil';
+import axios from 'axios';
+import {useForm} from "react-hook-form";
 const Delete2 = () => {
     const navigate = useNavigate();
+    const SERVER = process.env.REACT_APP_SERVER_URL;
+    const headers = useRecoilValue(header);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
+    function deleteFamily(){
+    //const familyId
+    axios.get(`${SERVER}/families/`,{headers})
+    .then(function (res) {
+        console.log(res);
+        navigate("/landing/newfamily");
+    }).catch(function (err) {
+       console.log(err);
+    });}
     return (
-        <div>
+        <form>
             <div className={styles.content1}>
             <MyText text={
             <>
@@ -18,14 +37,14 @@ const Delete2 = () => {
             } />
             </div>  
             <div className={styles.bar}>
-            <InviteLinkBar placeholder="현재 비밀번호" style={{ fontSize: "13px" }} />  
+            <input/> 
             </div>        
             <Button 
                 onClick={()=>{navigate("/Main/delete3")}}
                 btn={styles.btn} 
                 title="계속하기"
             />
-        </div>
+        </form>
     );
 }
 
