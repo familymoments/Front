@@ -4,8 +4,8 @@ import styles from "./index.module.css";
 import Button from "../Button";
 
 import { header } from "../../atom";
+import { postdata } from "../../state/post";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { featposts } from "../../state/post";
 
 import axios from "axios";
 
@@ -13,10 +13,11 @@ const DeleteModal  = ({show,postid})=>{
     let content=null;
     // mode 에 따라 안의 내용 바꿔줄거임~
     const [mode,setMode]=useState("DELETE");
-    const [featpostss,setfeatposts]=useRecoilState(featposts);
-
+    //const postId=useRecoilValue(postid);
+    //const postid=useParams().postId;
 
     const headers=useRecoilValue(header);
+    const [postData,setPostData]=useRecoilState(postdata);
 
     const nav=useNavigate();
 
@@ -29,24 +30,23 @@ const DeleteModal  = ({show,postid})=>{
             </div>
             <div>
                 <Button title="삭제" btn={styles.btn1} onClick={(e)=>{
-                    e.preventDefault();
-                    console.log('삭제하겠음?',postid)
+                    console.log('삭제하겠음?')
                     //삭제코드
                     
                         //DELETE요청
                     axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${postid}`,{headers})
                         .then(res=>{
+                            setPostData(postData.filter((post)=> postid !==postData.postId));
                             console.log(res);
-                            setMode("DELETEdone");
-                            // setfeatposts(featpostss+1);
                         })
                         .catch(err=>{
                             console.log(err);
                         });
+                       
                     
+                    setMode("DELETEdone")
                 }}/>
-                <Button type="button" title="취소" btn={styles.btn2} onClick={(e)=>{
-                    
+                <Button type="button" title="취소" btn={styles.btn2} onClick={()=>{
                     show(false);
                 }}/>
             </div>
@@ -57,9 +57,9 @@ const DeleteModal  = ({show,postid})=>{
             삭제가 완료되었습니다.
         </div>
         <div>
-            <Button title="확인" btn={styles.deletedonebtn} onClick={(e)=>{
+            <Button title="확인" btn={styles.deletedonebtn} onClick={()=>{
                 show(false);
-                nav("/Main/postlist");
+
             }}/>
             
         </div>
