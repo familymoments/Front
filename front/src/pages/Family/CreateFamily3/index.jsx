@@ -15,8 +15,7 @@ const CreateFamily3 = () => {
     console.log("location.state:", location.state);
     // console.log("selectedFamilyName in CreateFamily3:", selectedFamilyName);
 
-    const { selectedFamilyName } = location.state;
-    const { selectedImage } = location.state;
+    const { selectedFamilyName, selectedImage } = location.state;
     const [selectedAlarm, setselectedAlarm] = useState();
 
     const handleNextClick = async () => {

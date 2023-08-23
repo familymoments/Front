@@ -13,19 +13,37 @@ import { useNavigate } from "react-router-dom";
 const CreateFamily2 = () => {
     const navigate = useNavigate();
     const [selectedFamilyName, setSelectedFamilyName] = useState();
-    const [selectedImage, setSelectedImage] = useState();
+    const [selectedImageFile, setSelectedImageFile] = useState(null);
+    const [selectedImageName, setSelectedImageName] = useState(""); // Store the image name
+    const [selectedImageType, setSelectedImageType] = useState("");
+    // const [selectedImage, setSelectedImage] = useState();
+
+
+    // const handleNextClick = async () => {
+    //     await navigate("/landing/createfamily3", {
+    //         state: {
+    //             selectedFamilyName: selectedFamilyName,
+    //             selectedImage: selectedImage,
+    //         },
+    //     });
+    // };
 
     const handleNextClick = async () => {
         await navigate("/landing/createfamily3", {
             state: {
                 selectedFamilyName: selectedFamilyName,
-                selectedImage: selectedImage,
+                selectedImageFile: selectedImageFile, // Pass the selected image file
             },
         });
     };
 
-    const handleImageSelect = (image) => {
-        setSelectedImage(image);
+
+    // const handleImageSelect = (image) => {
+    //     setSelectedImage(image);
+    // };
+
+    const handleImageSelect = (imageFile) => {
+        setSelectedImageFile(imageFile);
     };
 
     return (
