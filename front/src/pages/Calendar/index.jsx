@@ -11,6 +11,8 @@ import useAsync from "../../hooks/useAsync";
 import { header } from "../../atom";
 import { useRecoilState } from "recoil";
 
+import holidayData from "./2023-2024-holiday.json"
+
 const FECalendar = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [year, setYear] = useState(selectedDate.getFullYear());
@@ -29,6 +31,7 @@ const FECalendar = () => {
             `${SERVER}/posts/calendar?familyId=5&year=${year}&month=${month}`,
             { headers }
         );
+        console.log(response.data);
         return response.data;
     };
 
@@ -75,9 +78,11 @@ const FECalendar = () => {
 
     // 공휴일인지 확인하는 함수
     const isHoliday = (date) => {
-        // 아래는 단순히 예시로 "2023-08-15"를 공휴일로 설정한 예시입니다.
+        const holidayList = holidayData.all;
+        
         // api 가져와서 연동해야함
-        return moment(date).format("YYYY-MM-DD") === "2023-08-15";
+        const formattedDate = moment(date).format("YYYY-MM-DD");
+        return holidayList.includes(formattedDate);
     };
 
     // 각 날짜에 대한 클래스 이름을 반환하는 함수
@@ -97,7 +102,7 @@ const FECalendar = () => {
     // loading을 이렇게 처리하지말고 원형으로 빙글 돌아가는 거로 처리하기!!!!!!!!!!!!!!!!!
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    if (!dateLst) return null;
+    if (!dateLst) return <div>No exist data...</div>;
     return (
         <div className={classes.wrapper}>
             <Calendar
@@ -127,7 +132,6 @@ const FECalendar = () => {
                     }
                 }}
             />
-            공휴일 api 연동 or 임시 api 노가다해서 넣기
         </div>
     );
 };
