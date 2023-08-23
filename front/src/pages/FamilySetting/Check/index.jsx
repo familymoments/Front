@@ -12,7 +12,7 @@ const Check = () => {
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const [headers, setHeaders] = useRecoilState(header);
 
-    const [familyId, setFamilyId] = useState(5);
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
     const [code, setCode] = useState(0);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Check = () => {
 
     const deleteUser = async () => {
         const response = await axios.delete(
-            `${SERVER}/families/${familyId}/withdraw`,
+            `${SERVER}/families/${familyID}/withdraw`,
             {
                 headers,
             }

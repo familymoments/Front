@@ -13,6 +13,7 @@ const Album = () => {
     const [isModal, setIsModal] = useState(false);
     const [focusImg, setFocusImg] = useState('');
     const [postId, setPostId] = useState();
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
     const propsModal = {
         focusImg,
@@ -32,7 +33,7 @@ const Album = () => {
     };
 
     const getImgs = async () => {
-        const response = await axios.get(`${SERVER}/posts/album?familyId=5`, {headers});
+        const response = await axios.get(`${SERVER}/posts/album?familyId=${familyID}`, {headers});
         console.log(response.data)
         return response.data;
     };
