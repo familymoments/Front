@@ -89,11 +89,11 @@ const FileUploadButton = ({ onSelectImage }) => {
   const handleOptionChange = (e) => {
     if (e.target.value === "gallery") {
       openFileInput();
-    } else if (e.target.value === "default") {
-      setSelectedImage(defaultImg);
-      onSelectImage(defaultImg);
-      setShowOptions(false);
+    } else if (e.target.value === "default") { // 기본 이미지 선택 시
+      setSelectedImage(defaultImg); // defaultImg로 이미지 설정
+      onSelectImage(defaultImg); // 기본 이미지를 부모 컴포넌트로 전달
       setProfileImg(defaultImg);
+      setShowOptions(false);
     }
   };
 
