@@ -12,7 +12,6 @@ const Resign3 = () => {
     const nav = useNavigate();
 
     const resignHandler = () => {
-        // alert("api 연동 필요");
         deleteUser();
         nav("/");
     };
