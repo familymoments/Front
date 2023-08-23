@@ -1,3 +1,93 @@
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+
+// import MyText from "../../../components/MyText";
+// import InviteLinkBar from "../../../components/InviteLinkBar";
+// import Button from "../../../components/Button";
+// import classes from "../CreateFamily/CreateFamily.module.css";
+// import Header from '../../../components/Header';
+// import styles from "./CreateFamily4.module.css";
+
+// import {useNavigate, useLocation} from "react-router-dom"
+// import { header } from "../../../atom";
+// import { useRecoilValue } from "recoil";
+
+// const CreateFamily4 = () => {
+//     const navigate = useNavigate();
+
+//     const authToken = useRecoilValue(header);
+//     const headers = {
+//     "X-AUTH-TOKEN": authToken,
+//     };
+
+//     const [inviteLink, setInviteLink] = useState(""); // 초대링크 상태 추가
+
+//     const handleInvite = async () => {
+//         try {
+//             const response = await axios.post("https://family-moments.com/families/family", { headers });
+//         //     const inviteCode = response.data.result.inviteCode;
+//         //     setInviteLink(`https://family-moments.com/invite/${inviteCode}`);
+//         // } catch (error) {
+//         //     console.error("Error fetching invite link:", error);
+//         if (response.data.isSuccess) {
+//             const inviteCode = response.data.result.inviteCode;
+//             setInviteLink(inviteCode);
+//         } else {
+//             console.error("API 호출 오류:", response.data.message);
+//         }
+//     } catch (error) {
+//         console.error("API 호출 오류:", error);
+//     }
+// };
+
+
+//     const handleSearchTermChange = (newTerm) => {
+//         // 검색어 처리 로직 구현
+//         console.log("New search term:", newTerm);
+//     };
+//     const [searchTerm, setSearchTerm] = useState(""); 
+
+//     const location = useLocation();
+//     console.log("location.state:", location.state);
+//     const { selectedFamilyName, selectedImage, selectedAlarm } = location.state;
+//     // console.log("selectedAlarm in CreateFamily4:", selectedAlarm);
+
+
+
+//     const handleCopyLinkClick = () => {
+//         // 초대 링크 복사 로직 구현
+//     };
+
+
+//     return (
+//         <div>
+//             <Header title="가족" />
+//             <div className={classes.content3}>
+//             <MyText text="가족 초대 링크" />
+//             </div>
+//             <div className={styles.content}>
+//             <InviteLinkBar
+//                 onSearchTermChange={handleSearchTermChange}
+//                 searchTerm={searchTerm}
+//                 inviteLink={inviteLink} // 초대링크 전달
+//             />
+//             </div>
+//             <Button
+//                 btn={classes.btn2}
+//                 title="초대 링크 복사"
+//             />
+//             <Button 
+//                 // onClick={()=>{navigate("/landing/createfamily")}}
+//                 btn={classes.btn} 
+//                 title="다음"
+//                 onClick={handleInvite}
+//             />
+//         </div>
+//     );
+// }
+
+// export default CreateFamily4;
+
 import React, { useState } from "react"; 
 import MyText from "../../../components/MyText";
 import InviteLinkBar from "../../../components/InviteLinkBar";
