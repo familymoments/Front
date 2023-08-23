@@ -28,6 +28,8 @@ function Login(props) {
     // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
     const [familyID, setFamilyID] = useRecoilState(familyid);
+    const [loginchk, setLoginChk] = useState(false);
+    console.log(familyID);
     const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
@@ -36,26 +38,25 @@ function Login(props) {
     // password 값 관리
     const password = watch("password");
     //login data 전송
+    useEffect(()=>{
+        if ( loginchk ===  false && familyID === null ) {
+            navigate("/landing/newfamily");
+            setLoginChk(true)
+        }
+        else if(familyID !== null && loginchk === true){
+            navigate("/main/postlist");
+            window.location.reload();
+        }
+       }, [familyID]) 
     const getAuth = (data) => {
         const crossOriginIsolated = {withCredentials: true}
         axios
             .post(`${SERVER}/users/log-in`,data,crossOriginIsolated )
             .then(function (res) {
-                console.log(res);
-                console.log(crossOriginIsolated);
                 setFamilyID(res.data.result);
-                const token = res.data.token;
-                console.log(res.headers.get("x-auth-token"));
+                console.log(familyID);
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
-                if(familyID === null){
-                    navigate("/landing/newfamily");
-                }
-                else{
-                    navigate("/main/postlist");
-                }
-                
-                
             })
             .catch(function (error) {
                 console.log(error);
