@@ -26,7 +26,8 @@ const Delete1 = () => {
             </div>
             </div>            
             <Button 
-                onClick={()=>{if( familyId  ===null){
+                onClick={()=>{
+                    if( familyId  === -1){
                      navigate("/main/my/set");
                      Swal.fire({
                         icon: "error",

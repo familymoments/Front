@@ -6,7 +6,7 @@ import {RecoilRoot, atom, selector, useRecoilState, useRecoilValue,} from "recoi
 
 
 
-
+import Nothing from './nothing';
 import Loading from './pages/Loading';
 import Landing from './pages/Landing';
 import Main from './pages/Main';
@@ -68,7 +68,7 @@ function App() {
                         
                         <Route path='/landing/newfamily' element={<NewFamily />} />
 
-
+                        <Route path='/landing/nothing' element={<Nothing/>} />
                         <Route path='/landing/familyparticipation' element={<FamilyParticipation />} />
                         <Route path='/landing/createfamily5_2' element={<CreateFamily5_2 />} />
                         <Route path='/landing/createfamily5' element={<CreateFamily5 />} />
