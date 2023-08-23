@@ -4,13 +4,8 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import styles from "./PersonInfo.module.css";
 
-const PersonInfo = ({ name, image, onCheckIconClick, isChecked}) => {
-  // const [checked, setChecked] = useState(false);
+const PersonInfo = ({ name, image, onCheckIconClick, isChecked }) => {
   const [isHovered, setIsHovered] = useState(false);
-
-  // const handleClick = () => {
-  //   setChecked(!checked);
-  // };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -27,21 +22,22 @@ const PersonInfo = ({ name, image, onCheckIconClick, isChecked}) => {
   };
 
   const personInfoStyle = {
-    backgroundColor: isHovered ? "#ccc" : "transparent", // 배경 색상 변경
+    backgroundColor: isHovered ? "#ccc" : "transparent",
   };
+
 
   return (
     <div 
         className={styles.personInfo}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={personInfoStyle} // 배경 색상 적용
+        style={personInfoStyle}
       >
       <div className={styles.avatar}>
-      {image ? (
+        {image ? (
           <img src={image} alt={`${name}의 프로필`} style={avatarStyle} />
         ) : (
-        <FaUser style={avatarStyle} />
+          <FaUser style={avatarStyle} />
         )}
       </div>
       <div className={styles.details}>
@@ -49,9 +45,17 @@ const PersonInfo = ({ name, image, onCheckIconClick, isChecked}) => {
       </div>
       <div className={styles.check}>
         {isChecked ? (
-          < AiFillCheckCircle className={styles.checkIconFilled} onClick={onCheckIconClick} size={30}/>
+          <AiFillCheckCircle
+            className={styles.checkIconFilled}
+            onClick={onCheckIconClick}
+            size={30}
+          />
         ) : (
-          <BsCircle className={styles.checkIcon} onClick={onCheckIconClick} size={30}/>
+          <BsCircle
+            className={styles.checkIcon}
+            onClick={onCheckIconClick}
+            size={30}
+          />
         )}
       </div>
     </div>

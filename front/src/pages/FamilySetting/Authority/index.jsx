@@ -24,6 +24,7 @@ const Authority = () => {
                 <MyText text="권한 넘기기" />
                 <div className={classes.marginBetween} />
                 <PersonInfo name="clohee" isChecked={isChecked} onCheckIconClick={handlePersonInfoClick}/>
+                <PersonInfo name="emma" isChecked={isChecked} onCheckIconClick={handlePersonInfoClick}/>
             </div>
             <Button 
                 onClick={handleButtonClick}

@@ -1,6 +1,33 @@
-.content {
+/* .content3 {
     position: absolute;
     top: 10%;
     left: 50%;
-    transform: translate(-55%, 115%);
+    transform: translate(-55%, 115%); 
+}*/
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 95px;
+}
+
+.input {
+    padding: 18px;
+    border: 1px solid #a9a9a988;
+    width: 328px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FBEEFF;
+    backdrop-filter: blur(20px);
+    margin-top: 30px;
+}
+
+.btn2 {
+    width: 328px;
+    height: 38px;
+    border-radius: 60px;
+    background-color: #9378FF;
+    margin-top: 56px;
 }
