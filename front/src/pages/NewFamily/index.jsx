@@ -25,13 +25,13 @@ const NewFamily = () => {
                         layout={classes.pinkCircleBtn}
                     />
                 </Link>
-                <Link to="../familyparticipation">
+                <a href="./familyparticipation">
                     <CircleButton
                         title="우리 가족 참여하기"
                         type="purple"
                         layout={classes.purpleCircleBtn}
                     />
-                </Link>
+                </a>
             </div>
                 <Button btn={classes.btn} title="다음에 하기" onClick={nextHandler} />
         </div>
