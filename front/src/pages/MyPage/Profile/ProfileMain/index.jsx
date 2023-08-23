@@ -16,7 +16,7 @@ const ProfileMain = (props) => {
     const [email, setEmail] = useState('');
     const [profImg, setProfImg] = useState('');
     const [nickName, setNickName] = useState("");
-    const [birthDate, setBirthDate] = useState("");
+    const [birthDate, setBirthDate] = useState();
     const [num, setNum] = useState();
     const [day, setDay] = useState();
 
