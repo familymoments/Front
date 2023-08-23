@@ -1,13 +1,14 @@
 import Button from "../../../components/Button";
 import MyText from "../../../components/MyText";
-import classes from "../../Exit/SetUp/Setting/Setting.module.css";
+// import classes from "../../Exit/SetUp/Setting/Setting.module.css";
+import classes from "./Withdraw4.module.css";
 import{useNavigate} from "react-router-dom"
 
 
 const Withdraw4 = () => {
     const navigate = useNavigate();
     return (
-        <div>
+        <div className={classes.wrapper}>
             <div className={classes.content1}>
             <MyText text={
             <>
@@ -29,7 +30,7 @@ const Withdraw4 = () => {
                 title="계속하기"
             />
             <Button 
-                onClick={()=>{navigate()}}
+                onClick={()=>{navigate(-1)}}
                 btn={classes.btn} 
                 title="취소"
                 />
