@@ -2,8 +2,12 @@ import Button from "../../../../components/Button";
 import MyText from "../../../../components/MyText";
 import classes from "../../SetUp/Setting/Setting.module.css";
 import{useNavigate} from "react-router-dom"
+import {familyid} from "../../../../atom";
+import { useRecoilValue } from 'recoil';
 const Delete1 = () => {
     const navigate = useNavigate();
+    const familyId= useRecoilValue(familyid);
+    console.log(familyId);
     return (
         <div>
             <div className={classes.content1}>
@@ -21,7 +25,8 @@ const Delete1 = () => {
             </div>
             </div>            
             <Button 
-                onClick={()=>{navigate("/Main/delete2")}}
+                onClick={()=>{
+                    familyId  ===null ? navigate("/main/my/set"): navigate("/Main/delete2")}}
                 btn={classes.btn3} 
                 title="계속하기"
             />

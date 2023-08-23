@@ -31,11 +31,11 @@ export const header = atom({
     default:{"X-AUTH-TOKEN": localStorage.getItem('token')},
 });
 export const familyid = atom({
-    key:"header",
-    default:{},
+    key:"familyid",
+    default:null,
 });
-export const profileImg = atom({
-key:"profileImg",
+export const profileimg = atom({
+key:"profileimg",
 default:null,
 });
 export const ID = atom({

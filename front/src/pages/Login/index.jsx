@@ -48,11 +48,13 @@ function Login(props) {
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
-                navigate("/landing/newfamily");
-                //const refreshToken = getCookie("refresh-token");
-                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-                //axios.defaults.headers.common['Authorization'] = `Bearer ${refreshToken}`;
-                //const refreshToken = Cookie.get("refresh-token");
+                if(familyID === null){
+                    navigate("/landing/newfamily");
+                }
+                else{
+                    navigate("/main/postlist");
+                }
+                
                 
             })
             .catch(function (error) {
