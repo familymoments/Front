@@ -36,7 +36,7 @@ const DeleteModal  = ({show,postid})=>{
                         //DELETE요청
                     axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${postid}`,{headers})
                         .then(res=>{
-                            setPostData(postData.filter((post)=> postid !==postData.postId));
+                            //setPostData(postData.filter((post)=> postid !==postData.postId));
                             console.log(res);
                         })
                         .catch(err=>{
@@ -59,6 +59,7 @@ const DeleteModal  = ({show,postid})=>{
         <div>
             <Button title="확인" btn={styles.deletedonebtn} onClick={()=>{
                 show(false);
+                window.location.reload();
 
             }}/>
             
