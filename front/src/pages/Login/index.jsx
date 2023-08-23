@@ -9,7 +9,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios, { AxiosRequestConfig } from "axios";
 import Swal from "sweetalert2";
 import { setCookie,getCookie } from "./Cookie";
-import {header} from "../../atom";
+import {header,familyid} from "../../atom";
 import { useRecoilState } from 'recoil';
 import Cookie from "js-cookie";
 import moment from "moment";
@@ -27,6 +27,7 @@ function Login(props) {
     })
     // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
+    const [familyID, setFamilyID] = useRecoilState(familyid);
     const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
@@ -42,15 +43,18 @@ function Login(props) {
             .then(function (res) {
                 console.log(res);
                 console.log(crossOriginIsolated);
+                setFamilyID(res.data.result);
                 const token = res.data.token;
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
-                navigate("/landing/newfamily");
-                //const refreshToken = getCookie("refresh-token");
-                // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-                //axios.defaults.headers.common['Authorization'] = `Bearer ${refreshToken}`;
-                //const refreshToken = Cookie.get("refresh-token");
+                if(familyID === null){
+                    navigate("/landing/newfamily");
+                }
+                else{
+                    navigate("/main/postlist");
+                }
+                
                 
             })
             .catch(function (error) {

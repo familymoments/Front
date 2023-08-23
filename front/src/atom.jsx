@@ -30,8 +30,12 @@ export const header = atom({
     key:"header",
     default:{"X-AUTH-TOKEN": localStorage.getItem('token')},
 });
-export const profileImg = atom({
-key:"profileImg",
+export const familyid = atom({
+    key:"familyid",
+    default:null,
+});
+export const profileimg = atom({
+key:"profileimg",
 default:null,
 });
 export const ID = atom({
