@@ -14,7 +14,7 @@ const CreateFamily5 = () => {
     return (
         <div className={pStyle.container}>
             <div className={pStyle.text}>
-            <HelloText2 user="융" customText="지금 바로 Family Moments를 시작해보세요!" />
+            <HelloText2 user={selectedUserId} customText="지금 바로 Family Moments를 시작해보세요!" />
             </div>
             <div className={pStyle.content}>
                 <img src={mediaImage} alt="media image" className={pStyle.imageStyle}/>

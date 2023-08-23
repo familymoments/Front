@@ -36,8 +36,16 @@
     position: relative;
     top: 20%;
     left: 78%;
-    transform: translate(-75%, 355%); 
+    transform: translate(-72%, 375%); 
 }
+
+/* .union {
+    width: 223px;
+    height: 43px;
+    border-radius: 60px;
+    background-color: #9378FF;
+    margin-top: 500px;
+} */
 
 .text {
     position: absolute;
