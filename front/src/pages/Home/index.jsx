@@ -10,7 +10,7 @@ import {useNavigate, useLocation,usecallback} from "react-router-dom";
 import { useCallback, useEffect,useState } from "react";
 
 //상태관리 라이브러리
-import { deletePostId, recentPosts,token,header } from "../../atom";
+import { header } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import {postdata,featposts} from "../../state/post";
@@ -23,6 +23,9 @@ import axios from "axios";
 const Home=({showmodal})=>{
     // const header = useRecoilValue(headers);
     // console.log(header);
+
+    const familyid=localStorage.getItem("familyID");
+
 
 
     const headers = useRecoilValue(header);
@@ -43,7 +46,7 @@ const Home=({showmodal})=>{
     //postlist 받아오기
     useEffect( ()=>{
         //최근 10개 게시물 서버에서 받아오기
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=5`,{headers})
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}`,{headers})
            .then(res=>{
             if(res.data.code===404){
                 setIsnot(true);
@@ -52,7 +55,7 @@ const Home=({showmodal})=>{
             }
             })
            .catch(err=>console.log(err));
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/families/5/created`,{headers:{
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/families/${familyid}/created`,{headers:{
             ...headers,
             "Path":"/",
             "Secure" : "HttpOnly",
@@ -60,11 +63,26 @@ const Home=({showmodal})=>{
            .then(res=>{
             setfamilyInfo(res.data.result);
             
-            })
+            })                                  
            .catch();
 
         
+
+        
     },[featpostss]);
+
+
+
+     console.log(postData[postData.length-1]);
+    if(postData.length%10===0){//개수가 10,20,30...이면
+        const smallistpost=postData[postData.length-1];
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}&postId=${smallistpost.postId}`,{headers})
+        .then(res=>{
+            // console.log(res.data.result);
+            setPostData(postData.concat([...res.data.result]));
+        })
+    }
+    
 
 
 
