@@ -4,6 +4,7 @@ import classes from "../../SetUp/Setting/Setting.module.css";
 import{useNavigate} from "react-router-dom"
 import {familyid} from "../../../../atom";
 import { useRecoilValue } from 'recoil';
+import Swal from "sweetalert2";
 const Delete1 = () => {
     const navigate = useNavigate();
     const familyId= useRecoilValue(familyid);
@@ -25,8 +26,14 @@ const Delete1 = () => {
             </div>
             </div>            
             <Button 
-                onClick={()=>{
-                    familyId  ===null ? navigate("/main/my/set"): navigate("/Main/delete2")}}
+                onClick={()=>{if( familyId  ===null){
+                     navigate("/main/my/set");
+                     Swal.fire({
+                        icon: "error",
+                        title: "가족 삭제는 가족 생성자만 가능합니다."
+                 });
+                }
+                else{ navigate("/Main/delete2");}}}
                 btn={classes.btn3} 
                 title="계속하기"
             />

@@ -26,9 +26,9 @@
     top: 234px;
     left: 16px;
     position: absolute;
-    top: 13%;
-    left: 54%;
-    transform: translate(-55%, 130%);
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 200%);
 }
 .password{
     width: 328px;
