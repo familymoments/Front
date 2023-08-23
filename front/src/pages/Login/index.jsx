@@ -28,8 +28,6 @@ function Login(props) {
     // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
     const [familyID, setFamilyID] = useRecoilState(familyid);
-    const [loginchk, setLoginChk] = useState(false);
-    console.log(familyID);
     const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
@@ -37,26 +35,49 @@ function Login(props) {
     const id = watch("id");
     // password 값 관리
     const password = watch("password");
-    //login data 전송
-    useEffect(()=>{
-        if ( loginchk ===  false && familyID === null ) {
-            navigate("/landing/newfamily");
-            setLoginChk(true)
+
+    useEffect(() => {
+        console.log("familyID: ",familyID)
+        // 데모데이용 임시방편 -> 취약점 존재하는 코드
+        localStorage.setItem('familyID', familyID);
+
+        if (familyID === -1) {
+            
         }
-        else if(familyID !== null && loginchk === true){
+        else if(familyID === null){
+            navigate("/landing/newfamily");
+        }
+        else{
             navigate("/main/postlist");
             window.location.reload();
         }
-       }, [familyID]) 
+    }, [familyID])
+
+    //login data 전송
     const getAuth = (data) => {
         const crossOriginIsolated = {withCredentials: true}
         axios
             .post(`${SERVER}/users/log-in`,data,crossOriginIsolated )
             .then(function (res) {
-                setFamilyID(res.data.result);
-                console.log(familyID);
+                console.log(res);
+                console.log(crossOriginIsolated);
+                setFamilyID(res.data.result.familyId);
+                const token = res.data.token;
+                console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
+
+                // console.log("familyID: ",familyID)
+                // console.log("res.data.result.familyId: ", res.data.result.familyId)
+                // if(familyID === null){
+                //     navigate("/landing/newfamily");
+                // }
+                // else{
+                //     navigate("/main/postlist");
+                //     window.location.reload();
+                // }
+                
+                
             })
             .catch(function (error) {
                 console.log(error);
@@ -179,6 +200,3 @@ function Login(props) {
 }
 
 export default Login;
-
-
- 
