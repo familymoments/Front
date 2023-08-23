@@ -26,7 +26,38 @@
     top: 234px;
     left: 16px;
     position: absolute;
-    top: 5%;
-    left: 50%;
+    top: 13%;
+    left: 54%;
+    transform: translate(-55%, 130%);
+}
+.password{
+    width: 328px;
+height: 46px;
+flex-shrink: 0;
+border-radius: 8px;
+border: 1px solid rgba(169, 169, 169, 0.50);
+background: rgba(251, 238, 255, 0.50);
+
+}
+.alert{
+    color: red;
+    margin-bottom: -17px;
+}
+.hiddenbtn{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    background: none;
+    margin-top: 20px;
+    z-index: 2;
+}
+.alert{
+    width: 200px;
+    height: 50px;
+    top: 234px;
+    left: 16px;
+    position: absolute;
+    top: 30%;
+    left: 37%;
     transform: translate(-55%, 130%);
 }
