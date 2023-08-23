@@ -35,6 +35,24 @@ function Login(props) {
     const id = watch("id");
     // password 값 관리
     const password = watch("password");
+
+    useEffect(() => {
+        console.log("familyID: ",familyID)
+        // 데모데이용 임시방편 -> 취약점 존재하는 코드
+        localStorage.setItem('familyID', familyID);
+
+        if (familyID === -1) {
+            
+        }
+        else if(familyID === null){
+            navigate("/landing/newfamily");
+        }
+        else{
+            navigate("/main/postlist");
+            window.location.reload();
+        }
+    }, [familyID])
+
     //login data 전송
     const getAuth = (data) => {
         const crossOriginIsolated = {withCredentials: true}
@@ -43,17 +61,21 @@ function Login(props) {
             .then(function (res) {
                 console.log(res);
                 console.log(crossOriginIsolated);
-                setFamilyID(res.data.result);
+                setFamilyID(res.data.result.familyId);
                 const token = res.data.token;
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
-                if(familyID === null){
-                    navigate("/landing/newfamily");
-                }
-                else{
-                    navigate("/main/postlist");
-                }
+
+                // console.log("familyID: ",familyID)
+                // console.log("res.data.result.familyId: ", res.data.result.familyId)
+                // if(familyID === null){
+                //     navigate("/landing/newfamily");
+                // }
+                // else{
+                //     navigate("/main/postlist");
+                //     window.location.reload();
+                // }
                 
                 
             })
