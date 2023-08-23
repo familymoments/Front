@@ -12,9 +12,7 @@ function Alam(it){
     axios.get(`${SERVER}/users/invitation`,{headers})
     .then(function (res) {
         console.log(res);
-         console.log(res.result.familyName);
-         console.log(res.result.nickname);
-         console.log(res.result.profileImg);
+         console.log(res.data.result);
     }).catch(function (err) {
        console.log(err);
     });

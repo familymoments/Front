@@ -20,6 +20,7 @@ export const deletePostId = atom({
 export const idFounded = atom({
     key: "idFounded",
     default: "",
+    //비밀번호 찾을 때 쓰는 변수
 });
  export const recentPosts = atom({
     key:"recentPosts",

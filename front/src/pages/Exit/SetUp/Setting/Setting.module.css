@@ -35,11 +35,10 @@
     width: 328px;
     height: 107px;
     top: 234px;
-    left: 16px;
     position: absolute;
     top: 5%;
     left: 50%;
-    transform: translate(-40%, 100%);
+    transform: translate(-44%, 100%);
     text-align: center;
 }
 
