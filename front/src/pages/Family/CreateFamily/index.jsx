@@ -1,16 +1,16 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-// import MyText from "../../../components/MyText";
-// import Button from "../../../components/Button";
-// import classes from "./CreateFamily.module.css";
-// import MySearchBar from "../../../components/MySearchBar";
-// import PersonInfo from "../../../components/PersonInfo";
-// import Header from '../../../components/Header';
+import MyText from "../../../components/MyText";
+import Button from "../../../components/Button";
+import classes from "./CreateFamily.module.css";
+import MySearchBar from "../../../components/MySearchBar";
+import PersonInfo from "../../../components/PersonInfo";
+import Header from '../../../components/Header';
 
-// import { useNavigate } from "react-router-dom";
-// import { header, recentPosts } from "../../../atom";
-// import { useRecoilState, useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { header, recentPosts } from "../../../atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 //     const CreateFamily = () => {
 //         const navigate = useNavigate();
@@ -115,22 +115,12 @@
 // };
     
 //     export default CreateFamily;
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 
-import MyText from "../../../components/MyText";
-import Button from "../../../components/Button";
-import classes from "./CreateFamily.module.css";
-import MySearchBar from "../../../components/MySearchBar";
-import PersonInfo from "../../../components/PersonInfo";
-import Header from '../../../components/Header';
-
-import { useNavigate } from "react-router-dom";
-import { header, recentPosts } from "../../../atom";
-import { useRecoilState, useRecoilValue } from "recoil";
 
     const CreateFamily = () => {
         const navigate = useNavigate();
+        const [isChecked, setIsChecked] = useState(false);
+
         const [data, setData] = useRecoilState(recentPosts);
         const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태
 
@@ -139,17 +129,20 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
         const handleNextClick = async () => {
             await navigate("/landing/createfamily5", {
-                state: {
-                    selectedUserId: selectedUserId,
-                    selectedImage: selectedImage,
-                },
+                // state: {
+                //     selectedUserId: selectedUserId,
+                //     selectedImage: selectedImage,
+                // },
             });
         };
+    
+        
     
   // PersonInfo 컴포넌트에서 사용자 선택 시 호출되는 함수
         const handlePersonInfoClick = (userId, userImage) => {
             setSelectedUserId(userId);
             setSelectedImage(userImage);
+            setIsChecked(!isChecked);
         };
 
        // 헤더 아톰에서 헤더 값 가져오기
@@ -209,10 +202,14 @@ import { useRecoilState, useRecoilValue } from "recoil";
         <div className={classes.user}>
         {data.map((user) => (
         <PersonInfo 
+            isChecked={user.isChecked}
+            // onCheckIconClick={handlePersonInfoClick}
+            onCheckIconClick={() => handlePersonInfoClick(user.id, user.profileImg)} 
             key={user.id} 
             name={user.id} 
             image={user.profileImg} 
             onClick={() => handlePersonInfoClick(user.id, user.profileImg)}
+            // isChecked={user.isChecked}
         />
         ))}
         </div>
