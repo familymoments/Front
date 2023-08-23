@@ -92,7 +92,7 @@ const FileUploadButton = ({ onSelectImage }) => {
     } else if (e.target.value === "default") { // 기본 이미지 선택 시
       setSelectedImage(defaultImg); // defaultImg로 이미지 설정
       onSelectImage(defaultImg); // 기본 이미지를 부모 컴포넌트로 전달
-      setprofileimg(defaultImg);
+      setProfileImg(defaultImg);
       setShowOptions(false);
     }
   };
