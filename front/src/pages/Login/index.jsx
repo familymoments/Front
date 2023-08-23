@@ -67,17 +67,6 @@ function Login(props) {
                 setHeaders(res.headers.get("x-auth-token"));
                 localStorage.setItem('token', res.headers.get("x-auth-token"));
 
-                // console.log("familyID: ",familyID)
-                // console.log("res.data.result.familyId: ", res.data.result.familyId)
-                // if(familyID === null){
-                //     navigate("/landing/newfamily");
-                // }
-                // else{
-                //     navigate("/main/postlist");
-                //     window.location.reload();
-                // }
-                
-                
             })
             .catch(function (error) {
                 console.log(error);
