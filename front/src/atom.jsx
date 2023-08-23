@@ -33,7 +33,7 @@ export const header = atom({
 });
 export const familyid = atom({
     key:"familyid",
-    default:-1,
+    default: -1,
 });
 export const profileimg = atom({
 key:"profileimg",
