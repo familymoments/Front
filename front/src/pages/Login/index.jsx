@@ -9,7 +9,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 import axios, { AxiosRequestConfig } from "axios";
 import Swal from "sweetalert2";
 import { setCookie,getCookie } from "./Cookie";
-import {header} from "../../atom";
+import {header,familyid} from "../../atom";
 import { useRecoilState } from 'recoil';
 import Cookie from "js-cookie";
 import moment from "moment";
@@ -27,6 +27,7 @@ function Login(props) {
     })
     // 상태관리 x-auth token 관리 가져다 쓰세용
     const [headers, setHeaders] = useRecoilState(header);
+    const [familyID, setFamilyID] = useRecoilState(familyid);
     const[cookie, setCookie] = useState("");
     //navigate
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ function Login(props) {
             .then(function (res) {
                 console.log(res);
                 console.log(crossOriginIsolated);
+                setFamilyID(res.data.result);
                 const token = res.data.token;
                 console.log(res.headers.get("x-auth-token"));
                 setHeaders(res.headers.get("x-auth-token"));
