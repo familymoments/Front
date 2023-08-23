@@ -69,3 +69,8 @@ export const postlove = atom({
     //현재 게시물의 하트
 })
 
+export const showmodal=atom({
+    key:"showmodal",
+    default:false,
+}) //삭제 모달 보이기
+

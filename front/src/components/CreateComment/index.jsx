@@ -2,9 +2,11 @@ import styles from "./index.module.css";
 
 import TextareaAutosize from "react-textarea-autosize";
 import {useState} from "react";
+import { useParams } from "react-router-dom";
 
 const CreateComment = (props)=>{
     const [content,setContent]=useState();
+    const postid=useParams().postId;
 
     const handleContent=(e)=>{
         setContent(
@@ -13,8 +15,8 @@ const CreateComment = (props)=>{
     }
 
     return (
-        <form method="" className={styles.wrapper} onSubmit={(e)=>{
-            e.preventDefault();
+        <form  className={styles.wrapper} onSubmit={(e)=>{
+            // e.preventDefault();
             props.onSubmit(content);
         }}>
             <TextareaAutosize className={styles.textarea} placeholder="댓글 작성" value={content} onChange={handleContent} />

@@ -1,7 +1,7 @@
 import classes from "./Main.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Modal from "../components/Modal";
+import Modal from "../components/DeleteModal";
 import { Home, Album, CreatePost, Calendar, MyPage } from "../pages";
 import Post from "../components/Post";
 import { useEffect, useState } from "react";
@@ -42,36 +42,21 @@ import Set from "./MyPage/Set";
 
 
 const Main = () => {
-    
-    const [mode,setMode]=useState();
-    const [modalopen,setModalopen]=useState(false);
-    const [modalmode,setModalmode]=useState("");
-
-
-    const showmodal=(modalmode)=>{
-        setModalmode(modalmode);
-        setModalopen(!modalopen);
-    
-    }
-    // useEffect(()=>{
-    //     showmodal(false);
-    // },[mode]);
 
     return (
         <div className={classes.wrapper}>
-            {modalopen&&<Modal showmodal={showmodal} modalmode={modalmode}></Modal>}
             <Header title="Family Moments" showIcon={true} />
             {/* route로 안의 내용만 바꿈 */}
             <div className={classes.tmp}>
                 <Routes>
-                    <Route path="/postlist" element={<Home showmodal={showmodal}/>}></Route>
+                    <Route path="/postlist" element={<Home/>}></Route>
                     <Route path="/album" element={<Album />}></Route>
                     <Route path='/alam' element={<Alam/>}/>
                     <Route path="/createPost" element={<CreatePost />}></Route>
                     <Route path="/calendar" element={<Calendar />}></Route>
                     <Route path="/my" element={<MyPage />}></Route>
 
-                    <Route path="/postdetail/:postId" element={<PostDetail showmodal={showmodal}/>} />
+                    <Route path="/postdetail/:postId" element={<PostDetail />} />
                     <Route path="/updatePost/:postId" element={<UpdatePost />} />
 
                     <Route path="/calendar/detail" element={<CalendarDetail/>} />
@@ -107,7 +92,7 @@ const Main = () => {
 
             
 
-            <Footer nowMode={mode}></Footer>
+            <Footer></Footer>
         </div>
     );
 };

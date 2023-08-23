@@ -19,7 +19,7 @@ const CreatePostText =(props)=>{
 
     return (
         <form className={styles.textBox} onSubmit={updateHandler}>
-            <textarea className={styles.textcontent} name="postText" value={content} placeholder="| 사진과 어울리는 내용을 작성하세요." onChange={e=>{
+            <textarea className={styles.textcontent} name="postInfo" value={content} placeholder="| 사진과 어울리는 내용을 작성하세요." onChange={e=>{
             setContent(e.target.value);
             props.setContent(e.target.value);
             
