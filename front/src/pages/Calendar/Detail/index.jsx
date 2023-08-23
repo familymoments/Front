@@ -17,13 +17,14 @@ const Detail = () => {
     const [year, setYear] = useState(date.getFullYear());
     const [month, setMonth] = useState(date.getMonth() + 1);
     const [day, setDay] = useState(date.getDate());
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const [headers, setHeaders] = useRecoilState(header);
 
     const getPosts = async () => {
         const response = await axios.get(
-            `${SERVER}/posts/calendar?familyId=5&year=${year}&month=${month}&day=${day}`,
+            `${SERVER}/posts/calendar?familyId=${familyID}&year=${year}&month=${month}&day=${day}`,
             { headers }
         );
         return response.data;

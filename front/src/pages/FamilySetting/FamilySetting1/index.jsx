@@ -14,11 +14,12 @@ import axios from "axios";
 const FamilySetting1 = () => {
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const [headers, setHeaders] = useRecoilState(header);
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
     const [url, setUrl] = useState("");
 
     const getFamily = async () => {
-        const response = await axios.get(`${SERVER}/families/5`, { headers });
+        const response = await axios.get(`${SERVER}/families/${familyID}`, { headers });
         console.log(response.data);
         setUrl(response.data.result.inviteCode);
         return response.data;

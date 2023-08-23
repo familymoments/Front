@@ -17,6 +17,7 @@ const CreateFamily3 = () => {
     const [selectedAlarm, setselectedAlarm] = useState();
     const [code, setCode] = useState(0);
     const [message, setMessage] = useState("");
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
     // const handleNextClick = async () => {
     //     await navigate("/landing/createfamily4", {
@@ -34,7 +35,7 @@ const CreateFamily3 = () => {
 
     const updateCycle = async () => {
         const response = await axios.patch(
-            `${SERVER}/families/5?uploadCycle=${selectedAlarm}`,
+            `${SERVER}/families/${familyID}?uploadCycle=${selectedAlarm}`,
             null,
             { headers }
         );

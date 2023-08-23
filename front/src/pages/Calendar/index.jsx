@@ -19,6 +19,7 @@ const FECalendar = () => {
     const [month, setMonth] = useState(selectedDate.getMonth() + 1);
     const [mark, setMark] = useState([]);
     const [holiday, setHoliday] = useState([]);
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
     const customWeekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
     const SERVER = process.env.REACT_APP_SERVER_URL;
@@ -28,7 +29,7 @@ const FECalendar = () => {
 
     const getUsers = async () => {
         const response = await axios.get(
-            `${SERVER}/posts/calendar?familyId=5&year=${year}&month=${month}`,
+            `${SERVER}/posts/calendar?familyId=${familyID}&year=${year}&month=${month}`,
             { headers }
         );
         console.log(response.data);
