@@ -5,6 +5,7 @@ import Button from "../../../components/Button";
 // import classes from "../../Family/CreateFamily/CreateFamily.module.css";
 import classes from "./FamilySetting1.module.css";
 import styles from "../../Family/CreateFamily4/CreateFamily4.module.css";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -19,7 +20,9 @@ const FamilySetting1 = () => {
     const [url, setUrl] = useState("");
 
     const getFamily = async () => {
-        const response = await axios.get(`${SERVER}/families/${familyID}`, { headers });
+        const response = await axios.get(`${SERVER}/families/${familyID}`, {
+            headers,
+        });
         console.log(response.data);
         setUrl(response.data.result.inviteCode);
         return response.data;
@@ -35,10 +38,10 @@ const FamilySetting1 = () => {
     };
 
     // 배포환경에서 모바일에서 확인해보고 안될시
-    const clipBoard = () => {
-        navigator.clipboard.writeText(url);
-        alert("클립보드에 복사되었습니다.");
-    };
+    // const clipBoard = () => {
+    //     navigator.clipboard.writeText(url);
+    //     alert("클립보드에 복사되었습니다.");
+    // };
 
     return (
         <div className={classes.wrapper}>
@@ -54,11 +57,16 @@ const FamilySetting1 = () => {
                     value={url}
                     onChange={handleInputChange}
                 ></input>
-                <Button
-                    btn={classes.btn2}
-                    title="초대 링크 복사"
-                    onClick={clipBoard}
-                />
+                <CopyToClipboard
+                    className="Toram"
+                    text={url}
+                    onCopy={() => alert("클립보드에 복사되었습니다.")}
+                >
+                    <Button
+                        btn={classes.btn2}
+                        title="초대 링크 복사"
+                    />
+                </CopyToClipboard>
             </div>
         </div>
     );

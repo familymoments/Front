@@ -27,12 +27,17 @@ const FECalendar = () => {
 
     const nav = useNavigate();
 
+    // let dateLst = data?.result;
+    const [dateLst, setDateLst] = useState();
+
+
     const getUsers = async () => {
         const response = await axios.get(
             `${SERVER}/posts/calendar?familyId=${familyID}&year=${year}&month=${month}`,
             { headers }
         );
-        console.log(response.data);
+        console.log(response.data.result);
+        setDateLst(response.data.result);
         return response.data;
     };
 
@@ -40,13 +45,22 @@ const FECalendar = () => {
 
     const { loading, data, error } = state;
 
-    const dateLst = data?.result;
 
     useEffect(() => {
         if (Array.isArray(dateLst)) {
             setMark([...dateLst]);
         }
     }, [dateLst]);
+
+    useEffect(() => {
+        getUsers()
+        // dateLst = data.result
+        console.log(dateLst)
+    }, [month])
+
+    // useEffect(() => {
+    //     d
+    // }, [data?.result])
 
     const dateChangeHandler = (date) => {
         setSelectedDate(date);
@@ -103,7 +117,7 @@ const FECalendar = () => {
     // loading을 이렇게 처리하지말고 원형으로 빙글 돌아가는 거로 처리하기!!!!!!!!!!!!!!!!!
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    if (!dateLst) return <div>No exist data...</div>;
+    // if (!dateLst) return <div>No exist data...</div>;
     return (
         <div className={classes.wrapper}>
             <Calendar

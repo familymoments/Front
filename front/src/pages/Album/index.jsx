@@ -11,49 +11,80 @@ import { header } from "../../atom";
 const Album = () => {
     const [imgLst, setImgLst] = useState([]);
     const [isModal, setIsModal] = useState(false);
-    const [focusImg, setFocusImg] = useState('');
+    const [focusImg, setFocusImg] = useState("");
     const [postId, setPostId] = useState();
     const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
+
+    // const [lastId, setlastId] = useState();
+    let lastId = -1
 
     const propsModal = {
         focusImg,
         postId,
         setIsModal,
-    }
+    };
 
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const [headers, setHeaders] = useRecoilState(header);
 
     // imgButton 컴포넌트(하위 컴포넌트)에서 사용하는 함수 -> 매개변수도 imgButton 컴포넌트에서 가져옴
     const modalHandler = (selectedImg, selectedId) => {
-        setFocusImg(selectedImg)
-        setPostId(selectedId)
-        
+        setFocusImg(selectedImg);
+        setPostId(selectedId);
+
         setIsModal(true);
     };
 
     const getImgs = async () => {
-        const response = await axios.get(`${SERVER}/posts/album?familyId=${familyID}`, {headers});
-        console.log(response.data)
-        return response.data;
+        const response = await axios.get(
+            `${SERVER}/posts/album?familyId=${familyID}`,
+            { headers }
+        );
+        // console.log("BASIC : ",response.data.result);
+        setImgLst([...imgLst, ...response.data.result])
+        return response.data.result;
     };
 
-    const [state, refetch] = useAsync(getImgs, []);
-
-    const { loading, data, error } = state;
-
-    const albums = data?.result;
+    const getAddImgs = async () => {
+        const response = await axios.get(
+            `${SERVER}/posts/album?familyId=${familyID}&postId=${lastId}`,
+            { headers }
+        );
+        // console.log("ADD : ",response.data.result);
+        setImgLst([...imgLst, ...response.data.result])
+        return response.data.result;
+    };
 
     useEffect(() => {
-        if (Array.isArray(albums)) {
-            setImgLst([...albums]);
-        }
-        console.log(imgLst);
-    }, [albums]);
+        const fetchData = async () => {
+          const imgList1 = await getImgs();
+          lastId = imgList1[29].postId
+          console.log(lastId)
+          const imgList2 = await getAddImgs();
+      
+          setImgLst([...imgLst, ...imgList1, ...imgList2]);
+        };
+      
+        fetchData();
+      }, []);
 
-    if (loading) return <p>loading...</p>;
-    if (error) return <p>error</p>;
-    if (!albums) return <p>No exist data..</p>;
+    // const [state, refetch] = useAsync(getImgs, []);
+    // const [state2, refetch2] = useAsync(getAddImgs, [])
+
+    // const { loading, data, error } = state;
+
+    // const albums = data?.result;
+
+    // useEffect(() => {
+    //     if (Array.isArray(albums)) {
+    //         setImgLst([...imgLst, ...albums]);
+    //     }
+    //     console.log(imgLst);
+    // }, [albums]);
+
+    // if (loading) return <p>loading...</p>;
+    // if (error) return <p>error</p>;
+    // if (!albums) return <p>No exist data..</p>;
 
     return (
         <div className={classes.wrapper}>
