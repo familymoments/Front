@@ -23,6 +23,7 @@ const Profile = () => {
     const [birthDate, setBirthDate] = useState("");
     const [num, setNum] = useState();
     const [day, setDay] = useState();
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
     const SERVER = process.env.REACT_APP_SERVER_URL;
     const [headers, setHeaders] = useRecoilState(header);
@@ -32,7 +33,7 @@ const Profile = () => {
     };
 
     const getUsers = async () => {
-        const response = await axios.get(`${SERVER}/users/profile?familyId=5`, {
+        const response = await axios.get(`${SERVER}/users/profile?familyId=${familyID}`, {
             headers,
         });
         return response.data;
