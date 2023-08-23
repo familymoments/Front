@@ -39,7 +39,6 @@ const Resign2 = ({ idxHandler }) => {
 
     useEffect(() => {
         if (code === 200) {
-            // localStorage.removeItem("token");
             idxHandler(2);
         }
     }, [code]);
