@@ -12,7 +12,7 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {profileImg, click} from "../../atom";
+import {profileimg, click} from "../../atom";
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 function Signup(props){
@@ -23,7 +23,7 @@ function Signup(props){
     const navigate = useNavigate();
 
     //이미지 업로드 컴포넌트 상태관리
-    const [electedImage, setSelectedImage] = useState();
+    const [selectedImage, setSelectedImage] = useState();
     
     //react-hook-from 관리
       const {
@@ -49,7 +49,7 @@ function Signup(props){
             resetField("confirm");
           };
           //이미지 상태관리
-          const profile = useRecoilValue(profileImg);
+          const profileImg = useRecoilValue(profileimg);
 
           //이메일 중복검사 진행
           const [eCheck, setECheck] = useState(false);
@@ -58,9 +58,9 @@ function Signup(props){
           const [checkID, setIdCheck] = useState(false);
 
         //회원가입 데이터 전송
-        function getAuth(e){
+        function getAuth(){
             
-             const signUpData ={
+             const newUser ={
                 id: watch("id"),
                 password: watch("password"),
                 name: watch("name"),
@@ -71,9 +71,11 @@ function Signup(props){
 
             if(checkID === true && eCheck === true && admit === true){
             const fd = new FormData();
-            fd.append("newUser",new Blob([JSON.stringify(signUpData)], { type: 'application/json' }));
-            fd.append("profileImg",profile);
-            console.log(signUpData,profile);
+            fd.append("newUser",new Blob([JSON.stringify(newUser)], { type: 'application/json' }));
+            fd.append("profileImg",profileImg);
+            console.log(newUser);
+            console.log(profileImg);
+            console.log(fd)
             // Post실행
             axios.post(`${SERVER}/users/sign-up`,fd)
             .then((res)=>{
@@ -295,18 +297,18 @@ function Signup(props){
                         required  {...register("nickname"
                         ,{
                             required: 
-                            "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요 ",
+                            " 3~8글자의 닉네임을 입력해주세요 (특수문자 불가)",
                             minLength: {
                                 value: 3,
-                                message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을입력해주세요",
+                                message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을입력해주세요(특수문자 불가)",
                         },
                             maxLength: {
                                 value: 8,
-                                message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요",
+                                message: " 3~8글자의 닉네임을 입력해주세요(특수문자 불가)",
                         },
                         // pattern: {
                         //     value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
-                        //     message: "영문과 숫자를 사용하여, 3~8글자의 닉네임을 입력해주세요.",
+                        //     message: "3~8글자의 닉네임을 입력해주세요.",
                         // },
                         })}/>
                 </div>

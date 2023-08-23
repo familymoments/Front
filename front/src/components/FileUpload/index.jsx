@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import imgUpload from "../../assets/Group 30.png";
 import defaultImg from "../../assets/default.png";
 import styles from "./FileUpload.module.css";
-import {profileImg} from "../../atom";
+import {profileimg} from "../../atom";
 import { useRecoilState } from 'recoil';
 
 // const FileUploadButton = ({onSelectImage}) => {
@@ -84,7 +84,7 @@ const FileUploadButton = ({ onSelectImage }) => {
   const selectRef = useRef(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [profileimg, setProfileImg] = useRecoilState(profileImg);
+  const [profileiimag, setProfileImg] = useRecoilState(profileimg);
 
   const handleOptionChange = (e) => {
     if (e.target.value === "gallery") {
