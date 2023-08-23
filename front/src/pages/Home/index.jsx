@@ -73,15 +73,15 @@ const Home=({showmodal})=>{
 
 
 
-     console.log(postData[postData.length-1]);
-    if(postData.length%10===0){//개수가 10,20,30...이면
-        const smallistpost=postData[postData.length-1];
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}&postId=${smallistpost.postId}`,{headers})
-        .then(res=>{
-            // console.log(res.data.result);
-            setPostData(postData.concat([...res.data.result]));
-        })
-    }
+    //  console.log(postData[postData.length-1]);
+    // if(postData.length%10===0){//개수가 10,20,30...이면
+    //     const smallistpost=postData[postData.length-1];
+    //     axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}&postId=${smallistpost.postId}`,{headers})
+    //     .then(res=>{
+    //         // console.log(res.data.result);
+    //         setPostData(postData.concat([...res.data.result]));
+    //     })
+    // }
     
 
 

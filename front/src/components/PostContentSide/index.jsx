@@ -38,15 +38,15 @@ const PostContentSide=({post})=>{
             })
             .catch(err=>console.log(err))
         }
-        else if(loved===true){
-            axios.delete(`${process.env.REACT_APP_SERVER_URL}/postloves`,{"postId": postId},{headers})
-            .then(res=>{
-                setLoved(false);
-                //props.pushHeart(loved);
-                console.log(postId,loved,"하트비우기");
-            })
-            .catch()
-        }
+        // if(loved===true){
+        //     axios.delete(`${process.env.REACT_APP_SERVER_URL}/postloves`,{"postId": postId},{headers})
+        //     .then(res=>{
+        //         setLoved(false);
+        //         //props.pushHeart(loved);
+        //         console.log(postId,loved,"하트비우기");
+        //     })
+        //     .catch()
+        // }
         
         
     }
