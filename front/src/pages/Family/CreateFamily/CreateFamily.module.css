@@ -56,3 +56,28 @@
     /* gap: px;  */
     margin-top: 180px; 
 }
+
+.member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: px;  */
+    margin-top: 180px; 
+    background: #FBEEFF80;
+}
+
+.blueBtn {
+    background-color: #5B6380; 
+    color: white; 
+}
+
+.btn3 {
+    position: absolute;
+    top: 54%; 
+    left: 50%; 
+    transform: translate(-50%, 300%); 
+    width: 328px;
+    height: 59px;
+    border-radius: 60px;
+    background-color: #BFBFBF;
+}
