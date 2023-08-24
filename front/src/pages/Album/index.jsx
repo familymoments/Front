@@ -58,8 +58,9 @@ const Album = () => {
     useEffect(() => {
         const fetchData = async () => {
           const imgList1 = await getImgs();
-          lastId = imgList1[29].postId
-          console.log(lastId)
+          console.log(imgList1);
+          lastId = imgList1[29].postId;
+          console.log(lastId);
           const imgList2 = await getAddImgs();
       
           setImgLst([...imgLst, ...imgList1, ...imgList2]);

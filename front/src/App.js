@@ -50,6 +50,7 @@ function App() {
 
     return (
         <RecoilRoot>
+        <div className={classes.wrapper}>
         <div className={classes.App}>
             <BrowserRouter>
                 <Routes>
@@ -98,6 +99,7 @@ function App() {
             </BrowserRouter>
                 
                 
+        </div>
         </div>
     </RecoilRoot>
     );
