@@ -24,3 +24,13 @@ export const featposts = atom({
     //post의 수정이 있는지
 });
 
+//무한스크롤
+export const itemState = atom({
+    key: 'itemState',
+    default: [],
+  });
+  
+  export const nextPageState = atom({
+    key: 'nextPageState',
+    default: 9,
+  });

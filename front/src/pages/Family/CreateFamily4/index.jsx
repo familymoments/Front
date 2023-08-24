@@ -140,7 +140,7 @@ const CreateFamily4 = () => {
     };
 
     return (
-        <div>
+        <div style={{width:"100%"}}>
             <Header title="가족" />
         <div className={styles.wrapper}>
             <div>

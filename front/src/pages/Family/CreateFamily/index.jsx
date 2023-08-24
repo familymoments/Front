@@ -184,7 +184,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
     };
 
     return (
-        <div>
+        <div style={{width:"100%"}}>
             <Header title="가족" />
             <div className={classes.content3}>
             <MyText text="우리 가족 생성하기" />

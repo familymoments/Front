@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 const Landing=(props)=>{
 
     
-    return (<div>
+    return (<div style={{width:"100%"}}>
         <Header title={props.title}></Header>
         <Outlet/>
     </div>)
