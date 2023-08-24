@@ -16,16 +16,16 @@ const PostContent=({postlist})=>{
     console.log('postcontent',postlist);
     },[]);
     
-    const post=postlist;
+
     const nav=useNavigate();
     
 
     return(
         <div className={styles.postText}>
             <span onClick={()=>{
-                nav(`/Main/postdetail/${post.postId}`);
-            }}>{post.content}</span>
-            <PostContentSide post={post}>
+                nav(`/Main/postdetail/${postlist.postId}`, {state:{postone_:postlist}});
+            }}>{postlist.content}</span>
+            <PostContentSide post={postlist}>
                 
             </PostContentSide>
             
