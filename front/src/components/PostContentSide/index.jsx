@@ -15,12 +15,14 @@ const PostContentSide=({post})=>{
     //토큰 헤더에 넣기
     
     useEffect(()=>{
-        console.log(post);
+        console.log("side",post);
     },[]);
     const headers = useRecoilValue(header);
-    const postId=post.postId;
+    // const postId=post.postId;
     const [toggle,setToggle]=useState(false);
-    const [loved,setLoved]=useState(post.loved);
+    const [loved,setLoved]=useState();
+
+    // console.log(post,post.postId);
 
     
     
@@ -30,11 +32,11 @@ const PostContentSide=({post})=>{
         e.preventDefault();
         console.log(loved);
         if(loved===false){
-            axios.post(`${process.env.REACT_APP_SERVER_URL}/postloves`,{"postId": postId},{headers})
+            axios.post(`${process.env.REACT_APP_SERVER_URL}/postloves`,{postId: post.postId},{headers})
             .then(res=>{
                 setLoved(true);
                 //props.pushHeart(loved);
-                console.log(postId,loved,"하트채우기");
+                console.log(post.postId,loved,"하트채우기");
             })
             .catch(err=>console.log(err))
         }

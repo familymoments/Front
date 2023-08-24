@@ -33,34 +33,31 @@ const PostDetail=()=>{
     // console.log("post",postId);
 
     //post 정보 navigation에서 state로 받아오기
-    const [postData,setPostData]=useState( {
-        "postId" : undefined,
-        "writer" : "",
-        "profileImg" : "",
-        "content" : "",
-        "imgs" :[],
-        "createdAt" : "",
-        "countLove" : undefined,
-        "loved" : null
-    });
-
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,{headers})
-        .then(res=>{
-            setPostData(res.data.result);
-            console.log(res.data.result);
-        })
-        .catch()
-    },[]);
-
+    const location=useLocation();
+    const [postone,setpostone] = useState(location.state.postone_);
+    // const [postone,setpostone]=useState(
+    //     // "postId" : undefined,
+    //     // "writer" : "",
+    //     // "profileImg" : "",
+    //     // "content" : "",
+    //     // "imgs" :[],
+    //     // "createdAt" : "",
+    //     // "countLove" : undefined,
+    //     // "loved" : null
     
-    
+    // );
 
     const [commentData,setCommentData]=useState([]);
 
-    
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,{headers})
+    useEffect( ()=>{
+         axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,{headers})
+        .then(res=>{
+            setpostone(res.data.result);
+            console.log("postone",res.data.result);
+        })
+        .catch()
+
+         axios.get(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,{headers})
         .then(res=>{
             console.log(res.data);
             if(res.data.code!==404){
@@ -72,13 +69,13 @@ const PostDetail=()=>{
             
 
         })
-    },[])
-    
-    
+
+        console.log(postone,commentData);
+    },[]);
 
    
     
-    const submitComment= async (content_)=>{
+    const submitComment=  (content_)=>{
         console.log(content_);
         const fd = new FormData()
     
@@ -92,7 +89,7 @@ const PostDetail=()=>{
           console.log(fd);
 
         //post
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,fd,{headers})
+         axios.post(`${process.env.REACT_APP_SERVER_URL}/comments?postId=${postId}`,fd,{headers})
         .then(
             res=>console.log(res)
         )
@@ -101,7 +98,7 @@ const PostDetail=()=>{
 
     return(
         <div className={styles.wrapper}>
-           <PostUserHeader isnormal={false} userImg={postData.profileImg} username={postData.writer} postdate={postData.createdAt}></PostUserHeader>
+           <PostUserHeader isnormal={false} userImg={postone.profileImg} username={postone.writer} postdate={postone.createdAt}></PostUserHeader>
             <div className={styles.line}></div>
 
             <div className={styles.postContent}>
@@ -121,7 +118,8 @@ const PostDetail=()=>{
                               }}
                             
                             >
-                                {postData.imgs.map((photo,idx) => {
+                                {console.log(postone)}
+                                {postone.imgs.map((photo,idx) => {
                                     return (
                                         <SwiperSlide key={idx}>
                                     <div className={styles.swiperimg}>
@@ -131,7 +129,7 @@ const PostDetail=()=>{
                         </Swiper>
                     </div>
                     
-                    <PostContent postlist={postData} postcontent={postData.content} postheart={postData.loved} postId={postId}
+                    <PostContent postlist={postone}
                         pushHeart={()=>{
                         //pushHeart(postId);
                     }} 

@@ -23,3 +23,4 @@ export const featposts = atom({
     default:0,
     //post의 수정이 있는지
 });
+
