@@ -36,6 +36,7 @@ const CreatePost = ()=>{
     const [img2,setImg2]=useState();
     const [img3,setImg3]=useState();
     const [img4,setImg4]=useState();
+    const [familyID, setFamilyID] = useState(localStorage.getItem("familyID"));
 
 //  state값이 바뀔 때마다 state값 변경해주기
     const handleChangeState=(e)=>{
@@ -57,7 +58,7 @@ const CreatePost = ()=>{
         ))
         // fd.append("images",imgs);
 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=5`,fd,{headers})
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyID}`,fd,{headers})
         .then(res=>{
            // console.log(res);
         setDate(data.concat(res.data));
