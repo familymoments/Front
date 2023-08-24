@@ -13,7 +13,7 @@ import { useCallback, useEffect,useState } from "react";
 import { header } from "../../atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 
-import {postdata,featposts} from "../../state/post";
+import {postdata,featposts,itemState,nextPageState} from "../../state/post";
 
 import axios from "axios";
 
@@ -52,6 +52,7 @@ const Home=({showmodal})=>{
                 setIsnot(true);
             }else {
                 setPostData(res.data.result);
+                // console.log(res.data.result[res.data.result.length-1]);
             }
             })
            .catch(err=>console.log(err));
@@ -72,16 +73,39 @@ const Home=({showmodal})=>{
     },[featpostss]);
 
 
+    //무한스크롤
+    // const [nextPage,setNextPage] = useRecoilState(nextPageState);
 
-    //  console.log(postData[postData.length-1]);
-    // if(postData.length%10===0){//개수가 10,20,30...이면
-    //     const smallistpost=postData[postData.length-1];
-    //     axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}&postId=${smallistpost.postId}`,{headers})
+    // const loadMoreItems = async () => {
+    //     //  const idx=postData.length-1;
+    //     await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts?familyId=${familyid}&postId=${postData[nextPage].postId}`,{headers})
     //     .then(res=>{
-    //         // console.log(res.data.result);
+    //         //console.log(res.data.result);
     //         setPostData(postData.concat([...res.data.result]));
+    //         console.log(postData);
     //     })
-    // }
+    // };
+
+    // useEffect(() => {
+    //     loadMoreItems();
+    // }, [nextPage]);
+
+    // const handleScroll = () =>{
+    //     if (
+    //         window.scrollY + document.documentElement.clientHeight ===
+    //         document.documentElement.scrollHeight
+    //       ) {
+    //           setNextPage(postData[postData.length-1]);
+            
+    //       }
+    //     };
+
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll);
+    //     return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, []);
     
 
 
@@ -92,7 +116,6 @@ const Home=({showmodal})=>{
     return(
         <div className={styles.wrapper}>
             <HelloText user={familyInfo.nickname} Dday={familyInfo.dday} />
-            {console.log(postData)}
             {postData.map((post)=>(
                 <Post it={post}/>
             ))}
